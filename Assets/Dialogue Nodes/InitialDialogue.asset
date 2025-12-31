@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9092926581fb44742903a1234fcd7b0c, type: 3}
+  m_Name: InitialDialogue
+  m_EditorClassIdentifier: 
+  dialogueText: Bom dia. Posso ajudar?
+  speakerSprite: {fileID: 21300000, guid: 46cbab989a210b1419a42c71604dc1c9, type: 3}
+  options:
+  - optionText: "Bom dia, sou a nova t\xE9cnica de ciberseguran\xE7a."
+    nextDialogue: {fileID: 11400000, guid: 59a935fc4c64b62488e78dfb50404ef7, type: 2}
+  - optionText: Estou aqui a trabalho.
+    nextDialogue: {fileID: 11400000, guid: 9a71dccff74cc624b8c1a499180b965b, type: 2}
+  - optionText: Estou procurando o Rolf.
+    nextDialogue: {fileID: 11400000, guid: 7126d7abb3b77bc4dbe5572a06324923, type: 2}
