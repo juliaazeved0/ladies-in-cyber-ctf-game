@@ -15,4 +15,11 @@ MonoBehaviour:
   dialogueText: "Agora que voc\xEA falou\u2026\r\nChegou algo estranho, mas achei
     que fosse rotina.\r\n"
   speakerSprite: {fileID: 0}
-  options: []
+  options:
+  - optionText: "Meu nome pode estar como \u2018Cargo desconhecido\u2019 por erro
+      do sistema."
+    nextDialogue: {fileID: 11400000, guid: b655c0d92b82bbb4692a35291a951869, type: 2}
+  - optionText: "Perdi meu crach\xE1."
+    nextDialogue: {fileID: 11400000, guid: ec91b19caa50e284da719980c3ca23a2, type: 2}
+  - optionText: "Vamos fazer um acordo\u2026"
+    nextDialogue: {fileID: 11400000, guid: 06885a8ec397b224e8583bc63fb494ca, type: 2}
