@@ -1,0 +1,6 @@
+Hello, how are you? #speaker:Blue
+I'm good. #speaker:You #choice:3
+Did you hear something? #speaker:You
+Can I tell you Something #speaker:Blue
+Ok #speaker:You
+Something #speaker:blue

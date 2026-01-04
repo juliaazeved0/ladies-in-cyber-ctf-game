@@ -1,0 +1,4 @@
+Hello, how are you? #speaker:Adam
+I'm good. Thanks! #speaker:You
+I'm really loving the Dialogue System you Created. #speaker:Adam
+Really, Thanks so much! #speaker:You
