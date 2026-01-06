@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc344bf1847f7284ba70f62fdd0f60c5, type: 3}
   m_Name: InitialOption0
   m_EditorClassIdentifier: 
-  question: 
+  question: "Ciberseguran\xE7a? N\xE3o lembro de nenhum chamado hoje."
   options: []
   nextDialogue: []

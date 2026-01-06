@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc344bf1847f7284ba70f62fdd0f60c5, type: 3}
   m_Name: Option0
   m_EditorClassIdentifier: 
-  question: 
-  options: []
-  nextDialogue: []
+  question: 'Alerta? Estranho, achei que fosse rotina... mas ultimamente tem dado
+    problema mesmo. '
+  options:
+  - Meu nome pode estar como 'Cargo desconhecido' por erro do sistema.
+  - "Perdi meu crach\xE1."
+  - Vamos fazer um acordo.
+  nextDialogue:
+  - {fileID: 11400000, guid: 04cd4fa5d511a89489d11e2487c30ea5, type: 2}
+  - {fileID: 11400000, guid: 8aad64ca4af1adc47941a9a0f0cfe291, type: 2}
+  - {fileID: 11400000, guid: 03cdc97e7b57a064f9806a354943b9f9, type: 2}

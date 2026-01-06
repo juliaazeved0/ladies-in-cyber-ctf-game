@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc344bf1847f7284ba70f62fdd0f60c5, type: 3}
   m_Name: InitialOption1
   m_EditorClassIdentifier: 
-  question: 
-  options: []
-  nextDialogue: []
+  question: 'A trabalho de quem? Preciso de mais detalhes. '
+  options:
+  - "Houve um alerta interno de seguran\xE7a hoje. "
+  - "Qual sistema voc\xEAs usam aqui na entrada?"
+  - "Ah... do Rolf? Quem \xE9 Rolf?"
+  nextDialogue:
+  - {fileID: 11400000, guid: e3b6318a52b68ec4cb77d5d70ea3ece8, type: 2}
+  - {fileID: 11400000, guid: e560f8f0d1fb3214b8fdecf26de39a32, type: 2}
+  - {fileID: 11400000, guid: fda17e47880e81543aeeca6f6586dbf4, type: 2}
