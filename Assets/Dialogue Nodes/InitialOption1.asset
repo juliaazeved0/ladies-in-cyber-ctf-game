@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: 'A trabalho de quem? Preciso de mais detalhes. '
   options:
-  - "Houve um alerta interno de seguran\xE7a hoje. "
-  - "Qual sistema voc\xEAs usam aqui na entrada?"
-  - "Ah... do Rolf? Quem \xE9 Rolf?"
+  - "A.  Houve um alerta interno de seguran\xE7a hoje. "
+  - "B.  Qual sistema voc\xEAs usam aqui na entrada?"
+  - "C.  Ah... do Rolf? Quem \xE9 Rolf?"
   nextDialogue:
   - {fileID: 11400000, guid: e3b6318a52b68ec4cb77d5d70ea3ece8, type: 2}
   - {fileID: 11400000, guid: e560f8f0d1fb3214b8fdecf26de39a32, type: 2}

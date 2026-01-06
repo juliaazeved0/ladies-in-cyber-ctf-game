@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc344bf1847f7284ba70f62fdd0f60c5, type: 3}
   m_Name: InitialDialogue
   m_EditorClassIdentifier: 
-  question: Bom dia. Poso ajudar?
+  question: Bom dia. Posso ajudar?
   options:
-  - "Bom dia, sou a nova t\xE9cnica de cyberseguran\xE7a."
-  - Estou aqui a trabalho.
-  - Estou procurando o Rolf.
+  - "A.  Bom dia, sou a nova t\xE9cnica de ciberseguran\xE7a."
+  - B.  Estou aqui a trabalho.
+  - C.  Estou procurando o Rolf.
   nextDialogue:
   - {fileID: 11400000, guid: 56d675cc34766de4ea7b5dfbc85c49f3, type: 2}
   - {fileID: 11400000, guid: cceca7817d78a9b428eac0f08dfd1e17, type: 2}
