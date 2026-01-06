@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc344bf1847f7284ba70f62fdd0f60c5, type: 3}
-  m_Name: InitialDialogue
+  m_Name: Option2
   m_EditorClassIdentifier: 
   question: 
   options: []
-  nextDialogue: {fileID: 0}
+  nextDialogue: []

@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9092926581fb44742903a1234fcd7b0c, type: 3}
-  m_Name: TecCyberDialogue
+  m_Script: {fileID: 11500000, guid: fc344bf1847f7284ba70f62fdd0f60c5, type: 3}
+  m_Name: InitialOption0
   m_EditorClassIdentifier: 
-  dialogueText: "Ciberseguran\xE7a?\nN\xE3o lembro de nenhum chamado hoje.\r\n"
-  speakerSprite: {fileID: 0}
+  question: 
   options: []
+  nextDialogue: []
