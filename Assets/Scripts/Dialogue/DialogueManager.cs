@@ -9,6 +9,8 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI questionText;
     public Image characterNPC;
     public Button[] buttonOption;
+    public GameObject miniMapCanvas;
+    public GameObject cameraMiniMap;
 
     [Header("Data")]
     public DialogueNode firstNode; 
@@ -32,11 +34,13 @@ public class DialogueManager : MonoBehaviour
         if (firstNode != null)
         {
             panelDialogue.SetActive(true);
+            miniMapCanvas.SetActive(false);
+            cameraMiniMap.SetActive(false);
             DialogueView(firstNode);
         }
         else
         {
-            Debug.LogWarning("Esqueceu de arrastar o First Node no Inspetor!");
+            Debug.LogWarning("inspector error");
         }
     }
 
