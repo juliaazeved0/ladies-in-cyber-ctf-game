@@ -12,11 +12,11 @@ public class DialogueManager : MonoBehaviour
     public GameObject miniMapCanvas;
     public GameObject cameraMiniMap;
     public Button buttonPlayAgain;
-    public TextMeshProUGUI playerName;
-
+    public TextMeshProUGUI playerNameText;
     private const string PLAYER_NAME_KEY = "PLAYER_NAME";
+    public Button buttonDone;
 
-    [Header("Data")]
+    [Header("Nodes")]
     public DialogueNode firstNode; 
     private DialogueNode dialogueCurrent; 
 
@@ -24,6 +24,11 @@ public class DialogueManager : MonoBehaviour
     {
         panelDialogue.SetActive(false);
         string playerName = PlayerPrefs.GetString(PLAYER_NAME_KEY);
+
+        if (playerNameText != null)
+        {
+            playerNameText.text = playerName.ToUpper();
+        }
     }
 
     void Update()
@@ -59,7 +64,22 @@ public class DialogueManager : MonoBehaviour
 
         if(isLastNode)
         {
-            buttonPlayAgain.gameObject.SetActive(true);
+            buttonPlayAgain.gameObject.SetActive(false);
+            buttonDone.gameObject.SetActive(false);
+
+            if (node.buttonType == ButtonType.PlayAgain)
+            {
+                buttonPlayAgain.gameObject.SetActive(true);
+            }
+            else if (node.buttonType == ButtonType.Done)
+            {
+                buttonDone.gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            buttonDone.gameObject.SetActive(false);
+            buttonPlayAgain.gameObject.SetActive(false);
         }
 
         for (int i = 0; i < buttonOption.Length; i++)

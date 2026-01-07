@@ -15,7 +15,7 @@ public class WelcomePlayer : MonoBehaviour
         if (PlayerPrefs.HasKey(PLAYER_NAME_KEY))
         {
             string playerName = PlayerPrefs.GetString(PLAYER_NAME_KEY);
-            welcomeText.text = $"Bem-vindo, {playerName}!";
+            welcomeText.text = $"Bem-vinda, {playerName.ToUpper()}!";
         }
         else
         {

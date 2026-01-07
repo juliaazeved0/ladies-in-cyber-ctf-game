@@ -14,6 +14,7 @@ public class PlayerNameManager : MonoBehaviour
         {
             SceneManager.LoadScene("IntroductionGame");
         }
+
     }
 
     public void OnClickPlay()
