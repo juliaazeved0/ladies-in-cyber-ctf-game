@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: Bom dia. Posso ajudar?
   options:
-  - "A.  Bom dia, sou a nova t\xE9cnica de ciberseguran\xE7a."
+  - "A.  Sou a nova t\xE9cnica de ciberseguran\xE7a."
   - B.  Estou aqui a trabalho.
   - C.  Estou procurando o Rolf.
   nextDialogue:

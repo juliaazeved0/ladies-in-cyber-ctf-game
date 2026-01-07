@@ -11,6 +11,10 @@ public class DialogueManager : MonoBehaviour
     public Button[] buttonOption;
     public GameObject miniMapCanvas;
     public GameObject cameraMiniMap;
+    public Button buttonPlayAgain;
+    public TextMeshProUGUI playerName;
+
+    private const string PLAYER_NAME_KEY = "PLAYER_NAME";
 
     [Header("Data")]
     public DialogueNode firstNode; 
@@ -19,6 +23,7 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         panelDialogue.SetActive(false);
+        string playerName = PlayerPrefs.GetString(PLAYER_NAME_KEY);
     }
 
     void Update()
@@ -36,6 +41,7 @@ public class DialogueManager : MonoBehaviour
             panelDialogue.SetActive(true);
             miniMapCanvas.SetActive(false);
             cameraMiniMap.SetActive(false);
+            buttonPlayAgain.gameObject.SetActive(false);
             DialogueView(firstNode);
         }
         else
@@ -49,7 +55,13 @@ public class DialogueManager : MonoBehaviour
         dialogueCurrent = node;
         questionText.text = node.question;
 
-     
+        bool isLastNode = (node.nextDialogue.Length == 0);
+
+        if(isLastNode)
+        {
+            buttonPlayAgain.gameObject.SetActive(true);
+        }
+
         for (int i = 0; i < buttonOption.Length; i++)
         {
            
@@ -64,6 +76,11 @@ public class DialogueManager : MonoBehaviour
                 buttonOption[i].gameObject.SetActive(false);
             }
         }
+    }
+
+    public void DialoguePlayAgain()
+    {
+        StartDialogue();
     }
 
     public void ChooseOption(int index)
