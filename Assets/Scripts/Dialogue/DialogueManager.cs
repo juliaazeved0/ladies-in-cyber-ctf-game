@@ -15,10 +15,14 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI playerNameText;
     private const string PLAYER_NAME_KEY = "PLAYER_NAME";
     public Button buttonDone;
+    public TextMeshProUGUI playerNameplateIdPlayer;
+    
+    public PlayerNameplate playerNameplate;
 
     [Header("Nodes")]
     public DialogueNode firstNode; 
     private DialogueNode dialogueCurrent; 
+
 
     void Start()
     {
@@ -96,6 +100,14 @@ public class DialogueManager : MonoBehaviour
                 buttonOption[i].gameObject.SetActive(false);
             }
         }
+    }
+
+    public void OnClickDone()
+    {
+        panelDialogue.SetActive(false);
+        miniMapCanvas.SetActive(true);
+        cameraMiniMap.SetActive(true);
+        playerNameplate.SetNameplateIdPlayer();
     }
 
     public void DialoguePlayAgain()
