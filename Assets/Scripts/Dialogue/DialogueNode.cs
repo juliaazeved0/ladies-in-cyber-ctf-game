@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ButtonType { PlayAgain, Done }
+public enum ButtonType { PlayAgain, Done  }
 [CreateAssetMenu(fileName = "NewDialogue", menuName = "Dialogue/Node")]
 public class DialogueNode : ScriptableObject
 {
