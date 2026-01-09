@@ -15,8 +15,8 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI playerNameText;
     private const string PLAYER_NAME_KEY = "PLAYER_NAME";
     public Button buttonDone;
-    public TextMeshProUGUI playerNameplateIdPlayer;
     
+    public BlockLevels disableLevels;
     public PlayerNameplate playerNameplate;
 
     [Header("Nodes")]
@@ -108,6 +108,8 @@ public class DialogueManager : MonoBehaviour
         miniMapCanvas.SetActive(true);
         cameraMiniMap.SetActive(true);
         playerNameplate.SetNameplateIdPlayer();
+        disableLevels.DisableBlock();
+
     }
 
     public void DialoguePlayAgain()
