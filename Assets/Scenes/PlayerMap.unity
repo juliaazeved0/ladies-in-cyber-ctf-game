@@ -49564,8 +49564,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.63, y: 3.01}
-    newSize: {x: 1.63, y: 3.01}
+    oldSize: {x: 5.14, y: 7.84}
+    newSize: {x: 5.14, y: 7.84}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -49641,12 +49641,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -960451679, guid: 1f54492d377719b4a96b36acb2193044, type: 3}
+  m_Sprite: {fileID: -1058364626, guid: e6b587e466f887448aba4efa45b75db9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.63, y: 3.01}
+  m_Size: {x: 5.14, y: 7.84}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -49661,8 +49661,8 @@ Transform:
   m_GameObject: {fileID: 205272356}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.4, y: -19.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalPosition: {x: 2.03, y: -19.5, z: 0}
+  m_LocalScale: {x: 0.45, y: 0.45, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2102875315}
@@ -49822,7 +49822,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 48bb17e95c3287148b35f9161d4e6543, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ba1832b74c0d38d41859e74482bdb914, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -51087,7 +51087,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "SECRET\xC1RIA"
+  m_text: LORENA
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: add1a8372a63cf04b8f0e4e9adcdb019, type: 2}
   m_sharedMaterial: {fileID: 4720189985607097196, guid: add1a8372a63cf04b8f0e4e9adcdb019, type: 2}
@@ -76783,7 +76783,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 2.45, y: 2.86}
+  m_AnchoredPosition: {x: 1.06, y: 5.34}
   m_SizeDelta: {x: 6.7372, y: 4.048}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2102875316
