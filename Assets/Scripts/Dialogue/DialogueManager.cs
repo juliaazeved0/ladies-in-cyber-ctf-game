@@ -15,8 +15,8 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI playerNameText;
     private const string PLAYER_NAME_KEY = "PLAYER_NAME";
     public Button buttonDone;
-    public Button exitDialogue;
-   
+    public Button buttonExit;
+
     public BlockLevels disableLevels;
     public PlayerNameplate playerNameplate;
 
@@ -27,6 +27,7 @@ public class DialogueManager : MonoBehaviour
 
     void Start()
     {
+
         panelDialogue.SetActive(false);
         
         string playerName = PlayerPrefs.GetString(PLAYER_NAME_KEY, "Jogadora");
@@ -36,7 +37,6 @@ public class DialogueManager : MonoBehaviour
             playerNameText.text = playerName.ToUpper();
         }
     }
-
 
     public void StartDialogue()
     {
@@ -54,6 +54,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+
     public void DialogueView(DialogueNode node)
     {
         dialogueCurrent = node;
@@ -62,23 +63,31 @@ public class DialogueManager : MonoBehaviour
         bool isLastNode = (node.nextDialogue.Length == 0);
 
         if(isLastNode)
-        {
+        { 
+
             buttonPlayAgain.gameObject.SetActive(false);
             buttonDone.gameObject.SetActive(false);
+            buttonExit.gameObject.SetActive(false);
 
-            if (node.buttonType == ButtonType.PlayAgain)
-            {
-                buttonPlayAgain.gameObject.SetActive(true);
-            }
-            else if (node.buttonType == ButtonType.Done)
-            {
-                buttonDone.gameObject.SetActive(true);
-            }
+                
+                if (node.buttonType == ButtonType.PlayAgain)
+                {
+                    buttonPlayAgain.gameObject.SetActive(true);
+                }
+                else if (node.buttonType == ButtonType.Done)
+                {
+                    buttonDone.gameObject.SetActive(true);
+                }
+                else 
+                {
+                    buttonExit.gameObject.SetActive(true);
+                }
         }
         else
         {
             buttonDone.gameObject.SetActive(false);
             buttonPlayAgain.gameObject.SetActive(false);
+            buttonExit.gameObject.SetActive(true);
         }
 
         for (int i = 0; i < buttonOption.Length; i++)

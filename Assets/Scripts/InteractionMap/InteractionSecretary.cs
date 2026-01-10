@@ -1,44 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class InteractionSecretary : MonoBehaviour
 {
-
-    public GameObject interactionNotice;
-
+    private bool playerIsHere = false;
+    public Image interactionNotice;
     public DialogueManager dialogueManager;
 
-    private bool playerIsHere = false;
+
     void Start()
     {
-        interactionNotice.SetActive(false);
+        if(interactionNotice != null)
+        interactionNotice.gameObject.SetActive(false);
     }
 
     void Update()
     {
-        if (playerIsHere == true)
+        if (playerIsHere && Input.GetKeyDown(KeyCode.E))
         {
-            interactionNotice.SetActive(true);
-
-            if(Input.GetKeyDown(KeyCode.E))
-            {
-                interactionNotice.SetActive(false);
-                dialogueManager.StartDialogue();
-            }
            
-        }
-        
-    }
+            if (interactionNotice != null)
+                interactionNotice.gameObject.SetActive(false);
 
+    
+            dialogueManager.StartDialogue();
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collison)
     {
         if(collison.CompareTag("Player"))
         {
             playerIsHere = true;
-            interactionNotice.SetActive(true);
+            if (interactionNotice != null)
+            {
+                interactionNotice.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -47,7 +45,10 @@ public class InteractionSecretary : MonoBehaviour
         if(collison.CompareTag("Player"))
         {
             playerIsHere = false;
-            interactionNotice.SetActive(false);
+            if (interactionNotice != null)
+            {
+                interactionNotice.gameObject.SetActive(false);
+            }
         }
     }
 }
