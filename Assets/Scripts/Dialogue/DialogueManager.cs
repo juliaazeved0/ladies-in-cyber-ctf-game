@@ -16,7 +16,7 @@ public class DialogueManager : MonoBehaviour
     private const string PLAYER_NAME_KEY = "PLAYER_NAME";
     public Button buttonDone;
     public Button exitDialogue;
-    
+   
     public BlockLevels disableLevels;
     public PlayerNameplate playerNameplate;
 
@@ -28,7 +28,8 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         panelDialogue.SetActive(false);
-        string playerName = PlayerPrefs.GetString(PLAYER_NAME_KEY);
+        
+        string playerName = PlayerPrefs.GetString(PLAYER_NAME_KEY, "Jogadora");
 
         if (playerNameText != null)
         {
@@ -36,13 +37,6 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            StartDialogue();
-        }
-    }
 
     public void StartDialogue()
     {
