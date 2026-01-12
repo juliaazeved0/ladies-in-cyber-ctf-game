@@ -17,6 +17,8 @@ public class DialogueManager : MonoBehaviour
     public Button buttonDone;
     public Button buttonExit;
 
+    public WriteMachine writeMachine;
+
     public BlockLevels disableLevels;
     public PlayerNameplate playerNameplate;
 
@@ -58,7 +60,8 @@ public class DialogueManager : MonoBehaviour
     public void DialogueView(DialogueNode node)
     {
         dialogueCurrent = node;
-        questionText.text = node.question;
+        //questionText.text = node.question;
+        writeMachine.Run(node.question, questionText);
 
         bool isLastNode = (node.nextDialogue.Length == 0);
 
