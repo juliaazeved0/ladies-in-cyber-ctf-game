@@ -6,7 +6,7 @@ using UnityEngine;
 public class WriteMachine : MonoBehaviour
 {
     [Header("Settings Text Effect")]
-    public float speedWriter = 0.05f;
+    public float speedWriter = 0.08f;
     public bool IsTyping { get; private set; } = false;
     private Coroutine typingCoroutine;
 

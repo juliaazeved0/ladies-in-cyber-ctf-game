@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class IntroScreenController : MonoBehaviour
 {
@@ -49,6 +50,10 @@ public class IntroScreenController : MonoBehaviour
             case 3: //Tela final
                 textFlag.SetActive(true);
                 break;
+            
+            case 4: //carrega a cena do player no mapa
+               SceneManager.LoadScene("PlayerMap");
+               break;
 
             default: //Executa apenas se for maior que 3
                 break;

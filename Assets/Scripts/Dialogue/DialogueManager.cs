@@ -16,6 +16,8 @@ public class DialogueManager : MonoBehaviour
     private const string PLAYER_NAME_KEY = "PLAYER_NAME";
     public Button buttonDone;
     public Button buttonExit;
+    public Image lockImage;
+    public TextMeshProUGUI dialogueNPC;
 
     public WriteMachine writeMachine;
 
@@ -114,6 +116,8 @@ public class DialogueManager : MonoBehaviour
         panelDialogue.SetActive(false);
         miniMapCanvas.SetActive(true);
         cameraMiniMap.SetActive(true);
+        lockImage.gameObject.SetActive(false);
+        dialogueNPC.text = "Bem-vinda ao Centro de Tecnologia do Itaipu Parquetec!";
         playerNameplate.SetNameplateIdPlayer();
         disableLevels.DisableBlock();
 
