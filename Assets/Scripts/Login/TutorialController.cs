@@ -9,7 +9,7 @@ public class TutorialController : MonoBehaviour
     public GameObject panel1;
     public GameObject panel2;
 
-    public string nextSceneName = "Introduction"; //Nome da cena que será carregada
+    public string nextSceneName = "PlayerMap"; //Nome da cena que será carregada
 
     private int count = 0; //Variável para guardar o estado do tutorial
     public void OnNextClicked() //Função é chamada quando o jogador clica na flecha
