@@ -15,43 +15,29 @@ public class TransparenceWall : MonoBehaviour
         tilemap = GetComponent<Tilemap>();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (other.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
-            
+        
             Color c = tilemap.color;
-            c.a = 0.5f;
-            tilemap.color = c;
-
-            
-            tilemapRenderer.sortingOrder = 10; 
+            if(c.a != 0.5f) 
+            {
+                c.a = 0.5f;
+                tilemap.color = c;
+                tilemapRenderer.sortingOrder = 10;
+            }
         }
     }
 
-    //private void OnTriggerStay2D(Collider2D other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //    
-    //        Color c = tilemap.color;
-    //        if(c.a != 0.5f) 
-    //        {
-    //            c.a = 0.5f;
-    //            tilemap.color = c;
-    //            tilemapRenderer.sortingOrder = 10;
-    //        }
-    //    }
-//}
-
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (other.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             
             Color c = tilemap.color;
             c.a = 1f;
-           tilemap.color = c;
+            tilemap.color = c;
     
             
             tilemapRenderer.sortingOrder = 0; 
