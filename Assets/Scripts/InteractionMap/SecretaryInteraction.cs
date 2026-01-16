@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class InteractionSecretary : MonoBehaviour
+public class SecretaryInteraction : MonoBehaviour
 {
     private bool playerIsHere = false;
     public Image interactionNotice;

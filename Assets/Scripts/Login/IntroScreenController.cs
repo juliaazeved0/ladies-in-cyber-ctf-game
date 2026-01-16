@@ -15,6 +15,9 @@ public class IntroScreenController : MonoBehaviour
     public GameObject textObjective;
     public GameObject textFlag;
 
+    private const string INTRO_KEY = "introductionComplete";
+    //private bool IsDone = false;
+
     private int currentStage = 0; //Cada vez que o jogador apertar e tecla E, o n�mero aumenta e as telas avan�am
 
     void Update()
@@ -51,10 +54,12 @@ public class IntroScreenController : MonoBehaviour
                 textFlag.SetActive(true);
                 break;
             
-            case 4: //carrega a cena do player no mapa
-               SceneManager.UnloadSceneAsync("Introduction");
-               break;
-
+            case 4: // descarrega introdução e volta para o mapa
+            
+                SceneManager.UnloadSceneAsync("Introduction");
+                break;
+                
+            
             default: //Executa apenas se for maior que 3
                 break;
         }
