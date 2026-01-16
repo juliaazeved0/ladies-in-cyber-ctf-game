@@ -5,36 +5,36 @@ using UnityEngine.SceneManagement;
 
 public class IntroScreenController : MonoBehaviour
 {
-    [Header("Backgrounds")] //Coloca no Inspector os espaços para arrastar os objetos
-    public GameObject backgroundWarning; //Referência para o fundo de aviso
+    [Header("Backgrounds")] //Coloca no Inspector os espaï¿½os para arrastar os objetos
+    public GameObject backgroundWarning; //Referï¿½ncia para o fundo de aviso
     public GameObject backgroundNormal; //Fundo nromal
 
-    [Header("Texts")] //Aqui são para os textos
+    [Header("Texts")] //Aqui sï¿½o para os textos
     public GameObject textWarning;
     public GameObject textNormal;
     public GameObject textObjective;
     public GameObject textFlag;
 
-    private int currentStage = 0; //Cada vez que o jogador apertar e tecla E, o número aumenta e as telas avançam
+    private int currentStage = 0; //Cada vez que o jogador apertar e tecla E, o nï¿½mero aumenta e as telas avanï¿½am
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E)) //Retorna verdadeiro apenas no frame em que a tecla E é pressionada
+        if(Input.GetKeyDown(KeyCode.E)) //Retorna verdadeiro apenas no frame em que a tecla E ï¿½ pressionada
         {
             Advance();
         }
     }
 
-    void Advance() //Função responsável por trocas as telas
+    void Advance() //Funï¿½ï¿½o responsï¿½vel por trocas as telas
     {
-        currentStage++; //Incrementa o número da etapa
+        currentStage++; //Incrementa o nï¿½mero da etapa
 
-        //Desliga todos os textos antes de mostrar o correto, também para evitar que dois textos apareçam ao mesmo tempo
+        //Desliga todos os textos antes de mostrar o correto, tambï¿½m para evitar que dois textos apareï¿½am ao mesmo tempo
         textWarning.SetActive(false);
         textNormal.SetActive(false);
         textObjective.SetActive(false);
 
-        switch (currentStage) //Analisa o valor da variável e executa um bloco diferente para cada etapa
+        switch (currentStage) //Analisa o valor da variï¿½vel e executa um bloco diferente para cada etapa
         {
             case 1: //Tela inicial
                 backgroundWarning.SetActive(false);
@@ -52,7 +52,7 @@ public class IntroScreenController : MonoBehaviour
                 break;
             
             case 4: //carrega a cena do player no mapa
-               SceneManager.LoadScene("PlayerMap");
+               SceneManager.UnloadSceneAsync("Introduction");
                break;
 
             default: //Executa apenas se for maior que 3

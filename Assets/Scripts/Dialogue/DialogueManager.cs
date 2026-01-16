@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -21,7 +22,6 @@ public class DialogueManager : MonoBehaviour
 
     public WriteMachine writeMachine;
 
-    public BlockLevels disableLevels;
     public PlayerNameplate playerNameplate;
 
     [Header("Nodes")]
@@ -33,6 +33,8 @@ public class DialogueManager : MonoBehaviour
     {
 
         panelDialogue.SetActive(false);
+
+        buttonExit.gameObject.SetActive(false);
         
         string playerName = PlayerPrefs.GetString(PLAYER_NAME_KEY, "Jogadora");
 
@@ -119,17 +121,16 @@ public class DialogueManager : MonoBehaviour
         lockImage.gameObject.SetActive(false);
         dialogueNPC.text = "Bem-vinda ao Centro de Tecnologia do Itaipu Parquetec!";
         playerNameplate.SetNameplateIdPlayer();
-        disableLevels.DisableBlock();
 
     }
 
-    public void OnClickExit()
-    {
-        panelDialogue.SetActive(false);
-        miniMapCanvas.SetActive(true);
-        cameraMiniMap.SetActive(true);
+    //public void OnClickExit()
+    //{
+    //    panelDialogue.SetActive(false);
+    //    miniMapCanvas.SetActive(true);
+    //    cameraMiniMap.SetActive(true);
         
-    }
+    //}
 
     public void DialoguePlayAgain()
     {
