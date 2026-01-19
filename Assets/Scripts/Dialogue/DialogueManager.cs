@@ -23,6 +23,7 @@ public class DialogueManager : MonoBehaviour
     public WriteMachine writeMachine;
 
     public PlayerNameplate playerNameplate;
+    public const string INICIAL_KEY = "dialogueInicial";
 
     [Header("Nodes")]
     public DialogueNode firstNode; 
@@ -35,6 +36,13 @@ public class DialogueManager : MonoBehaviour
         panelDialogue.SetActive(false);
 
         buttonExit.gameObject.SetActive(false);
+
+        int dialogueInicialDone = PlayerPrefs.GetInt(INICIAL_KEY, 0);
+
+       if (dialogueInicialDone == 1)
+        {
+        lockImage.gameObject.SetActive(false);
+        }
         
         string playerName = PlayerPrefs.GetString(PLAYER_NAME_KEY, "Jogadora");
 
@@ -115,22 +123,25 @@ public class DialogueManager : MonoBehaviour
 
     public void OnClickDone()
     {
+            PlayerPrefs.SetInt(INICIAL_KEY, 1);
+            PlayerPrefs.Save();
+
+            panelDialogue.SetActive(false);
+            miniMapCanvas.SetActive(true);
+            cameraMiniMap.SetActive(true);
+            lockImage.gameObject.SetActive(false);
+            dialogueNPC.text = "Bem-vinda ao Centro de Tecnologia do Itaipu Parquetec!";
+            playerNameplate.SetNameplateIdPlayer();
+       
+    }
+
+    public void OnClickExit()
+    {
         panelDialogue.SetActive(false);
         miniMapCanvas.SetActive(true);
         cameraMiniMap.SetActive(true);
-        lockImage.gameObject.SetActive(false);
-        dialogueNPC.text = "Bem-vinda ao Centro de Tecnologia do Itaipu Parquetec!";
-        playerNameplate.SetNameplateIdPlayer();
-
-    }
-
-    //public void OnClickExit()
-    //{
-    //    panelDialogue.SetActive(false);
-    //    miniMapCanvas.SetActive(true);
-    //    cameraMiniMap.SetActive(true);
         
-    //}
+    }
 
     public void DialoguePlayAgain()
     {

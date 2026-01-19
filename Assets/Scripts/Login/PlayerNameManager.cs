@@ -8,6 +8,14 @@ public class PlayerNameManager : MonoBehaviour
 
     private const string PLAYER_NAME_KEY = "PLAYER_NAME";
 
+    void Start()
+    {
+        if(PlayerPrefs.HasKey("PLAYER_NAME"))
+        {
+            SceneManager.LoadScene("PlayerMap");
+        }
+    }
+
     public void OnClickPlay()
     {
         string playerName = nameInput.text.Trim();
