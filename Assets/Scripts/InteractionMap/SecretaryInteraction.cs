@@ -14,11 +14,14 @@ public class SecretaryInteraction : MonoBehaviour
     {
         if(interactionNotice != null)
         interactionNotice.gameObject.SetActive(false);
+        
     }
 
     void Update()
     {
-        if (playerIsHere && Input.GetKeyDown(KeyCode.E))
+        int playerDone = PlayerPrefs.GetInt(DialogueManager.INICIAL_KEY, 0);
+
+        if (playerIsHere && Input.GetKeyDown(KeyCode.E) && playerDone == 0)
         {
            
             if (interactionNotice != null)
@@ -30,13 +33,12 @@ public class SecretaryInteraction : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collison)
     {
-        if(collison.CompareTag("Player"))
+        playerIsHere = true;
+        int playerDone = PlayerPrefs.GetInt(DialogueManager.INICIAL_KEY, 0);
+
+        if(collison.CompareTag("Player") && playerDone == 0)
         {
-            playerIsHere = true;
-            if (interactionNotice != null)
-            {
-                interactionNotice.gameObject.SetActive(true);
-            }
+            interactionNotice.gameObject.SetActive(true);
         }
     }
 
