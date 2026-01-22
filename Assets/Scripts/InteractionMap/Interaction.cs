@@ -15,6 +15,9 @@ public class Interaction : MonoBehaviour
     private bool playerIsHere = false;
     private bool isCompleted = false;
 
+    public SimpleDialogue simpleDialogue;
+    public NPCDialogueNode firstNode;
+
     void Start()
     {
         interactionNotice.SetActive(false);
@@ -25,11 +28,11 @@ public class Interaction : MonoBehaviour
     
     void Update()
     {
-        if(playerIsHere && Input.GetKeyDown(KeyCode.E) && !isCompleted)
+        if(playerIsHere && Input.GetKeyDown(KeyCode.E) && !isCompleted && !simpleDialogue.panelDialogue.activeSelf)
         {
             interactionNotice.SetActive(false);
             miniMapCamera.SetActive(false);
-            //aqui tenho q invocar o metodo q vai ser responsavel pelo deafio ou so ativar o panel do desafio
+            simpleDialogue.StartDialogue(firstNode);
         }
         
     }
@@ -55,9 +58,12 @@ public class Interaction : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             playerIsHere = false;
-
-            interactionNotice.SetActive(false);
-        }
+            
+            if (interactionNotice != null) 
+                {
+                    interactionNotice.SetActive(false);
+                }
+         }
     }
 
     public void CheckChallengeStatus()

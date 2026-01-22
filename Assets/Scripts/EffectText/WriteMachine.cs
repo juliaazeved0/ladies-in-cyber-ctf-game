@@ -8,26 +8,47 @@ public class WriteMachine : MonoBehaviour
     [Header("Settings Text Effect")]
     public float speedWriter = 0.08f;
     public bool IsTyping { get; private set; } = false;
+    
     private Coroutine typingCoroutine;
+
+    private TextMeshProUGUI currentLabel; 
+    private string currentFullText;
 
     public void Run(string textWrite, TextMeshProUGUI textMeshPro)
     {
-        if (typingCoroutine != null)
+        currentFullText = textWrite;
+        currentLabel = textMeshPro;
+
+       if (typingCoroutine != null)
             StopCoroutine(typingCoroutine);
 
-        typingCoroutine = StartCoroutine(TypeText(textWrite, textMeshPro));
+        typingCoroutine = StartCoroutine(TypeText());
     }
 
-    private IEnumerator TypeText(string allText, TextMeshProUGUI textMeshPro)
+    private IEnumerator TypeText()
     {
         IsTyping = true;
-        textMeshPro.text = "";
+        currentLabel.text = "";
 
-        foreach (char key in allText.ToCharArray())
+        foreach (char key in currentFullText.ToCharArray())
         {
-            textMeshPro.text += key;
+            currentLabel.text += key;
             yield return new WaitForSeconds(speedWriter);
         }
+
+        IsTyping = false;
+        typingCoroutine = null;
+    }
+
+   public void Complete()
+    {
+        if(!IsTyping) return;
+
+       
+        if(typingCoroutine != null)
+            StopCoroutine(typingCoroutine);
+      
+        currentLabel.text = currentFullText;
 
         IsTyping = false;
         typingCoroutine = null;
