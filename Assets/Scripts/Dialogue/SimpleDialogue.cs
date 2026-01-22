@@ -18,8 +18,6 @@ public class SimpleDialogue : MonoBehaviour
     public GameObject cameraMiniMap;
     public Button confirmButton;
 
-    public Image NotificationKeyE;
-
     [Header("Buttons")]
     public Button buttonExit;
 

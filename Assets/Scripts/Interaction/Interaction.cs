@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Interaction : MonoBehaviour
 {
     [Header("Settings NPC")]
     public string uniqueSaveKey;
     public GameObject challengePanel;
+    public Image balloonNPC;
 
     [Header("Interaction")]
     public GameObject interactionNotice;
@@ -21,8 +23,9 @@ public class Interaction : MonoBehaviour
     void Start()
     {
         interactionNotice.SetActive(false);
-        //decidir se preciso mesmo fazer duas verificações de status
+        //decidir se preciso mesmo fazer duas verificaï¿½ï¿½es de status
         CheckChallengeStatus();
+        balloonNPC.gameObject.SetActive(false);
     }
 
     
@@ -30,7 +33,6 @@ public class Interaction : MonoBehaviour
     {
         if(playerIsHere && Input.GetKeyDown(KeyCode.E) && !isCompleted && !simpleDialogue.panelDialogue.activeSelf)
         {
-            interactionNotice.SetActive(false);
             miniMapCamera.SetActive(false);
             simpleDialogue.StartDialogue(firstNode);
         }
@@ -49,6 +51,7 @@ public class Interaction : MonoBehaviour
             {
                 
                 interactionNotice.SetActive(true);
+                balloonNPC.gameObject.SetActive(true);
             }
         }
     }
@@ -62,6 +65,7 @@ public class Interaction : MonoBehaviour
             if (interactionNotice != null) 
                 {
                     interactionNotice.SetActive(false);
+                    balloonNPC.gameObject.SetActive(false);
                 }
          }
     }
