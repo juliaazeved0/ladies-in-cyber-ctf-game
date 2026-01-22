@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   talkNPC: "Ol\xE1, poderia me ajudar a acessar o computador da minha colega Julia?"
   nextNode: {fileID: 11400000, guid: 14b1c6fcd5c854b47ac829095ddfc724, type: 2}
-  characterNPC: {fileID: 21300000, guid: 7b895494c7b2e574bb624809ca7067e2, type: 3}
+  characterNPC: {fileID: 159176775, guid: 7b895494c7b2e574bb624809ca7067e2, type: 3}

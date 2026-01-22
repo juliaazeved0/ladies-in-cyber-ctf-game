@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   talkNPC: Preciso acessar com urgencia o arquivo zip na pasta "IMPORTANTE"!
   nextNode: {fileID: 11400000, guid: 60e525bb04f228b4dbc1dbe3f0604d48, type: 2}
-  characterNPC: {fileID: 21300000, guid: b31d3541825c4e74ab3f66162ebe5ea0, type: 3}
+  characterNPC: {fileID: -1259455673, guid: b31d3541825c4e74ab3f66162ebe5ea0, type: 3}

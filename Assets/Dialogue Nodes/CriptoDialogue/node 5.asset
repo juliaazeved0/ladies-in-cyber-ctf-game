@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   talkNPC: "Voc\xEA pode me ajudar?"
   nextNode: {fileID: 0}
-  characterNPC: {fileID: 21300000, guid: 7b895494c7b2e574bb624809ca7067e2, type: 3}
+  characterNPC: {fileID: 159176775, guid: 7b895494c7b2e574bb624809ca7067e2, type: 3}

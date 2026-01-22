@@ -18,6 +18,8 @@ public class SimpleDialogue : MonoBehaviour
     public GameObject cameraMiniMap;
     public Button confirmButton;
 
+    public Image NotificationKeyE;
+
     [Header("Buttons")]
     public Button buttonExit;
 
@@ -39,6 +41,7 @@ public class SimpleDialogue : MonoBehaviour
 
     void Start()
     {
+        
         panelDialogue.SetActive(false);
         confirmButton.gameObject.SetActive(false);
         string namePlayer = PlayerPrefs.GetString(PLAYER_NAME_KEY, "Jogadora");
