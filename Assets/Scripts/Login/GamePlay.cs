@@ -15,11 +15,11 @@ public class WelcomePlayer : MonoBehaviour
         if (PlayerPrefs.HasKey(PLAYER_NAME_KEY))
         {
             string playerName = PlayerPrefs.GetString(PLAYER_NAME_KEY);
-            welcomeText.text = $"BEM-VINDA, {playerName.ToUpper()} AO CTF LADIES IN CYBER!";
+            welcomeText.text = $"BEM-VINDA {playerName.ToUpper()} AO CTF LADIES IN CYBER!";
         }
         else
         {
-            welcomeText.text = "Bem-vinda!";
+            welcomeText.text = $"BEM-VINDA AO CTF LADIES IN CYBER!";
         }
     }
 
