@@ -17,6 +17,10 @@ public class SimpleDialogue : MonoBehaviour
     public GameObject miniMapCanvas;
     public GameObject cameraMiniMap;
     public Button confirmButton;
+    public GameObject panelChallenge1;
+    public GameObject panelChallenge2;
+
+    private bool readyToSpeak = false; 
 
     [Header("Buttons")]
     public Button buttonExit;
@@ -31,6 +35,11 @@ public class SimpleDialogue : MonoBehaviour
 
     void Update()
     {
+        if(!readyToSpeak)
+        {
+            return;
+        }
+        
         if(panelDialogue.activeSelf && Input.GetKeyDown(KeyCode.E))
         {
            NextTalk();
@@ -39,7 +48,8 @@ public class SimpleDialogue : MonoBehaviour
 
     void Start()
     {
-        
+        panelChallenge1.SetActive(false);
+        panelChallenge2.SetActive(false);
         panelDialogue.SetActive(false);
         confirmButton.gameObject.SetActive(false);
         string namePlayer = PlayerPrefs.GetString(PLAYER_NAME_KEY, "Jogadora");
@@ -59,7 +69,16 @@ public class SimpleDialogue : MonoBehaviour
             
 
             DialogueView(firstNode);
+
+            readyToSpeak = false;
+            StartCoroutine(ReleaseInput());
         }
+    }
+
+    IEnumerator ReleaseInput()
+    {
+        yield return new WaitForSeconds(0.2f);
+        readyToSpeak = true;
     }
     public void DialogueView(NPCDialogueNode node)
     {
@@ -96,5 +115,11 @@ public class SimpleDialogue : MonoBehaviour
         miniMapCanvas.SetActive(true);
         cameraMiniMap.SetActive(true);
 
+    }
+
+    public void OnClickHelNPC()
+    {
+        panelDialogue.SetActive(false);
+        panelChallenge1.SetActive(true);
     }
 }

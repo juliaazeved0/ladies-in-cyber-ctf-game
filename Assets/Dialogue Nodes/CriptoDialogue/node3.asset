@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: node3
   m_EditorClassIdentifier: 
   talkNPC: "Ela disse que deixou dicas, mas s\xF3 vejo letras embaralhadas!"
-  nextNode: {fileID: 11400000, guid: e113f2b6606c76d459c5c9e57b27589e, type: 2}
+  nextNode: {fileID: 11400000, guid: 60e525bb04f228b4dbc1dbe3f0604d48, type: 2}
   characterNPC: {fileID: -1259455673, guid: b31d3541825c4e74ab3f66162ebe5ea0, type: 3}
