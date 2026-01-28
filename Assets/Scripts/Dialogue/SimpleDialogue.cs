@@ -17,8 +17,8 @@ public class SimpleDialogue : MonoBehaviour
     public GameObject miniMapCanvas;
     public GameObject cameraMiniMap;
     public Button confirmButton;
-    public GameObject panelChallenge1;
-    public GameObject panelChallenge2;
+    public GameObject panelChallenge1 = null;
+    public GameObject panelChallenge2 = null;
 
     private bool readyToSpeak = false; 
 
