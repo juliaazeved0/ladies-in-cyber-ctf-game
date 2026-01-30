@@ -33,7 +33,7 @@ public class Interaction : MonoBehaviour
     {
         if(playerIsHere && Input.GetKeyDown(KeyCode.E) && !isCompleted && !simpleDialogue.panelDialogue.activeSelf)
         {
-            miniMapCamera.SetActive(false);
+            CanvasManager.Instance.ToggleMiniMap(false);
             simpleDialogue.StartDialogue(firstNode);
         }
         

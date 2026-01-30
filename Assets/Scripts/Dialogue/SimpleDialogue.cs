@@ -17,8 +17,6 @@ public class SimpleDialogue : MonoBehaviour
     public GameObject miniMapCanvas;
     public GameObject cameraMiniMap;
     public Button confirmButton;
-    public GameObject panelChallenge1 = null;
-    public GameObject panelChallenge2 = null;
 
     private bool readyToSpeak = false; 
 
@@ -48,9 +46,9 @@ public class SimpleDialogue : MonoBehaviour
 
     void Start()
     {
-        panelChallenge1.SetActive(false);
-        panelChallenge2.SetActive(false);
-        panelDialogue.SetActive(false);
+        //panelChallenge1.SetActive(false);
+        //panelChallenge2.SetActive(false);
+        //panelDialogue.SetActive(false);
         confirmButton.gameObject.SetActive(false);
         string namePlayer = PlayerPrefs.GetString(PLAYER_NAME_KEY, "Jogadora");
         playerNameplate.text = namePlayer.ToUpper();
@@ -62,9 +60,8 @@ public class SimpleDialogue : MonoBehaviour
 
         if (firstNode != null)
         {
-            panelDialogue.SetActive(true);
-            miniMapCanvas.SetActive(false);
-            cameraMiniMap.SetActive(false);
+            CanvasManager.Instance.OpenPanel(panelDialogue.name);
+            CanvasManager.Instance.ToggleMiniMap(false);
             confirmButton.gameObject.SetActive(false);
             
 
@@ -80,6 +77,7 @@ public class SimpleDialogue : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         readyToSpeak = true;
     }
+
     public void DialogueView(NPCDialogueNode node)
     {
         dialogueCurrent = node;
@@ -111,15 +109,8 @@ public class SimpleDialogue : MonoBehaviour
 
     public void ExitDialogue()
     {
-        panelDialogue.SetActive(false);
-        miniMapCanvas.SetActive(true);
-        cameraMiniMap.SetActive(true);
-
+        CanvasManager.Instance.ClosedPanel(panelDialogue.name);
+        CanvasManager.Instance.ToggleMiniMap(true);
     }
 
-    public void OnClickHelNPC()
-    {
-        panelDialogue.SetActive(false);
-        panelChallenge1.SetActive(true);
-    }
 }
