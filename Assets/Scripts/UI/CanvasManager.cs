@@ -10,6 +10,9 @@ public class CanvasManager : MonoBehaviour
     [Header("Panels/backgrounds UI")]
     public List<GameObject> allPanels;
 
+    [Header("Minimap")]
+    public GameObject miniMapContainer;
+
     void Awake()
     {
         if(Instance == null)
@@ -47,4 +50,26 @@ public class CanvasManager : MonoBehaviour
             }
         }
     }
+
+    public void ClosedPanel(string panelName)
+    {
+        ClosedAllPanels();
+
+        foreach(GameObject panel in allPanels)
+        {
+            if(panel.name == panelName)
+            {
+                panel.SetActive(false);
+                return;
+            }
+        }
+     }
+
+     public void ToggleMiniMap(bool isActive)
+     {
+        if(miniMapContainer != null)
+        {
+            miniMapContainer.SetActive(isActive);
+        }
+     }
 }
