@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 text=auto
 # Unity files
 *.meta -text merge=unityyamlmerge diff
@@ -23,3 +24,9 @@ text=auto
 *.terrainlayer -text merge=unityyamlmerge diff
 *.mixer -text merge=unityyamlmerge diff
 *.shadervariants -text merge=unityyamlmerge diff
+=======
+# Auto detect text files and perform LF normalization
+* text=auto
+*.unity merge=unityyamlmerge
+*.prefab merge=unityyamlmerge
+>>>>>>> Stashed changes
