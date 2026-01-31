@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class ButtonManager : MonoBehaviour
 {
-    public GameObject panelName;
-    public PulseOutline pulseOutline;
-    public void OnClickHelpCrypto()
+ 
+    public void FinalizarAgora()
     {
-        CanvasManager.Instance.ClosedPanel(panelName.name);
-        CanvasManager.Instance.ToggleMiniMap(true);
-        pulseOutline.StartPulsing();
+        gameObject.SetActive(false);
     }
-
-    
-
-    
-
 }
+    
+

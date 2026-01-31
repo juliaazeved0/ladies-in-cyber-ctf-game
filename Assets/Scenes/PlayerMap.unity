@@ -47495,6 +47495,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &190263484 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3097059847536763826, guid: f003b9b7ce432b7418149b1b0f48c3a8, type: 3}
+  m_PrefabInstance: {fileID: 6107291172451925480}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &190263489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 190263484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38f3ff864de05de458c533d14ff9f9dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &205272356
 GameObject:
   m_ObjectHideFlags: 0
@@ -72998,8 +73015,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38f3ff864de05de458c533d14ff9f9dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelName: {fileID: 1209890056}
-  pulseOutline: {fileID: 0}
 --- !u!1 &1710802887
 GameObject:
   m_ObjectHideFlags: 0
@@ -78753,6 +78768,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7670542476598663353, guid: f003b9b7ce432b7418149b1b0f48c3a8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1688706281}
+    - targetCorrespondingSourceObject: {fileID: 3097059847536763826, guid: f003b9b7ce432b7418149b1b0f48c3a8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 190263489}
   m_SourcePrefab: {fileID: 100100000, guid: f003b9b7ce432b7418149b1b0f48c3a8, type: 3}
 --- !u!1001 &8769284944520993069
 PrefabInstance:
