@@ -85,11 +85,11 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OutlineAlphaMultiplier: 0.985
+    - _OutlineAlphaMultiplier: 1
     - _OutlineIntensity: 10
     - _OutlineSampleQuality: 128
     - _OutlineSoftness: 5
-    - _OutlineThickness: 0.026
+    - _OutlineThickness: 0.0453
     - _OutlineWidth: 51.79
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
@@ -101,6 +101,6 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 1, g: 0, b: 0.98137283, a: 1}
+    - _OutlineColor: {r: 1, g: 0, b: 0.8052616, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

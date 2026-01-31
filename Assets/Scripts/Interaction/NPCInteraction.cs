@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Interaction : MonoBehaviour
+public class NPCInteraction : MonoBehaviour
 {
     [Header("Settings NPC")]
     public string uniqueSaveKey;
@@ -12,7 +12,6 @@ public class Interaction : MonoBehaviour
 
     [Header("Interaction")]
     public GameObject interactionNotice;
-    public GameObject miniMapCamera;
 
     private bool playerIsHere = false;
     private bool isCompleted = false;
