@@ -78744,6 +78744,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6900070659424935009, guid: f003b9b7ce432b7418149b1b0f48c3a8, type: 3}
+      propertyPath: scriptPulseOutline
+      value: 
+      objectReference: {fileID: 1299966238}
     - target: {fileID: 7621517601552559695, guid: f003b9b7ce432b7418149b1b0f48c3a8, type: 3}
       propertyPath: m_Type
       value: 0
