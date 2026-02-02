@@ -6,15 +6,7 @@ public class PlayerNameManager : MonoBehaviour
 {
     [SerializeField] private TMP_InputField nameInput;
 
-    private const string PLAYER_NAME_KEY = "PLAYER_NAME";
-
-    void Start()
-    {
-        if(PlayerPrefs.HasKey("PLAYER_NAME"))
-        {
-            SceneManager.LoadScene("PlayerMap");
-        }
-    }
+    public const string PLAYER_NAME_KEY = "PLAYER_NAME";
 
     public void OnClickPlay()
     {
