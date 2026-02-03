@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   talkNPC: "Se tiver sucesso, haver\xE1 uma FLAG escondida dentro do arquivo como
     recompensa!"
-  nextNode: {fileID: 11400000, guid: 14b1c6fcd5c854b47ac829095ddfc724, type: 2}
+  nextNode: {fileID: 0}
   characterNPC: {fileID: 21300000, guid: d85208c060603e44481b7bb53df2e986, type: 3}
