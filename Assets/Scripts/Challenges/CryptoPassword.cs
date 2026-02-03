@@ -13,6 +13,13 @@ public class CryptoPassword : MonoBehaviour
     public GameObject popUpError;
     public GameObject panelSucessChallenge;
     public PulseOutline scriptPulseOutline;
+    public GameObject buttonEnter;
+    public GameObject buttonExit;
+    public GameObject panelChallenge;
+    public GameObject buttonExitPanelSucess;
+    public NPCDialogueNode sucessNode;
+    public SimpleDialogue simpleDialogue;
+    public TextMeshProUGUI textFlag;
 
     public void CheckPassword()
     {
@@ -22,8 +29,11 @@ public class CryptoPassword : MonoBehaviour
         {
             if(scriptPulseOutline != null)
             {
+                //remover essa linha quando implementar CaptureFlag
                 scriptPulseOutline.StopPulsing();
                 panelSucessChallenge.SetActive(true);
+                buttonEnter.SetActive(false);
+
             }
         }else
         {
@@ -38,6 +48,37 @@ public class CryptoPassword : MonoBehaviour
         popUpError.SetActive(false);
         panelSucessChallenge.SetActive(false);
         
+    }
+
+    public void ExitChallenge()
+    {
+
+       if(textFlag.text == "Flag Capturada")
+        {   
+            CanvasManager.Instance.ClosedPanel(panelChallenge.name);
+            simpleDialogue.StartDialogue(sucessNode);
+        }
+        else{
+            CanvasManager.Instance.ClosedPanel(panelChallenge.name);
+        }
+    }
+
+    public void ExitPanelSucess()
+    {
+        panelSucessChallenge.SetActive(false);
+        passwordInputText.text = "";
+        buttonEnter.SetActive(true);
+
+        //criar verificação para saber se a flag foi salva, se foi salva e exit selecionado, chama o panel de dialogo para continuar para o proximo desafio
+        
+    }
+
+    public void CaptureFlag()
+    {
+       string flagCaptured = "Flag Capturada!";
+       textFlag.text = flagCaptured;
+        //salvar rightPssword dentro de uma lista 
+        //scriptPulseOutline.StopPulsing();
     }
 
 }

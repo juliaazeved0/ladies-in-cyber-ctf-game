@@ -53484,6 +53484,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1141176275 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6900070659424935009, guid: f003b9b7ce432b7418149b1b0f48c3a8, type: 3}
+  m_PrefabInstance: {fileID: 6107291172451925480}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5d3f181a2983a044967cfc1c0111860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1167684132
 GameObject:
   m_ObjectHideFlags: 0
@@ -73015,6 +73026,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38f3ff864de05de458c533d14ff9f9dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1688706282 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2566223258275553727, guid: f003b9b7ce432b7418149b1b0f48c3a8, type: 3}
+  m_PrefabInstance: {fileID: 6107291172451925480}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688706278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f302fa1132c51d643bc176a650ea9e09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1710802887
 GameObject:
   m_ObjectHideFlags: 0
@@ -78648,6 +78670,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 55951720555438980, guid: f003b9b7ce432b7418149b1b0f48c3a8, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 83f9e8db47d9e2e4eb8bac0cff7eebb7, type: 2}
+    - target: {fileID: 194164161756006101, guid: f003b9b7ce432b7418149b1b0f48c3a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 194164161756006101, guid: f003b9b7ce432b7418149b1b0f48c3a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 194164161756006101, guid: f003b9b7ce432b7418149b1b0f48c3a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1141176275}
+    - target: {fileID: 194164161756006101, guid: f003b9b7ce432b7418149b1b0f48c3a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 194164161756006101, guid: f003b9b7ce432b7418149b1b0f48c3a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CaptureFlag
+      objectReference: {fileID: 0}
+    - target: {fileID: 194164161756006101, guid: f003b9b7ce432b7418149b1b0f48c3a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CryptoPassword, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 194164161756006101, guid: f003b9b7ce432b7418149b1b0f48c3a8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1166560393671867759, guid: f003b9b7ce432b7418149b1b0f48c3a8, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -78740,10 +78794,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 2.0142
       objectReference: {fileID: 0}
+    - target: {fileID: 6463538588050161751, guid: f003b9b7ce432b7418149b1b0f48c3a8, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000030517578
+      objectReference: {fileID: 0}
     - target: {fileID: 6855602414491778477, guid: f003b9b7ce432b7418149b1b0f48c3a8, type: 3}
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6900070659424935009, guid: f003b9b7ce432b7418149b1b0f48c3a8, type: 3}
+      propertyPath: sucessNode
+      value: 
+      objectReference: {fileID: 11400000, guid: fd7e2c559df0f9c4095354431a2dc3cf, type: 2}
+    - target: {fileID: 6900070659424935009, guid: f003b9b7ce432b7418149b1b0f48c3a8, type: 3}
+      propertyPath: simpleDialogue
+      value: 
+      objectReference: {fileID: 1688706282}
     - target: {fileID: 6900070659424935009, guid: f003b9b7ce432b7418149b1b0f48c3a8, type: 3}
       propertyPath: scriptPulseOutline
       value: 
