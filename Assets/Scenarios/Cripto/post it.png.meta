@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9785f57d6b62d0c4580c609a93a6fe91
+guid: 88c02d7288417a54cb508ef5928f7644
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -94,19 +94,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: Windows Store Apps
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -123,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: inputRose-Photoroom_0
+      name: post it_0
       rect:
         serializedVersion: 2
-        x: 127
-        y: 287
-        width: 1013
-        height: 319
+        x: 704
+        y: 237
+        width: 512
+        height: 557
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23b72d1c1ca4c254c8922da068343129
-      internalID: -1730371871
+      spriteID: bc6cb37f31b4a7843901164cf4a8d27d
+      internalID: 1277406844
       vertices: []
       indices: 
       edges: []
@@ -154,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      inputRose-Photoroom_0: -1730371871
+      post it_0: 1277406844
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

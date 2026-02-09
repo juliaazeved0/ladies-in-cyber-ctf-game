@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37288b8cc8a1b8c4a934c05d643fec5f, type: 3}
-  m_Name: node2
+  m_Name: node9
   m_EditorClassIdentifier: 
-  talkNPC: Ela saiu de viagem e deixou a senha anotada em um post-it, mas parece
-    estar criptografada!
-  nextNode: {fileID: 11400000, guid: a48d4b27bc997bd46880d69c8f09ab82, type: 2}
-  characterNPC: {fileID: -1259455673, guid: b31d3541825c4e74ab3f66162ebe5ea0, type: 3}
+  talkNPC: "Acho que ela deve ter codificado. Poderia dar uma olhada no computador
+    dela para mim e ver se consegue descriptograf\xE1-lo?"
+  nextNode: {fileID: 11400000, guid: 9d99a0feba9486147bd549cd2a5f40fb, type: 2}
+  characterNPC: {fileID: 159176775, guid: 7b895494c7b2e574bb624809ca7067e2, type: 3}
