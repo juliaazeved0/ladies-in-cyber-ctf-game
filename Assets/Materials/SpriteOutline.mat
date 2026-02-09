@@ -89,7 +89,7 @@ Material:
     - _OutlineIntensity: 10
     - _OutlineSampleQuality: 128
     - _OutlineSoftness: 5
-    - _OutlineThickness: 0.0453
+    - _OutlineThickness: 0.1
     - _OutlineWidth: 51.79
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
