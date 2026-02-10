@@ -60,7 +60,7 @@ public class ValidatePassword : MonoBehaviour
 
     public void OpenWhatsAppWindow()
     {
-        if(whatsappWindow != null)
+        if(whatsappWindow != null) //
         {
             whatsappWindow.SetActive(true); //Ativa a janela
         }
