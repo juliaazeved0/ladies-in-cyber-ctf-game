@@ -3,12 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//script criado para o efeito de pulsar/brilhar dos outlines
+//script criado para o efeito de pulsar nos outlines
 //deve ser adicionado ao objeto com material do shader
 public class PulseOutline : MonoBehaviour
 {
     [Header("Settings pulse effect")]
-    public GameObject panelName;
     public float pulseSpeed = 0.05f;
     public float maxThickness = 0.05f;
     public bool startActive = false;
@@ -51,14 +50,13 @@ public class PulseOutline : MonoBehaviour
 // com o objeto q contem esse script selecionado, deve arrastar o panel do dialogo q deve ser fechado
     public void StartPulsing()
     {
-        CanvasManager.Instance.ClosedPanel(panelName.name);
-        CanvasManager.Instance.ToggleMiniMap(true);
         isPulsing = true;
         if(myMaterial != null)
         {
             myMaterial.SetFloat("_OutlineAlphaMultiplier", 1.0f);
         }
     }
+
 
 // para chamar quando a player concluir a task 
     public void StopPulsing()

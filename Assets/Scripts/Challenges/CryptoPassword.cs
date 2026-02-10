@@ -12,7 +12,8 @@ public class CryptoPassword : MonoBehaviour
     public TMP_InputField passwordInputText;
     public GameObject popUpError;
     public GameObject panelSucessChallenge;
-    public PulseOutline scriptPulseOutline;
+    public PulseOutline pulsePCJ;
+    public PulseOutline pulsePCP;
     public GameObject buttonEnter;
     public GameObject buttonExit;
     public GameObject panelChallenge;
@@ -20,6 +21,8 @@ public class CryptoPassword : MonoBehaviour
     public NPCDialogueNode sucessNode;
     public SimpleDialogue simpleDialogue;
     public TextMeshProUGUI textFlag;
+    public GameObject dialogueNPC;
+    public ObjectInteraction scriptInteractionPcJ;
 
     public void CheckPassword()
     {
@@ -27,14 +30,8 @@ public class CryptoPassword : MonoBehaviour
 
         if(textInput == rightPassword)
         {
-            if(scriptPulseOutline != null)
-            {
-                //remover essa linha quando implementar CaptureFlag
-                scriptPulseOutline.StopPulsing();
                 panelSucessChallenge.SetActive(true);
                 buttonEnter.SetActive(false);
-
-            }
         }else
         {
             passwordInputText.text = "";
@@ -47,18 +44,27 @@ public class CryptoPassword : MonoBehaviour
     {
         popUpError.SetActive(false);
         panelSucessChallenge.SetActive(false);
-        
+        passwordInputText.ActivateInputField();
     }
+
 
     public void ExitChallenge()
     {
 
-       if(textFlag.text == "Flag Capturada")
+       if(textFlag.text.Trim().Equals("Flag Capturada!"))
         {   
+            if(scriptInteractionPcJ != null)
+            {
+                scriptInteractionPcJ.enabled = false;
+            }
+           
             CanvasManager.Instance.ClosedPanel(panelChallenge.name);
+            CanvasManager.Instance.OpenPanel(dialogueNPC.name);
             simpleDialogue.StartDialogue(sucessNode);
+            pulsePCJ.StopPulsing();
         }
         else{
+            Debug.Log("SAINDO SEM CAPTURAR A FLAG");
             CanvasManager.Instance.ClosedPanel(panelChallenge.name);
         }
     }
@@ -69,7 +75,7 @@ public class CryptoPassword : MonoBehaviour
         passwordInputText.text = "";
         buttonEnter.SetActive(true);
 
-        //criar verificação para saber se a flag foi salva, se foi salva e exit selecionado, chama o panel de dialogo para continuar para o proximo desafio
+        //criar verificacao aqui para saber se a flag foi salva, se foi salva e exit selecionado, chama o panel de dialogo para continuar para o proximo desafio
         
     }
 
@@ -78,7 +84,8 @@ public class CryptoPassword : MonoBehaviour
        string flagCaptured = "Flag Capturada!";
        textFlag.text = flagCaptured;
         //salvar rightPssword dentro de uma lista 
-        //scriptPulseOutline.StopPulsing();
+        pulsePCJ.StopPulsing();
+        pulsePCP.StartPulsing();
     }
 
 }
