@@ -9,7 +9,7 @@ public class PCPChallenge : MonoBehaviour
 {
   public GameObject boardFolders;
   public TMP_InputField passwordInputText;
-  public string rightPassword = "ILobeCapibara";
+  public string rightPassword = "ilobecapibara";
   public GameObject popUpError;
   public GameObject buttonEnter;
 
@@ -17,6 +17,7 @@ public class PCPChallenge : MonoBehaviour
 void Start()
 {
     boardFolders.SetActive(false);
+    popUpError.SetActive(false);
 }
    public void CheckPassword()
     {
@@ -27,8 +28,9 @@ void Start()
                 buttonEnter.SetActive(false);
         }else
         {
+            Debug.Log("else");
             passwordInputText.text = "";
-            popUpError.SetActive(false);
+            //popUpError.SetActive(false);
             popUpError.SetActive(true);
         }
     }
@@ -36,6 +38,6 @@ void Start()
     public void OnClickEnter()
     {
         CheckPassword();
-        boardFolders.SetActive(true);
+       // popUpError.SetActive(true);
     }
 }
