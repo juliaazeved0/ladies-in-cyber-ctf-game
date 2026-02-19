@@ -12,17 +12,35 @@ public class FileNavigationManager : MonoBehaviour
     public Button backButton;
     public TextMeshProUGUI pathText;
 
+    public Transform popUpConatiner;
+
     private Stack<GameObject> historyStack = new Stack<GameObject>();
     private GameObject currentOpenFolder;
+
     void Start()
     {
-        currentOpenFolder = rootFolder;
+       foreach (Transform child in popUpConatiner)
+       {
+            if(child.name == "pathFolder") continue;
 
-        currentOpenFolder.SetActive(true);
+            child.gameObject.SetActive(false);
+        }
+
+        if(rootFolder != null)
+        {
+            currentOpenFolder = rootFolder;
+            currentOpenFolder.SetActive(true);
+            pathText.text ="/Desktop";
+        }
+
+        UpdateBackButton();
+       
     }
 
     public void OpenFolder(Folder folder)
     {
+        if(folder.contentFolder == currentOpenFolder) return;
+        
         historyStack.Push(currentOpenFolder);
         currentOpenFolder.SetActive(false);
 
