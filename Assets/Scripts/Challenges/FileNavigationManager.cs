@@ -22,9 +22,11 @@ public class FileNavigationManager : MonoBehaviour
        foreach (Transform child in popUpConatiner)
        {
             if(child.name == "pathFolder") continue;
+            if(child.name == "BackButton") continue;
 
             child.gameObject.SetActive(false);
         }
+
 
         if(rootFolder != null)
         {
@@ -59,6 +61,7 @@ public class FileNavigationManager : MonoBehaviour
 
     public void GoBack()
     {
+        Debug.Log("Tnetando voltar:"+historyStack.Count);
         if(historyStack.Count > 0)
         {
             currentOpenFolder.SetActive(false);
@@ -67,8 +70,16 @@ public class FileNavigationManager : MonoBehaviour
 
             currentOpenFolder.SetActive(true);
 
+            pathText.text = "/" + currentOpenFolder.name;
+
             UpdateBackButton();
         }
+    }
+
+    public void ClosePopUp()
+    {
+        popUpConatiner.gameObject.SetActive(false);
+        
     }
 
 }
