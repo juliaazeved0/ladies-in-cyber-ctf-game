@@ -13,6 +13,7 @@ public class ValidatePassword : MonoBehaviour
     [Header("Painéis do Computador")]
     public GameObject loginPanel; //Painel inicial
     public GameObject taskbarPanel; //Painel do área de trabalho
+    public GameObject finalPanel; //Painel final da flag
 
     [Header("Interação e Avisos")]
     public GameObject pressEKey; //objeto de texto para a tecla E
@@ -60,9 +61,17 @@ public class ValidatePassword : MonoBehaviour
 
     public void OpenWhatsAppWindow()
     {
-        if(whatsappWindow != null) //
+        if(whatsappWindow != null)
         {
             whatsappWindow.SetActive(true); //Ativa a janela
+        }
+    }
+
+    public void OpenFinalPanel()
+    {
+        if(finalPanel != null)
+        {
+            finalPanel.SetActive(true); //Abre o painel final
         }
     }
 }
