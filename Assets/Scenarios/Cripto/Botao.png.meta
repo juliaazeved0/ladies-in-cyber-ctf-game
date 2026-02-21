@@ -43,13 +43,13 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 110}
+  spriteBorder: {x: 190, y: 0, z: 0, w: 110}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -106,15 +106,49 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Botao_0
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 398
+        width: 580
+        height: 467
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 767b20ec387c6994aafa785ec3bfa7a3
+      internalID: -1073685514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline:
     - - {x: -257, y: 355}
       - {x: -259, y: 354}
       - {x: -259, y: -114}
       - {x: -257, y: -116}
-      - {x: 324, y: -117}
+      - {x: 323, y: -116}
       - {x: 325, y: -58}
       - {x: 325, y: 355}
     physicsShape: []
@@ -126,7 +160,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Botao_0: -1073685514
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

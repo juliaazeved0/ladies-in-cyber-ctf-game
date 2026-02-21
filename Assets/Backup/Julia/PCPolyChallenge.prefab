@@ -203,7 +203,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16, y: 0.0000076294}
+  m_AnchoredPosition: {x: 16, y: 0}
   m_SizeDelta: {x: 628.1362, y: 114.0681}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4668028333098068508
@@ -388,9 +388,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boardFolders: {fileID: 7410215584283572193}
   passwordInputText: {fileID: 1409645526852341063}
-  rightPassword: ILobeCapibara
+  passwordInputZip: {fileID: 0}
+  popUpSucess: {fileID: 0}
   popUpError: {fileID: 0}
   buttonEnter: {fileID: 7460596786954795596}
+  buttonFlag: {fileID: 0}
+  popUpZip: {fileID: 0}
+  textFlag: {fileID: 0}
+  exitChallenge: {fileID: 0}
+  canvasChallenge: {fileID: 0}
 --- !u!1 &3434442273888869389
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,7 +432,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000013351, y: 98.2}
+  m_AnchoredPosition: {x: 0, y: 98.2}
   m_SizeDelta: {x: 219.9714, y: 54.109}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4679220905070877179

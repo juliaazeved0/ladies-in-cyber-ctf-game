@@ -14,6 +14,8 @@ public class FileNavigationManager : MonoBehaviour
 
     public Transform popUpConatiner;
 
+    public GameObject boardFolders;
+
     private Stack<GameObject> historyStack = new Stack<GameObject>();
     private GameObject currentOpenFolder;
 
@@ -61,7 +63,6 @@ public class FileNavigationManager : MonoBehaviour
 
     public void GoBack()
     {
-        Debug.Log("Tnetando voltar:"+historyStack.Count);
         if(historyStack.Count > 0)
         {
             currentOpenFolder.SetActive(false);
@@ -78,7 +79,7 @@ public class FileNavigationManager : MonoBehaviour
 
     public void ClosePopUp()
     {
-        popUpConatiner.gameObject.SetActive(false);
+        boardFolders.SetActive(false);
         
     }
 
