@@ -17,6 +17,9 @@ public class SimpleDialogue : MonoBehaviour
     public GameObject miniMapCanvas;
     public GameObject cameraMiniMap;
     public Button confirmButton;
+    
+    [Header("Dinamic variable")]
+    public PulseOutline pulsingObject;
 
     private bool readyToSpeak = false; 
 
@@ -46,29 +49,34 @@ public class SimpleDialogue : MonoBehaviour
 
     void Start()
     {
-        //panelChallenge1.SetActive(false);
-        //panelChallenge2.SetActive(false);
-        //panelDialogue.SetActive(false);
-        confirmButton.gameObject.SetActive(false);
+        
         string namePlayer = PlayerPrefs.GetString(PLAYER_NAME_KEY, "Jogadora");
         playerNameplate.text = namePlayer.ToUpper();
     }
 
     public void StartDialogue(NPCDialogueNode inicialNode)
     {
+        StopAllCoroutines();
+
+        if(textDialogue != null) textDialogue.text = "";
+        if(confirmButton != null) confirmButton.gameObject.SetActive(false);
+        if(buttonExit != null) buttonExit.gameObject.SetActive(true);
+        
         firstNode = inicialNode;
 
         if (firstNode != null)
         {
             CanvasManager.Instance.OpenPanel(panelDialogue.name);
             CanvasManager.Instance.ToggleMiniMap(false);
-            confirmButton.gameObject.SetActive(false);
-            
 
+        
             DialogueView(firstNode);
 
             readyToSpeak = false;
             StartCoroutine(ReleaseInput());
+        }
+        else{
+            Debug.LogError("node vazio");
         }
     }
 
@@ -111,6 +119,15 @@ public class SimpleDialogue : MonoBehaviour
     {
         CanvasManager.Instance.ClosedPanel(panelDialogue.name);
         CanvasManager.Instance.ToggleMiniMap(true);
+        
+    }
+
+    public void ConfirmHelp()
+    {
+        ExitDialogue();
+        pulsingObject.StartPulsing();
+        
+       
     }
 
 }
