@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37288b8cc8a1b8c4a934c05d643fec5f, type: 3}
-  m_Name: node3
+  m_Name: node5
   m_EditorClassIdentifier: 
-  talkNPC: "Ela disse que deixou dicas, mas s\xF3 vejo letras embaralhadas!"
-  nextNode: {fileID: 11400000, guid: 60e525bb04f228b4dbc1dbe3f0604d48, type: 2}
+  talkNPC: "Nossa! Voc\xEA olhou para o teclado e... ah, entendi!"
+  nextNode: {fileID: 11400000, guid: dda51b52788ebed4fa119322628262b4, type: 2}
   characterNPC: {fileID: -1259455673, guid: b31d3541825c4e74ab3f66162ebe5ea0, type: 3}
