@@ -23,6 +23,7 @@ public class CryptoPassword : MonoBehaviour
     public TextMeshProUGUI textFlag;
     public GameObject dialogueNPC;
     public ObjectInteraction scriptInteractionPcJ;
+    public LockObjectInteraction lockpcPolyana;
 
     public void CheckPassword()
     {
@@ -57,11 +58,15 @@ public class CryptoPassword : MonoBehaviour
             {
                 scriptInteractionPcJ.enabled = false;
             }
+
+            if(lockpcPolyana != null)
+            {
+                lockpcPolyana.isUnlocked = true;
+            }
            
             CanvasManager.Instance.ClosedPanel(panelChallenge.name);
             CanvasManager.Instance.OpenPanel(dialogueNPC.name);
             simpleDialogue.StartDialogue(sucessNode);
-            pulsePCJ.StopPulsing();
         }
         else{
             Debug.Log("SAINDO SEM CAPTURAR A FLAG");
@@ -84,6 +89,7 @@ public class CryptoPassword : MonoBehaviour
        string flagCaptured = "Flag Capturada!";
        textFlag.text = flagCaptured;
         //salvar rightPssword dentro de uma lista 
+        
         pulsePCJ.StopPulsing();
         pulsePCP.StartPulsing();
     }

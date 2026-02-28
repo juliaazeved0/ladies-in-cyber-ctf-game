@@ -5,16 +5,16 @@ using UnityEngine;
 public class ObjectInteraction : MonoBehaviour
 {
     [Header("Settings object interactable")]
-    private bool playerIsHere;
+    protected bool playerIsHere;
     public GameObject interactionNotice;
     public GameObject challengePanel;
 
-    void Start()
+    protected void Start()
     {
         interactionNotice.SetActive(false);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))
         {
@@ -26,7 +26,7 @@ public class ObjectInteraction : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    protected virtual void OnTriggerExit2D(Collider2D collision)
     {
          if(collision.CompareTag("Player"))
         {
@@ -38,13 +38,23 @@ public class ObjectInteraction : MonoBehaviour
          }
     }
 
-    void Update()
+    protected virtual void Update()
     {
+        if(challengePanel != null && challengePanel.activeSelf)
+        {
+            return;
+        }
+
         if(playerIsHere && Input.GetKeyDown(KeyCode.E))
         {
-            CanvasManager.Instance.ToggleMiniMap(false);
-            CanvasManager.Instance.OpenPanel(challengePanel.name);
+            Interact();
         }
+    }
+
+    protected virtual void Interact()
+    {
+        CanvasManager.Instance.ToggleMiniMap(false);
+        CanvasManager.Instance.OpenPanel(challengePanel.name);
     }
 
 }

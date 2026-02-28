@@ -27,6 +27,8 @@ public class PCPChallenge : MonoBehaviour
 
   public GameObject canvasChallenge;
 
+  public PulseOutline pcPoly;
+
 
 void Start()
 {
@@ -72,6 +74,8 @@ void Start()
     public void CaptureFlag()
     {
         textFlag.text = "Flag Capturada!";
+        pcPoly.StopPulsing();
+
     }
 
     public void OnClickEnter()

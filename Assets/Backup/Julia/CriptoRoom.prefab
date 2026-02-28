@@ -2093,7 +2093,7 @@ MonoBehaviour:
   balloonNPC: {fileID: 8569051707521337758}
   pulseObjectInitial: {fileID: 8063713643402807374}
   interactionNotice: {fileID: 4053223380824326959}
-  simpleDialogue: {fileID: 8790731011118017801}
+  simpleDialogue: {fileID: 0}
   firstNode: {fileID: 11400000, guid: e4a55a4bb4fcb83439a87dee18fd064d, type: 2}
 --- !u!61 &5927552260264223135
 BoxCollider2D:
@@ -2197,7 +2197,6 @@ GameObject:
   - component: {fileID: 4932739083723927061}
   - component: {fileID: 8063713643402807374}
   - component: {fileID: 3822045399855046392}
-  - component: {fileID: 3064515024054176139}
   m_Layer: 0
   m_Name: pcJulia
   m_TagString: Untagged
@@ -2332,20 +2331,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 13.017748, y: 8.426117}
   m_EdgeRadius: 0
---- !u!114 &3064515024054176139
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1345873651498727685}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae73fa89242f07244a3a96994cfa9935, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionNotice: {fileID: 4053223380824326959}
-  challengePanel: {fileID: 3148283429632165963}
 --- !u!1 &1443684271758432231
 GameObject:
   m_ObjectHideFlags: 0
@@ -3102,7 +3087,6 @@ GameObject:
   - component: {fileID: 610720318257553569}
   - component: {fileID: 4744334665806269808}
   - component: {fileID: 4034956281620806378}
-  - component: {fileID: 5875044923375813303}
   - component: {fileID: 5633242443811181933}
   m_Layer: 0
   m_Name: pcPoly
@@ -3193,20 +3177,6 @@ MonoBehaviour:
   pulseSpeed: 0.05
   maxThickness: 0.05
   startActive: 0
---- !u!114 &5875044923375813303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2316368063590796913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae73fa89242f07244a3a96994cfa9935, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionNotice: {fileID: 4053223380824326959}
-  challengePanel: {fileID: 4026120790249894603}
 --- !u!61 &5633242443811181933
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9819,17 +9789,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4034956281620806378}
     - target: {fileID: 6489984480702843657, guid: d085ab345ec81d741a4da16b9e52f28d, type: 3}
-      propertyPath: simpleDialogue
-      value: 
-      objectReference: {fileID: 8790731011118017801}
-    - target: {fileID: 6489984480702843657, guid: d085ab345ec81d741a4da16b9e52f28d, type: 3}
       propertyPath: scriptPulseOutline
       value: 
       objectReference: {fileID: 8063713643402807374}
-    - target: {fileID: 6489984480702843657, guid: d085ab345ec81d741a4da16b9e52f28d, type: 3}
-      propertyPath: scriptInteractionPcJ
-      value: 
-      objectReference: {fileID: 3064515024054176139}
     - target: {fileID: 6657426163248109375, guid: d085ab345ec81d741a4da16b9e52f28d, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -0.000030517578
@@ -9890,11 +9852,6 @@ GameObject:
 --- !u!1 &2426004743925764230 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3528082029968772990, guid: d085ab345ec81d741a4da16b9e52f28d, type: 3}
-  m_PrefabInstance: {fileID: 1251056902840901624}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3148283429632165963 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4245863685397452723, guid: d085ab345ec81d741a4da16b9e52f28d, type: 3}
   m_PrefabInstance: {fileID: 1251056902840901624}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &4500967195830201122 stripped
@@ -10343,7 +10300,7 @@ PrefabInstance:
     - target: {fileID: 2251859569586216294, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8790731011118017801}
+      objectReference: {fileID: 0}
     - target: {fileID: 2251859569586216294, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ConfirmHelp
@@ -10351,6 +10308,10 @@ PrefabInstance:
     - target: {fileID: 2251859569586216294, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: SimpleDialogue, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893840363540083719, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5734218898990939777, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
       propertyPath: m_Name
@@ -10360,7 +10321,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueNPC
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 466749832301037447, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -10400,14 +10362,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1124038078989341844, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
   m_PrefabInstance: {fileID: 9188690383724735118}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8790731011118017801 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 466749832301037447, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
-  m_PrefabInstance: {fileID: 9188690383724735118}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3463479827323573263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f302fa1132c51d643bc176a650ea9e09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
