@@ -255,6 +255,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 16527068}
   m_CullTransparentMesh: 1
+--- !u!1 &21971356 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2316368063590796913, guid: 8e7dd5300b181f342bffe6913f8668de, type: 3}
+  m_PrefabInstance: {fileID: 1930551087}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &21971361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21971356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2188645fb821d994aa835a3ac3308313, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionNotice: {fileID: 125396972}
+  challengePanel: {fileID: 666615033}
+  isUnlocked: 0
 --- !u!1 &22820718
 GameObject:
   m_ObjectHideFlags: 0
@@ -47584,6 +47604,11 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &125396972 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4053223380824326959, guid: 8e7dd5300b181f342bffe6913f8668de, type: 3}
+  m_PrefabInstance: {fileID: 1930551087}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &128233563 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3539755586326053778, guid: e03cd7095cee1e545a0de02f4b95e75f, type: 3}
@@ -48723,11 +48748,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 274880588}
   m_CullTransparentMesh: 1
---- !u!1 &275600763 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8210649471727071192, guid: 8e7dd5300b181f342bffe6913f8668de, type: 3}
-  m_PrefabInstance: {fileID: 1930551087}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &293174639
 GameObject:
   m_ObjectHideFlags: 0
@@ -55159,8 +55179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2188645fb821d994aa835a3ac3308313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactionNotice: {fileID: 0}
-  challengePanel: {fileID: 0}
+  interactionNotice: {fileID: 125396972}
+  challengePanel: {fileID: 1608224522}
   isUnlocked: 0
 --- !u!1 &850539641 stripped
 GameObject:
@@ -55179,7 +55199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a18c87ad6cdcb0408997e22790838cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelDialogue: {fileID: 275600763}
+  panelDialogue: {fileID: 980306308}
   textDialogue: {fileID: 475311706}
   characterNPC: {fileID: 1570359298}
   writeMachine: {fileID: 475311705}
@@ -55191,7 +55211,7 @@ MonoBehaviour:
   pulsingObject: {fileID: 762931612}
   buttonExit: {fileID: 1811010558}
   firstNode: {fileID: 11400000, guid: e4a55a4bb4fcb83439a87dee18fd064d, type: 2}
-  lockObject: {fileID: 0}
+  lockObject: {fileID: 835551387}
 --- !u!1 &851961147
 GameObject:
   m_ObjectHideFlags: 0
@@ -84979,6 +84999,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -12.000046
       objectReference: {fileID: 0}
+    - target: {fileID: 6972978916792596456, guid: 8e7dd5300b181f342bffe6913f8668de, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 850539644}
+    - target: {fileID: 6972978916792596456, guid: 8e7dd5300b181f342bffe6913f8668de, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ConfirmHelp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6972978916792596456, guid: 8e7dd5300b181f342bffe6913f8668de, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DialogueAleNPC, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6976547547489098692, guid: 8e7dd5300b181f342bffe6913f8668de, type: 3}
       propertyPath: m_fontSize
       value: 50
@@ -85031,6 +85063,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2316368063590796913, guid: 8e7dd5300b181f342bffe6913f8668de, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 21971361}
     - targetCorrespondingSourceObject: {fileID: 1345873651498727685, guid: 8e7dd5300b181f342bffe6913f8668de, type: 3}
       insertIndex: -1
       addedObject: {fileID: 835551387}
