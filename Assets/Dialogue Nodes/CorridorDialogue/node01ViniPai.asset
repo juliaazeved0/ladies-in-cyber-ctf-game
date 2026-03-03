@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37288b8cc8a1b8c4a934c05d643fec5f, type: 3}
-  m_Name: node01
+  m_Name: node01ViniPai
   m_EditorClassIdentifier: 
   talkNPC: "Algu\xE9m viu minha caneca do Star Wars? Eu n\xE3o consigo configurar
     esse firewall sem cafe\xEDna no sangue. Se acharem, n\xE3o lavem, tira o gosto!"
