@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class SimpleDialogue : MonoBehaviour
 {
@@ -33,7 +34,6 @@ public class SimpleDialogue : MonoBehaviour
 
     public const string PLAYER_NAME_KEY = "PLAYER_NAME";
 
-
     void Update()
     {
         if(!readyToSpeak)
@@ -49,7 +49,6 @@ public class SimpleDialogue : MonoBehaviour
 
     void Start()
     {
-        
         string namePlayer = PlayerPrefs.GetString(PLAYER_NAME_KEY, "Jogadora");
         playerNameplate.text = namePlayer.ToUpper();
     }
@@ -122,12 +121,15 @@ public class SimpleDialogue : MonoBehaviour
         
     }
 
-    public void ConfirmHelp()
+    public virtual void ConfirmHelp()
     {
         ExitDialogue();
-        pulsingObject.StartPulsing();
-        
-       
+      if (pulsingObject != null)
+        {
+            pulsingObject.StartPulsing();
+            pulsingObject = null; 
+        }
     }
+    
 
 }

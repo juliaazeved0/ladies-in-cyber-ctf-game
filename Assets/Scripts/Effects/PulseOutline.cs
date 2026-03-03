@@ -66,6 +66,9 @@ public class PulseOutline : MonoBehaviour
         if(myMaterial != null)
         {
             myMaterial.SetFloat(thicknessID, 0.0f);
+            myMaterial.SetFloat("_OutlineAlphaMultiplier", 0.0f);
+        
         }
+       
     }
 }
