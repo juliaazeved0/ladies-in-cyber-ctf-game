@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
-using TMPro;
+using UnityEngine.SceneManagement;
 
 public class InitialModal : MonoBehaviour
 {
@@ -11,10 +12,6 @@ public class InitialModal : MonoBehaviour
     public GameObject panelNetwatch;
     public GameObject panelDetails;
     public GameObject panelWiresharkError;
-
-    // =========================
-    // ABRIR PAINÉIS
-    // =========================
 
     public void OpenInventory()
     {
@@ -68,5 +65,10 @@ public class InitialModal : MonoBehaviour
     public void CloseWiresharkError()
     {
         panelWiresharkError.SetActive(false);
+    }
+
+    public void VoltarMapa()
+    {
+        transform.parent.gameObject.SetActive(false);
     }
 }
