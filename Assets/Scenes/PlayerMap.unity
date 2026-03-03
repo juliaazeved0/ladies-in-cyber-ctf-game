@@ -49667,6 +49667,108 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &468760174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 468760175}
+  - component: {fileID: 468760178}
+  - component: {fileID: 468760177}
+  - component: {fileID: 468760176}
+  m_Layer: 0
+  m_Name: InteractionCanvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &468760175
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468760174}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 897544457}
+  m_Father: {fileID: 1072092344}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &468760176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468760174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &468760177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468760174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &468760178
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468760174}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!114 &475311705 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6410486418536798413, guid: 8e7dd5300b181f342bffe6913f8668de, type: 3}
@@ -51300,11 +51402,6 @@ MonoBehaviour:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2265327233247348624, guid: 2ce12bcfcf857a9449c39fd5c38e342f, type: 3}
   m_PrefabInstance: {fileID: 6902980847063491031}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &640876367 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7572817608873656849, guid: f8a68e9d75a4a264198ec9a8e56219d6, type: 3}
-  m_PrefabInstance: {fileID: 289766601068548749}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &666615033 stripped
 GameObject:
@@ -54052,7 +54149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &897544457
 RectTransform:
   m_ObjectHideFlags: 0
@@ -54067,7 +54164,7 @@ RectTransform:
   m_Children:
   - {fileID: 1990157954}
   - {fileID: 699172816}
-  m_Father: {fileID: 1331456272}
+  m_Father: {fileID: 468760175}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -55469,6 +55566,11 @@ CanvasRenderer:
 --- !u!1 &1072092343 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4032512050159094711, guid: f8a68e9d75a4a264198ec9a8e56219d6, type: 3}
+  m_PrefabInstance: {fileID: 289766601068548749}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1072092344 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 504448689272236923, guid: f8a68e9d75a4a264198ec9a8e56219d6, type: 3}
   m_PrefabInstance: {fileID: 289766601068548749}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1078111241
@@ -57060,8 +57162,6 @@ MonoBehaviour:
   panelNetwatch: {fileID: 1284936086}
   panelDetails: {fileID: 1440870558}
   panelWiresharkError: {fileID: 2139663267}
-  interactionNotice: {fileID: 897544456}
-  pcCanvas: {fileID: 640876367}
 --- !u!1 &1218833875
 GameObject:
   m_ObjectHideFlags: 0
@@ -58471,11 +58571,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1330829474}
   m_CullTransparentMesh: 1
---- !u!224 &1331456272 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1611094613222069184, guid: f8a68e9d75a4a264198ec9a8e56219d6, type: 3}
-  m_PrefabInstance: {fileID: 289766601068548749}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1344397177 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6691406633506826802, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
@@ -83894,9 +83989,9 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 7231598854019859492, guid: f8a68e9d75a4a264198ec9a8e56219d6, type: 3}
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 1611094613222069184, guid: f8a68e9d75a4a264198ec9a8e56219d6, type: 3}
-      insertIndex: 0
-      addedObject: {fileID: 897544457}
+    - targetCorrespondingSourceObject: {fileID: 504448689272236923, guid: f8a68e9d75a4a264198ec9a8e56219d6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 468760175}
     - targetCorrespondingSourceObject: {fileID: 6089170827929658506, guid: f8a68e9d75a4a264198ec9a8e56219d6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1121135585}
