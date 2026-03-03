@@ -361,7 +361,7 @@ SpriteRenderer:
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 23.68, y: 17.921875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -404,7 +404,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 23.68, y: 17.921875}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 23.68, y: 17.921875}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -1777,6 +1777,7 @@ MonoBehaviour:
   uniqueSaveKey: 
   challengePanel: {fileID: 2277509916494799420}
   balloonNPC: {fileID: 6310713085111509107}
+  pulseObjectInitial: {fileID: 0}
   interactionNotice: {fileID: 6691406633506826802}
   simpleDialogue: {fileID: 1771781780788275841}
   firstNode: {fileID: 11400000, guid: 0a1311d8e6e5e1a45aefdbf092cae520, type: 2}
@@ -2206,7 +2207,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 6.91, y: 3.61}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2632,7 +2633,7 @@ SpriteRenderer:
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 23.68, y: 17.921875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2675,7 +2676,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 23.68, y: 17.921875}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 23.68, y: 17.921875}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -2761,7 +2762,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 5, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -3393,6 +3394,7 @@ MonoBehaviour:
   miniMapCanvas: {fileID: 0}
   cameraMiniMap: {fileID: 0}
   confirmButton: {fileID: 5957822065510350583}
+  pulsingObject: {fileID: 0}
   buttonExit: {fileID: 4103762714818523998}
   firstNode: {fileID: 11400000, guid: 0a1311d8e6e5e1a45aefdbf092cae520, type: 2}
 --- !u!1 &7747303874389213936

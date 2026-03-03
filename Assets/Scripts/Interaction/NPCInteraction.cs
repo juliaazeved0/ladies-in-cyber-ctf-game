@@ -10,6 +10,10 @@ public class NPCInteraction : MonoBehaviour
     public GameObject challengePanel;
     public Image balloonNPC;
 
+    [Header("Dinamic variable")]
+    public PulseOutline pulseObjectInitial;
+
+
     [Header("Interaction")]
     public GameObject interactionNotice;
 
@@ -32,6 +36,7 @@ public class NPCInteraction : MonoBehaviour
     {
         if(playerIsHere && Input.GetKeyDown(KeyCode.E) && !isCompleted && !simpleDialogue.panelDialogue.activeSelf)
         {
+            simpleDialogue.pulsingObject = pulseObjectInitial;
             CanvasManager.Instance.ToggleMiniMap(false);
             simpleDialogue.StartDialogue(firstNode);
         }
