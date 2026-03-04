@@ -1,71 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class InitialModal : MonoBehaviour
 {
     [Header("Painéis do Computador")]
-    public GameObject panelOpenInventory;
-    public GameObject panelOpenTerminal;
+    public GameObject panelInventory;
+    public GameObject panelTerminal;
     public GameObject panelNetwatch;
     public GameObject panelDetails;
     public GameObject panelWiresharkError;
 
-    public void OpenInventory()
+    //Método genérico
+    private void SetPanel(GameObject panel, bool state)
     {
-        panelOpenInventory.SetActive(true);
+        if(panel != null)
+        {
+            panel.SetActive(state);
+        }
     }
 
-    public void OpenTerminal()
-    {
-        panelOpenTerminal.SetActive(true);
-    }
+    //Abrir painéis
+    public void OpenInventory() => SetPanel(panelInventory, true);
+    public void OpenTerminal() => SetPanel(panelTerminal, true);
+    public void OpenNetwatch() => SetPanel(panelNetwatch, true);
+    public void OpenDetails() => SetPanel(panelDetails, true);
+    public void OpenWiresharkError() => SetPanel(panelWiresharkError, true);
 
-    public void OpenNetwatch()
-    {
-        panelNetwatch.SetActive(true);
-    }
-
-    public void OpenDetails()
-    {
-        panelDetails.SetActive(true);
-    }
-
-    public void OpenWiresharkError()
-    {
-        panelWiresharkError.SetActive(true);
-    }
-
-    // =========================
-    // FECHAR PAINÉIS
-    // =========================
-
-    public void CloseInventory()
-    {
-        panelOpenInventory.SetActive(false);
-    }
-
-    public void CloseTerminal()
-    {
-        panelOpenTerminal.SetActive(false);
-    }
-
-    public void CloseNetwatch()
-    {
-        panelNetwatch.SetActive(false);
-    }
-
-    public void CloseDetails()
-    {
-        panelDetails.SetActive(false);
-    }
-
-    public void CloseWiresharkError()
-    {
-        panelWiresharkError.SetActive(false);
-    }
+    //Fechar painéis
+    public void CloseInventory() => SetPanel(panelInventory, false);
+    public void CloseTerminal() => SetPanel(panelTerminal, false);
+    public void CloseNetwatch() => SetPanel(panelNetwatch, false);
+    public void CloseDetails() => SetPanel(panelDetails, false);
+    public void CloseWiresharkError() => SetPanel(panelWiresharkError, false);
 
     public void VoltarMapa()
     {
