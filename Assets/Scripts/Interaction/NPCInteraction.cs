@@ -26,7 +26,6 @@ public class NPCInteraction : MonoBehaviour
     void Start()
     {
         interactionNotice.SetActive(false);
-        //decidir se preciso mesmo fazer duas verifica��es de status
         CheckChallengeStatus();
         balloonNPC.gameObject.SetActive(false);
     }

@@ -231,7 +231,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 466749832301037447}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SimpleDialogue, Assembly-CSharp
         m_MethodName: OnClickHelNPC
         m_Mode: 1
@@ -551,7 +551,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 466749832301037447}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SimpleDialogue, Assembly-CSharp
         m_MethodName: ExitDialogue
         m_Mode: 1
@@ -1489,7 +1489,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3576962865976594242}
-  - component: {fileID: 466749832301037447}
   m_Layer: 0
   m_Name: CriptoManager
   m_TagString: Untagged
@@ -1512,29 +1511,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1124038078989341844}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &466749832301037447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5734218898990939777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f302fa1132c51d643bc176a650ea9e09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panelDialogue: {fileID: 6852112722046190058}
-  textDialogue: {fileID: 3911084624350511717}
-  characterNPC: {fileID: 7802607461870537927}
-  writeMachine: {fileID: 2842429244719493699}
-  playerNameplate: {fileID: 9166443335334675870}
-  characterPlayer: {fileID: 5615624023039765561}
-  miniMapCanvas: {fileID: 0}
-  cameraMiniMap: {fileID: 0}
-  confirmButton: {fileID: 2251859569586216294}
-  buttonExit: {fileID: 3893840363540083719}
-  firstNode: {fileID: 11400000, guid: e4a55a4bb4fcb83439a87dee18fd064d, type: 2}
 --- !u!1 &5742220196013515464
 GameObject:
   m_ObjectHideFlags: 0
