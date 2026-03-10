@@ -18,13 +18,13 @@ public class BlackBoxInteraction : ObjectInteraction //Herda de ObjectInteractio
 
     private void UnlockServer()
     {
-        if(visuals != null)
+        if(visuals != null) //Verifica se a variável não é nula
         {
-            visuals.Unlock();
+            visuals.Unlock(); //Mostra o cadeado aberto
         }
-        else
+        else //Se a variável for nula
         {
-            Debug.LogWarning("Esqueceu de arrastar o cadeado para o script!");
+            Debug.LogWarning("Esqueceu de arrastar o cadeado para o script!"); //Envia um alerta amarelo no console
         }
     }
 }
