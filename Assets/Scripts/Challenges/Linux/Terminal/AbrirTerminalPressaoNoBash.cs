@@ -11,17 +11,20 @@ public class AbrirTerminalPressaoNoBash : MonoBehaviour
     public GameObject popUpSucesso; 
 
     public GameObject popCaptureFlag;
+    public GameObject captureFlag;
+    public GameObject panelChallengePressureBash;
+    public PulseOutline objectPulse;
 
     void Start(){
         popUpSucesso.SetActive(false);
-        popUpSucesso.SetActive(false);
+        popCaptureFlag.SetActive(false);
     }
 
-    private void OnMouseDown()
-    {
-        UnityEngine.Debug.Log("Iniciando acesso ao sistema SCADA - Itaipu Parquetec...");
-        IniciarDesafio();
-    }
+   // private void OnMouseDown()
+    //{
+    //    UnityEngine.Debug.Log("Iniciando acesso ao sistema SCADA - Itaipu Parquetec...");
+    //    IniciarDesafio();
+    //}
 
     public void IniciarDesafio()
     {
@@ -86,5 +89,21 @@ public class AbrirTerminalPressaoNoBash : MonoBehaviour
             // Deleta o arquivo após o uso
             if (File.Exists(vitoriaPath)) File.Delete(vitoriaPath);
         }
+    }
+
+    public void OnClickButton()
+    {
+        popCaptureFlag.SetActive(true);
+    }
+
+    public void ClosedChallenge()
+    {
+        if(popCaptureFlag.activeSelf)
+        {
+            objectPulse.StopPulsing();
+            CanvasManager.Instance.ClosedPanel("ChallengePressureBash");
+        }
+        CanvasManager.Instance.ClosedPanel("ChallengePressureBash");
+        
     }
 }

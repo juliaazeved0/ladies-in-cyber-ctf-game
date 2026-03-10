@@ -107,7 +107,7 @@ while true; do
                 exit 99
             else echo "BASH: Permission denied."; fi ;;
 
-        "help") echo "ls, cd, cat, chmod, ./, whoami, pwd, clear, exit" ;;
+        "help") echo "ls, ls-l, ls-a, cd, cd .., cat, chmod, ./, whoami, pwd, clear, exit" ;;
         "clear") clear ;;
         "exit") exit 0 ;;
         *) [ ! -z "$cmd" ] && echo "BASH: $cmd: command not found" ;;
