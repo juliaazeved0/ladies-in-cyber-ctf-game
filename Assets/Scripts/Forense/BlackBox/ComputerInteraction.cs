@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ComputerInteraction : MonoBehaviour
@@ -15,7 +16,11 @@ public class ComputerInteraction : MonoBehaviour
 
     private bool playerIsNear = false; //Controla se a jogadora está perto do computador
 
-     void Update()
+    void Start()
+    {
+        initialBackground.SetActive(false); //PCBlackBoxChallenge começar desativado
+    }
+    void Update()
     {
         if(playerIsNear && Input.GetKeyDown(KeyCode.E)) //Verifica se a jogadora está perto do computador e se pressionou a tecla E
         {
