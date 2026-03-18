@@ -5,9 +5,8 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     [Header("Settings - Panels")]
-    public GameObject panelBag;
-    public GameObject panelPlayBook;
-    public GameObject panelBackgroundInventory;
+    public GameObject panelBagBackground;
+    public GameObject panelPlayBookBackground;
 
     [Header("Settings - Buttons & Border")]
     public RectTransform buttonBag;
@@ -17,11 +16,6 @@ public class InventoryManager : MonoBehaviour
     public float velocity = 10f; 
 
     private RectTransform currentButton; 
-
-    void Start()
-    {
-        panelBackgroundInventory.SetActive(false);
-    }
 
     void Update()
     {
@@ -33,27 +27,21 @@ public class InventoryManager : MonoBehaviour
 
     public void OnClickBag()
     {
-        panelBackgroundInventory.SetActive(true);
-        //CanvasManager.Instance.OpenPanel(panelBackgroundInventory.name);
-        CanvasManager.Instance.OpenPanel(panelBag.name);
+        CanvasManager.Instance.OpenPanel(panelBagBackground.name);
         MoveToButton(buttonBag);
     }
 
     public void OnClickPlayBook()
     {
-        panelBackgroundInventory.SetActive(true);
-        //CanvasManager.Instance.OpenPanel(panelBackgroundInventory.name);
-        CanvasManager.Instance.OpenPanel(panelPlayBook.name);
+        CanvasManager.Instance.OpenPanel(panelPlayBookBackground.name);
         MoveToButton(buttonPlayBook);
     }
     
 
     public void ExitInventory()
     {
-        panelBackgroundInventory.SetActive(false);
         CanvasManager.Instance.ClosedPanel(gameObject.name);
         borderImage.gameObject.SetActive(false);
-        //CanvasManager.Instance.ClosedPanel(panelBackgroundInventory.name);
     }
 
     public void MoveToButton(RectTransform newButton)

@@ -8,6 +8,12 @@ using System;
 public class AbrirTerminalMercado : AbrirTerminalPressaoNoBash
 {
 
+    public void OnButtonClickCaptureFlag(){
+        popCaptureFlag.SetActive(true);
+        string newFlag = SafeBase.ViewBase(SafeBase.flag_2);
+        FlagManager.Instance.SaveFlag(newFlag);
+    }
+
     private void OnMouseDown()
     {
         UnityEngine.Debug.Log("Acessando computador do Luiz...");
