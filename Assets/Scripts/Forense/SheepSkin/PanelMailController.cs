@@ -11,6 +11,12 @@ public class PanelMailController : MonoBehaviour
     public GameObject panelEmailFran;
     public GameObject panelEmailAmin;
     public GameObject panelEmailAcessoTI;
+    public GameObject panelGlitch;
+    public GameObject panelInspect;
+    public GameObject panelPhishing;
+
+    [Header("Feedback Visual")]
+    [SerializeField] private GameObject imagemSelecaoLink;
 
     public void AbrirPanelMailInput() //Abrir o painel principais de e-mails
     {
@@ -47,6 +53,24 @@ public class PanelMailController : MonoBehaviour
     {
         panelEmailAcessoTI.SetActive(true);
     }
+
+    public void AbrirPanelGlitch()
+    {
+        panelGlitch.SetActive(true);
+    }
+
+    public void AbrirPanelInspect()
+    {
+        if(panelInspect != null)
+        {
+            panelInspect.SetActive(true);
+        }
+    }
+
+    public void AbrirPanelPhishing()
+    {
+        panelPhishing.SetActive(true);
+    }
     
     //Função para retornar a tela inicial de e-mails
     public void RetornarEmailPrincipal()
@@ -65,6 +89,10 @@ public class PanelMailController : MonoBehaviour
 
         if (panelEmailAcessoTI != null) panelEmailAcessoTI.SetActive(false);
         if(panelMailInput != null ) panelMailInput.SetActive(true);
+
+        if(panelInspect != null) panelInspect.SetActive(false);
+
+        if (panelPhishing != null) panelPhishing.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -73,9 +101,35 @@ public class PanelMailController : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (panelEmailAcessoTI != null && panelEmailAcessoTI.activeSelf)
+        {
+            // Agora o grupo dos Controls é avaliado primeiro, e o resultado DEVE ter o U junto
+            if ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) && Input.GetKeyDown(KeyCode.Y))
+            {
+                AbrirPanelInspect();
+            }
+        }
+    }
+
+    public void CopiarLink(string linkParaCopiar)
+    {
+        GUIUtility.systemCopyBuffer = linkParaCopiar;
+
+        if(imagemSelecaoLink != null)
+        {
+            StopAllCoroutines();
+            StartCoroutine(EfeitoMarcaTexto());
+        }
+    }
+
+    IEnumerator EfeitoMarcaTexto()
+    {
+        imagemSelecaoLink.SetActive(true);
+
+        yield return new WaitForSeconds(2f);
+
+        imagemSelecaoLink.SetActive(false);
     }
 }
