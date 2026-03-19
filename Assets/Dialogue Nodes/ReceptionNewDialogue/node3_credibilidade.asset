@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc344bf1847f7284ba70f62fdd0f60c5, type: 3}
+  m_Name: node3_credibilidade
+  m_EditorClassIdentifier: 
+  question: "\u201CEntendi\u2026 Tivemos alguns problemas recentes mesmo. Mas ainda
+    preciso confirmar seu cadastro.\u201D"
+  options:
+  - "\u201CCerto, entendo.\u201D"
+  narratorFeedbacks:
+  - "\u201CEla parece considerar suas palavras com mais aten\xE7\xE3o agora. A postura
+    dela muda. Voc\xEA sente que est\xE1 perto de conseguir o que almeja.\u201D"
+  nextDialogue:
+  - {fileID: 11400000, guid: 1345198c511d63447808d826d8b30043, type: 2}
+  buttonType: 0
