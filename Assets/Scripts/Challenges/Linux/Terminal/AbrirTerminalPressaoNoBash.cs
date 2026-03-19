@@ -94,6 +94,8 @@ public class AbrirTerminalPressaoNoBash : MonoBehaviour
     public void OnClickButton()
     {
         popCaptureFlag.SetActive(true);
+        string newFlag = SafeBase.ViewBase(SafeBase.flag_1);
+        FlagManager.Instance.SaveFlag(newFlag);
     }
 
     public void ClosedChallenge()

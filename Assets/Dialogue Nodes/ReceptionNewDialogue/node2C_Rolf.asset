@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc344bf1847f7284ba70f62fdd0f60c5, type: 3}
+  m_Name: node2C_Rolf
+  m_EditorClassIdentifier: 
+  question: "\u201CO Rolf quase n\xE3o aparece na recep\xE7\xE3o. Ele resolve tudo
+    por e-mail. O que voc\xEA deseja?\u201D"
+  options:
+  - "\u201CNa verdade, estou aqui por uma verifica\xE7\xE3o t\xE9cnica.\u201D"
+  - "\u201CDeixa pra l\xE1, vou aguardar.\u201D"
+  - "\u201CSim, ele mesmo me encaminhou para vir aqui via e-mail.\u201D"
+  narratorFeedbacks:
+  - "\u201CVoc\xEA redireciona o assunto para algo plaus\xEDvel. Agora voc\xEA tem
+    um cargo definido.\u201D"
+  - "\u201CVoc\xEA decide n\xE3o insistir. A oportunidade passa.\u201D"
+  - "\u201CMencionar um canal formal reduz suspeita. Agora voc\xEA tem um cargo definido.\u201D"
+  nextDialogue:
+  - {fileID: 11400000, guid: 11d8719ad42fb2640be591cc04bfa2d5, type: 2}
+  - {fileID: 11400000, guid: 41c94b8a42a79534c88268d532e3593a, type: 2}
+  - {fileID: 11400000, guid: 11d8719ad42fb2640be591cc04bfa2d5, type: 2}
+  buttonType: 0

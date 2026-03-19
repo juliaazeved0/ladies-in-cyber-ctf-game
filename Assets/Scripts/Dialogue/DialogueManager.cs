@@ -29,11 +29,22 @@ public class DialogueManager : MonoBehaviour
     public DialogueNode firstNode; 
     private DialogueNode dialogueCurrent; 
 
+    [Header("UI do Narrador")]
+    public GameObject panelNarrator;
+    public TextMeshProUGUI textNarrator;
+    public Button buttonNextNarrator;
+    
+    private DialogueNode pendingNextNode;
+
 
     void Start()
     {
 
         panelDialogue.SetActive(false);
+
+        if(panelNarrator != null) panelNarrator.SetActive(false);
+        if(buttonNextNarrator != null) buttonNextNarrator.onClick.AddListener(OnClickNextNarrator);
+        //////////
 
         buttonExit.gameObject.SetActive(false);
 
@@ -150,16 +161,34 @@ public class DialogueManager : MonoBehaviour
 
     public void ChooseOption(int index)
     {
-       
-        DialogueNode next = dialogueCurrent.nextDialogue[index];
+        pendingNextNode = dialogueCurrent.nextDialogue[index];
 
-        if (next != null)
+        if (dialogueCurrent.narratorFeedbacks != null && index < dialogueCurrent.narratorFeedbacks.Length)
         {
-            DialogueView(next);
+            textNarrator.text = dialogueCurrent.narratorFeedbacks[index];
+        }
+
+        for (int i = 0; i < buttonOption.Length; i++)
+        {
+            buttonOption[i].gameObject.SetActive(false);
+        }
+
+        panelNarrator.SetActive(true);
+
+        
+    }
+    public void OnClickNextNarrator()
+    {
+        panelNarrator.SetActive(false);
+        if (pendingNextNode != null)
+        {
+            DialogueView(pendingNextNode);
         }
         else
         {
             panelDialogue.SetActive(false);
+            miniMapCanvas.SetActive(true);
+            cameraMiniMap.SetActive(true);
         }
     }
 }

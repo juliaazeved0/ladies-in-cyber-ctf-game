@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc344bf1847f7284ba70f62fdd0f60c5, type: 3}
+  m_Name: node4_final
+  m_EditorClassIdentifier: 
+  question: "\u201CPode me explicar por que n\xE3o estou achando seus dados de acesso
+    padr\xE3o aqui?\u201D"
+  options:
+  - "\u201CMeu cadastro ainda pode constar como desconhecido, estou come\xE7ando
+    agora.\u201D"
+  - "\u201CPerdi meu crach\xE1 hoje, ainda n\xE3o consegui regularizar.\u201D"
+  - "\u201CPodemos resolver isso de outra forma\u2026\u201D"
+  narratorFeedbacks:
+  - "\u201CA explica\xE7\xE3o soa poss\xEDvel, mas ainda fr\xE1gil. Contudo, ela
+    decide dar um voto de confian\xE7a.\u201D"
+  - "\u201CEla hesita. Algo ainda n\xE3o fecha completamente, mas ela parece disposta
+    a ajudar.\u201D"
+  - "\u201CA insinua\xE7\xE3o foi clara demais. A conversa terminou ali. Lorena \xE9
+    uma pessoa justa que n\xE3o aceita suborno.\u201D"
+  nextDialogue:
+  - {fileID: 11400000, guid: 1d14150ed4f05a04caefb58300f2e017, type: 2}
+  - {fileID: 11400000, guid: 1d14150ed4f05a04caefb58300f2e017, type: 2}
+  - {fileID: 11400000, guid: 00a177d2c9e56664c883756331e56d1e, type: 2}
+  buttonType: 0
