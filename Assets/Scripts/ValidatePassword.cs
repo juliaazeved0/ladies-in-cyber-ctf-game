@@ -5,17 +5,17 @@ using TMPro; //Importa as bibliotecas para usar o TextMeshPro
 
 public class ValidatePassword : MonoBehaviour
 {
-    [Header("Configurações de UI")]
+    [Header("Configuraï¿½ï¿½es de UI")]
     public TMP_InputField passwordField; //Campo onde o jogador digita a senha do computador
-    public GameObject errorMessage; //Variável para arrastar o objeto de texto da "senha inválida"
+    public GameObject errorMessage; //Variï¿½vel para arrastar o objeto de texto da "senha invï¿½lida"
     public string correctPassword = "MUDAR123"; //A string que define a senha correta
 
-    [Header("Painéis do Computador")]
+    [Header("Painï¿½is do Computador")]
     public GameObject loginPanel; //Painel inicial
-    public GameObject taskbarPanel; //Painel do área de trabalho
+    public GameObject taskbarPanel; //Painel do ï¿½rea de trabalho
     public GameObject finalPanel; //Painel final da flag
 
-    [Header("Interação e Avisos")]
+    [Header("Interaï¿½ï¿½o e Avisos")]
     public GameObject pressEKey; //objeto de texto para a tecla E
     public MonoBehaviour interactionScript; //Script que abre o PC
 
@@ -25,31 +25,31 @@ public class ValidatePassword : MonoBehaviour
     void Start()
     {
         errorMessage.SetActive(false); //Garante que o pop-up de erro comece escondido
-        if(taskbarPanel != null) taskbarPanel.SetActive(false); //Painel da área de trabalho comece desativado
-        passwordField.ActivateInputField(); //Faz com que o cursos já apareça piscando dentro do Input Field, sem o jogador precisar clicar
+        if(taskbarPanel != null) taskbarPanel.SetActive(false); //Painel da ï¿½rea de trabalho comece desativado
+        passwordField.ActivateInputField(); //Faz com que o cursos jï¿½ apareï¿½a piscando dentro do Input Field, sem o jogador precisar clicar
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)) //Verifica se a tecla Enter principal ou do numérico foi apertada
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)) //Verifica se a tecla Enter principal ou do numï¿½rico foi apertada
         {
-            CheckPassword(); //Se apertou no Enter, chama a função que valida a senha
+            CheckPassword(); //Se apertou no Enter, chama a funï¿½ï¿½o que valida a senha
         }
     }
 
     public void CheckPassword()
     {
-        if (passwordField.text == correctPassword) //Verifica se o texto escrito no campo é igual ao da variável
+        if (passwordField.text == correctPassword) //Verifica se o texto escrito no campo ï¿½ igual ao da variï¿½vel
         {
             errorMessage.SetActive(false); //Se for igual, esconde a mensagem de erro
             loginPanel.SetActive(false); //Desativa a tela inicial
-            taskbarPanel.SetActive(true); //Ativa a tela da área de trabalho
+            taskbarPanel.SetActive(true); //Ativa a tela da ï¿½rea de trabalho
 
             if(whatsappWindow != null) whatsappWindow.SetActive(false); //Garante que comece fechado
 
             if(pressEKey != null) pressEKey.SetActive(false); //Desliga o texto visual da tecla E
 
-            if (interactionScript != null) interactionScript.enabled = false; //Desativa o script que detecta o botão E
+            if (interactionScript != null) interactionScript.enabled = false; //Desativa o script que detecta o botï¿½o E
         }
         else
         {
@@ -65,6 +65,10 @@ public class ValidatePassword : MonoBehaviour
         {
             whatsappWindow.SetActive(true); //Ativa a janela
         }
+    }
+
+    public void ExitChallenge(){
+        CanvasManager.Instance.ClosedPanel(loginPanel.name);
     }
 
     public void OpenFinalPanel()

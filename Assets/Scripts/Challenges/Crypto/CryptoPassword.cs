@@ -89,6 +89,10 @@ public class CryptoPassword : MonoBehaviour
        string flagCaptured = "Flag Capturada!";
        textFlag.text = flagCaptured;
         //salvar rightPssword dentro de uma lista 
+
+         //adiciona flag ao inventário
+        string newFlag = SafeBase.ViewBase(SafeBase.flag_6);
+        FlagManager.Instance.SaveFlag(newFlag);
         
         pulsePCJ.StopPulsing();
         pulsePCP.StartPulsing();

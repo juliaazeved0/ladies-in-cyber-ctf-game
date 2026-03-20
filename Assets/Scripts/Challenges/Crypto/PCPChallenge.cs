@@ -75,6 +75,9 @@ void Start()
     {
         textFlag.text = "Flag Capturada!";
         pcPoly.StopPulsing();
+         //adiciona flag ao inventário
+        string newFlag = SafeBase.ViewBase(SafeBase.flag_7);
+        FlagManager.Instance.SaveFlag(newFlag);
 
     }
 

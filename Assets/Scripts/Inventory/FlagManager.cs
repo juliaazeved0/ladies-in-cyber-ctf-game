@@ -13,6 +13,17 @@ public class FlagManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            
+            // carrega dados e garante a permanencia da INSTANCIA 
+            if (PlayerPrefs.HasKey("SavedFlags"))
+            {
+                string savedData = PlayerPrefs.GetString("SavedFlags");
+                
+                if (!string.IsNullOrEmpty(savedData))
+                {
+                    flagsCapture = new List<string>(savedData.Split('|'));
+                }
+            }
         }
         else
         {
@@ -26,6 +37,8 @@ public class FlagManager : MonoBehaviour
         {
             flagsCapture.Add(newFlag);
             Debug.Log("Sucesso! Flag guardada no inventário: " + newFlag);
+            PlayerPrefs.SetString("SavedFlags", string.Join("|", flagsCapture));
+            PlayerPrefs.Save();
         }
     }
 }
