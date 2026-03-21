@@ -8,6 +8,9 @@ public class InventoryDisplay : MonoBehaviour
     [Header("UI Text Slots")]
     public TextMeshProUGUI[] textSlots;
 
+    [Header("Copy Buttons")]
+    public GameObject[] copyButtons; 
+
     [Header("Navigation Buttons")]
     public Button btnNext;
     public Button btnPrevious;
@@ -20,8 +23,12 @@ public class InventoryDisplay : MonoBehaviour
 
     void OnEnable()
     {
-        currentPage = 0; 
-        UpdateSlots();
+        currentPage = 0;
+
+        if(FlagManager.Instance != null)
+        {
+            UpdateSlots();
+        } 
     }
 
     public void NextPage()
@@ -59,15 +66,30 @@ public class InventoryDisplay : MonoBehaviour
                 if (flagIndex < capturedFlags.Count)
                 {
                     textSlots[i].text = capturedFlags[flagIndex];
+                    
+                    if (i < copyButtons.Length && copyButtons[i] != null)
+                    {
+                        copyButtons[i].SetActive(true);
+                    }
                 }
                 else
                 {
                     textSlots[i].text = emptyText; 
+                
+                    if (i < copyButtons.Length && copyButtons[i] != null)
+                    {
+                        copyButtons[i].SetActive(false);
+                    }
                 }
             }
             else
             {
                 textSlots[i].text = ""; 
+             
+                if (i < copyButtons.Length && copyButtons[i] != null)
+                {
+                    copyButtons[i].SetActive(false);
+                }
             }
         }
 
