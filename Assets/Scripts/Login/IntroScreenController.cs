@@ -5,39 +5,39 @@ using UnityEngine.SceneManagement;
 
 public class IntroScreenController : MonoBehaviour
 {
-    [Header("Backgrounds")] //Coloca no Inspector os espa�os para arrastar os objetos
-    public GameObject backgroundWarning; //Refer�ncia para o fundo de aviso
+    [Header("Backgrounds")] //Coloca no Inspector os espaços para arrastar os objetos
+    public GameObject backgroundWarning; //Referência para o fundo de aviso
     public GameObject backgroundNormal; //Fundo nromal
 
-    [Header("Texts")] //Aqui s�o para os textos
+    [Header("Texts")] //Aqui são para os textos
     public GameObject textWarning;
     public GameObject textNormal;
     public GameObject textObjective;
     public GameObject textFlag;
 
-    private const string INTRO_KEY = "introductionComplete";
+    public const string INTRO_KEY = "introductionComplete"; // Transformei em public para o outro script poder ler
     //private bool IsDone = false;
 
-    private int currentStage = 0; //Cada vez que o jogador apertar e tecla E, o n�mero aumenta e as telas avan�am
+    private int currentStage = 0; //Cada vez que o jogador apertar e tecla E, o número aumenta e as telas avançam
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E)) //Retorna verdadeiro apenas no frame em que a tecla E � pressionada
+        if(Input.GetKeyDown(KeyCode.E)) //Retorna verdadeiro apenas no frame em que a tecla E é pressionada
         {
             Advance();
         }
     }
 
-    void Advance() //Fun��o respons�vel por trocas as telas
+    void Advance() //Função responsável por trocas as telas
     {
-        currentStage++; //Incrementa o n�mero da etapa
+        currentStage++; //Incrementa o número da etapa
 
-        //Desliga todos os textos antes de mostrar o correto, tamb�m para evitar que dois textos apare�am ao mesmo tempo
+        //Desliga todos os textos antes de mostrar o correto, também para evitar que dois textos apareçam ao mesmo tempo
         textWarning.SetActive(false);
         textNormal.SetActive(false);
         textObjective.SetActive(false);
 
-        switch (currentStage) //Analisa o valor da vari�vel e executa um bloco diferente para cada etapa
+        switch (currentStage) //Analisa o valor da variável e executa um bloco diferente para cada etapa
         {
             case 1: //Tela inicial
                 backgroundWarning.SetActive(false);
@@ -55,6 +55,11 @@ public class IntroScreenController : MonoBehaviour
                 break;
             
             case 4: // descarrega introdução e volta para o mapa
+            
+                // === AQUI ESTÁ A CORREÇÃO! ===
+                PlayerPrefs.SetInt(INTRO_KEY, 1); // Salva que a introdução foi finalizada
+                PlayerPrefs.Save();               // Garante a gravação no disco
+                // =============================
             
                 SceneManager.UnloadSceneAsync("Introduction");
                 break;

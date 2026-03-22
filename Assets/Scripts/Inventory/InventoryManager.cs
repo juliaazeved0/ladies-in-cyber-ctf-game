@@ -20,14 +20,6 @@ public class InventoryManager : MonoBehaviour
 
     void Update()
     {
-        if(DialogueManager.isDialogueActive == false)
-        {
-            ToggleInventory();
-        }
-        if(SimpleDialogue.isSimpleDialogueActive == false)
-        {
-            ToggleInventory();
-        }
 
         if (currentButton != null && borderImage != null)
         {
@@ -60,9 +52,4 @@ public class InventoryManager : MonoBehaviour
         currentButton = newButton;
     }
 
-    public void ToggleInventory()
-    {
-        bool isOpenPanel = inventoryPanel.activeSelf;
-        inventoryPanel.SetActive(!isOpenPanel);
-    }
 }

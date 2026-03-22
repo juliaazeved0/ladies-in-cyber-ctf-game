@@ -7,7 +7,6 @@ public class NPCInteraction : MonoBehaviour
 {
     [Header("Settings NPC")]
     public string uniqueSaveKey;
-    //public GameObject challengePanel;
     public Image balloonNPC;
 
     [Header("Dinamic variable")]

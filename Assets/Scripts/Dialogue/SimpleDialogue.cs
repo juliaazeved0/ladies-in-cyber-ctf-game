@@ -7,7 +7,6 @@ using System;
 
 public class SimpleDialogue : MonoBehaviour
 {
-   
     [Header("Elements UI")]
     public GameObject panelDialogue;
     public TextMeshProUGUI textDialogue;
@@ -23,6 +22,7 @@ public class SimpleDialogue : MonoBehaviour
     public PulseOutline pulsingObject;
 
     private bool readyToSpeak = false; 
+    protected bool isTalking = false; // <--- ADICIONADO AQUI: O crachá que diz se este NPC é o dono da conversa
 
     [Header("Buttons")]
     public Button buttonExit;
@@ -32,13 +32,14 @@ public class SimpleDialogue : MonoBehaviour
     protected NPCDialogueNode dialogueCurrent;
 
     [Header("Control inventory")]
-    public static bool isSimpleDialogueActive = false; // <--- ADICIONADO AQUI: A trava global exclusiva deste script
+    public static bool isSimpleDialogueActive = false; 
 
     public const string PLAYER_NAME_KEY = "PLAYER_NAME";
 
     void Update()
     {
-        if(!readyToSpeak)
+        // <--- MODIFICADO AQUI: Agora ele exige que readyToSpeak seja true E que isTalking seja true!
+        if(!readyToSpeak || !isTalking)
         {
             return;
         }
@@ -59,7 +60,8 @@ public class SimpleDialogue : MonoBehaviour
     {
         StopAllCoroutines();
 
-        isSimpleDialogueActive = true; // <--- ADICIONADO AQUI: Tranca o inventário quando começa o papo simples
+        isSimpleDialogueActive = true; 
+        isTalking = true; // <--- ADICIONADO AQUI: Pega o crachá de fala ao iniciar a conversa
 
         if(textDialogue != null) textDialogue.text = "";
         if(confirmButton != null) confirmButton.gameObject.SetActive(false);
@@ -120,7 +122,8 @@ public class SimpleDialogue : MonoBehaviour
 
     public void ExitDialogue()
     {
-        isSimpleDialogueActive = false; // <--- ADICIONADO AQUI: Destranca o inventário ao sair
+        isSimpleDialogueActive = false; 
+        isTalking = false; // <--- ADICIONADO AQUI: Devolve o crachá de fala ao sair da conversa
 
         CanvasManager.Instance.ClosedPanel(panelDialogue.name);
         CanvasManager.Instance.ToggleMiniMap(true);
@@ -129,7 +132,7 @@ public class SimpleDialogue : MonoBehaviour
 
     public virtual void ConfirmHelp()
     {
-        ExitDialogue(); // Como o ExitDialogue já muda para false, não precisamos adicionar nada aqui!
+        ExitDialogue(); 
       if (pulsingObject != null)
         {
             pulsingObject.StartPulsing();
