@@ -8,27 +8,27 @@ public class InventoryDisplay : MonoBehaviour
     [Header("UI Text Slots")]
     public TextMeshProUGUI[] textSlots;
 
+    [Header("UI Lock Icons (Empty State)")]
+    public GameObject[] lockIcons; 
+
     [Header("Copy Buttons")]
     public GameObject[] copyButtons; 
 
     [Header("Navigation Buttons")]
     public Button btnNext;
     public Button btnPrevious;
-
-    [Header("Settings")]
-    public string emptyText = "--- VACANT SLOT ---";
     
     private const int TOTAL_FLAGS = 9; 
     private int currentPage = 0;
 
     void OnEnable()
     {
-        currentPage = 0;
-
-        if(FlagManager.Instance != null)
+        currentPage = 0; 
+        
+        if (FlagManager.Instance != null)
         {
             UpdateSlots();
-        } 
+        }
     }
 
     public void NextPage()
@@ -54,7 +54,6 @@ public class InventoryDisplay : MonoBehaviour
     private void UpdateSlots()
     {
         List<string> capturedFlags = FlagManager.Instance.flagsCapture;
-
         int startIndex = currentPage * textSlots.Length;
 
         for (int i = 0; i < textSlots.Length; i++)
@@ -65,31 +64,26 @@ public class InventoryDisplay : MonoBehaviour
             {
                 if (flagIndex < capturedFlags.Count)
                 {
-                    textSlots[i].text = capturedFlags[flagIndex];
-                    
-                    if (i < copyButtons.Length && copyButtons[i] != null)
+                    if (textSlots[i] != null) 
                     {
-                        copyButtons[i].SetActive(true);
+                        textSlots[i].gameObject.SetActive(true);
+                        textSlots[i].text = capturedFlags[flagIndex];
                     }
+                    if (i < lockIcons.Length && lockIcons[i] != null) lockIcons[i].SetActive(false);
+                    if (i < copyButtons.Length && copyButtons[i] != null) copyButtons[i].SetActive(true);
                 }
                 else
                 {
-                    textSlots[i].text = emptyText; 
-                
-                    if (i < copyButtons.Length && copyButtons[i] != null)
-                    {
-                        copyButtons[i].SetActive(false);
-                    }
+                    if (textSlots[i] != null) textSlots[i].gameObject.SetActive(false);
+                    if (i < lockIcons.Length && lockIcons[i] != null) lockIcons[i].SetActive(true);
+                    if (i < copyButtons.Length && copyButtons[i] != null) copyButtons[i].SetActive(false);
                 }
             }
             else
             {
-                textSlots[i].text = ""; 
-             
-                if (i < copyButtons.Length && copyButtons[i] != null)
-                {
-                    copyButtons[i].SetActive(false);
-                }
+                if (textSlots[i] != null) textSlots[i].gameObject.SetActive(false);
+                if (i < lockIcons.Length && lockIcons[i] != null) lockIcons[i].SetActive(false);
+                if (i < copyButtons.Length && copyButtons[i] != null) copyButtons[i].SetActive(false);
             }
         }
 

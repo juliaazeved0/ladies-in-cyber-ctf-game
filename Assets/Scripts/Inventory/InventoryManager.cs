@@ -12,6 +12,7 @@ public class InventoryManager : MonoBehaviour
     public RectTransform buttonBag;
     public RectTransform buttonPlayBook;
     public RectTransform borderImage; 
+    public GameObject inventoryPanel;
 
     public float velocity = 10f; 
 
@@ -19,6 +20,15 @@ public class InventoryManager : MonoBehaviour
 
     void Update()
     {
+        if(DialogueManager.isDialogueActive == false)
+        {
+            ToggleInventory();
+        }
+        if(SimpleDialogue.isSimpleDialogueActive == false)
+        {
+            ToggleInventory();
+        }
+
         if (currentButton != null && borderImage != null)
         {
             borderImage.position = Vector3.Lerp(borderImage.position, currentButton.position, Time.deltaTime * velocity);
@@ -48,5 +58,11 @@ public class InventoryManager : MonoBehaviour
     {
         borderImage.gameObject.SetActive(true); 
         currentButton = newButton;
+    }
+
+    public void ToggleInventory()
+    {
+        bool isOpenPanel = inventoryPanel.activeSelf;
+        inventoryPanel.SetActive(!isOpenPanel);
     }
 }

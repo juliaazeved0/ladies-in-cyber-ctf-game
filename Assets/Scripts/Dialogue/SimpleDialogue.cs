@@ -27,10 +27,12 @@ public class SimpleDialogue : MonoBehaviour
     [Header("Buttons")]
     public Button buttonExit;
 
-
     [Header ("Nodes")]
     public NPCDialogueNode firstNode;
-    private NPCDialogueNode dialogueCurrent;
+    protected NPCDialogueNode dialogueCurrent;
+
+    [Header("Control inventory")]
+    public static bool isSimpleDialogueActive = false; // <--- ADICIONADO AQUI: A trava global exclusiva deste script
 
     public const string PLAYER_NAME_KEY = "PLAYER_NAME";
 
@@ -56,6 +58,8 @@ public class SimpleDialogue : MonoBehaviour
     public void StartDialogue(NPCDialogueNode inicialNode)
     {
         StopAllCoroutines();
+
+        isSimpleDialogueActive = true; // <--- ADICIONADO AQUI: Tranca o inventário quando começa o papo simples
 
         if(textDialogue != null) textDialogue.text = "";
         if(confirmButton != null) confirmButton.gameObject.SetActive(false);
@@ -95,7 +99,7 @@ public class SimpleDialogue : MonoBehaviour
 
     }
 
-    public void NextTalk()
+    public virtual void NextTalk()
     {
        //if (WriteMachine.IsTyping)
        // {
@@ -116,6 +120,8 @@ public class SimpleDialogue : MonoBehaviour
 
     public void ExitDialogue()
     {
+        isSimpleDialogueActive = false; // <--- ADICIONADO AQUI: Destranca o inventário ao sair
+
         CanvasManager.Instance.ClosedPanel(panelDialogue.name);
         CanvasManager.Instance.ToggleMiniMap(true);
         
@@ -123,13 +129,11 @@ public class SimpleDialogue : MonoBehaviour
 
     public virtual void ConfirmHelp()
     {
-        ExitDialogue();
+        ExitDialogue(); // Como o ExitDialogue já muda para false, não precisamos adicionar nada aqui!
       if (pulsingObject != null)
         {
             pulsingObject.StartPulsing();
             pulsingObject = null; 
         }
     }
-    
-
 }

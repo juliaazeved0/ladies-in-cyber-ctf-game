@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37288b8cc8a1b8c4a934c05d643fec5f, type: 3}
   m_Name: node10
   m_EditorClassIdentifier: 
-  talkNPC: "Ela disse que a senha do computador dela \xE9 ILOVECAPIBARA903. Pode
-    me ajudar?"
+  talkNPC: "Ela disse que a senha do computador dela \xE9 ILOVECAPIBARA. Pode me
+    ajudar?"
   nextNode: {fileID: 0}
   characterNPC: {fileID: 159176775, guid: 7b895494c7b2e574bb624809ca7067e2, type: 3}

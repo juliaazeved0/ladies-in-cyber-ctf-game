@@ -54,14 +54,19 @@ while true; do
 
             files=""
             if [ "$DIR" == "/var/www/html/h2_scada" ]; then
-                files="manual_eletrolise.txt log_erro.log config_vazamento.cfg .H2_reset.sh sensores_temp.db logs/ backups/"
+                files="manual_eletrolise.txt log_erro.log config_vazamento.cfg sensores_temp.db logs/ backups/"
+                # Adiciona o arquivo oculto apenas se usar -a
+                [ "$SHOW_ALL" = true ] && files="$files .H2_reset.sh"
+            
             elif [ "$DIR" == "/var/www/html/h2_scada/logs" ]; then
                 files="system_uptime.log access_denied.log temp_history.csv"
+            
             elif [ "$DIR" == "/var/www/html/h2_scada/backups" ]; then
                 files="old_config.bak emergency_stop_v1.sh"
             fi
 
             [ "$SHOW_ALL" = true ] && echo -e ".\n.."
+            
             for f in $files; do
                 if [ "$SHOW_LONG" = true ]; then
                     is_d=false; [[ "$f" == */ ]] && is_d=true
@@ -105,9 +110,23 @@ while true; do
                 echo "Fechando em 5 segundos..."
                 sleep 5
                 exit 99
-            else echo "BASH: Permission denied."; fi ;;
+            else echo "BASH: Permission denied. (Dica: verifique as permissoes de execucao)"; fi ;;
 
-        "help") echo "ls, ls-l, ls-a, cd, cd .., cat, chmod, ./, whoami, pwd, clear, exit" ;;
+        "help") 
+            echo -e "\033[1;33mComandos disponiveis:\033[0m"
+            echo -e "  ls           - Lista arquivos visiveis." 
+            echo -e "  ls -a        - Lista arquivos visiveis e ocultos."
+            echo -e "  ls -l        - Lista arquivos visiveis e detalhes."
+            echo -e "  cd [pasta]   - Entra em um diretorio. Use 'cd ..' para voltar."
+            echo -e "  cat [arq]    - Exibe o conteudo de um arquivo de texto."
+            echo -e "  chmod +x     - Da permissao de execucao a um script."
+            echo -e "  ./[arquivo]  - Executa um script na pasta atual."
+            echo -e "  whoami       - Exibe o usuario logado."
+            echo -e "  pwd          - Mostra o caminho da pasta atual."
+            echo -e "  clear        - Limpa a tela do terminal."
+            echo -e "  exit         - Encerra a sessao."
+            ;;
+            
         "clear") clear ;;
         "exit") exit 0 ;;
         *) [ ! -z "$cmd" ] && echo "BASH: $cmd: command not found" ;;

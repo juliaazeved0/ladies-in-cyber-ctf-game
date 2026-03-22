@@ -33,6 +33,9 @@ public class DialogueManager : MonoBehaviour
     public GameObject panelNarrator;
     public TextMeshProUGUI textNarrator;
     public Button buttonNextNarrator;
+
+    [Header("Control inventory")]
+    public static bool isDialogueActive = false;
     
     private DialogueNode pendingNextNode;
 
@@ -67,6 +70,8 @@ public class DialogueManager : MonoBehaviour
     {
         if (firstNode != null)
         {
+            isDialogueActive = true; //  Tranca o inventário ao iniciar o diálogo
+
             panelDialogue.SetActive(true);
             miniMapCanvas.SetActive(false);
             cameraMiniMap.SetActive(false);
@@ -134,6 +139,8 @@ public class DialogueManager : MonoBehaviour
 
     public void OnClickDone()
     {
+            isDialogueActive = false; // Destranca o inventário ao finalizar
+
             PlayerPrefs.SetInt(INICIAL_KEY, 1);
             PlayerPrefs.Save();
 
@@ -148,6 +155,8 @@ public class DialogueManager : MonoBehaviour
 
     public void OnClickExit()
     {
+        isDialogueActive = false; //  Destranca o inventário se o jogador sair no meio
+
         panelDialogue.SetActive(false);
         miniMapCanvas.SetActive(true);
         cameraMiniMap.SetActive(true);
@@ -186,6 +195,8 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
+            isDialogueActive = false;  //Destranca se o diálogo acabar pelo narrador
+
             panelDialogue.SetActive(false);
             miniMapCanvas.SetActive(true);
             cameraMiniMap.SetActive(true);

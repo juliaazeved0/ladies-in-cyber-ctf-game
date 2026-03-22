@@ -28,14 +28,34 @@ while true; do
             SHOW_ALL=false
             [[ "$args" == *"-a"* ]] && SHOW_ALL=true
             files=""
-            if [ "$DIR" == "/home/Luiz" ]; then files="documentos/ .backup/ sistema_2021.bak"
-            elif [ "$DIR" == "/home/Luiz/documentos" ]; then files="listaCompras.txt notas.txt"
-            elif [ "$DIR" == "/home/Luiz/.backup" ]; then files=".old/"
-            elif [ "$DIR" == "/home/Luiz/.backup/.old" ]; then files=".cache/"
-            elif [ "$DIR" == "/home/Luiz/.backup/.old/.cache" ]; then files="notas.txt"; fi
+
+            if [ "$DIR" == "/home/Luiz" ]; then 
+                files="documentos/ sistema_2021.bak"
+                [ "$SHOW_ALL" = true ] && files="$files .backup/"
             
+            elif [ "$DIR" == "/home/Luiz/documentos" ]; then 
+                files="listaCompras.txt notas.txt"
+            
+            elif [ "$DIR" == "/home/Luiz/.backup" ]; then 
+                files=""
+                [ "$SHOW_ALL" = true ] && files=".old/"
+            
+            elif [ "$DIR" == "/home/Luiz/.backup/.old" ]; then 
+                files=""
+                [ "$SHOW_ALL" = true ] && files=".cache/"
+            
+            elif [ "$DIR" == "/home/Luiz/.backup/.old/.cache" ]; then 
+                files="notas.txt"
+            fi
+            
+            # Imprime os diretórios raiz se for -a
             [ "$SHOW_ALL" = true ] && echo -e ".\n.."
-            echo -e "$files" ;;
+            
+            # Imprime os arquivos encontrados
+            if [ ! -z "$files" ]; then
+                echo -e "$files"
+            fi
+            ;;
 
         "cd")
             if [[ "$args" == "documentos" ]]; then DIR="/home/Luiz/documentos"
@@ -65,7 +85,16 @@ while true; do
                 *) echo "Arquivo nao encontrado." ;;
             esac ;;
 
-        "help") echo "Comandos: ls, ls -a, cd, cat, clear, exit" ;;
+        "help") 
+            echo -e "\033[1;33mComandos disponiveis:\033[0m"
+            echo -e "  ls         - Lista os arquivos e pastas no diretorio atual."
+            echo -e "  ls -a      - Lista todos os arquivos, incluindo os \033[1;31mocultos\033[0m."
+            echo -e "  cd [pasta] - Entra em uma pasta especifica. Use 'cd ..' para voltar."
+            echo -e "  cat [arq]  - Le e exibe o conteudo de um arquivo de texto."
+            echo -e "  clear      - Limpa a tela do terminal."
+            echo -e "  exit       - Fecha o terminal."
+            ;;
+            
         "clear") clear ;;
         "exit") exit 0 ;;
         *) [ ! -z "$cmd" ] && echo "Comando nao encontrado." ;;

@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro; //Importa as bibliotecas para usar o TextMeshPro
+using TMPro;
+using System; //Importa as bibliotecas para usar o TextMeshPro
 
 public class ValidatePassword : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class ValidatePassword : MonoBehaviour
     public GameObject loginPanel; //Painel inicial
     public GameObject taskbarPanel; //Painel do �rea de trabalho
     public GameObject finalPanel; //Painel final da flag
+    public GameObject panelCaptureFlag;
 
     [Header("Intera��o e Avisos")]
     public GameObject pressEKey; //objeto de texto para a tecla E
@@ -24,9 +26,11 @@ public class ValidatePassword : MonoBehaviour
 
     void Start()
     {
+        
         errorMessage.SetActive(false); //Garante que o pop-up de erro comece escondido
         if(taskbarPanel != null) taskbarPanel.SetActive(false); //Painel da �rea de trabalho comece desativado
         passwordField.ActivateInputField(); //Faz com que o cursos j� apare�a piscando dentro do Input Field, sem o jogador precisar clicar
+        panelCaptureFlag.SetActive(false);
     }
 
     void Update()
@@ -59,6 +63,18 @@ public class ValidatePassword : MonoBehaviour
         }
     }
 
+    public void CaptureFlag()
+    {
+        panelCaptureFlag.SetActive(true);
+        string newFlag = SafeBase.ViewBase(SafeBase.flag_5);
+        FlagManager.Instance.SaveFlag(newFlag);
+    }
+
+    public void ClosedJustPanelCurrent()
+    {
+        panelCaptureFlag.SetActive(false);
+    }
+
     public void OpenWhatsAppWindow()
     {
         if(whatsappWindow != null)
@@ -68,6 +84,12 @@ public class ValidatePassword : MonoBehaviour
     }
 
     public void ExitChallenge(){
+        if (finalPanel.activeSelf)
+        {
+            CanvasManager.Instance.ClosedPanel(finalPanel.name);
+            CanvasManager.Instance.ClosedPanel(loginPanel.name);
+
+        }
         CanvasManager.Instance.ClosedPanel(loginPanel.name);
     }
 

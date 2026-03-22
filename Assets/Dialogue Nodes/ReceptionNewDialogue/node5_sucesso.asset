@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: node5_sucesso
   m_EditorClassIdentifier: 
   question: "\"Certo. Vou liberar um acesso provis\xF3rio e ajustar seu cadastro
-    como t\xE9cnica de ciberseguran\xE7a. Depois voc\xEA regulariza o crach\xE1 definitivo
-    com o RH. Pode entrar, o pessoal da TI j\xE1 deve estar te esperando.\""
+    como t\xE9cnica de ciberseguran\xE7a. Depois voc\xEA regulariza com o RH.\""
   options: []
   narratorFeedbacks: []
   nextDialogue: []
