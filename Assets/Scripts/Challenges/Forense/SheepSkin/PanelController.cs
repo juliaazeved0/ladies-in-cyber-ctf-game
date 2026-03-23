@@ -24,25 +24,20 @@ public class PanelController : MonoBehaviour
 
     public void AbrirPanelNetguard() //Abre apenas o painel Netguard
     {
-        if (PanelMailController.pcInfectado) //Verifica se o ataque já aconteceu através da variável criada
-        {
-            panelInitialBackground.SetActive(true); //Mostra o painel da área de trabalho
+        panelInitialBackground.SetActive(true); //Mostrar o painel inicial
 
-            if(panelNetguard != null) panelNetguard.SetActive(false); //Garante que o painel de input do domínio esteja limpo
-        }
-        else
-        {
-            tentativaDominio.text = ""; //Limpa qualquer texto digitado anteriormente
-            panelNetguard.SetActive(true); //Mostra o painel Netguard
-        }
+        if(panelNetguard != null) panelNetguard.SetActive(false); //Garante que o painel de input do domínio esteja limpo
+
+        tentativaDominio.text = ""; //Limpa qualquer texto digitado anteriormente
+        panelNetguard.SetActive(true); //Mostra o painel Netguard
     }
 
     public void AbrirPanelFlagSuccess() //Abre apenas o painel de sucesso
     {
         tentativaDominio.text = "";
         panelFlagSuccess.SetActive(true);
-        //adiciona flag ao inventário
-        string newFlag = SafeBase.ViewBase(SafeBase.flag_4);
+
+        string newFlag = SafeBase.ViewBase(SafeBase.flag_4); //Adiciona flag ao inventário
         FlagManager.Instance.SaveFlag(newFlag);
     }
 
