@@ -14,9 +14,12 @@ public class PanelMailController : MonoBehaviour
     public GameObject panelGlitch;
     public GameObject panelInspect;
     public GameObject panelPhishing;
+    public GameObject panelRansomware;
 
     [Header("Feedback Visual")]
     [SerializeField] private GameObject imagemSelecaoLink;
+
+    public static bool pcInfectado = false; //Variável para ver se a jogadora acessou o link infectado
 
     public void AbrirPanelMailInput() //Abrir o painel principais de e-mails
     {
@@ -56,7 +59,8 @@ public class PanelMailController : MonoBehaviour
 
     public void AbrirPanelGlitch()
     {
-        panelGlitch.SetActive(true);
+        //Inicia a contagem automática
+        StartCoroutine(SequenciaGlitchParaRansomware());
     }
 
     public void AbrirPanelInspect()
@@ -106,7 +110,7 @@ public class PanelMailController : MonoBehaviour
         if (panelEmailAcessoTI != null && panelEmailAcessoTI.activeSelf)
         {
             // Agora o grupo dos Controls é avaliado primeiro, e o resultado DEVE ter o U junto
-            if ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) && Input.GetKeyDown(KeyCode.Y))
+            if ((Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) && Input.GetKeyDown(KeyCode.U))
             {
                 AbrirPanelInspect();
             }
@@ -131,5 +135,21 @@ public class PanelMailController : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         imagemSelecaoLink.SetActive(false);
+    }
+
+    IEnumerator SequenciaGlitchParaRansomware()
+    {
+        //Ativa o painel de animação Glitch
+        panelGlitch.SetActive(true);
+
+        //Espera exatamente 4 segundos para realizar a troca de painéis
+        yield return new WaitForSeconds(4f);
+
+        //Desativa o painel Glitch e ativa o painel de Ransomware
+        panelGlitch.SetActive(false);
+        panelRansomware.SetActive(true);
+
+        //Marca que o PC agora está no estado pós-ataque
+        pcInfectado = true;
     }
 }
