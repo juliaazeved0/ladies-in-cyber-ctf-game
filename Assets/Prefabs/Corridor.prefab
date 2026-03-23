@@ -3464,7 +3464,7 @@ MonoBehaviour:
   balloonNPC: {fileID: 5314367162247370178}
   pulseObjectInitial: {fileID: 0}
   interactionNotice: {fileID: 2672301030149441079}
-  simpleDialogue: {fileID: 1254461890300162708}
+  simpleDialogue: {fileID: 0}
   firstNode: {fileID: 11400000, guid: efc31de023a236d4d9697d353801cb0d, type: 2}
 --- !u!1 &5188228731933303277
 GameObject:
@@ -4093,7 +4093,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 924055654028909020}
-  - component: {fileID: 1254461890300162708}
   m_Layer: 0
   m_Name: CorridorManager (1)
   m_TagString: Untagged
@@ -4116,30 +4115,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7717640653903282213}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1254461890300162708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6192139569182724095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f302fa1132c51d643bc176a650ea9e09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panelDialogue: {fileID: 2265327233247348624}
-  textDialogue: {fileID: 388060895151126114}
-  characterNPC: {fileID: 3350252792774641541}
-  writeMachine: {fileID: 2600775920605408938}
-  playerNameplate: {fileID: 7763316278603049024}
-  characterPlayer: {fileID: 6613048926905114003}
-  miniMapCanvas: {fileID: 0}
-  cameraMiniMap: {fileID: 0}
-  confirmButton: {fileID: 751547138976630464}
-  pulsingObject: {fileID: 0}
-  buttonExit: {fileID: 8282429877477789020}
-  firstNode: {fileID: 11400000, guid: efc31de023a236d4d9697d353801cb0d, type: 2}
 --- !u!1 &6302465118033140919
 GameObject:
   m_ObjectHideFlags: 0
