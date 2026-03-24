@@ -2,73 +2,82 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class CryptoPassword : MonoBehaviour
 {
     [Header("Settings password challenge of crypto room")]
     public string rightPassword = "t3cl4d01ntu1t1v0";
-    
-    //public string idChallenge = "Password_PC_CryptoRoom";
+
+    public string idChallenge = "CryptoPassword";
+
     public TMP_InputField passwordInputText;
     public GameObject popUpError;
     public GameObject panelSucessChallenge;
+
     public PulseOutline pulsePCJ;
     public PulseOutline pulsePCP;
+
     public GameObject buttonEnter;
-    public GameObject buttonExit;
     public GameObject panelChallenge;
-    public GameObject buttonExitPanelSucess;
-    public NPCDialogueNode sucessNode;
-    public SimpleDialogue simpleDialogue;
+
     public TextMeshProUGUI textFlag;
-    public GameObject dialogueNPC;
+
     public ObjectInteraction scriptInteractionPcJ;
     public LockObjectInteraction lockpcPolyana;
 
-    public void CheckPassword()
-    {
-        string textInput = passwordInputText.text.Trim();
-
-        if(textInput == rightPassword)
-        {
-                panelSucessChallenge.SetActive(true);
-                buttonEnter.SetActive(false);
-        }else
-        {
-            passwordInputText.text = "";
-            popUpError.SetActive(false);
-            popUpError.SetActive(true);
-        }
-    }
+    private bool flagCaptured = false;
 
     void Start()
     {
         popUpError.SetActive(false);
         panelSucessChallenge.SetActive(false);
         passwordInputText.ActivateInputField();
+
+        // se já concluiu antes → já trava o pulse
+        if (ChallengeManager.Instance.IsChallengeCompleted(idChallenge))
+        {
+            flagCaptured = true;
+
+            pulsePCJ.StopPulsing();
+            pulsePCJ.enabled = false;
+        }
     }
 
+    public void CheckPassword()
+    {
+        bool correct = string.Equals(
+            passwordInputText.text.Trim(),
+            rightPassword,
+            StringComparison.OrdinalIgnoreCase
+        );
+
+        if (correct)
+        {
+            panelSucessChallenge.SetActive(true);
+            buttonEnter.SetActive(false);
+        }
+        else
+        {
+            passwordInputText.text = "";
+            popUpError.SetActive(true);
+        }
+    }
 
     public void ExitChallenge()
     {
-
-       if(textFlag.text.Trim().Equals("Flag Capturada!"))
-        {   
-            if(scriptInteractionPcJ != null)
-            {
+        if (flagCaptured)
+        {
+            if (scriptInteractionPcJ != null)
                 scriptInteractionPcJ.enabled = false;
-            }
 
-            if(lockpcPolyana != null)
-            {
+            if (lockpcPolyana != null)
                 lockpcPolyana.isUnlocked = true;
-            }
-           
+
             CanvasManager.Instance.ClosedPanel(panelChallenge.name);
-            CanvasManager.Instance.OpenPanel(dialogueNPC.name);
-            simpleDialogue.StartDialogue(sucessNode);
         }
-        else{
+        else
+        {
             Debug.Log("SAINDO SEM CAPTURAR A FLAG");
             CanvasManager.Instance.ClosedPanel(panelChallenge.name);
         }
@@ -79,23 +88,25 @@ public class CryptoPassword : MonoBehaviour
         panelSucessChallenge.SetActive(false);
         passwordInputText.text = "";
         buttonEnter.SetActive(true);
-
-        //criar verificacao aqui para saber se a flag foi salva, se foi salva e exit selecionado, chama o panel de dialogo para continuar para o proximo desafio
-        
+        passwordInputText.ActivateInputField();
     }
 
     public void CaptureFlag()
     {
-       string flagCaptured = "Flag Capturada!";
-       textFlag.text = flagCaptured;
-        //salvar rightPssword dentro de uma lista 
+        if (flagCaptured) return;
 
-         //adiciona flag ao inventário
+        flagCaptured = true;
+
+        textFlag.text = "Flag Capturada!";
+
         string newFlag = SafeBase.ViewBase(SafeBase.flag_6);
         FlagManager.Instance.SaveFlag(newFlag);
-        
+
+        ChallengeManager.Instance.CompleteChallenge(idChallenge);
+
         pulsePCJ.StopPulsing();
+        pulsePCJ.enabled = false;
+
         pulsePCP.StartPulsing();
     }
-
 }
