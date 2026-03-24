@@ -10,13 +10,10 @@ public class DialogueManagerBoss : MonoBehaviour
     public TextMeshProUGUI questionText;
     public Image characterNPC;
     public Button[] buttonOption;
-    public GameObject miniMapCanvas;
-    public GameObject cameraMiniMap;
     public Button buttonPlayAgain;
     public TextMeshProUGUI playerNameText;
     public Button buttonDone;
     public Button buttonExit;
-    public Image lockImage;
     public TextMeshProUGUI dialogueNPC;
 
     public WriteMachine writeMachine;
@@ -41,8 +38,6 @@ public class DialogueManagerBoss : MonoBehaviour
         if (firstNode != null)
         {
             panelDialogue.SetActive(true);
-            miniMapCanvas.SetActive(false);
-            cameraMiniMap.SetActive(false);
             buttonPlayAgain.gameObject.SetActive(false);
             DialogueView(firstNode);
         }
@@ -104,17 +99,11 @@ public class DialogueManagerBoss : MonoBehaviour
     public void OnClickDone()
     {
         panelDialogue.SetActive(false);
-        miniMapCanvas.SetActive(true);
-        cameraMiniMap.SetActive(true);
-        if (lockImage != null) lockImage.gameObject.SetActive(false);
-        dialogueNPC.text = "Bem-vinda ao Centro de Tecnologia do Itaipu Parquetec!";
     }
 
     public void OnClickExit()
     {
         panelDialogue.SetActive(false);
-        miniMapCanvas.SetActive(true);
-        cameraMiniMap.SetActive(true);
     }
 
     public void DialoguePlayAgain()

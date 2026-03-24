@@ -10,15 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b8995214fe1f0d4d91c1830fcd2911c, type: 3}
-  m_Name: nodeBoss2
+  m_Name: nodeBoss7
   m_EditorClassIdentifier: 
-  question: "J\xE1 que voc\xEA passou por todos os desafios anteriores, vou deixar
-    voc\xEA escolher a categoria do \xFAltimo."
-  options:
-  - OSINT
-  - CRIPTOGRAFIA
-  - LINUX
-  - FORENSE
+  question: OSINT, criptografia, linux e forense. Tudo ao mesmo tempo.
+  options: []
   nextDialogue:
-  - {fileID: 11400000, guid: cc1c29edd6588b14c92a9f587bdc14ef, type: 2}
+  - {fileID: 0}
   buttonType: 0

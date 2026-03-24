@@ -9,22 +9,18 @@ public class NPCBossInteraction : MonoBehaviour
     public string uniqueSaveKey;
     public Image balloonNPC;
 
-    [Header("Dynamic Variables")]
-    public PulseOutline pulseObjectInitial;
-
     [Header("Interaction")]
     public GameObject interactionNotice;
 
     private bool playerIsHere = false;
     private bool isCompleted = false;
+    private bool isTalking = false; // NOVA VARIÁVEL: Controla se o diálogo está em curso
 
     [Header("Systems (Assign one or both)")]
-    public SimpleDialogue simpleDialogue;        // Sistema antigo (não mexer)
-    public DialogueManagerBoss dialogueManagerBoss; // Sistema novo do Boss
+    public DialogueManagerBoss dialogueManagerBoss;
 
     [Header("Nodes")]
-    //public NPCDialogueNode firstNodeNormal;   // Nó para o sistema antigo
-    public DialogueNodeBoss firstNodeBoss;     // Nó para o sistema do Boss
+    public DialogueNodeBoss firstNodeBoss;
 
     void Start()
     {
@@ -35,38 +31,32 @@ public class NPCBossInteraction : MonoBehaviour
 
     void Update()
     {
-        // Verifica se o player apertou E e se nenhum dos dois painéis de diálogo está aberto
-        bool isAnyDialogueActive = (simpleDialogue != null && simpleDialogue.panelDialogue.activeSelf) ||
-                                   (dialogueManagerBoss != null && dialogueManagerBoss.panelDialogue.activeSelf);
-
-        if (playerIsHere && Input.GetKeyDown(KeyCode.E) && !isCompleted && !isAnyDialogueActive)
+        // Verifica se o jogador apertou E e não completou o desafio ainda
+        if (playerIsHere && Input.GetKeyDown(KeyCode.E) && !isCompleted)
         {
-            StartConversation();
+            if (!isTalking)
+            {
+                // Se não estava falando, começa a conversa
+                StartConversation();
+                isTalking = true;
+            }
+            else
+            {
+                // Se já estava falando, avança para a opção 0 (próximo node)
+                dialogueManagerBoss.ChooseOption(0);
+            }
         }
     }
 
     private void StartConversation()
     {
-        // PRIORIDADE 1: Se tiver um nó de Boss e um Manager de Boss, usa eles
         if (dialogueManagerBoss != null && firstNodeBoss != null)
         {
-            if (CanvasManager.Instance != null) CanvasManager.Instance.ToggleMiniMap(false);
-
-            // Configura o nó no manager e inicia
             dialogueManagerBoss.firstNode = firstNodeBoss;
             dialogueManagerBoss.StartDialogue();
         }
-        // PRIORIDADE 2: Se não for boss, usa o sistema comum (SimpleDialogue)
-        //else if (simpleDialogue != null && firstNodeNormal != null)
-        {
-            simpleDialogue.pulsingObject = pulseObjectInitial;
-            if (CanvasManager.Instance != null) CanvasManager.Instance.ToggleMiniMap(false);
-
-            //simpleDialogue.StartDialogue(firstNodeNormal);
-        }
     }
 
-    // --- Métodos de Trigger (Mantidos iguais) ---
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -86,11 +76,16 @@ public class NPCBossInteraction : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerIsHere = false;
+            isTalking = false; // RESET: Se o jogador sair de perto, a conversa reseta
+
             if (interactionNotice != null)
             {
                 interactionNotice.SetActive(false);
                 if (balloonNPC != null) balloonNPC.gameObject.SetActive(false);
             }
+
+            // Opcional: Fecha o painel de diálogo se o jogador se afastar
+            if (dialogueManagerBoss != null) dialogueManagerBoss.panelDialogue.SetActive(false);
         }
     }
 
