@@ -90,6 +90,8 @@ public class DialogueManagerBoss : MonoBehaviour
             {
                 buttonOption[i].gameObject.SetActive(true);
                 buttonOption[i].GetComponentInChildren<TextMeshProUGUI>().text = node.options[i];
+
+                buttonOption[i].interactable = true; //Garante que o botão esteja "limpo" para novos cliques
             }
             else
             {
@@ -117,9 +119,18 @@ public class DialogueManagerBoss : MonoBehaviour
     public void ChooseOption(int index)
     {
         // Outro ponto corrigido para garantir que use o array do Boss
-        if (dialogueCurrent.nextDialogue != null && index < dialogueCurrent.nextDialogue.Length)
+        if (dialogueCurrent.nextDialogue != null && dialogueCurrent.nextDialogue.Length > 0)
         {
-            DialogueNodeBoss next = dialogueCurrent.nextDialogue[index];
+            DialogueNodeBoss next;
+
+            if(dialogueCurrent.nextDialogue.Length == 1)
+            {
+                next = dialogueCurrent.nextDialogue[0];
+            }
+            else
+            {
+                next = dialogueCurrent.nextDialogue[index]; 
+            }
 
             if (next != null)
             {
@@ -134,5 +145,11 @@ public class DialogueManagerBoss : MonoBehaviour
         {
             panelDialogue.SetActive(false);
         }
+    }
+
+    public bool CurrentNodeHasOptions() //Expõe se o node atual tem opções para que o outro script consiga consultar
+    {
+        if (dialogueCurrent == null) return false;
+        return dialogueCurrent.HasOptions();
     }
 }

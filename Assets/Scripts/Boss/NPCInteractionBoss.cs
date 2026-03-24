@@ -42,8 +42,16 @@ public class NPCBossInteraction : MonoBehaviour
             }
             else
             {
-                // Se já estava falando, avança para a opção 0 (próximo node)
-                dialogueManagerBoss.ChooseOption(0);
+                if (!dialogueManagerBoss.CurrentNodeHasOptions())
+                {
+                    // Se já estava falando, avança para a opção 0 (próximo node)
+                    dialogueManagerBoss.ChooseOption(0);
+                }
+                else
+                {
+                    Debug.Log("Escolha uma opção no mouse para continuar!");
+                }
+                
             }
         }
     }

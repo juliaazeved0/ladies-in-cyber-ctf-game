@@ -12,4 +12,9 @@ public class DialogueNodeBoss : ScriptableObject
     public DialogueNodeBoss[] nextDialogue;
 
     public ButtonType buttonType;
+
+    public bool HasOptions() //Verifica se o node possui opções ou não
+    {
+        return options != null && options.Length > 0;
+    }
 }
