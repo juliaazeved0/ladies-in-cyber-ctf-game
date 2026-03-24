@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37288b8cc8a1b8c4a934c05d643fec5f, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b8995214fe1f0d4d91c1830fcd2911c, type: 3}
   m_Name: nodeBoss1
   m_EditorClassIdentifier: 
-  talkNPC: "Voc\xEA chegou at\xE9 aqui, resolveu tudo o que eu coloquei no seu caminho.
-    Ent\xE3o, vamos fazer diferente desta vez."
-  nextNode: {fileID: 11400000, guid: 20d9ed8a9058c9c47b4d093fd2ae617b, type: 2}
-  characterNPC: {fileID: 21300000, guid: ce5c7ffe920022148bcc91c276fe1adb, type: 3}
+  question: "Voc\xEA chegou at\xE9 aqui. Resolveu tudo o que eu coloquei no seu caminho.
+    Ent\xE3o, vamos fazer diferente dessa vez."
+  options: []
+  nextDialogue:
+  - {fileID: 11400000, guid: 71af8d30a73293545b79185086de9998, type: 2}
+  buttonType: 0
