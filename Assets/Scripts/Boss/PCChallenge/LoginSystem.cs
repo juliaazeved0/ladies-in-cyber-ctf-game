@@ -13,6 +13,7 @@ public class LoginSystem : MonoBehaviour, IPointerClickHandler
     [Header("Telas")]
     public GameObject initialBackground; //Tela bloqueada
     public GameObject desktopBackground; //Tela da área de trabalho
+    public GameObject errorPopup; 
 
     [Header("Post-it")]
     [SerializeField] private TMP_Text postItText;
@@ -26,15 +27,8 @@ public class LoginSystem : MonoBehaviour, IPointerClickHandler
         {
             originalColor = postItText.color;
         }
-    }
 
-    void Update()
-    {
-        //Verifica se o InputField está focado e se a jogadora apertou Enter
-        if (inputPassword.isFocused && (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return)))
-        {
-            ValidatePasswordBoss();
-        }
+        if(errorPopup != null) errorPopup.SetActive(false); //Garante que o popup de erro inicie escondido
     }
 
     public void ValidatePasswordBoss() //Validação da senha
@@ -47,6 +41,10 @@ public class LoginSystem : MonoBehaviour, IPointerClickHandler
         {
             inputPassword.text = ""; //Limpa o campo se errar
             inputPassword.ActivateInputField(); //Foca novamente no campo
+
+            //Chama o feedback de erro
+            StopCoroutine("ShowErrorTemporary"); //Se já estiver rodando
+            StartCoroutine(ShowErrorTemporary());
         }
     }
 
@@ -79,5 +77,15 @@ public class LoginSystem : MonoBehaviour, IPointerClickHandler
         yield return new WaitForSeconds(1.5f);
 
         highlightBackground.SetActive(false);
+    }
+
+    IEnumerator ShowErrorTemporary() //Corrotina para mostrar o erro por apenas 2 segundos
+    {
+        if(errorPopup != null)
+        {
+            errorPopup.SetActive(true);
+            yield return new WaitForSeconds(2f); //Tempo que ele fica aparecendo na tela
+            errorPopup.SetActive(false);
+        }
     }
 }
