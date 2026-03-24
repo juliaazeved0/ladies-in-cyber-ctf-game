@@ -22,6 +22,8 @@ public class DialogueManagerBoss : MonoBehaviour
     public DialogueNodeBoss firstNode;
     private DialogueNodeBoss dialogueCurrent;
 
+    public static bool dialogueBossFinished = false; //Variável booleana para verificar se o diálogo com o boss foi finalizado
+
     void Start()
     {
         panelDialogue.SetActive(false);
@@ -98,6 +100,7 @@ public class DialogueManagerBoss : MonoBehaviour
 
     public void OnClickDone()
     {
+        dialogueBossFinished = true; //Marca que o diálogo foi concluído
         panelDialogue.SetActive(false);
     }
 

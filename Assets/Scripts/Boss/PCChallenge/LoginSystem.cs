@@ -31,8 +31,22 @@ public class LoginSystem : MonoBehaviour, IPointerClickHandler
         if(errorPopup != null) errorPopup.SetActive(false); //Garante que o popup de erro inicie escondido
     }
 
+    void Update()
+    {
+        //Se o diálogo não acabou, o campo de senha fica desativado
+        if(inputPassword != null)
+        {
+            inputPassword.interactable = DialogueManagerBoss.dialogueBossFinished;
+        }
+    }
+
     public void ValidatePasswordBoss() //Validação da senha
     {
+        if (!DialogueManagerBoss.dialogueBossFinished)
+        {
+            return;
+        }
+
         if(inputPassword.text.Trim() == passwordCorrect) //Verifica se a senha escrita no input é igual a senha correta
         {
             ChangeScreen();

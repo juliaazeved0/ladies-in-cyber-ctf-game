@@ -14,6 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: OSINT, criptografia, linux e forense. Tudo ao mesmo tempo.
   options: []
-  nextDialogue:
-  - {fileID: 0}
-  buttonType: 0
+  nextDialogue: []
+  buttonType: 1
