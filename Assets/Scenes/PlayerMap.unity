@@ -48578,7 +48578,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 45.833332, y: -11.309999, z: -10}
+  m_LocalPosition: {x: -22.606667, y: -30.86, z: -10}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -49057,7 +49057,7 @@ MonoBehaviour:
   cameraMiniMap: {fileID: 543550900}
   confirmButton: {fileID: 0}
   pulsingObject: {fileID: 0}
-  buttonExit: {fileID: 0}
+  buttonExit: {fileID: 874524230}
   firstNode: {fileID: 11400000, guid: efc31de023a236d4d9697d353801cb0d, type: 2}
 --- !u!114 &632824495
 MonoBehaviour:
@@ -51845,7 +51845,7 @@ Transform:
   m_GameObject: {fileID: 1383102903}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 43.4132, y: -34.0936, z: 0.0695462}
+  m_LocalPosition: {x: 43.45, y: -34.72, z: 0.0695462}
   m_LocalScale: {x: 0.51804, y: 0.47411996, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -51859,7 +51859,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383102903}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e9625183ea89eb46a5667444551da30, type: 3}
   m_Name: 
@@ -53111,7 +53111,7 @@ Transform:
   m_GameObject: {fileID: 1625154553}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 45.833332, y: -11.309999, z: -10}
+  m_LocalPosition: {x: -22.606667, y: -30.86, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -70621,7 +70621,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 2.339, y: 6.4}
+  m_AnchoredPosition: {x: 3.01, y: 7.35}
   m_SizeDelta: {x: 9.197, y: 6.139}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1755964456
@@ -75613,11 +75613,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3164135398847563359, guid: 75be7944671cac643bccb9de929321ac, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 42.1
+      value: -26.34
       objectReference: {fileID: 0}
     - target: {fileID: 3164135398847563359, guid: 75be7944671cac643bccb9de929321ac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -15.65
+      value: -35.2
       objectReference: {fileID: 0}
     - target: {fileID: 3164135398847563359, guid: 75be7944671cac643bccb9de929321ac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -75691,6 +75691,10 @@ PrefabInstance:
     - target: {fileID: 4300887009554458597, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448946978979732302, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: ManagerBlackBoxPanels
       objectReference: {fileID: 0}
     - target: {fileID: 5138657036259939397, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_IsActive
@@ -76330,8 +76334,13 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ExitDialogue
       objectReference: {fileID: 0}
+    - target: {fileID: 9181351055987198883, guid: 2ce12bcfcf857a9449c39fd5c38e342f, type: 3}
+      propertyPath: simpleDialogue
+      value: 
+      objectReference: {fileID: 616807491}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3361798408393907888, guid: 2ce12bcfcf857a9449c39fd5c38e342f, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7717640653903282213, guid: 2ce12bcfcf857a9449c39fd5c38e342f, type: 3}
       insertIndex: -1

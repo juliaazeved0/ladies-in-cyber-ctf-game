@@ -26,6 +26,9 @@ public class CryptoPassword : MonoBehaviour
     public ObjectInteraction scriptInteractionPcJ;
     public LockObjectInteraction lockpcPolyana;
 
+    public NPCDialogueNode sucessNode;
+    public SimpleDialogue simpleDialogue;
+
     private bool flagCaptured = false;
 
     void Start()
@@ -64,24 +67,30 @@ public class CryptoPassword : MonoBehaviour
         }
     }
 
-    public void ExitChallenge()
+   public void ExitChallenge()
     {
-        if (flagCaptured)
-        {
-            if (scriptInteractionPcJ != null)
-                scriptInteractionPcJ.enabled = false;
+   
+    CanvasManager.Instance.ClosedPanel(panelChallenge.name);
 
-            if (lockpcPolyana != null)
-                lockpcPolyana.isUnlocked = true;
+    if (flagCaptured)
+    {
+        if (scriptInteractionPcJ != null)
+            scriptInteractionPcJ.enabled = false;
 
-            CanvasManager.Instance.ClosedPanel(panelChallenge.name);
-        }
-        else
+        if (lockpcPolyana != null)
+            lockpcPolyana.isUnlocked = true;
+
+        
+        if (!SimpleDialogue.isSimpleDialogueActive)
         {
-            Debug.Log("SAINDO SEM CAPTURAR A FLAG");
-            CanvasManager.Instance.ClosedPanel(panelChallenge.name);
+            simpleDialogue.StartDialogue(sucessNode);
         }
     }
+    else
+    {
+        Debug.Log("SAINDO SEM CAPTURAR A FLAG");
+    }
+}
 
     public void ExitPanelSucess()
     {
@@ -89,6 +98,7 @@ public class CryptoPassword : MonoBehaviour
         passwordInputText.text = "";
         buttonEnter.SetActive(true);
         passwordInputText.ActivateInputField();
+
     }
 
     public void CaptureFlag()
