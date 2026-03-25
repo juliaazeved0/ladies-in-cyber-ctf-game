@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChangePanels : MonoBehaviour
 {
     [Header("Painéis")]
     public GameObject desktopBackground;
     public GameObject panelNotes;
-    public GameObject panelSteghide;
+    public GameObject panelSteghideError;
+    public GameObject panelSteghideBeach;
+
+    [Header("Referencias Externas")]
+    public Button steghideButton;
 
     public void AbrirPanelNotes()
     {
@@ -25,30 +30,44 @@ public class ChangePanels : MonoBehaviour
         }
     }
 
-    public void AbrirPanelSteghide()
+    public void AbrirPanelSteghideError()
     {
-        if(panelSteghide != null)
+        if(panelSteghideError != null)
         {
-            panelSteghide.SetActive(true);
+            panelSteghideError.SetActive(true);
         }
     }
 
-    public void FecharPanelSteghide()
+    public void FecharPanelSteghideError()
     {
-        if(panelSteghide != null)
+        if(panelSteghideError != null)
         {
-            panelSteghide.SetActive(false);
+            panelSteghideError.SetActive(false);
         }
     }
-    // Start is called before the first frame update
-    void Start()
+
+    public void AbrirPanelSteghideBeach()
     {
-        
+        if(panelSteghideBeach != null)
+        {
+            panelSteghideBeach.SetActive(true);
+
+            if (panelSteghideError == null) panelSteghideError.SetActive(false);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AoClicarNoBotaoSteghide()
     {
-        
+        //Se o botão ainda não foi "desbloqueado" pelo script AbrirTerminalBoss
+        if(AbrirTerminalBoss.challengeSolved == false)
+        {
+            AbrirPanelSteghideError(); //Se não resolveu o desafio no terminal, abre o painel de erro
+        }
+        else
+        {
+            AbrirPanelSteghideBeach(); //Se já resolveu o desafio no terminal, abre o painel de metadados
+
+            if(panelSteghideError != null) panelSteghideError.SetActive(false); //Garante que o painel de erro feche se ele estiver aberto
+        }
     }
 }
