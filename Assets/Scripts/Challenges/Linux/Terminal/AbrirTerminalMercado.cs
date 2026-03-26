@@ -1,31 +1,36 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 using System.IO;
 using System;
+using System.Runtime.InteropServices;
 
 public class AbrirTerminalMercado : AbrirTerminalPressaoNoBash
 {
-
-    public void OnButtonClickCaptureFlag(){
+    public void OnButtonClickCaptureFlag()
+    {
         popCaptureFlag.SetActive(true);
         string newFlag = SafeBase.ViewBase(SafeBase.flag_2);
         FlagManager.Instance.SaveFlag(newFlag);
+
+        // Opcional: Integração com o ChallengeManager para o desafio do Luiz
+        // if (ChallengeManager.Instance != null)
+        // {
+        //     ChallengeManager.Instance.CompleteChallenge("DesafioMercado"); 
+        // }
     }
 
     private void OnMouseDown()
     {
         UnityEngine.Debug.Log("Acessando computador do Luiz...");
-        IniciarDesafio();
+        IniciarDesafioTerminal();
     }
 
     public void IniciarDesafioTerminal()
     {
-        StartCoroutine(MonitorarTerminal());
+        StartCoroutine(MonitorarTerminalMercado());
     }
 
-    private IEnumerator MonitorarTerminal()
+    private IEnumerator MonitorarTerminalMercado()
     {
         string pastaStreaming = Path.GetFullPath(Application.streamingAssetsPath);
         string vitoriaPath = Path.Combine(pastaStreaming, "vitoria.txt");
@@ -33,52 +38,178 @@ public class AbrirTerminalMercado : AbrirTerminalPressaoNoBash
         // Limpa vitórias antigas antes de começar
         if (File.Exists(vitoriaPath)) File.Delete(vitoriaPath);
 
-        Process terminal = new Process();
-        terminal.StartInfo.UseShellExecute = true; 
+        bool terminou = false;
+        int exitCode = 0;
+
+#if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+
+        // ── WINDOWS ───────────────────────────────────────────────────────
+        System.Diagnostics.Process terminal = new System.Diagnostics.Process();
+        terminal.StartInfo.UseShellExecute = true;
         terminal.StartInfo.WorkingDirectory = pastaStreaming;
+        string arquivoBat = Path.Combine(pastaStreaming, "DesafioMercado.bat");
+        terminal.StartInfo.FileName = "cmd.exe";
+        terminal.StartInfo.Arguments = $"/c \"\"{arquivoBat}\"\"";
 
-        // Configuração para WINDOWS
-        if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
+        try { terminal.Start(); }
+        catch (Exception e)
         {
-            string arquivoBat = Path.Combine(pastaStreaming, "DesafioMercado.bat");
-            terminal.StartInfo.FileName = "cmd.exe";
-            terminal.StartInfo.Arguments = $"/c \"\"{arquivoBat}\"\"";
-        }
-        // Configuração para LINUX
-        else if (Application.platform == RuntimePlatform.LinuxPlayer || Application.platform == RuntimePlatform.LinuxEditor)
-        {
-            string arquivoScript = Path.Combine(pastaStreaming, "script_mercado.sh");
-            Process.Start("chmod", "+x " + arquivoScript);
-
-            terminal.StartInfo.FileName = "/usr/bin/xterm"; 
-            terminal.StartInfo.Arguments = $"-e /bin/bash {arquivoScript}";
-        }
-
-        try {
-            terminal.Start();
-        } catch (Exception e) {
-            UnityEngine.Debug.LogError("Erro ao abrir terminal: " + e.Message);
+            UnityEngine.Debug.LogError("Erro ao abrir terminal (Windows): " + e.Message);
             yield break;
         }
 
-        while (!terminal.HasExited)
+        System.Threading.Thread waitWin = new System.Threading.Thread(() =>
         {
-            yield return null; 
+            try
+            {
+                terminal.WaitForExit();
+                exitCode = terminal.ExitCode;
+            }
+            catch (Exception e)
+            {
+                UnityEngine.Debug.LogError("Erro aguardando terminal: " + e.Message);
+            }
+            finally { terminou = true; }
+        });
+        waitWin.IsBackground = true;
+        waitWin.Start();
+
+#elif UNITY_EDITOR_LINUX || UNITY_STANDALONE_LINUX
+
+        // ── LINUX: fork + exec via P/Invoke — IL2CPP safe ─────────────────
+        int LinuxFork()
+        {
+            [DllImport("libc", EntryPoint = "fork", SetLastError = true)]
+            static extern int fork_impl();
+            return fork_impl();
         }
 
-        UnityEngine.Debug.Log("Terminal fechou. Código: " + terminal.ExitCode);
-
-        // VITÓRIA: Verifica o código 99 OU se o script criou o arquivo vitoria.txt
-        if (terminal.ExitCode == 99 || File.Exists(vitoriaPath))
+        int LinuxExecvp(string file, string[] argv)
         {
-            if (popUpSucesso != null) 
+            [DllImport("libc", EntryPoint = "execvp", SetLastError = true)]
+            static extern int execvp_impl(string file, string[] argv);
+            return execvp_impl(file, argv);
+        }
+
+        int LinuxWaitpid(int pid, out int status, int options)
+        {
+            [DllImport("libc", EntryPoint = "waitpid", SetLastError = true)]
+            static extern int waitpid_impl(int pid, out int status, int options);
+            return waitpid_impl(pid, out status, options);
+        }
+
+        void LinuxExit(int status)
+        {
+            [DllImport("libc", EntryPoint = "_exit", SetLastError = true)]
+            static extern void exit_impl(int status);
+            exit_impl(status);
+        }
+
+        // Função para mudar o diretório de trabalho do processo filho
+        int LinuxChdir(string path)
+        {
+            [DllImport("libc", EntryPoint = "chdir", SetLastError = true)]
+            static extern int chdir_impl(string path);
+            return chdir_impl(path);
+        }
+
+        bool WIfExited(int status) => (status & 0x7F) == 0;
+        int WExitStatus(int status) => (status >> 8) & 0xFF;
+
+        string terminalExe = null;
+        string[] candidatos = { "/usr/bin/xterm", "/usr/bin/gnome-terminal", "/usr/bin/konsole" };
+        foreach (var t in candidatos)
+        {
+            if (File.Exists(t)) { terminalExe = t; break; }
+        }
+
+        if (terminalExe == null)
+        {
+            UnityEngine.Debug.LogError("Nenhum terminal encontrado (xterm, gnome-terminal, konsole)!");
+            yield break;
+        }
+
+        UnityEngine.Debug.Log("Terminal encontrado: " + terminalExe);
+
+        string capturedTerminal = terminalExe;
+        string capturedScript   = Path.Combine(pastaStreaming, "script_mercado.sh");
+        string[] argv           = new string[] { capturedTerminal, "-e", "/bin/bash", capturedScript, null };
+
+        System.Threading.Thread waitLinux = new System.Threading.Thread(() =>
+        {
+            try
             {
-                popUpSucesso.SetActive(true);
-                UnityEngine.Debug.Log("Pop-up ativado!");
+                int pid = LinuxFork();
+
+                if (pid < 0)
+                {
+                    UnityEngine.Debug.LogError("fork() falhou! errno: " + Marshal.GetLastWin32Error());
+                    return;
+                }
+
+                if (pid == 0)
+                {
+                    // Força o processo filho a ir para a pasta StreamingAssets antes de executar o script bash
+                    LinuxChdir(pastaStreaming);
+
+                    LinuxExecvp(capturedTerminal, argv);
+                    LinuxExit(127);
+                }
+                else
+                {
+                    int status = 0;
+                    LinuxWaitpid(pid, out status, 0);
+                    exitCode = WIfExited(status) ? WExitStatus(status) : -1;
+                }
+            }
+            catch (Exception e)
+            {
+                UnityEngine.Debug.LogError("Erro no fork/exec: " + e.Message);
+            }
+            finally
+            {
+                terminou = true;
+            }
+        });
+        waitLinux.IsBackground = true;
+        waitLinux.Start();
+
+#else
+        UnityEngine.Debug.LogError("Plataforma não suportada.");
+        yield break;
+#endif
+
+        // ── LOOP BLINDADO: Monitora o arquivo independente da thread ─────────────────
+        bool desafioResolvido = false;
+
+        while (!terminou)
+        {
+            // Checa se o arquivo de vitória foi criado pelo bash ANTES do terminal fechar
+            if (File.Exists(vitoriaPath))
+            {
+                desafioResolvido = true;
+                break; // Interrompe o loop! Vitória instantânea.
             }
             
-            // Deleta o arquivo após usar para não travar o próximo teste
+            // Pausa meio segundo para não sobrecarregar a CPU da Unity
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        // ── CHECAGEM FINAL DE VITÓRIA ─────────────────
+        if (desafioResolvido || exitCode == 99 || File.Exists(vitoriaPath))
+        {
+            UnityEngine.Debug.Log("Desafio do mercado resolvido! Pop-up aberto.");
+            
+            if (popUpSucesso != null)
+            {
+                popUpSucesso.SetActive(true);
+            }
+
             if (File.Exists(vitoriaPath)) File.Delete(vitoriaPath);
+        }
+        else
+        {
+            UnityEngine.Debug.LogWarning("Terminal fechou, mas a condição de vitória não foi atingida.");
         }
     }
 }

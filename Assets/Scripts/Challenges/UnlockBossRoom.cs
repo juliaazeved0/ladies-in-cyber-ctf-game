@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
 using TMPro;
 
@@ -9,6 +10,8 @@ public class UnlockBossRoom : MonoBehaviour
     public GameObject devicePanel;     
     [Header("Input")]
     public TMP_InputField input;
+
+    public GameObject panelDialogueJoana;
 
     [Header("Puzzle")]
     public GameObject lockObject;
@@ -21,7 +24,6 @@ public class UnlockBossRoom : MonoBehaviour
     private string correctPassword = "1541";
     private bool unlocked = false;
 
-    // ---------------- ABRIR PANEL SENHA ----------------
 
     public void OpenPasswordPanel()
     {
@@ -32,11 +34,21 @@ public class UnlockBossRoom : MonoBehaviour
     }
 
     public void ClosePasswordPanel()
-    {
-        CanvasManager.Instance.ClosedPanel(passwordPanel.name);
-    }
+{
+    CanvasManager.Instance.ClosedPanel(passwordPanel.name);
 
-    // ---------------- ABRIR DEVICE ----------------
+    // libera interação com o device depois do diálogo
+    if (lockObject != null)
+    {
+        LockObjectInteraction lockInteraction = lockObject.GetComponent<LockObjectInteraction>();
+
+        if (lockInteraction != null)
+        {
+            lockInteraction.isUnlocked = true;
+        }
+    }
+}
+
 
     public void OpenDevicePanel()
     {
@@ -46,9 +58,9 @@ public class UnlockBossRoom : MonoBehaviour
     public void CloseDevicePanel()
     {
         CanvasManager.Instance.ClosedPanel(devicePanel.name);
-    }
+        CanvasManager.Instance.ClosedPanel(panelDialogueJoana.name);
 
-    // ---------------- TECLAS DO DEVICE ----------------
+    }
 
     public void PressKey(string value)
     {
@@ -60,18 +72,25 @@ public class UnlockBossRoom : MonoBehaviour
         input.text = "";
     }
 
-    public void PressEnter()
+   public void PressEnter()
+{
+    if (input.text == correctPassword)
     {
-        if (input.text == correctPassword)
-        {
-            input.text = "ACESSO CONCEDIDO";
-            UnlockBossRoomDoor();
-        }
-        else
-        {
-            input.text = "ACESSO NEGADO";
-        }
+        input.text = "ACESSO CONCEDIDO";
+        UnlockBossRoomDoor();
     }
+    else
+    {
+        input.text = "ACESSO NEGADO";
+        StartCoroutine(ClearAfterDelay());
+    }
+}
+
+IEnumerator ClearAfterDelay()
+{
+    yield return new WaitForSeconds(3f);
+    ClearInput();
+}
 
     void UnlockBossRoomDoor()
     {
