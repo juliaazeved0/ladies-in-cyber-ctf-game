@@ -2929,7 +2929,6 @@ GameObject:
   - component: {fileID: 6032826155314193433}
   - component: {fileID: 3761324575958297398}
   - component: {fileID: 1614522338902872506}
-  - component: {fileID: 9181351055987198883}
   m_Layer: 0
   m_Name: NPCViniJr
   m_TagString: Untagged
@@ -3143,24 +3142,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &9181351055987198883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5025910711877886398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62e1cab4d548fc14e94de8febf84e124, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uniqueSaveKey: 
-  balloonNPC: {fileID: 5314367162247370178}
-  pulseObjectInitial: {fileID: 0}
-  interactionNotice: {fileID: 2672301030149441079}
-  simpleDialogue: {fileID: 0}
-  firstNode: {fileID: 11400000, guid: efc31de023a236d4d9697d353801cb0d, type: 2}
 --- !u!1 &5188228731933303277
 GameObject:
   m_ObjectHideFlags: 0

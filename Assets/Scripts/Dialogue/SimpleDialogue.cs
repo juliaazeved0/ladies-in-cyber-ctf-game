@@ -10,18 +10,18 @@ public class SimpleDialogue : MonoBehaviour
     [Header("Elements UI")]
     public GameObject panelDialogue;
     public TextMeshProUGUI textDialogue;
-    public Image characterNPC; 
+    public Image characterNPC;
     public WriteMachine writeMachine;
     public TextMeshProUGUI playerNameplate;
     public Image characterPlayer;
     public GameObject miniMapCanvas;
     public GameObject cameraMiniMap;
-    public Button confirmButton;
-    
-    [Header("Dinamic variable")]
-    public PulseOutline pulsingObject;
+    public Button confirmButton; // Opcional
 
-    private bool readyToSpeak = false; 
+    [Header("Dinamic variable")]
+    public PulseOutline pulsingObject; // Opcional
+
+    private bool readyToSpeak = false;
     protected bool isTalking = false; // <--- ADICIONADO AQUI: O crachá que diz se este NPC é o dono da conversa
 
     [Header("Buttons")]
@@ -32,7 +32,7 @@ public class SimpleDialogue : MonoBehaviour
     protected NPCDialogueNode dialogueCurrent;
 
     [Header("Control inventory")]
-    public static bool isSimpleDialogueActive = false; 
+    public static bool isSimpleDialogueActive = false;
 
     public const string PLAYER_NAME_KEY = "PLAYER_NAME";
 
@@ -43,7 +43,7 @@ public class SimpleDialogue : MonoBehaviour
         {
             return;
         }
-        
+
         if(panelDialogue.activeSelf && Input.GetKeyDown(KeyCode.E))
         {
            NextTalk();
@@ -60,13 +60,13 @@ public class SimpleDialogue : MonoBehaviour
     {
         StopAllCoroutines();
 
-        isSimpleDialogueActive = true; 
+        isSimpleDialogueActive = true;
         isTalking = true; // <--- ADICIONADO AQUI: Pega o crachá de fala ao iniciar a conversa
 
         if(textDialogue != null) textDialogue.text = "";
         if(confirmButton != null) confirmButton.gameObject.SetActive(false);
         if(buttonExit != null) buttonExit.gameObject.SetActive(true);
-        
+
         firstNode = inicialNode;
 
         if (firstNode != null)
@@ -74,13 +74,13 @@ public class SimpleDialogue : MonoBehaviour
             CanvasManager.Instance.OpenPanel(panelDialogue.name);
             CanvasManager.Instance.ToggleMiniMap(false);
 
-        
             DialogueView(firstNode);
 
             readyToSpeak = false;
             StartCoroutine(ReleaseInput());
         }
-        else{
+        else
+        {
             Debug.LogError("node vazio");
         }
     }
@@ -97,46 +97,49 @@ public class SimpleDialogue : MonoBehaviour
 
         writeMachine.Run(node.talkNPC, textDialogue);
 
-        characterNPC.sprite = node.characterNPC;
-
+        if(characterNPC != null)
+            characterNPC.sprite = node.characterNPC;
     }
 
     public virtual void NextTalk()
     {
-       //if (WriteMachine.IsTyping)
-       // {
-       //    WriteMachine.Complete();
-       //    return;
-       //}
+        //if (WriteMachine.IsTyping)
+        // {
+        //    WriteMachine.Complete();
+        //    return;
+        //}
 
         if(dialogueCurrent.nextNode != null)
         {
             DialogueView(dialogueCurrent.nextNode);
         }
-        else 
+        else
         {
-            confirmButton.gameObject.SetActive(true);
-            buttonExit.gameObject.SetActive(false);
+            if(confirmButton != null)
+                confirmButton.gameObject.SetActive(true);
+
+            if(buttonExit != null)
+                buttonExit.gameObject.SetActive(false);
         }
     }
 
     public void ExitDialogue()
     {
-        isSimpleDialogueActive = false; 
+        isSimpleDialogueActive = false;
         isTalking = false; // <--- ADICIONADO AQUI: Devolve o crachá de fala ao sair da conversa
 
         CanvasManager.Instance.ClosedPanel(panelDialogue.name);
         CanvasManager.Instance.ToggleMiniMap(true);
-        
     }
 
     public virtual void ConfirmHelp()
     {
-        ExitDialogue(); 
-      if (pulsingObject != null)
+        ExitDialogue();
+
+        if(pulsingObject != null)
         {
             pulsingObject.StartPulsing();
-            pulsingObject = null; 
+            pulsingObject = null;
         }
     }
 }
