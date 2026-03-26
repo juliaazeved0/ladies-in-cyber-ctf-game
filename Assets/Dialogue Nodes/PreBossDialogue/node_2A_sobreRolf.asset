@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc344bf1847f7284ba70f62fdd0f60c5, type: 3}
+  m_Name: node_2A_sobreRolf
+  m_EditorClassIdentifier: 
+  question: " \u201CO Dr. Rolf? Vixe, aquele ali vive trancado naquela sala. Quase
+    n\xE3o sai nem pra tomar um caf\xE9. Por que a pergunta?\u201D"
+  options:
+  - "A. \u201CPreciso fazer uma manuten\xE7\xE3o na sala dele. Ele costuma deixar
+    aberta?\u201D"
+  - "B. \u201CEle parece ser bem rigoroso com seguran\xE7a, n\xE3o \xE9?\u201D"
+  - "C. \u201CTrabalho na TI, ele me disse que esqueceu uma senha ou algo assim.\u201D"
+  narratorFeedbacks:
+  - "\u201CVoc\xEA est\xE1 sondando a vulnerabilidade f\xEDsica da sala. Inteligente.\u201D"
+  - "\u201CVoc\xEA est\xE1 testando a percep\xE7\xE3o dela sobre o alvo.\u201D"
+  - " \u201CUsar o pretexto de 'esquecimento' \xE9 uma t\xE9cnica cl\xE1ssica de
+    pretexto.\""
+  nextDialogue:
+  - {fileID: 11400000, guid: 12579f2704fc07b43b567a35c9030f0c, type: 2}
+  - {fileID: 11400000, guid: 0860fa295401ee94a94d5eee9b3b9e19, type: 2}
+  - {fileID: 11400000, guid: 12579f2704fc07b43b567a35c9030f0c, type: 2}
+  buttonType: 0
