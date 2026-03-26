@@ -153,7 +153,8 @@ public class DialogueManager : MonoBehaviour
         if(lockImage != null) lockImage.gameObject.SetActive(false);
         
         dialogueNPC.text = "Bem-vinda ao Centro de Tecnologia do Itaipu Parquetec!";
-        playerNameplate.SetNameplateIdPlayer();
+        
+        if(playerNameplate != null) playerNameplate.SetNameplateIdPlayer();
     
         // Atualizado com o novo nome da variável e proteção extra
         if (lockLadder != null) lockLadder.SetActive(false);
