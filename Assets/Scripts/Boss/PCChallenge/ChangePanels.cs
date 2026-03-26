@@ -99,6 +99,28 @@ public class ChangePanels : MonoBehaviour
         }
     }
 
+    //Executa para salvar a flag
+    //public void OnClickButtonFlag()
+    //{
+    //    // 1. Verifica o painel (prevenção contra esquecimento no Inspector)
+    //    if (panelSuccessFlag != null)
+    //    {
+    //        panelSuccessFlag.SetActive(true);
+    //    }
+
+    //    // 2. Verifica se o FlagManager existe antes de tentar salvar
+    //    if (FlagManager.Instance != null)
+    //    {
+    //        string newFlag = SafeBase.ViewBase(SafeBase.flag_8);
+    //        FlagManager.Instance.SaveFlag(newFlag);
+    //    }
+    //    else
+    //    {
+    //        // Isso vai te avisar no Console se o FlagManager sumiu da cena
+    //        Debug.LogError("ERRO: FlagManager não encontrado na cena! Certifique-se de que o objeto do FlagManager existe.");
+    //    }
+    //}
+
     //Esse método foi vinculado no botão do Steghide da área de trabalho
     public void AoClicarNoBotaoSteghide()
     {

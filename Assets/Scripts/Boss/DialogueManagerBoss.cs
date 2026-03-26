@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro; //Biblioteca para usar TextMeshPro
+using UnityEngine.SceneManagement; //Biblioteca para utilizar a troca de cenas
 
 public class DialogueManagerBoss : MonoBehaviour
 {
@@ -108,6 +109,7 @@ public class DialogueManagerBoss : MonoBehaviour
     public void OnClickExit()
     {
         panelDialogue.SetActive(false); //Apenas fecha
+        //SceneManager.LoadScene("BossRoom"); //Retorna para o mapa do Boss
     }
 
     public void DialoguePlayAgain()

@@ -3901,7 +3901,7 @@ GameObject:
   - component: {fileID: 735928625}
   - component: {fileID: 735928624}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3946,7 +3946,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Finish!
+  m_text: "AVAN\xC7AR"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: add1a8372a63cf04b8f0e4e9adcdb019, type: 2}
   m_sharedMaterial: {fileID: 4720189985607097196, guid: add1a8372a63cf04b8f0e4e9adcdb019, type: 2}
@@ -5245,8 +5245,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
+      - m_Target: {fileID: 1845538628}
+        m_TargetAssemblyTypeName: DialogueManagerBoss, Assembly-CSharp
         m_MethodName: OnClickExit
         m_Mode: 1
         m_Arguments:
@@ -5917,7 +5917,7 @@ GameObject:
   - component: {fileID: 1001074077}
   - component: {fileID: 1001074076}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5962,7 +5962,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Exit
+  m_text: SAIR
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: add1a8372a63cf04b8f0e4e9adcdb019, type: 2}
   m_sharedMaterial: {fileID: 4720189985607097196, guid: add1a8372a63cf04b8f0e4e9adcdb019, type: 2}
@@ -7700,9 +7700,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SimpleDialogue, Assembly-CSharp
-        m_MethodName: ExitDialogue
+      - m_Target: {fileID: 1845538628}
+        m_TargetAssemblyTypeName: DialogueManagerBoss, Assembly-CSharp
+        m_MethodName: OnClickExit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10182,13 +10182,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 253ff4f5fce6fba4cb3e45ecae882a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  desktopBackground: {fileID: 0}
+  desktopBackground: {fileID: 1308891032}
   panelNotes: {fileID: 628133602}
   panelSteghideError: {fileID: 1987936393}
   panelSteghideBeach: {fileID: 1581219460}
   panelMetadataInfo: {fileID: 1201762644}
   panelSuccessFlag: {fileID: 1790214828}
-  steghideButton: {fileID: 0}
+  steghideButton: {fileID: 1406377801}
 --- !u!1 &1874790662
 GameObject:
   m_ObjectHideFlags: 0
