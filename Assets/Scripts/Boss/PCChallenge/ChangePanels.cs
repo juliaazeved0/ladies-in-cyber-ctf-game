@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ChangePanels : MonoBehaviour
 {
-    [Header("Painéis")]
+    [Header("Painéis")] //Gerenciador de paineis no Inspector
     public GameObject desktopBackground;
     public GameObject panelNotes;
     public GameObject panelSteghideError;
@@ -14,8 +14,9 @@ public class ChangePanels : MonoBehaviour
     public GameObject panelSuccessFlag;
 
     [Header("Referencias Externas")]
-    public Button steghideButton;
+    public Button steghideButton; //Apenas para setar o botão principal do desafio
 
+    //Funções que ativam ou desativam paineis
     public void AbrirPanelNotes()
     {
         if(panelNotes != null)
@@ -98,14 +99,14 @@ public class ChangePanels : MonoBehaviour
         }
     }
 
+    //Esse método foi vinculado no botão do Steghide da área de trabalho
     public void AoClicarNoBotaoSteghide()
     {
-        //Se o botão ainda não foi "desbloqueado" pelo script AbrirTerminalBoss
-        if(AbrirTerminalBoss.challengeSolved == false)
+        if(AbrirTerminalBoss.challengeSolved == false) //A jogadora ainda não terminou o desafio no terminal
         {
-            AbrirPanelSteghideError(); //Se não resolveu o desafio no terminal, abre o painel de erro
+            AbrirPanelSteghideError(); //Abre o painel de erro
         }
-        else
+        else //Se o arquivo "boss_resolvido.txt" foi detectado anteriormente
         {
             AbrirPanelSteghideBeach(); //Se já resolveu o desafio no terminal, abre o painel de metadados
 

@@ -3,46 +3,47 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
-using System.Runtime.InteropServices;
+using System.Runtime.InteropServices; //Biblioteca necessária para receber comandos do sistema Linux
 using UnityEngine.UI;
 
 public class AbrirTerminalBoss : MonoBehaviour
 {
     [Header("Configurações do Desafio")]
-    public Button botaoSteghide;
-    public GameObject popUpSucessoTerminal;
+    public Button steghideButton; //Botão que será desbloqueado na interface
+    public GameObject terminalSuccessPopup;
 
     public static bool challengeSolved; //Variável global para o estado do desafio (resolvido ou não)
-    private void OnMouseDown()
+    private void OnMouseDown() //Chamado quando a jogadora clicar em um objeto
     {
         UnityEngine.Debug.Log("Tentando acessar o computador do BOSS...");
-        IniciarDesafio();
+        StartChallenge();
     }
 
-    public void IniciarDesafio()
+    public void StartChallenge()
     {
-        challengeSolved = false; //Garante que começa bloqueado
-        StartCoroutine(MonitorarTerminalBoss());
+        challengeSolved = false; //Garante que o desafio começa bloqueado (pois não foi resolvido)
+        StartCoroutine(MonitorTerminalBoss()); //Inicia o processo de vigia
     }
 
-    private IEnumerator MonitorarTerminalBoss()
+    private IEnumerator MonitorTerminalBoss()
     {
-        string pastaStreaming = Path.GetFullPath(Application.streamingAssetsPath);
-        string vitoriaPath = Path.Combine(pastaStreaming, "boss_resolvido.txt");
+        //Define o caminho da pasta StreamingAssets e do arquivo de vitória
+        string streamingFolder = Path.GetFullPath(Application.streamingAssetsPath);
+        string victoryPath = Path.Combine(streamingFolder, "boss_resolvido.txt");
 
-        if (File.Exists(vitoriaPath)) File.Delete(vitoriaPath);
+        if(File.Exists(victoryPath)) File.Delete(victoryPath); //Deleta o arquivo de vitória antigo se ele existir
 
-        bool terminou = false;
+        bool finished = false; //Variável booleana para controlar o estado de finalizado ou não
 
 #if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
 
-        // ── WINDOWS ───────────────────────────────────────────────────────
+        //Lógica para WINDOWS
         System.Diagnostics.Process terminal = new System.Diagnostics.Process();
         terminal.StartInfo.UseShellExecute = true;
-        terminal.StartInfo.WorkingDirectory = pastaStreaming;
-        string arquivoBat = Path.Combine(pastaStreaming, "DesafioBoss.bat");
+        terminal.StartInfo.WorkingDirectory = streamingFolder;
+        string fileBat = Path.Combine(streamingFolder, "DesafioBoss.bat");
         terminal.StartInfo.FileName = "cmd.exe";
-        terminal.StartInfo.Arguments = $"/c \"\"{arquivoBat}\"\"";
+        terminal.StartInfo.Arguments = $"/c \"\"{fileBat}\"\""; //Executa o comando e depois termina
 
         try { terminal.Start(); }
         catch (Exception e)
@@ -51,18 +52,21 @@ public class AbrirTerminalBoss : MonoBehaviour
             yield break;
         }
 
+        //Cria uma Thread para não travar a Unity enquanto espera o terminal fechar
         System.Threading.Thread waitWin = new System.Threading.Thread(() =>
         {
             try { terminal.WaitForExit(); }
             catch (Exception e) { UnityEngine.Debug.LogError("Erro aguardando terminal: " + e.Message); }
-            finally { terminou = true; }
+            finally { finished = true; } //Avisa que o terminal foi fechado
         });
+
         waitWin.IsBackground = true;
         waitWin.Start();
 
 #elif UNITY_EDITOR_LINUX || UNITY_STANDALONE_LINUX
 
-        // ── LINUX: fork + exec via P/Invoke — IL2CPP safe ─────────────────
+        //Lógica para LINUX: fork + exec via P/Invoke — IL2CPP safe
+        //Busca por um xterm ou gnome-terminal e executa o .sh
         int LinuxFork()
         {
             [DllImport("libc", EntryPoint = "fork", SetLastError = true)]
@@ -150,23 +154,24 @@ public class AbrirTerminalBoss : MonoBehaviour
         yield break;
 #endif
 
-        while (!terminou)
+        //A Unity fica esperando aqui até a Thread marcar "finished = true"
+        while (!finished)
             yield return null;
 
         UnityEngine.Debug.Log("Terminal Boss fechou.");
 
-        if (File.Exists(vitoriaPath))
+        if (File.Exists(victoryPath)) //Se o arquivo de vitória foi criado pelo script externo, a jogadora venceu
         {
-            DesbloquearSteghide();
-            File.Delete(vitoriaPath);
+            UnlockSteghide();
+            File.Delete(victoryPath); //Limpa para a próxima vez
         }
     }
 
-    void DesbloquearSteghide()
+    void UnlockSteghide()
     {
         challengeSolved = true; //Marca que o desafio foi resolvido
-        if (botaoSteghide != null) botaoSteghide.interactable = true;
-        //if (popUpSucessoTerminal != null) popUpSucessoTerminal.SetActive(true);
+        if (steghideButton != null) steghideButton.interactable = true;
+        //if (terminalSuccessPopup != null) terminalSuccessPopup.SetActive(true);
         UnityEngine.Debug.Log("O arquivo foi movido! Steghide desbloqueado.");
     }
 }

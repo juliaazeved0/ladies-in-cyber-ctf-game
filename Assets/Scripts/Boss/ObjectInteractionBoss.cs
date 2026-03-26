@@ -5,35 +5,35 @@ using UnityEngine;
 public class ObjectInteractionBoss : MonoBehaviour
 {
     [Header("Settings object interactable")]
-    protected bool playerIsHere; //Verifica se a jogadora está perto do objeto
+    protected bool playerIsHere; //Verifica se a jogadora está dentro do collider do objeto
     public GameObject interactionNotice; //Aviso de "Pressione E"
     public GameObject challengePanel; //Painel que será aberto ao interagir
 
     protected void Start()
     {
-        if (interactionNotice != null) interactionNotice.SetActive(false);
+        if (interactionNotice != null) interactionNotice.SetActive(false); //Garante que o aviso de "Pressione E" comece desativado
     }
 
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision) //Quando algo entra na área do Trigger (Collider)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player")) //Verifica se a jogadora possui a tag
         {
             playerIsHere = true;
 
-            // SÓ mostra o aviso (Ex: "Aperte E") se o diálogo com o Boss já terminou
-            if (interactionNotice != null && DialogueManagerBoss.dialogueBossFinished)
+            if (interactionNotice != null && DialogueManagerBoss.dialogueBossFinished) //Só ativa o aviso se o diálogo com o Boss já estiver terminado
             {
                 interactionNotice.SetActive(true);
             }
         }
     }
 
-    protected virtual void OnTriggerExit2D(Collider2D collision)
+    protected virtual void OnTriggerExit2D(Collider2D collision) //Quando algo sai da área do Trigger
     {
         if (collision.CompareTag("Player"))
         {
             playerIsHere = false;
-            if (interactionNotice != null)
+
+            if (interactionNotice != null) //Esconde o aviso, pois a jogadora se afastou da área
             {
                 interactionNotice.SetActive(false);
             }
@@ -42,20 +42,18 @@ public class ObjectInteractionBoss : MonoBehaviour
 
     protected virtual void Update()
     {
-        // Se o painel já estiver aberto, não faz nada
-        if (challengePanel != null && challengePanel.activeSelf)
+        if (challengePanel != null && challengePanel.activeSelf) //Se o painel do desafio já estiver aberto, interrompe e a jogadora não interage novamente
         {
             return;
         }
 
-        // NOVA TRAVA: Verifica se o jogador está aqui, apertou E E SE o diálogo terminou
+        //Verifica se a jogadora está perto, apertou E e o diálogo com o Boss foi finalizado
         if (playerIsHere && Input.GetKeyDown(KeyCode.E) && DialogueManagerBoss.dialogueBossFinished)
         {
             Interact();
         }
 
-        // OPCIONAL: Se o jogador estiver na área e o diálogo acabar enquanto ele está lá, 
-        // ativa o aviso automaticamente
+        //Se a jogadora estiver na área e o diálogo acabar, o aviso aparece imediatamente sem precisar sair e entrar novamente na área de Collider
         if (playerIsHere && DialogueManagerBoss.dialogueBossFinished && interactionNotice != null && !interactionNotice.activeSelf)
         {
             interactionNotice.SetActive(true);
@@ -64,7 +62,7 @@ public class ObjectInteractionBoss : MonoBehaviour
 
     protected virtual void Interact()
     {
-        CanvasManager.Instance.ToggleMiniMap(false);
-        CanvasManager.Instance.OpenPanel(challengePanel.name);
+        CanvasManager.Instance.ToggleMiniMap(false); //Desativa o mini-mapa para focar na interação
+        CanvasManager.Instance.OpenPanel(challengePanel.name); //Abre o painel correspondente usando o nome do objeto de desafio
     }
 }

@@ -5440,6 +5440,7 @@ GameObject:
   - component: {fileID: 977169316}
   - component: {fileID: 977169318}
   - component: {fileID: 977169319}
+  - component: {fileID: 977169320}
   m_Layer: 0
   m_Name: Walls
   m_TagString: Untagged
@@ -5547,7 +5548,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 31.903732, y: 1.3004715}
+  m_Offset: {x: 31.903732, y: 1.4530236}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5558,7 +5559,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 81.85483, y: 8.003191}
+  m_Size: {x: 81.85483, y: 7.6980867}
   m_EdgeRadius: 0
 --- !u!61 &977169318
 BoxCollider2D:
@@ -5649,6 +5650,51 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 0.6883774, y: 6.4222403}
+  m_EdgeRadius: 0
+--- !u!61 &977169320
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977169314}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 36.841293, y: -1.6072874}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 30.64592, y: 4.214575}
   m_EdgeRadius: 0
 --- !u!1 &980440916
 GameObject:
@@ -6077,7 +6123,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2083914191}
         m_TargetAssemblyTypeName: AbrirTerminalBoss, Assembly-CSharp
-        m_MethodName: IniciarDesafio
+        m_MethodName: StartChallenge
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10136,13 +10182,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 253ff4f5fce6fba4cb3e45ecae882a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  desktopBackground: {fileID: 1308891032}
+  desktopBackground: {fileID: 0}
   panelNotes: {fileID: 628133602}
   panelSteghideError: {fileID: 1987936393}
   panelSteghideBeach: {fileID: 1581219460}
   panelMetadataInfo: {fileID: 1201762644}
   panelSuccessFlag: {fileID: 1790214828}
-  steghideButton: {fileID: 1406377801}
+  steghideButton: {fileID: 0}
 --- !u!1 &1874790662
 GameObject:
   m_ObjectHideFlags: 0
@@ -11139,8 +11185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 952135f37987c6149aa3fbcc0ba8f222, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  botaoSteghide: {fileID: 1406377801}
-  popUpSucessoTerminal: {fileID: 1581219460}
+  steghideButton: {fileID: 0}
+  terminalSuccessPopup: {fileID: 0}
 --- !u!1 &2108938032
 GameObject:
   m_ObjectHideFlags: 0
@@ -11555,5 +11601,5 @@ SceneRoots:
   - {fileID: 1845538629}
   - {fileID: 866740472}
   - {fileID: 327749740}
-  - {fileID: 184500179}
   - {fileID: 391973319}
+  - {fileID: 184500179}
