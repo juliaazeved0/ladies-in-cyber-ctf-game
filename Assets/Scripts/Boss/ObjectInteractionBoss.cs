@@ -5,9 +5,9 @@ using UnityEngine;
 public class ObjectInteractionBoss : MonoBehaviour
 {
     [Header("Settings object interactable")]
-    protected bool playerIsHere;
-    public GameObject interactionNotice;
-    public GameObject challengePanel;
+    protected bool playerIsHere; //Verifica se a jogadora está perto do objeto
+    public GameObject interactionNotice; //Aviso de "Pressione E"
+    public GameObject challengePanel; //Painel que será aberto ao interagir
 
     protected void Start()
     {

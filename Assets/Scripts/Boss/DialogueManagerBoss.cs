@@ -1,11 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using UnityEngine.SceneManagement;
+using TMPro; //Biblioteca para usar TextMeshPro
 
 public class DialogueManagerBoss : MonoBehaviour
 {
-    [Header("UI elements")]
+    [Header("UI elements")] //Elementos de UI: painéis, textos, imagens e botões
     public GameObject panelDialogue;
     public TextMeshProUGUI questionText;
     public Image characterNPC;
@@ -16,22 +15,22 @@ public class DialogueManagerBoss : MonoBehaviour
     public Button buttonExit;
     public TextMeshProUGUI dialogueNPC;
 
-    public WriteMachine writeMachine;
+    public WriteMachine writeMachine; //Script responsável pelo efeito de digitação
 
     [Header("Nodes")]
-    public DialogueNodeBoss firstNode;
-    private DialogueNodeBoss dialogueCurrent;
+    public DialogueNodeBoss firstNode; //Primeiro nó do diálogo
+    private DialogueNodeBoss dialogueCurrent; //Nó atual sendo mostrado
 
     public static bool dialogueBossFinished = false; //Variável booleana para verificar se o diálogo com o boss foi finalizado
 
     void Start()
     {
-        panelDialogue.SetActive(false);
-        buttonExit.gameObject.SetActive(false);
+        panelDialogue.SetActive(false); //Começa com o diálogo escondido
+        buttonExit.gameObject.SetActive(false); //Esconde o botão de sair
 
         if (playerNameText != null)
         {
-            playerNameText.text = "JOGADORA";
+            playerNameText.text = "JOGADORA"; //Define nome padrão
         }
     }
 
@@ -39,9 +38,9 @@ public class DialogueManagerBoss : MonoBehaviour
     {
         if (firstNode != null)
         {
-            panelDialogue.SetActive(true);
-            buttonPlayAgain.gameObject.SetActive(false);
-            DialogueView(firstNode);
+            panelDialogue.SetActive(true); //Mostra o painel
+            buttonPlayAgain.gameObject.SetActive(false); //Esconde o botão de replay
+            DialogueView(firstNode); //Mostra o primeiro diálogo
         }
         else
         {
@@ -49,22 +48,21 @@ public class DialogueManagerBoss : MonoBehaviour
         }
     }
 
-    // AQUI ESTAVA O ERRO: Mudei de 'DialogueNode' para 'DialogueNodeBoss'
     public void DialogueView(DialogueNodeBoss node)
     {
-        dialogueCurrent = node;
-        writeMachine.Run(node.question, questionText);
+        dialogueCurrent = node; //Atualiza o nó atual
+        writeMachine.Run(node.question, questionText); //Mostra a pergunta com efeito de digitação
 
-        // Verificação de segurança para evitar erro de NullReference
-        bool isLastNode = (node.nextDialogue == null || node.nextDialogue.Length == 0);
+        bool isLastNode = (node.nextDialogue == null || node.nextDialogue.Length == 0); //Verifica se é o último nó
 
         if (isLastNode)
         {
+            //Esconde todos os botões primeiro
             buttonPlayAgain.gameObject.SetActive(false);
             buttonDone.gameObject.SetActive(false);
             buttonExit.gameObject.SetActive(false);
 
-            if (node.buttonType == ButtonType.PlayAgain)
+            if (node.buttonType == ButtonType.PlayAgain) //Decide qual botão mostrar baseado no tipo
             {
                 buttonPlayAgain.gameObject.SetActive(true);
             }
@@ -79,23 +77,24 @@ public class DialogueManagerBoss : MonoBehaviour
         }
         else
         {
+            //Se ainda tem diálogo, mostra o botão de sair
             buttonDone.gameObject.SetActive(false);
             buttonPlayAgain.gameObject.SetActive(false);
             buttonExit.gameObject.SetActive(true);
         }
 
-        for (int i = 0; i < buttonOption.Length; i++)
+        for (int i = 0; i < buttonOption.Length; i++) //Configura os botões de opção
         {
             if (i < node.options.Length)
             {
-                buttonOption[i].gameObject.SetActive(true);
-                buttonOption[i].GetComponentInChildren<TextMeshProUGUI>().text = node.options[i];
+                buttonOption[i].gameObject.SetActive(true); //Ativa o botão
+                buttonOption[i].GetComponentInChildren<TextMeshProUGUI>().text = node.options[i]; //Define o texto
 
                 buttonOption[i].interactable = true; //Garante que o botão esteja "limpo" para novos cliques
             }
             else
             {
-                buttonOption[i].gameObject.SetActive(false);
+                buttonOption[i].gameObject.SetActive(false); //Esocnde se não tiver opção
             }
         }
     }
@@ -103,53 +102,52 @@ public class DialogueManagerBoss : MonoBehaviour
     public void OnClickDone()
     {
         dialogueBossFinished = true; //Marca que o diálogo foi concluído
-        panelDialogue.SetActive(false);
+        panelDialogue.SetActive(false); //Fecha o diálogo
     }
 
     public void OnClickExit()
     {
-        panelDialogue.SetActive(false);
+        panelDialogue.SetActive(false); //Apenas fecha
     }
 
     public void DialoguePlayAgain()
     {
-        StartDialogue();
+        StartDialogue(); //Reinicia o diálogo
     }
 
     public void ChooseOption(int index)
     {
-        // Outro ponto corrigido para garantir que use o array do Boss
-        if (dialogueCurrent.nextDialogue != null && dialogueCurrent.nextDialogue.Length > 0)
+        if (dialogueCurrent.nextDialogue != null && dialogueCurrent.nextDialogue.Length > 0) //Verifica se há próximos diálogos
         {
             DialogueNodeBoss next;
 
             if(dialogueCurrent.nextDialogue.Length == 1)
             {
-                next = dialogueCurrent.nextDialogue[0];
+                next = dialogueCurrent.nextDialogue[0]; //Se só tem um, usa ele
             }
             else
             {
-                next = dialogueCurrent.nextDialogue[index]; 
+                next = dialogueCurrent.nextDialogue[index]; //Usa baseado na escolha
             }
 
             if (next != null)
             {
-                DialogueView(next);
+                DialogueView(next); //Vai para o próximo nó
             }
             else
             {
-                panelDialogue.SetActive(false);
+                panelDialogue.SetActive(false); //Fecha se não tiver
             }
         }
         else
         {
-            panelDialogue.SetActive(false);
+            panelDialogue.SetActive(false); //Fecha se não tiver próximos
         }
     }
 
     public bool CurrentNodeHasOptions() //Expõe se o node atual tem opções para que o outro script consiga consultar
     {
         if (dialogueCurrent == null) return false;
-        return dialogueCurrent.HasOptions();
+        return dialogueCurrent.HasOptions(); //Usa metodo do node
     }
 }

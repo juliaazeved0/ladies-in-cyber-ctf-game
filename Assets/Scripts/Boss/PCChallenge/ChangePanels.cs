@@ -10,6 +10,8 @@ public class ChangePanels : MonoBehaviour
     public GameObject panelNotes;
     public GameObject panelSteghideError;
     public GameObject panelSteghideBeach;
+    public GameObject panelMetadataInfo;
+    public GameObject panelSuccessFlag;
 
     [Header("Referencias Externas")]
     public Button steghideButton;
@@ -53,6 +55,46 @@ public class ChangePanels : MonoBehaviour
             panelSteghideBeach.SetActive(true);
 
             if (panelSteghideError == null) panelSteghideError.SetActive(false);
+        }
+    }
+
+    public void FecharPanelSteghideBeach()
+    {
+        if(panelSteghideBeach != null)
+        {
+            panelSteghideBeach .SetActive(false);
+        }
+    }
+
+    public void AbrirPanelMetadadaInfo()
+    {
+        if(panelMetadataInfo != null)
+        {
+            panelMetadataInfo.SetActive(true);
+        }
+    }
+
+    public void FecharPanelMetadadaInfo()
+    {
+        if (panelMetadataInfo != null)
+        {
+            panelMetadataInfo.SetActive(false);
+        }
+    }
+
+    public void AbrirPanelSuccessFlag()
+    {
+        if(panelSuccessFlag != null)
+        {
+            panelSuccessFlag.SetActive(true);
+        }
+    }
+
+    public void FecharPanelSuccessFlag()
+    {
+        if(panelSuccessFlag != null)
+        {
+            panelSuccessFlag.SetActive(false);
         }
     }
 
