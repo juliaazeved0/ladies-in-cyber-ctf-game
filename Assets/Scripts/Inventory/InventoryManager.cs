@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
@@ -11,45 +9,69 @@ public class InventoryManager : MonoBehaviour
     [Header("Settings - Buttons & Border")]
     public RectTransform buttonBag;
     public RectTransform buttonPlayBook;
-    public RectTransform borderImage; 
+    public RectTransform borderImage;
     public GameObject inventoryPanel;
 
-    public float velocity = 10f; 
+    public float velocity = 10f;
 
-    private RectTransform currentButton; 
+    private RectTransform currentButton;
 
+void Start()
+{
+    panelBagBackground.SetActive(false);
+    panelPlayBookBackground.SetActive(false);
+    borderImage.gameObject.SetActive(false);
+}
     void Update()
     {
-
         if (currentButton != null && borderImage != null)
         {
-            borderImage.position = Vector3.Lerp(borderImage.position, currentButton.position, Time.deltaTime * velocity);
+            borderImage.position = Vector3.Lerp(
+                borderImage.position,
+                currentButton.position,
+                Time.deltaTime * velocity
+            );
         }
+    }
+
+    // ⭐ FUNÇÃO CENTRAL (evita sobreposição)
+    void OpenPanel(GameObject panelToOpen)
+    {
+        // Fecha TODOS primeiro
+        panelBagBackground.SetActive(false);
+        panelPlayBookBackground.SetActive(false);
+
+        // Abre só o escolhido
+        panelToOpen.SetActive(true);
     }
 
     public void OnClickBag()
     {
-        CanvasManager.Instance.OpenPanel(panelBagBackground.name);
+        OpenPanel(panelBagBackground);
         MoveToButton(buttonBag);
     }
 
     public void OnClickPlayBook()
     {
-        CanvasManager.Instance.OpenPanel(panelPlayBookBackground.name);
+        OpenPanel(panelPlayBookBackground);
         MoveToButton(buttonPlayBook);
     }
-    
 
     public void ExitInventory()
     {
-        CanvasManager.Instance.ClosedPanel(gameObject.name);
+        // Fecha tudo
+        panelBagBackground.SetActive(false);
+        panelPlayBookBackground.SetActive(false);
+
         borderImage.gameObject.SetActive(false);
+        currentButton = null;
+
+        inventoryPanel.SetActive(false);
     }
 
-    public void MoveToButton(RectTransform newButton)
+    void MoveToButton(RectTransform newButton)
     {
-        borderImage.gameObject.SetActive(true); 
+        borderImage.gameObject.SetActive(true);
         currentButton = newButton;
     }
-
 }

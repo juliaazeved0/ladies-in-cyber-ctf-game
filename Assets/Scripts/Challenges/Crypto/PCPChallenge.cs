@@ -30,7 +30,7 @@ public class PCPChallenge : MonoBehaviour
     public PulseOutline pcPoly;
 
     private string rightPasswordZip = "CAPIVARACRIPTO";
-    private string rightPassword = "ilobecapibara";
+    private string rightPassword = "ilovecapibara";
 
     private bool flagCaptured = false;
 

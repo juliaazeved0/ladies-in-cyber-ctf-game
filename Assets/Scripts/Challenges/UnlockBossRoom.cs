@@ -22,9 +22,11 @@ public class UnlockBossRoom : MonoBehaviour
 
     [Header("Fade Global (Animator no Panel preto da tela inteira)")]
     public Animator fadeAnimator;
-
     public GameObject panelBlack;
+
+    [Header("Referências Extras")]
     public LockObjectInteraction lockInteraction;
+    public DialogueManager dialogueManager;
 
     [Header("Cena Boss")]
     public string bossSceneName = "BossRoom";
@@ -32,24 +34,20 @@ public class UnlockBossRoom : MonoBehaviour
     private string correctPassword = "1541";
     private bool isTransitioning = false;
 
+    // --- MÉTODOS DE INTERAÇÃO COM O PAINEL DE SENHA ---
 
     public void OpenPasswordPanel()
     {
         CanvasManager.Instance.OpenPanel(passwordPanel.name);
-
-        if (pulse != null)
-            pulse.StartPulsing();
+        if (pulse != null) pulse.StartPulsing();
     }
 
     public void ClosePasswordPanel()
     {
+        dialogueManager.OnClickExit();
         CanvasManager.Instance.ClosedPanel(passwordPanel.name);
-
-        if (pulse != null)
-            pulse.StopPulsing();
-
-        if (lockInteraction != null)
-            lockInteraction.isUnlocked = true;
+        if (pulse != null) pulse.StopPulsing();
+        if (lockInteraction != null) lockInteraction.isUnlocked = true;
     }
 
     public void OpenDevicePanel()
@@ -60,7 +58,6 @@ public class UnlockBossRoom : MonoBehaviour
     public void CloseDevicePanel()
     {
         CanvasManager.Instance.ClosedPanel(devicePanel.name);
-
         if (panelDialogueJoana != null)
             CanvasManager.Instance.ClosedPanel(panelDialogueJoana.name);
     }
@@ -78,9 +75,7 @@ public class UnlockBossRoom : MonoBehaviour
     public void PressEnter()
     {
         if (input.text == correctPassword)
-        {
             StartCoroutine(SuccessRoutine());
-        }
         else
         {
             input.text = "ACESSO NEGADO";
@@ -92,11 +87,8 @@ public class UnlockBossRoom : MonoBehaviour
     {
         input.text = "ACESSO CONCEDIDO";
         lockObject.SetActive(false);
-
         yield return new WaitForSeconds(3f);
-
         unlocked = true;
-
         CloseDevicePanel();
     }
 
@@ -106,32 +98,35 @@ public class UnlockBossRoom : MonoBehaviour
         ClearInput();
     }
 
+    // --- LÓGICA DE TRANSIÇÃO (Onde a mágica acontece) ---
+
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // Se a Joana encostar no trigger e o puzzle estiver resolvido
         if (other.CompareTag("Player") && unlocked && !isTransitioning)
         {   
             isTransitioning = true;
-            StartCoroutine(BossTransitionRoutine());
+            
+            // 1. Ativa o painel preto
+            CanvasManager.Instance.OpenPanel(panelBlack.name);
+            
+            // 2. Dispara a animação de escurecer (FadeOut)
+            fadeAnimator.SetTrigger("FadeOut");
+            
+            // O código para aqui. Quem assume agora é o Animation Event!
         }
     }
 
-    IEnumerator BossTransitionRoutine()
-{
-    isTransitioning = true;
-    CanvasManager.Instance.OpenPanel(panelBlack.name);
+    // ESTA FUNÇÃO DEVE SER CHAMADA PELO EVENTO NO ÚLTIMO FRAME DA ANIMAÇÃO FADEOUT
+    public void CarregarCenaBoss()
+    {
+        SceneManager.LoadSceneAsync(bossSceneName);
+    }
 
-    fadeAnimator.SetTrigger("FadeOut");
-
-    yield return new WaitForSeconds(0.8f);
-
-    //CanvasManager.Instance.OpenPanel(panelBlack.name);
-    SceneManager.LoadScene("BossRoom");
-
-    yield return new WaitForSeconds(0.2f);
-
-    //fadeAnimator.SetTrigger("FadeIn");
-
-    isTransitioning = false;
+    // ESTA FUNÇÃO PODE SER CHAMADA PELO EVENTO NO ÚLTIMO FRAME DA ANIMAÇÃO FADEIN (NA CENA BOSS)
+    public void FinalizarFade()
+    {
+        CanvasManager.Instance.ClosedPanel(panelBlack.name);
+        isTransitioning = false;
+    }
 }
-}
-

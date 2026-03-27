@@ -156,13 +156,12 @@ public class DialogueManager : MonoBehaviour
         
         if(playerNameplate != null) playerNameplate.SetNameplateIdPlayer();
     
-        // Atualizado com o novo nome da variável e proteção extra
         if (lockLadder != null) lockLadder.SetActive(false);
     }
 
     public void OnClickExit()
     {
-        isDialogueActive = false; // Destranca o inventário se o jogador sair no meio
+        isDialogueActive = false; 
 
         panelDialogue.SetActive(false);
         miniMapCanvas.SetActive(true);
@@ -200,7 +199,7 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            isDialogueActive = false; //Destranca se o diálogo acabar pelo narrador
+            isDialogueActive = false; 
 
             panelDialogue.SetActive(false);
             miniMapCanvas.SetActive(true);

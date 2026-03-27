@@ -26,7 +26,6 @@ public class ValidatePassword : MonoBehaviour
 
     void Start()
     {
-        
         errorMessage.SetActive(false); //Garante que o pop-up de erro comece escondido
         if(taskbarPanel != null) taskbarPanel.SetActive(false); //Painel da �rea de trabalho comece desativado
         passwordField.ActivateInputField(); //Faz com que o cursos j� apare�a piscando dentro do Input Field, sem o jogador precisar clicar
@@ -43,7 +42,9 @@ public class ValidatePassword : MonoBehaviour
 
     public void CheckPassword()
     {
-        if (passwordField.text == correctPassword) //Verifica se o texto escrito no campo � igual ao da vari�vel
+        bool senhaEstaCorreta = string.Equals(passwordField.text, correctPassword, System.StringComparison.OrdinalIgnoreCase);
+
+        if (senhaEstaCorreta) //Verifica se o texto escrito no campo � igual ao da vari�vel
         {
             errorMessage.SetActive(false); //Se for igual, esconde a mensagem de erro
             loginPanel.SetActive(false); //Desativa a tela inicial

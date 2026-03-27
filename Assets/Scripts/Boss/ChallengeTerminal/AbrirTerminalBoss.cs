@@ -3,17 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
-using System.Runtime.InteropServices; //Biblioteca necessária para receber comandos do sistema Linux
+using System.Runtime.InteropServices; 
 using UnityEngine.UI;
 
 public class AbrirTerminalBoss : MonoBehaviour
 {
     [Header("Configurações do Desafio")]
-    public Button steghideButton; //Botão que será desbloqueado na interface
+    public Button steghideButton; 
     public GameObject terminalSuccessPopup;
 
-    public static bool challengeSolved; //Variável global para o estado do desafio (resolvido ou não)
-    private void OnMouseDown() //Chamado quando a jogadora clicar em um objeto
+    public static bool challengeSolved; 
+    
+    // Variável de controle para o loop da Coroutine
+    private bool finished = false;
+
+    // --- Importações para LINUX (Devem ficar fora dos métodos) ---
+    #if UNITY_EDITOR_LINUX || UNITY_STANDALONE_LINUX
+    [DllImport("libc", EntryPoint = "fork", SetLastError = true)]
+    private static extern int LinuxFork();
+
+    [DllImport("libc", EntryPoint = "execvp", SetLastError = true)]
+    private static extern int LinuxExecvp(string file, string[] argv);
+
+    [DllImport("libc", EntryPoint = "waitpid", SetLastError = true)]
+    private static extern int LinuxWaitpid(int pid, out int status, int options);
+
+    [DllImport("libc", EntryPoint = "_exit", SetLastError = true)]
+    private static extern void LinuxExit(int status);
+    #endif
+
+    private void OnMouseDown() 
     {
         UnityEngine.Debug.Log("Tentando acessar o computador do BOSS...");
         StartChallenge();
@@ -21,29 +40,26 @@ public class AbrirTerminalBoss : MonoBehaviour
 
     public void StartChallenge()
     {
-        challengeSolved = false; //Garante que o desafio começa bloqueado (pois não foi resolvido)
-        StartCoroutine(MonitorTerminalBoss()); //Inicia o processo de vigia
+        challengeSolved = false; 
+        finished = false; // Resetar o estado antes de começar
+        StartCoroutine(MonitorTerminalBoss()); 
     }
 
     private IEnumerator MonitorTerminalBoss()
     {
-        //Define o caminho da pasta StreamingAssets e do arquivo de vitória
         string streamingFolder = Path.GetFullPath(Application.streamingAssetsPath);
         string victoryPath = Path.Combine(streamingFolder, "boss_resolvido.txt");
 
-        if(File.Exists(victoryPath)) File.Delete(victoryPath); //Deleta o arquivo de vitória antigo se ele existir
-
-        bool finished = false; //Variável booleana para controlar o estado de finalizado ou não
+        if(File.Exists(victoryPath)) File.Delete(victoryPath); 
 
 #if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
 
-        //Lógica para WINDOWS
         System.Diagnostics.Process terminal = new System.Diagnostics.Process();
         terminal.StartInfo.UseShellExecute = true;
         terminal.StartInfo.WorkingDirectory = streamingFolder;
         string fileBat = Path.Combine(streamingFolder, "DesafioBoss.bat");
         terminal.StartInfo.FileName = "cmd.exe";
-        terminal.StartInfo.Arguments = $"/c \"\"{fileBat}\"\""; //Executa o comando e depois termina
+        terminal.StartInfo.Arguments = $"/c \"\"{fileBat}\"\""; 
 
         try { terminal.Start(); }
         catch (Exception e)
@@ -52,48 +68,17 @@ public class AbrirTerminalBoss : MonoBehaviour
             yield break;
         }
 
-        //Cria uma Thread para não travar a Unity enquanto espera o terminal fechar
         System.Threading.Thread waitWin = new System.Threading.Thread(() =>
         {
             try { terminal.WaitForExit(); }
             catch (Exception e) { UnityEngine.Debug.LogError("Erro aguardando terminal: " + e.Message); }
-            finally { finished = true; } //Avisa que o terminal foi fechado
+            finally { finished = true; } 
         });
 
         waitWin.IsBackground = true;
         waitWin.Start();
 
 #elif UNITY_EDITOR_LINUX || UNITY_STANDALONE_LINUX
-
-        //Lógica para LINUX: fork + exec via P/Invoke — IL2CPP safe
-        //Busca por um xterm ou gnome-terminal e executa o .sh
-        int LinuxFork()
-        {
-            [DllImport("libc", EntryPoint = "fork", SetLastError = true)]
-            static extern int fork_impl();
-            return fork_impl();
-        }
-
-        int LinuxExecvp(string file, string[] argv)
-        {
-            [DllImport("libc", EntryPoint = "execvp", SetLastError = true)]
-            static extern int execvp_impl(string file, string[] argv);
-            return execvp_impl(file, argv);
-        }
-
-        int LinuxWaitpid(int pid, out int status, int options)
-        {
-            [DllImport("libc", EntryPoint = "waitpid", SetLastError = true)]
-            static extern int waitpid_impl(int pid, out int status, int options);
-            return waitpid_impl(pid, out status, options);
-        }
-
-        void LinuxExit(int status)
-        {
-            [DllImport("libc", EntryPoint = "_exit", SetLastError = true)]
-            static extern void exit_impl(int status);
-            exit_impl(status);
-        }
 
         string terminalExe = null;
         string[] candidatos = { "/usr/bin/xterm", "/usr/bin/gnome-terminal", "/usr/bin/konsole" };
@@ -104,15 +89,14 @@ public class AbrirTerminalBoss : MonoBehaviour
 
         if (terminalExe == null)
         {
-            UnityEngine.Debug.LogError("Nenhum terminal encontrado (xterm, gnome-terminal, konsole)!");
+            UnityEngine.Debug.LogError("Nenhum terminal encontrado!");
             yield break;
         }
 
-        UnityEngine.Debug.Log("Terminal encontrado: " + terminalExe);
-
         string capturedTerminal = terminalExe;
-        string capturedScript   = Path.Combine(pastaStreaming, "script_boss.sh");
-        string[] argv           = new string[] { capturedTerminal, "-e", "/bin/bash", capturedScript, null };
+        // CORREÇÃO AQUI: Usando Application.streamingAssetsPath
+        string capturedScript = Path.Combine(Application.streamingAssetsPath, "script_boss.sh");
+        string[] argv = new string[] { capturedTerminal, "-e", "/bin/bash", capturedScript, null };
 
         System.Threading.Thread waitLinux = new System.Threading.Thread(() =>
         {
@@ -122,7 +106,7 @@ public class AbrirTerminalBoss : MonoBehaviour
 
                 if (pid < 0)
                 {
-                    UnityEngine.Debug.LogError("fork() falhou! errno: " + Marshal.GetLastWin32Error());
+                    UnityEngine.Debug.LogError("fork() falhou!");
                     return;
                 }
 
@@ -143,7 +127,7 @@ public class AbrirTerminalBoss : MonoBehaviour
             }
             finally
             {
-                terminou = true;
+                finished = true; // CORREÇÃO: Usando a mesma variável 'finished'
             }
         });
         waitLinux.IsBackground = true;
@@ -154,24 +138,23 @@ public class AbrirTerminalBoss : MonoBehaviour
         yield break;
 #endif
 
-        //A Unity fica esperando aqui até a Thread marcar "finished = true"
+        // Espera o terminal fechar
         while (!finished)
             yield return null;
 
         UnityEngine.Debug.Log("Terminal Boss fechou.");
 
-        if (File.Exists(victoryPath)) //Se o arquivo de vitória foi criado pelo script externo, a jogadora venceu
+        if (File.Exists(victoryPath)) 
         {
             UnlockSteghide();
-            File.Delete(victoryPath); //Limpa para a próxima vez
+            File.Delete(victoryPath); 
         }
     }
 
     void UnlockSteghide()
     {
-        challengeSolved = true; //Marca que o desafio foi resolvido
+        challengeSolved = true; 
         if (steghideButton != null) steghideButton.interactable = true;
-        //if (terminalSuccessPopup != null) terminalSuccessPopup.SetActive(true);
         UnityEngine.Debug.Log("O arquivo foi movido! Steghide desbloqueado.");
     }
 }
