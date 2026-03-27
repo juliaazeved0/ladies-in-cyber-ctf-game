@@ -1775,7 +1775,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uniqueSaveKey: 
-  challengePanel: {fileID: 2277509916494799420}
   balloonNPC: {fileID: 6310713085111509107}
   pulseObjectInitial: {fileID: 0}
   interactionNotice: {fileID: 6691406633506826802}
@@ -3768,7 +3767,7 @@ Transform:
   m_GameObject: {fileID: 8398899962042281575}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.16, y: -1.1, z: 0.07667302}
+  m_LocalPosition: {x: 0.16, y: -4.09, z: 0.07667302}
   m_LocalScale: {x: 0.36698142, y: 0.33632797, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

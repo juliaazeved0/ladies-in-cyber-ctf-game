@@ -15,21 +15,29 @@ public class PanelController : MonoBehaviour
     public GameObject panelRightDomain;
     public GameObject panelFlagSuccess;
 
+    [Header("Referencias de Limpeza")]
+    public GameObject panelMailInput;
+    public GameObject panelRansomware;
+
     [Header("Dom�nio Correto")]
     [SerializeField] private string dominioCorreto = "http://login-fake-bank.xyz/auth-steal"; //Vari�vel de texto que guarda a resposta correta
 
     public void AbrirPanelNetguard() //Abre apenas o painel Netguard
     {
+        panelInitialBackground.SetActive(true); //Mostrar o painel inicial
+
+        if(panelNetguard != null) panelNetguard.SetActive(false); //Garante que o painel de input do domínio esteja limpo
+
         tentativaDominio.text = ""; //Limpa qualquer texto digitado anteriormente
-        panelNetguard.SetActive(true); //Mostra o painel
+        panelNetguard.SetActive(true); //Mostra o painel Netguard
     }
 
     public void AbrirPanelFlagSuccess() //Abre apenas o painel de sucesso
     {
         tentativaDominio.text = "";
         panelFlagSuccess.SetActive(true);
-        //adiciona flag ao inventário
-        string newFlag = SafeBase.ViewBase(SafeBase.flag_4);
+
+        string newFlag = SafeBase.ViewBase(SafeBase.flag_4); //Adiciona flag ao inventário
         FlagManager.Instance.SaveFlag(newFlag);
     }
 
@@ -58,10 +66,14 @@ public class PanelController : MonoBehaviour
         }
     }
 
-    public void BackMap() //Fun��o para retornar ao mini mapa
+    public void BackMap() //Retornar ao mini mapa
     {
         if(panelInitialBackground != null) //Verifica se foi arrastado no Inspector
         {
+            //Desliga os painéis internos para que o PC resete ao fundo limpo
+            if(panelMailInput != null) panelMailInput.SetActive(false);
+            if(panelRansomware != null) panelRansomware.SetActive(false);
+
             panelInitialBackground.SetActive(false); //Fecha o fundo inicial
         }
     }
