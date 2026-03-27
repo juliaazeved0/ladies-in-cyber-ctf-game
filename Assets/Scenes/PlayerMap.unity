@@ -47440,17 +47440,14 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9150280270291231781, guid: b78152d77cd35af43ba560cd1db18b47, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1573762343}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b78152d77cd35af43ba560cd1db18b47, type: 3}
 --- !u!114 &114838448 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3857758675853312459, guid: b78152d77cd35af43ba560cd1db18b47, type: 3}
   m_PrefabInstance: {fileID: 114838447}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1573762342}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 158a9df635cb82e4b9d61836ff44fa51, type: 3}
@@ -48328,7 +48325,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573762343}
+      - m_Target: {fileID: 1473258175}
         m_TargetAssemblyTypeName: UnlockBossRoom, Assembly-CSharp
         m_MethodName: PressKey
         m_Mode: 5
@@ -48713,7 +48710,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573762343}
+      - m_Target: {fileID: 1473258175}
         m_TargetAssemblyTypeName: UnlockBossRoom, Assembly-CSharp
         m_MethodName: PressKey
         m_Mode: 5
@@ -48856,7 +48853,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573762343}
+      - m_Target: {fileID: 1473258175}
         m_TargetAssemblyTypeName: UnlockBossRoom, Assembly-CSharp
         m_MethodName: PressKey
         m_Mode: 5
@@ -49256,7 +49253,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573762343}
+      - m_Target: {fileID: 1473258175}
         m_TargetAssemblyTypeName: UnlockBossRoom, Assembly-CSharp
         m_MethodName: PressEnter
         m_Mode: 1
@@ -49917,7 +49914,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573762343}
+      - m_Target: {fileID: 1473258175}
         m_TargetAssemblyTypeName: UnlockBossRoom, Assembly-CSharp
         m_MethodName: PressKey
         m_Mode: 5
@@ -50855,6 +50852,108 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 527952991}
   m_CullTransparentMesh: 1
+--- !u!1 &531906565
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 531906566}
+  - component: {fileID: 531906569}
+  - component: {fileID: 531906568}
+  - component: {fileID: 531906567}
+  m_Layer: 5
+  m_Name: Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &531906566
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531906565}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1918863463}
+  m_Father: {fileID: 1383102904}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &531906567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531906565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &531906568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531906565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &531906569
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531906565}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &543550900 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7380049205488540458, guid: e03cd7095cee1e545a0de02f4b95e75f, type: 3}
@@ -50947,7 +51046,7 @@ GameObject:
   - component: {fileID: 577984500}
   - component: {fileID: 577984499}
   m_Layer: 5
-  m_Name: Image
+  m_Name: BlackPanelBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51209,6 +51308,7 @@ RectTransform:
   - {fileID: 297453725}
   - {fileID: 1535967500}
   - {fileID: 374768979}
+  - {fileID: 1473258174}
   - {fileID: 910382759}
   m_Father: {fileID: 1963582987}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -54257,7 +54357,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573762343}
+      - m_Target: {fileID: 1473258175}
         m_TargetAssemblyTypeName: UnlockBossRoom, Assembly-CSharp
         m_MethodName: PressKey
         m_Mode: 5
@@ -54389,7 +54489,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573762343}
+      - m_Target: {fileID: 1473258175}
         m_TargetAssemblyTypeName: UnlockBossRoom, Assembly-CSharp
         m_MethodName: PressKey
         m_Mode: 5
@@ -54730,7 +54830,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573762343}
+      - m_Target: {fileID: 1473258175}
         m_TargetAssemblyTypeName: UnlockBossRoom, Assembly-CSharp
         m_MethodName: PressKey
         m_Mode: 5
@@ -56124,7 +56224,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573762343}
+      - m_Target: {fileID: 1473258175}
         m_TargetAssemblyTypeName: UnlockBossRoom, Assembly-CSharp
         m_MethodName: PressKey
         m_Mode: 5
@@ -56256,7 +56356,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573762343}
+      - m_Target: {fileID: 1473258175}
         m_TargetAssemblyTypeName: UnlockBossRoom, Assembly-CSharp
         m_MethodName: PressKey
         m_Mode: 5
@@ -56807,6 +56907,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1755964455}
+  - {fileID: 531906566}
   m_Father: {fileID: 131408949}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1383102906
@@ -57241,7 +57342,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573762343}
+      - m_Target: {fileID: 1473258175}
         m_TargetAssemblyTypeName: UnlockBossRoom, Assembly-CSharp
         m_MethodName: OpenPasswordPanel
         m_Mode: 1
@@ -57683,6 +57784,105 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1472821170}
   m_CullTransparentMesh: 1
+--- !u!1 &1473258173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1473258174}
+  - component: {fileID: 1473258176}
+  - component: {fileID: 1473258175}
+  m_Layer: 0
+  m_Name: TriggerBoss
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1473258174
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473258173}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -94.04766, y: -58.37981, z: 0}
+  m_LocalScale: {x: 0.05396249, y: 0.04938749, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 639061346}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1473258175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473258173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437e0f40ea7860b4f91619f0cc7b4b3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passwordPanel: {fileID: 1810372054}
+  devicePanel: {fileID: 639061345}
+  panelDialogueJoana: {fileID: 84448198}
+  input: {fileID: 910382760}
+  lockObject: {fileID: 577984497}
+  pulse: {fileID: 1506739871}
+  fadeAnimator: {fileID: 1918863465}
+  lockInteraction: {fileID: 0}
+  bossSceneName: BossRoom
+--- !u!61 &1473258176
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473258173}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.26538694, y: 1.3255892}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.86709, y: 20.386694}
+  m_EdgeRadius: 0
 --- !u!1 &1506739867 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8647314818897857997, guid: 2ce12bcfcf857a9449c39fd5c38e342f, type: 3}
@@ -57801,7 +58001,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573762343}
+      - m_Target: {fileID: 1473258175}
         m_TargetAssemblyTypeName: UnlockBossRoom, Assembly-CSharp
         m_MethodName: CloseDevicePanel
         m_Mode: 1
@@ -58023,7 +58223,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573762343}
+      - m_Target: {fileID: 1473258175}
         m_TargetAssemblyTypeName: UnlockBossRoom, Assembly-CSharp
         m_MethodName: PressKey
         m_Mode: 5
@@ -58450,31 +58650,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1572438454}
   m_CullTransparentMesh: 1
---- !u!1 &1573762342 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9150280270291231781, guid: b78152d77cd35af43ba560cd1db18b47, type: 3}
-  m_PrefabInstance: {fileID: 114838447}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1573762343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1573762342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 437e0f40ea7860b4f91619f0cc7b4b3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  passwordPanel: {fileID: 1810372054}
-  devicePanel: {fileID: 639061345}
-  input: {fileID: 910382760}
-  panelDialogueJoana: {fileID: 84448198}
-  lockObject: {fileID: 1506739867}
-  pulse: {fileID: 1506739871}
-  bossSceneName: IntroductionScene
-  fadeAnimator: {fileID: 0}
 --- !u!1 &1574610623
 GameObject:
   m_ObjectHideFlags: 0
@@ -58557,7 +58732,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573762343}
+      - m_Target: {fileID: 1473258175}
         m_TargetAssemblyTypeName: UnlockBossRoom, Assembly-CSharp
         m_MethodName: PressKey
         m_Mode: 5
@@ -79445,7 +79620,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573762343}
+      - m_Target: {fileID: 1473258175}
         m_TargetAssemblyTypeName: UnlockBossRoom, Assembly-CSharp
         m_MethodName: PressKey
         m_Mode: 5
@@ -80053,6 +80228,116 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &1918863462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1918863463}
+  - component: {fileID: 1918863467}
+  - component: {fileID: 1918863466}
+  - component: {fileID: 1918863465}
+  - component: {fileID: 1918863464}
+  m_Layer: 5
+  m_Name: PanelFade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1918863463
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918863462}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 531906566}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1918863464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918863462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbba2456790b5e740abd0e5bca0fec1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &1918863465
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918863462}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e5d1e56483ff78544a5aea4b850384d9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1918863466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918863462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1918863467
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918863462}
+  m_CullTransparentMesh: 1
 --- !u!1 &1922420899
 GameObject:
   m_ObjectHideFlags: 0
@@ -81202,7 +81487,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1573762343}
+      - m_Target: {fileID: 1473258175}
         m_TargetAssemblyTypeName: UnlockBossRoom, Assembly-CSharp
         m_MethodName: ClosePasswordPanel
         m_Mode: 1

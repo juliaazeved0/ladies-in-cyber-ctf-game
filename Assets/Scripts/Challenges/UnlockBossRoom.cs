@@ -5,24 +5,31 @@ using TMPro;
 
 public class UnlockBossRoom : MonoBehaviour
 {
-   [Header("Panels")]
-    public GameObject passwordPanel;   
-    public GameObject devicePanel;     
+    [Header("Panels UI")]
+    public GameObject passwordPanel;
+    public GameObject devicePanel;
+    public GameObject panelDialogueJoana;
+
     [Header("Input")]
     public TMP_InputField input;
 
-    public GameObject panelDialogueJoana;
-
-    [Header("Puzzle")]
+    [Header("Puzzle Visual Lock (Panel que cobre a sala)")]
     public GameObject lockObject;
-    public PulseOutline pulse;
 
-    [Header("Boss Trigger")]
-    public string bossSceneName = "IntroductionScene";
+    [Header("Pulse do Device")]
+    public PulseOutline pulse;
+    private bool unlocked = false;
+
+    [Header("Fade Global (Animator no Panel preto da tela inteira)")]
     public Animator fadeAnimator;
+    public LockObjectInteraction lockInteraction;
+
+
+    [Header("Cena Boss")]
+    public string bossSceneName = "IntroductionScene";
 
     private string correctPassword = "1541";
-    private bool unlocked = false;
+    private bool isTransitioning = false;
 
 
     public void OpenPasswordPanel()
@@ -33,22 +40,17 @@ public class UnlockBossRoom : MonoBehaviour
             pulse.StartPulsing();
     }
 
-    public void ClosePasswordPanel()
+  public void ClosePasswordPanel()
 {
     CanvasManager.Instance.ClosedPanel(passwordPanel.name);
 
-    // libera interação com o device depois do diálogo
-    if (lockObject != null)
-    {
-        LockObjectInteraction lockInteraction = lockObject.GetComponent<LockObjectInteraction>();
+    if (pulse != null)
+        pulse.StopPulsing();
 
-        if (lockInteraction != null)
-        {
-            lockInteraction.isUnlocked = true;
-        }
-    }
+    // libera o objeto interativo corretamente
+    if (lockInteraction != null)
+        lockInteraction.isUnlocked = true;
 }
-
 
     public void OpenDevicePanel()
     {
@@ -58,9 +60,11 @@ public class UnlockBossRoom : MonoBehaviour
     public void CloseDevicePanel()
     {
         CanvasManager.Instance.ClosedPanel(devicePanel.name);
-        CanvasManager.Instance.ClosedPanel(panelDialogueJoana.name);
 
+        if (panelDialogueJoana != null)
+            CanvasManager.Instance.ClosedPanel(panelDialogueJoana.name);
     }
+
 
     public void PressKey(string value)
     {
@@ -72,57 +76,68 @@ public class UnlockBossRoom : MonoBehaviour
         input.text = "";
     }
 
-   public void PressEnter()
-{
-    if (input.text == correctPassword)
+    public void PressEnter()
+    {
+        if (input.text == correctPassword)
+        {
+            StartCoroutine(SuccessRoutine());
+        }
+        else
+        {
+            input.text = "ACESSO NEGADO";
+            StartCoroutine(ClearAfterDelay());
+        }
+    }
+
+    IEnumerator SuccessRoutine()
     {
         input.text = "ACESSO CONCEDIDO";
-        UnlockBossRoomDoor();
-    }
-    else
-    {
-        input.text = "ACESSO NEGADO";
-        StartCoroutine(ClearAfterDelay());
-    }
-}
 
-IEnumerator ClearAfterDelay()
-{
-    yield return new WaitForSeconds(3f);
-    ClearInput();
-}
-
-    void UnlockBossRoomDoor()
-    {
-        unlocked = true;
+        yield return new WaitForSeconds(3f);
 
         if (lockObject != null)
             lockObject.SetActive(false);
 
-        CanvasManager.Instance.ClosedPanel(devicePanel.name);
+        unlocked = true;
+
+        CloseDevicePanel();
+    }
+
+    IEnumerator ClearAfterDelay()
+    {
+        yield return new WaitForSeconds(3f);
+        ClearInput();
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
         if (!unlocked) return;
+        if (isTransitioning) return;
 
         if (other.CompareTag("Player"))
         {
-            EnterBossScene();
+            StartCoroutine(BossTransitionRoutine());
         }
     }
 
-    void EnterBossScene()
+    IEnumerator BossTransitionRoutine()
     {
+        isTransitioning = true;
+
+        // Fade OUT
         if (fadeAnimator != null)
-            fadeAnimator.SetTrigger("Fade");
+            fadeAnimator.SetTrigger("FadeOut");
 
-        Invoke(nameof(LoadBossScene), 2f);
-    }
+        yield return new WaitForSeconds(2f);
 
-    void LoadBossScene()
-    {
+        // Carrega cena Boss
         SceneManager.LoadScene(bossSceneName);
+
+        yield return null;
+
+        // Fade IN
+        if (fadeAnimator != null)
+            fadeAnimator.SetTrigger("FadeIn");
     }
 }
