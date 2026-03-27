@@ -15,10 +15,7 @@ MonoBehaviour:
   question: "\u201CAh, entendi. \xC9, o Dr. Rolf \xE9 complicado mesmo. Eu achei
     esse papel amassado perto da sala dele. Ia jogar fora mas se te ajuda a n\xE3o
     levar bronca, pode ficar com ele. Parece c\xF3digo, n\xE3o entendi nada.\u201D"
-  options:
-  - "A. \u201CMuito obrigado, Joana! Voc\xEA me salvou de uma boa."
-  narratorFeedbacks:
-  - "\u201CExcelente. Voc\xEA usou empatia e um bom pretexto para conseguir o que
-    queria sem levantar alarmes. Agora voc\xEA tem o c\xF3digo.\u201D"
+  options: []
+  narratorFeedbacks: []
   nextDialogue: []
   buttonType: 1

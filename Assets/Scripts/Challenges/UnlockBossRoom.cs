@@ -22,11 +22,12 @@ public class UnlockBossRoom : MonoBehaviour
 
     [Header("Fade Global (Animator no Panel preto da tela inteira)")]
     public Animator fadeAnimator;
+
+    public GameObject panelBlack;
     public LockObjectInteraction lockInteraction;
 
-
     [Header("Cena Boss")]
-    public string bossSceneName = "IntroductionScene";
+    public string bossSceneName = "BossRoom";
 
     private string correctPassword = "1541";
     private bool isTransitioning = false;
@@ -40,17 +41,16 @@ public class UnlockBossRoom : MonoBehaviour
             pulse.StartPulsing();
     }
 
-  public void ClosePasswordPanel()
-{
-    CanvasManager.Instance.ClosedPanel(passwordPanel.name);
+    public void ClosePasswordPanel()
+    {
+        CanvasManager.Instance.ClosedPanel(passwordPanel.name);
 
-    if (pulse != null)
-        pulse.StopPulsing();
+        if (pulse != null)
+            pulse.StopPulsing();
 
-    // libera o objeto interativo corretamente
-    if (lockInteraction != null)
-        lockInteraction.isUnlocked = true;
-}
+        if (lockInteraction != null)
+            lockInteraction.isUnlocked = true;
+    }
 
     public void OpenDevicePanel()
     {
@@ -64,7 +64,6 @@ public class UnlockBossRoom : MonoBehaviour
         if (panelDialogueJoana != null)
             CanvasManager.Instance.ClosedPanel(panelDialogueJoana.name);
     }
-
 
     public void PressKey(string value)
     {
@@ -92,11 +91,9 @@ public class UnlockBossRoom : MonoBehaviour
     IEnumerator SuccessRoutine()
     {
         input.text = "ACESSO CONCEDIDO";
+        lockObject.SetActive(false);
 
         yield return new WaitForSeconds(3f);
-
-        if (lockObject != null)
-            lockObject.SetActive(false);
 
         unlocked = true;
 
@@ -109,35 +106,32 @@ public class UnlockBossRoom : MonoBehaviour
         ClearInput();
     }
 
-
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!unlocked) return;
-        if (isTransitioning) return;
-
-        if (other.CompareTag("Player"))
-        {
+        if (other.CompareTag("Player") && unlocked && !isTransitioning)
+        {   
+            isTransitioning = true;
             StartCoroutine(BossTransitionRoutine());
         }
     }
 
     IEnumerator BossTransitionRoutine()
-    {
-        isTransitioning = true;
+{
+    isTransitioning = true;
+    CanvasManager.Instance.OpenPanel(panelBlack.name);
 
-        // Fade OUT
-        if (fadeAnimator != null)
-            fadeAnimator.SetTrigger("FadeOut");
+    fadeAnimator.SetTrigger("FadeOut");
 
-        yield return new WaitForSeconds(2f);
+    yield return new WaitForSeconds(0.8f);
 
-        // Carrega cena Boss
-        SceneManager.LoadScene(bossSceneName);
+    //CanvasManager.Instance.OpenPanel(panelBlack.name);
+    SceneManager.LoadScene("BossRoom");
 
-        yield return null;
+    yield return new WaitForSeconds(0.2f);
 
-        // Fade IN
-        if (fadeAnimator != null)
-            fadeAnimator.SetTrigger("FadeIn");
-    }
+    //fadeAnimator.SetTrigger("FadeIn");
+
+    isTransitioning = false;
 }
+}
+
