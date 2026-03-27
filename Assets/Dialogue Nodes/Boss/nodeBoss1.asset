@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b8995214fe1f0d4d91c1830fcd2911c, type: 3}
+  m_Name: nodeBoss1
+  m_EditorClassIdentifier: 
+  question: "Voc\xEA chegou at\xE9 aqui. Resolveu tudo o que eu coloquei no seu caminho.
+    Ent\xE3o, vamos fazer diferente dessa vez."
+  options: []
+  nextDialogue:
+  - {fileID: 11400000, guid: 71af8d30a73293545b79185086de9998, type: 2}
+  buttonType: 0
