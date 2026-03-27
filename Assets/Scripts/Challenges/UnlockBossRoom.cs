@@ -16,8 +16,6 @@ public class UnlockBossRoom : MonoBehaviour
     [Header("Puzzle Visual Lock (Panel que cobre a sala)")]
     public GameObject lockObject;
 
-    [Header("Pulse do Device")]
-    public PulseOutline pulse;
     private bool unlocked = false;
 
     [Header("Fade Global (Animator no Panel preto da tela inteira)")]
@@ -32,21 +30,22 @@ public class UnlockBossRoom : MonoBehaviour
     private string correctPassword = "1541";
     private bool isTransitioning = false;
 
+    public GameObject containerMiniMap;
+
 
     public void OpenPasswordPanel()
     {
         CanvasManager.Instance.OpenPanel(passwordPanel.name);
 
-        if (pulse != null)
-            pulse.StartPulsing();
     }
 
     public void ClosePasswordPanel()
     {
         CanvasManager.Instance.ClosedPanel(passwordPanel.name);
+        CanvasManager.Instance.ClosedPanel(panelDialogueJoana.name);
+        CanvasManager.Instance.OpenPanel(containerMiniMap.name);
+        
 
-        if (pulse != null)
-            pulse.StopPulsing();
 
         if (lockInteraction != null)
             lockInteraction.isUnlocked = true;

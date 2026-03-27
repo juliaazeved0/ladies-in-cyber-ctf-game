@@ -57796,7 +57796,7 @@ GameObject:
   - component: {fileID: 1473258175}
   - component: {fileID: 1473258177}
   m_Layer: 0
-  m_Name: TriggerBoss
+  m_Name: TriggerBossManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57834,11 +57834,11 @@ MonoBehaviour:
   panelDialogueJoana: {fileID: 84448198}
   input: {fileID: 910382760}
   lockObject: {fileID: 1572438454}
-  pulse: {fileID: 1506739871}
   fadeAnimator: {fileID: 1918863465}
   panelBlack: {fileID: 1918863462}
   lockInteraction: {fileID: 1506739875}
   bossSceneName: BossRoom
+  containerMiniMap: {fileID: 128233563}
 --- !u!61 &1473258176
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -79956,8 +79956,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2097849455}
-  - {fileID: 84448199}
   - {fileID: 1963582987}
+  - {fileID: 84448199}
   m_Father: {fileID: 131408949}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -81412,7 +81412,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1963582986}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -81423,7 +81423,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.000012715655, y: -0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1968256161
@@ -83815,6 +83815,10 @@ PrefabInstance:
     - target: {fileID: 8282429877477789020, guid: 2ce12bcfcf857a9449c39fd5c38e342f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ExitDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 8647314818897857997, guid: 2ce12bcfcf857a9449c39fd5c38e342f, type: 3}
+      propertyPath: m_Name
+      value: PasswordDevice
       objectReference: {fileID: 0}
     - target: {fileID: 9181351055987198883, guid: 2ce12bcfcf857a9449c39fd5c38e342f, type: 3}
       propertyPath: simpleDialogue
