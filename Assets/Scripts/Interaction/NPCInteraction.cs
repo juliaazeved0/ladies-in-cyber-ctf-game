@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,18 +5,16 @@ public class NPCInteraction : MonoBehaviour
 {
     [Header("Settings NPC")]
     public string uniqueSaveKey;
-    //public GameObject challengePanel;
     public Image balloonNPC;
 
     [Header("Dinamic variable")]
     public PulseOutline pulseObjectInitial;
 
-
     [Header("Interaction")]
     public GameObject interactionNotice;
 
-    private bool playerIsHere = false;
-    private bool isCompleted = false;
+    protected bool playerIsHere = false;
+    protected bool isCompleted = false;
 
     public SimpleDialogue simpleDialogue;
     public NPCDialogueNode firstNode;
@@ -27,32 +23,33 @@ public class NPCInteraction : MonoBehaviour
     {
         interactionNotice.SetActive(false);
         CheckChallengeStatus();
-        balloonNPC.gameObject.SetActive(false);
+        if(balloonNPC != null) balloonNPC.gameObject.SetActive(false);
     }
 
-    
-    void Update()
+    protected virtual void Update()
     {
-        if(playerIsHere && Input.GetKeyDown(KeyCode.E) && !isCompleted && !simpleDialogue.panelDialogue.activeSelf)
+        // Se já tem diálogo ativo no jogo, ninguém mais pode iniciar um novo
+        if (!playerIsHere || SimpleDialogue.isSimpleDialogueActive) return;
+
+        if (Input.GetKeyDown(KeyCode.E) && !isCompleted)
         {
             simpleDialogue.pulsingObject = pulseObjectInitial;
             CanvasManager.Instance.ToggleMiniMap(false);
             simpleDialogue.StartDialogue(firstNode);
+            
+            if (interactionNotice != null) interactionNotice.SetActive(false);
         }
-        
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             playerIsHere = true;
             CheckChallengeStatus();
      
-      
-            if(!isCompleted && interactionNotice != null)
+            if (!isCompleted && interactionNotice != null)
             {
-                
                 interactionNotice.SetActive(true);
                 balloonNPC.gameObject.SetActive(true);
             }
@@ -61,23 +58,22 @@ public class NPCInteraction : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             playerIsHere = false;
-            
             if (interactionNotice != null) 
-                {
-                    interactionNotice.SetActive(false);
-                    balloonNPC.gameObject.SetActive(false);
-                }
+            {
+                interactionNotice.SetActive(false);
+                balloonNPC.gameObject.SetActive(false);
+            }
          }
     }
 
     public void CheckChallengeStatus()
     {
-        if(!string.IsNullOrEmpty(uniqueSaveKey))
+        if (!string.IsNullOrEmpty(uniqueSaveKey))
         {
-            isCompleted = PlayerPrefs.GetInt(uniqueSaveKey, 0) == 1;
+            isCompleted = (PlayerPrefs.GetInt(uniqueSaveKey, 0) == 1);
         }
     }
 }
