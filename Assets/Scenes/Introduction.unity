@@ -368,8 +368,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 252, y: 177}
-  m_SizeDelta: {x: 159.8184, y: 145.6877}
+  m_AnchoredPosition: {x: 0.1, y: -6.3}
+  m_SizeDelta: {x: 222.5722, y: 206.2776}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &293640378
 MonoBehaviour:
@@ -1839,8 +1839,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "AQUI EST\xC1 SUA PRIMEIRA FLAG: \n<color=#C77DFF>L1C{s3ja_b3m_v1nd4}</color>\n<color=#00FF6A>COPIE
-    E COLE NO\r\nDESAFIO \"BOAS-VINDAS\"</color>"
+  m_text: "AQUI EST\xC1 SUA PRIMEIRA FLAG: \n<color=#C77DFF>L1C{s3ja_b3m_v1nd4}</color>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c8b2d073c88508943b8712f4e34c6966, type: 2}
   m_sharedMaterial: {fileID: -8451331422274171582, guid: c8b2d073c88508943b8712f4e34c6966, type: 2}
