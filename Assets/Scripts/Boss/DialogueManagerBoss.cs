@@ -51,23 +51,44 @@ public class DialogueManagerBoss : MonoBehaviour
 
     public void DialogueView(DialogueNodeBoss node)
     {
-        dialogueCurrent = node; //Atualiza o nó atual
-        writeMachine.Run(node.question, questionText); //Mostra a pergunta com efeito de digitação
+        dialogueCurrent = node; //Armazena qual o diálogo atual
 
-        bool isLastNode = (node.nextDialogue == null || node.nextDialogue.Length == 0); //Verifica se é o último nó
-
-        if (isLastNode)
+        if(panelDialogue != null)
         {
-            //Esconde todos os botões primeiro
+            panelDialogue.SetActive(true);  //Ativa o painel pai
+        }
+
+        if(questionText != null)
+        {
+            questionText.gameObject.SetActive(true); //Garante que o objeto do texto esteja ativo
+
+            if(questionText.gameObject.activeInHierarchy) //Checa se o objeto e todos os seus pais estão ativos
+            {
+                writeMachine.Run(node.question, questionText); //Inicia a animação de digitação
+            }
+            else
+            {
+                //Se o objeto ainda estiver inativo por erro de hierarquia, o texto aparece para a jogadora ler
+                questionText.text = node.question;
+                Debug.LogWarning("Objeto 'Text' ainda está inativo na hierarquia. Corrotina não iniciada.");
+            }
+        }
+
+        bool isLastNode = (node.nextDialogue == null || node.nextDialogue.Length == 0); //Checa se o próximo diálogo está vazio. Se estiver, é o fim da conversa
+
+        if(isLastNode)
+        {
+            //Esconde as opções padrão para mostrar apenas os botões de conclusão
             buttonPlayAgain.gameObject.SetActive(false);
             buttonDone.gameObject.SetActive(false);
             buttonExit.gameObject.SetActive(false);
 
-            if (node.buttonType == ButtonType.PlayAgain) //Decide qual botão mostrar baseado no tipo
+            //Verifica no ScriptableObject qual o tipo de encerramento foi configurado: jogar novamente, finalizado ou sair
+            if(node.buttonType == ButtonType.PlayAgain)
             {
                 buttonPlayAgain.gameObject.SetActive(true);
             }
-            else if (node.buttonType == ButtonType.Done)
+            else if(node.buttonType == ButtonType.Done)
             {
                 buttonDone.gameObject.SetActive(true);
             }
@@ -78,24 +99,24 @@ public class DialogueManagerBoss : MonoBehaviour
         }
         else
         {
-            //Se ainda tem diálogo, mostra o botão de sair
+            //Se ainda há mais falas, garante que os botões de conclusão fiquem escondidos
             buttonDone.gameObject.SetActive(false);
             buttonPlayAgain.gameObject.SetActive(false);
             buttonExit.gameObject.SetActive(true);
         }
 
-        for (int i = 0; i < buttonOption.Length; i++) //Configura os botões de opção
+        for(int i = 0; i < buttonOption.Length; i++)
         {
-            if (i < node.options.Length)
+            //Se o índice for menor que a quantidade de opções no nó, o botão é necessário
+            if(i < node.options.Length)
             {
-                buttonOption[i].gameObject.SetActive(true); //Ativa o botão
-                buttonOption[i].GetComponentInChildren<TextMeshProUGUI>().text = node.options[i]; //Define o texto
-
-                buttonOption[i].interactable = true; //Garante que o botão esteja "limpo" para novos cliques
+                buttonOption[i].gameObject.SetActive(true);
+                buttonOption[i].GetComponentInChildren<TextMeshProUGUI>().text = node.options[i]; //Atualiza o texto do botão
+                buttonOption[i].interactable = true;
             }
             else
             {
-                buttonOption[i].gameObject.SetActive(false); //Esocnde se não tiver opção
+                buttonOption[i].gameObject.SetActive(false); //Se o botão não tem texto definido, ele é escondido
             }
         }
     }
