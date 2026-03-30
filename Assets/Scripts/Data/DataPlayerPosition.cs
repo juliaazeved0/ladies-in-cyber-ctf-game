@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class DataPlayerPosition : MonoBehaviour
 {
+    void Start()
+    {
+        LoadGame(); // Carrega a posição salva ao iniciar o jogo
+    }
 
-    public void OnApllicationQuit()
+    void OnApplicationQuit() // Corrigido: era "OnApllicationQuit"
     {
         SaveGame();
     }
@@ -14,22 +18,16 @@ public class DataPlayerPosition : MonoBehaviour
     {
         PlayerPrefs.SetFloat("PlayerX", transform.position.x);
         PlayerPrefs.SetFloat("PlayerY", transform.position.y);
-
         PlayerPrefs.Save();
     }
 
     public void LoadGame()
     {
-        if(PlayerPrefs.HasKey("PlayerX"))
+        if (PlayerPrefs.HasKey("PlayerX"))
         {
             float x = PlayerPrefs.GetFloat("PlayerX");
             float y = PlayerPrefs.GetFloat("PlayerY");
-
             transform.position = new Vector3(x, y, transform.position.z);
-
-            
         }
     }
-
-
 }

@@ -30,6 +30,7 @@ public class UnlockBossRoom : MonoBehaviour
 
     [Header("Cena Boss")]
     public string bossSceneName = "BossRoom";
+    public AudioClip bossMusic; // Música para a sala do boss
 
     private string correctPassword = "1541";
     private bool isTransitioning = false;
@@ -118,6 +119,11 @@ public class UnlockBossRoom : MonoBehaviour
 
     public void CarregarCenaBoss()
     {
+        // Troca a música antes de carregar a cena
+        if (bossMusic != null)
+        {
+            BackgroundMusic.ChangeMusic(bossMusic);
+        }
         SceneManager.LoadSceneAsync(bossSceneName);
     }
 
