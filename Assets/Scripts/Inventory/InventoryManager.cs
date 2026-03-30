@@ -34,14 +34,12 @@ void Start()
         }
     }
 
-    // ⭐ FUNÇÃO CENTRAL (evita sobreposição)
     void OpenPanel(GameObject panelToOpen)
     {
-        // Fecha TODOS primeiro
+  
         panelBagBackground.SetActive(false);
         panelPlayBookBackground.SetActive(false);
 
-        // Abre só o escolhido
         panelToOpen.SetActive(true);
     }
 
@@ -59,14 +57,14 @@ void Start()
 
     public void ExitInventory()
     {
-        // Fecha tudo
+        // Fecha apenas os subpainéis e o border, mantendo o painel principal aberto
         panelBagBackground.SetActive(false);
         panelPlayBookBackground.SetActive(false);
-
         borderImage.gameObject.SetActive(false);
         currentButton = null;
 
-        inventoryPanel.SetActive(false);
+        // Remove a linha que fecha o painel principal para manter os botões visíveis
+        // inventoryPanel.SetActive(false);
     }
 
     void MoveToButton(RectTransform newButton)

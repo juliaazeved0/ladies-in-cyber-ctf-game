@@ -10991,7 +10991,7 @@ GameObject:
   - component: {fileID: 2069930919}
   - component: {fileID: 2069930918}
   m_Layer: 5
-  m_Name: PanelFade
+  m_Name: PanelFadeBlack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

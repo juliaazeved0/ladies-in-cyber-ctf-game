@@ -19,10 +19,21 @@ public class ClipboardManager : MonoBehaviour
         string textToCopy = slotText.text;
         Debug.Log("3. The text found in the slot is: [" + textToCopy + "]");
 
-        if (!string.IsNullOrEmpty(textToCopy))
+        // Extrai apenas a flag (parte após " - ")
+        string flagToCopy = textToCopy;
+        if (textToCopy.Contains(" - "))
         {
-            GUIUtility.systemCopyBuffer = textToCopy;
-            Debug.Log("4. SUCCESS! Sent to Windows/Linux clipboard!");
+            string[] parts = textToCopy.Split(new string[] { " - " }, System.StringSplitOptions.None);
+            if (parts.Length >= 2)
+            {
+                flagToCopy = parts[1];
+            }
+        }
+
+        if (!string.IsNullOrEmpty(flagToCopy))
+        {
+            GUIUtility.systemCopyBuffer = flagToCopy;
+            Debug.Log("4. SUCCESS! Sent to Windows/Linux clipboard: [" + flagToCopy + "]");
         }
         else
         {

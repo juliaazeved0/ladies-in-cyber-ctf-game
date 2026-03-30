@@ -110,7 +110,7 @@ public class CryptoPassword : MonoBehaviour
         textFlag.text = "Flag Capturada!";
 
         string newFlag = SafeBase.ViewBase(SafeBase.flag_6);
-        FlagManager.Instance.SaveFlag(newFlag);
+        FlagManager.Instance.SaveFlag("Senha Anotada", newFlag);
 
         ChallengeManager.Instance.CompleteChallenge(idChallenge);
 

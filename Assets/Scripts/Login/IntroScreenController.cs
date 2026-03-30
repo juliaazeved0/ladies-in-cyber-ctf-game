@@ -46,6 +46,10 @@ public class IntroScreenController : MonoBehaviour
             successFlagPanel.SetActive(true); //Mostral o painel da flag capturada
             if(textFlag != null) textFlag.SetActive(false); //Esconde o texto anterior
             if (flagButton != null) flagButton.SetActive(false); //Esconde o botão
+
+            // Salva a flag da introdução
+            string newFlag = SafeBase.ViewBase(SafeBase.flag_0);
+            FlagManager.Instance.SaveFlag("Introdução", newFlag);
         }
     }
 

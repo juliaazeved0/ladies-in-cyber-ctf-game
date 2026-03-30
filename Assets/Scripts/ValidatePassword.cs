@@ -68,7 +68,8 @@ public class ValidatePassword : MonoBehaviour
     {
         panelCaptureFlag.SetActive(true);
         string newFlag = SafeBase.ViewBase(SafeBase.flag_5);
-        FlagManager.Instance.SaveFlag(newFlag);
+        // Ajustado para incluir o nome do desafio
+        FlagManager.Instance.SaveFlag("O Arquivo Vazado", newFlag);
     }
 
     public void ClosedJustPanelCurrent()

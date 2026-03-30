@@ -10,7 +10,8 @@ public class AbrirTerminalMercado : AbrirTerminalPressaoNoBash
     {
         popCaptureFlag.SetActive(true);
         string newFlag = SafeBase.ViewBase(SafeBase.flag_2);
-        FlagManager.Instance.SaveFlag(newFlag);
+        // Ajustado para incluir o nome do desafio
+        FlagManager.Instance.SaveFlag("Mercado Escondido", newFlag);
 
         // Opcional: Integração com o ChallengeManager para o desafio do Luiz
         // if (ChallengeManager.Instance != null)

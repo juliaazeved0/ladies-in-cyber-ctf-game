@@ -56,13 +56,14 @@ public class ManagerPanels : MonoBehaviour
         if (panelFlag != null) panelFlag.SetActive(false); //Fecha o painel da flag
 
         if(panelFlagSuccess != null) panelFlagSuccess.SetActive(true); //Abre o painel da flag capturada
-    
+
         // salvando a flag no inventário 
         string newFlag = SafeBase.ViewBase(SafeBase.flag_3);
-        FlagManager.Instance.SaveFlag(newFlag);
+        // Ajustado para incluir o nome do desafio
+        FlagManager.Instance.SaveFlag("Black Box", newFlag);
     }
 
-    public void AbrirDetails() //Abre o painel de detalhes sem fechar o Netwatch que est� atr�s
+    public void AbrirDetails() //Abre o painel de detalhes sem fechar o Netwatch que est atr�s
     {
         if (panelDetails != null) panelDetails.SetActive(true);
     }

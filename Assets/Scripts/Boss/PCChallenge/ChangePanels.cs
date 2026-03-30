@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ChangePanels : MonoBehaviour
 {
-    [Header("Painéis")] //Gerenciador de paineis no Inspector
+    [Header("Painï¿½is")] //Gerenciador de paineis no Inspector
     public GameObject desktopBackground;
     public GameObject panelNotes;
     public GameObject panelSteghideError;
@@ -14,9 +14,9 @@ public class ChangePanels : MonoBehaviour
     public GameObject panelSuccessFlag;
 
     [Header("Referencias Externas")]
-    public Button steghideButton; //Apenas para setar o botão principal do desafio
+    public Button steghideButton; //Apenas para setar o botï¿½o principal do desafio
 
-    //Funções que ativam ou desativam paineis
+    //Funï¿½ï¿½es que ativam ou desativam paineis
     public void AbrirPanelNotes()
     {
         if(panelNotes != null)
@@ -88,6 +88,10 @@ public class ChangePanels : MonoBehaviour
         if(panelSuccessFlag != null)
         {
             panelSuccessFlag.SetActive(true);
+
+            // Salva a flag do BOSS
+            string newFlag = SafeBase.ViewBase(SafeBase.flag_8);
+            FlagManager.Instance.SaveFlag("BOSS", newFlag);
         }
     }
 
@@ -102,7 +106,7 @@ public class ChangePanels : MonoBehaviour
     //Executa para salvar a flag
     //public void OnClickButtonFlag()
     //{
-    //    // 1. Verifica o painel (prevenção contra esquecimento no Inspector)
+    //    // 1. Verifica o painel (prevenï¿½ï¿½o contra esquecimento no Inspector)
     //    if (panelSuccessFlag != null)
     //    {
     //        panelSuccessFlag.SetActive(true);
@@ -117,20 +121,20 @@ public class ChangePanels : MonoBehaviour
     //    else
     //    {
     //        // Isso vai te avisar no Console se o FlagManager sumiu da cena
-    //        Debug.LogError("ERRO: FlagManager não encontrado na cena! Certifique-se de que o objeto do FlagManager existe.");
+    //        Debug.LogError("ERRO: FlagManager nï¿½o encontrado na cena! Certifique-se de que o objeto do FlagManager existe.");
     //    }
     //}
 
-    //Esse método foi vinculado no botão do Steghide da área de trabalho
+    //Esse mï¿½todo foi vinculado no botï¿½o do Steghide da ï¿½rea de trabalho
     public void AoClicarNoBotaoSteghide()
     {
-        if(AbrirTerminalBoss.challengeSolved == false) //A jogadora ainda não terminou o desafio no terminal
+        if(AbrirTerminalBoss.challengeSolved == false) //A jogadora ainda nï¿½o terminou o desafio no terminal
         {
             AbrirPanelSteghideError(); //Abre o painel de erro
         }
         else //Se o arquivo "boss_resolvido.txt" foi detectado anteriormente
         {
-            AbrirPanelSteghideBeach(); //Se já resolveu o desafio no terminal, abre o painel de metadados
+            AbrirPanelSteghideBeach(); //Se jï¿½ resolveu o desafio no terminal, abre o painel de metadados
 
             if(panelSteghideError != null) panelSteghideError.SetActive(false); //Garante que o painel de erro feche se ele estiver aberto
         }

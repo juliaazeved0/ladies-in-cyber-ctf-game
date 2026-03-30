@@ -209,7 +209,8 @@ public class AbrirTerminalPressaoNoBash : MonoBehaviour
     {
         popCaptureFlag.SetActive(true);
         string newFlag = SafeBase.ViewBase(SafeBase.flag_1);
-        FlagManager.Instance.SaveFlag(newFlag);
+        // Ajustado para incluir o nome do desafio
+        FlagManager.Instance.SaveFlag("Pressão no Bash", newFlag);
 
         // Integração com o ChallengeManager (Avisa que o desafio terminou quando a flag for pega)
         if (ChallengeManager.Instance != null)

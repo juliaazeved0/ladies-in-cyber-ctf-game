@@ -105,7 +105,8 @@ public class PCPChallenge : MonoBehaviour
         pcPoly.enabled = false;
 
         string newFlag = SafeBase.ViewBase(SafeBase.flag_7);
-        FlagManager.Instance.SaveFlag(newFlag);
+
+        FlagManager.Instance.SaveFlag("Computador da Polyana", newFlag);
 
         ChallengeManager.Instance.CompleteChallenge(challengeID);
     }

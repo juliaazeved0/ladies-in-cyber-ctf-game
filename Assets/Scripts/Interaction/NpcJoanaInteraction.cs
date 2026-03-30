@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class NPCJoanaInteraction : MonoBehaviour
 {
-   [Header("Visuals NPC")]
+    [Header("Visuals NPC")]
     public Image balloonNPC;
 
     [Header("Interaction")]
@@ -30,8 +30,8 @@ public class NPCJoanaInteraction : MonoBehaviour
         // Usa a flag real do seu manager
         if (dialogueManager != null && DialogueManager.isDialogueActive) return;
 
-        // Inicia o diálogo ao pressionar 'E'
-        if (Input.GetKeyDown(KeyCode.E))
+        // Verifica se todas as flags foram coletadas antes de iniciar o diálogo
+        if (AreAllFlagsCollected() && Input.GetKeyDown(KeyCode.E))
         {
             if (dialogueManager != null)
             {
@@ -70,5 +70,19 @@ public class NPCJoanaInteraction : MonoBehaviour
             if (balloonNPC != null)
                 balloonNPC.gameObject.SetActive(false);
         }
+    }
+
+    // Método para verificar se todas as flags foram coletadas
+    private bool AreAllFlagsCollected()
+    {
+        for (int i = 0; i <= 7; i++)
+        {
+            string flagKey = "flag_" + i;
+            if (PlayerPrefs.GetInt(flagKey, 0) != 1)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

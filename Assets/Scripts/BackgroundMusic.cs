@@ -6,15 +6,20 @@ public class BackgroundMusic : MonoBehaviour
 
     void Awake()
     {
-        // Se ainda não existir uma instância, esta será a principal
+        
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); // Impede que o objeto seja destruído na troca de cena
+            DontDestroyOnLoad(gameObject); 
+     
+            AudioSource audioSource = GetComponent<AudioSource>();
+            if (audioSource != null)
+            {
+                audioSource.loop = true;
+            }
         }
         else
         {
-            // Se já existir uma música a tocar, destrói a nova para não duplicar o som
             Destroy(gameObject);
         }
     }

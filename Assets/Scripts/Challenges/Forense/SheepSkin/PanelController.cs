@@ -38,7 +38,8 @@ public class PanelController : MonoBehaviour
         panelFlagSuccess.SetActive(true);
 
         string newFlag = SafeBase.ViewBase(SafeBase.flag_4); //Adiciona flag ao inventário
-        FlagManager.Instance.SaveFlag(newFlag);
+        // Ajustado para incluir o nome do desafio
+        FlagManager.Instance.SaveFlag("Sheep’s Skin", newFlag);
     }
 
     public void FecharPainel(GameObject painel) //Arrasta no Inspector qual painel quer fechar

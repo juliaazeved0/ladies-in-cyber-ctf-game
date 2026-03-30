@@ -34,20 +34,21 @@ public class UnlockBossRoom : MonoBehaviour
     private string correctPassword = "1541";
     private bool isTransitioning = false;
 
-    // --- MÉTODOS DE INTERAÇÃO COM O PAINEL DE SENHA ---
 
     public void OpenPasswordPanel()
     {
+        dialogueManager.OnClickExit();
         CanvasManager.Instance.OpenPanel(passwordPanel.name);
         if (pulse != null) pulse.StartPulsing();
     }
 
     public void ClosePasswordPanel()
     {
-        dialogueManager.OnClickExit();
-        CanvasManager.Instance.ClosedPanel(passwordPanel.name);
+       CanvasManager.Instance.ClosedPanel(passwordPanel.name);
         if (pulse != null) pulse.StopPulsing();
         if (lockInteraction != null) lockInteraction.isUnlocked = true;
+        // Adiciona para reativar o minimapa após fechar o painel
+        CanvasManager.Instance.ToggleMiniMap(true);
     }
 
     public void OpenDevicePanel()
@@ -58,8 +59,10 @@ public class UnlockBossRoom : MonoBehaviour
     public void CloseDevicePanel()
     {
         CanvasManager.Instance.ClosedPanel(devicePanel.name);
+         CanvasManager.Instance.ToggleMiniMap(true);
         if (panelDialogueJoana != null)
             CanvasManager.Instance.ClosedPanel(panelDialogueJoana.name);
+       
     }
 
     public void PressKey(string value)
@@ -98,32 +101,26 @@ public class UnlockBossRoom : MonoBehaviour
         ClearInput();
     }
 
-    // --- LÓGICA DE TRANSIÇÃO (Onde a mágica acontece) ---
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Se a Joana encostar no trigger e o puzzle estiver resolvido
         if (other.CompareTag("Player") && unlocked && !isTransitioning)
         {   
             isTransitioning = true;
             
-            // 1. Ativa o painel preto
             CanvasManager.Instance.OpenPanel(panelBlack.name);
             
-            // 2. Dispara a animação de escurecer (FadeOut)
             fadeAnimator.SetTrigger("FadeOut");
-            
-            // O código para aqui. Quem assume agora é o Animation Event!
+    
         }
     }
 
-    // ESTA FUNÇÃO DEVE SER CHAMADA PELO EVENTO NO ÚLTIMO FRAME DA ANIMAÇÃO FADEOUT
+
     public void CarregarCenaBoss()
     {
         SceneManager.LoadSceneAsync(bossSceneName);
     }
 
-    // ESTA FUNÇÃO PODE SER CHAMADA PELO EVENTO NO ÚLTIMO FRAME DA ANIMAÇÃO FADEIN (NA CENA BOSS)
     public void FinalizarFade()
     {
         CanvasManager.Instance.ClosedPanel(panelBlack.name);

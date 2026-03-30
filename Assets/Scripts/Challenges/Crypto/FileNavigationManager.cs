@@ -78,8 +78,13 @@ public class FileNavigationManager : MonoBehaviour
 
     public void ClosePopUp()
     {
-        boardFolders.SetActive(false);
-        
+        foreach (Transform child in popUpConatiner)
+        {
+            if(child.name == "pathFolder") continue;
+            if(child.name == "BackButton") continue;
+
+            child.gameObject.SetActive(false);
+        }
     }
 
 }
