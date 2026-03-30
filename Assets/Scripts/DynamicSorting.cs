@@ -9,10 +9,19 @@ public class DynamicSorting : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null)
+        {
+            Debug.LogWarning("DynamicSorting: No SpriteRenderer found on " + gameObject.name + ". Script will not work.");
+            enabled = false; // Desabilita o script para evitar erros
+        }
     }
 
     void LateUpdate()
     {
-        spriteRenderer.sortingOrder = (int)(transform.position.y * -100);
+        if (spriteRenderer != null)
+        {
+            // Ajusta a ordem de renderização baseada na posição Y (sem afetar transparência)
+            spriteRenderer.sortingOrder = (int)(transform.position.y * -100);
+        }
     }
 }
