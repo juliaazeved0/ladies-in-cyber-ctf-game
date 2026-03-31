@@ -30,7 +30,7 @@ public class UnlockBossRoom : MonoBehaviour
 
     [Header("Cena Boss")]
     public string bossSceneName = "BossRoom";
-    public AudioClip bossMusic; // Música para a sala do boss
+    public AudioClip bossMusic; 
 
     private string correctPassword = "1541";
     private bool isTransitioning = false;
@@ -48,7 +48,7 @@ public class UnlockBossRoom : MonoBehaviour
        CanvasManager.Instance.ClosedPanel(passwordPanel.name);
         if (pulse != null) pulse.StopPulsing();
         if (lockInteraction != null) lockInteraction.isUnlocked = true;
-        // Adiciona para reativar o minimapa após fechar o painel
+        
         CanvasManager.Instance.ToggleMiniMap(true);
     }
 
@@ -119,7 +119,7 @@ public class UnlockBossRoom : MonoBehaviour
 
     public void CarregarCenaBoss()
     {
-        // Troca a música antes de carregar a cena
+       
         if (bossMusic != null)
         {
             BackgroundMusic.ChangeMusic(bossMusic);

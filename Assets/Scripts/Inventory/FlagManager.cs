@@ -14,15 +14,16 @@ public class FlagManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            
-            // carrega dados e garante a permanencia da instancia
+
+            flagsCapture = new List<string>();
+
             if (PlayerPrefs.HasKey("SavedFlags"))
             {
                 string savedData = PlayerPrefs.GetString("SavedFlags");
                 
                 if (!string.IsNullOrEmpty(savedData))
                 {
-                    flagsCapture = new List<string>(savedData.Split('|'));
+                    flagsCapture = new List<string>(System.Array.FindAll(savedData.Split('|'), s => !string.IsNullOrEmpty(s)));
                 }
             }
         }
@@ -32,7 +33,6 @@ public class FlagManager : MonoBehaviour
         }
     }
 
-    // Modificado para salvar o nome do desafio concatenado com a flag, separado por " - "
     public void SaveFlag(string challengeName, string flag)
     {
         string fullFlag = challengeName + " - " + flag;
@@ -45,7 +45,6 @@ public class FlagManager : MonoBehaviour
         }
     }
 
-    // Método auxiliar para verificar se uma flag específica foi capturada (verifica se algum item termina com a flag)
     public bool IsFlagCaptured(string flag)
     {
         return flagsCapture.Any(f => f.EndsWith(flag));

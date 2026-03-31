@@ -10,14 +10,7 @@ public class AbrirTerminalMercado : AbrirTerminalPressaoNoBash
     {
         popCaptureFlag.SetActive(true);
         string newFlag = SafeBase.ViewBase(SafeBase.flag_2);
-        // Ajustado para incluir o nome do desafio
         FlagManager.Instance.SaveFlag("Mercado Escondido", newFlag);
-
-        // Opcional: Integração com o ChallengeManager para o desafio do Luiz
-        // if (ChallengeManager.Instance != null)
-        // {
-        //     ChallengeManager.Instance.CompleteChallenge("DesafioMercado"); 
-        // }
     }
 
     private void OnMouseDown()
@@ -36,7 +29,6 @@ public class AbrirTerminalMercado : AbrirTerminalPressaoNoBash
         string pastaStreaming = Path.GetFullPath(Application.streamingAssetsPath);
         string vitoriaPath = Path.Combine(pastaStreaming, "vitoria.txt");
 
-        // Limpa vitórias antigas antes de começar
         if (File.Exists(vitoriaPath)) File.Delete(vitoriaPath);
 
         bool terminou = false;
@@ -44,7 +36,6 @@ public class AbrirTerminalMercado : AbrirTerminalPressaoNoBash
 
 #if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
 
-        // ── WINDOWS ───────────────────────────────────────────────────────
         System.Diagnostics.Process terminal = new System.Diagnostics.Process();
         terminal.StartInfo.UseShellExecute = true;
         terminal.StartInfo.WorkingDirectory = pastaStreaming;
@@ -77,7 +68,6 @@ public class AbrirTerminalMercado : AbrirTerminalPressaoNoBash
 
 #elif UNITY_EDITOR_LINUX || UNITY_STANDALONE_LINUX
 
-        // ── LINUX: fork + exec via P/Invoke — IL2CPP safe ─────────────────
         int LinuxFork()
         {
             [DllImport("libc", EntryPoint = "fork", SetLastError = true)]
@@ -106,7 +96,6 @@ public class AbrirTerminalMercado : AbrirTerminalPressaoNoBash
             exit_impl(status);
         }
 
-        // Função para mudar o diretório de trabalho do processo filho
         int LinuxChdir(string path)
         {
             [DllImport("libc", EntryPoint = "chdir", SetLastError = true)]
@@ -133,8 +122,13 @@ public class AbrirTerminalMercado : AbrirTerminalPressaoNoBash
         UnityEngine.Debug.Log("Terminal encontrado: " + terminalExe);
 
         string capturedTerminal = terminalExe;
-        string capturedScript   = Path.Combine(pastaStreaming, "script_mercado.sh");
-        string[] argv           = new string[] { capturedTerminal, "-e", "/bin/bash", capturedScript, null };
+        string capturedScript = Path.Combine(pastaStreaming, "script_mercado.sh");
+
+        string[] argv;
+        if (capturedTerminal.Contains("gnome-terminal"))
+            argv = new string[] { capturedTerminal, "--", "/bin/bash", capturedScript, null };
+        else
+            argv = new string[] { capturedTerminal, "-e", "/bin/bash", capturedScript, null };
 
         System.Threading.Thread waitLinux = new System.Threading.Thread(() =>
         {
@@ -150,9 +144,7 @@ public class AbrirTerminalMercado : AbrirTerminalPressaoNoBash
 
                 if (pid == 0)
                 {
-                    // Força o processo filho a ir para a pasta StreamingAssets antes de executar o script bash
                     LinuxChdir(pastaStreaming);
-
                     LinuxExecvp(capturedTerminal, argv);
                     LinuxExit(127);
                 }
@@ -180,31 +172,24 @@ public class AbrirTerminalMercado : AbrirTerminalPressaoNoBash
         yield break;
 #endif
 
-        // ── LOOP BLINDADO: Monitora o arquivo independente da thread ─────────────────
         bool desafioResolvido = false;
 
         while (!terminou)
         {
-            // Checa se o arquivo de vitória foi criado pelo bash ANTES do terminal fechar
             if (File.Exists(vitoriaPath))
             {
                 desafioResolvido = true;
-                break; // Interrompe o loop! Vitória instantânea.
+                break;
             }
-            
-            // Pausa meio segundo para não sobrecarregar a CPU da Unity
             yield return new WaitForSeconds(0.5f);
         }
 
-        // ── CHECAGEM FINAL DE VITÓRIA ─────────────────
         if (desafioResolvido || exitCode == 99 || File.Exists(vitoriaPath))
         {
             UnityEngine.Debug.Log("Desafio do mercado resolvido! Pop-up aberto.");
-            
+
             if (popUpSucesso != null)
-            {
                 popUpSucesso.SetActive(true);
-            }
 
             if (File.Exists(vitoriaPath)) File.Delete(vitoriaPath);
         }

@@ -27,16 +27,14 @@ public class NPCJoanaInteraction : MonoBehaviour
     {
         if (!playerIsHere) return;
 
-        // Usa a flag real do seu manager
         if (dialogueManager != null && DialogueManager.isDialogueActive) return;
 
-        // Verifica se todas as flags foram coletadas antes de iniciar o diálogo
         if (AreAllFlagsCollected() && Input.GetKeyDown(KeyCode.E))
         {
             if (dialogueManager != null)
             {
                 CanvasManager.Instance.ToggleMiniMap(false);
-                dialogueManager.StartDialogue(); // usa o firstNode interno do manager
+                dialogueManager.StartDialogue();
             }
 
             if (interactionNotice != null)
@@ -50,11 +48,14 @@ public class NPCJoanaInteraction : MonoBehaviour
         {
             playerIsHere = true;
 
-            if (interactionNotice != null)
-                interactionNotice.SetActive(true);
+            if (AreAllFlagsCollected())
+            {
+                if (interactionNotice != null)
+                    interactionNotice.SetActive(true);
 
-            if (balloonNPC != null)
-                balloonNPC.gameObject.SetActive(true);
+                if (balloonNPC != null)
+                    balloonNPC.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -72,17 +73,9 @@ public class NPCJoanaInteraction : MonoBehaviour
         }
     }
 
-    // Método para verificar se todas as flags foram coletadas
+    // Verifica se as 8 flags do jogo (excluindo a flag da sala boss) foram coletadas no inventário
     private bool AreAllFlagsCollected()
     {
-        for (int i = 0; i <= 7; i++)
-        {
-            string flagKey = "flag_" + i;
-            if (PlayerPrefs.GetInt(flagKey, 0) != 1)
-            {
-                return false;
-            }
-        }
-        return true;
+        return FlagManager.Instance != null && FlagManager.Instance.flagsCapture.Count >= 8;
     }
 }
