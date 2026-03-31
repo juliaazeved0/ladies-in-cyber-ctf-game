@@ -780,7 +780,7 @@ GameObject:
   - component: {fileID: 22820721}
   - component: {fileID: 22820720}
   m_Layer: 0
-  m_Name: floor
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86163,6 +86163,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 771176521479357692, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: InteractionNotice
+      objectReference: {fileID: 0}
     - target: {fileID: 1206050929416380369, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: panelRansomware
       value: 
@@ -86179,6 +86183,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2880791636395465910, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1a70c6be74c0cb24f90c2164136231c0, type: 3}
     - target: {fileID: 3038521657126367104, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -86250,6 +86258,10 @@ PrefabInstance:
     - target: {fileID: 7614218271405707006, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8178314681162845298, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8652201236818455580, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: panelMailInput
