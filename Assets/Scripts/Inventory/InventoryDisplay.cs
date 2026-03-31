@@ -21,6 +21,7 @@ public class InventoryDisplay : MonoBehaviour
     private const int TOTAL_FLAGS = 9; 
     private int currentPage = 0;
 
+
     void OnEnable()
     {
         currentPage = 0; 

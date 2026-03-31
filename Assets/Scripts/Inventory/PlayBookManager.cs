@@ -11,6 +11,7 @@ public class PlaybookManager : MonoBehaviour
     public Button buttonNext;
     public Button buttonBack;
 
+
     void OnEnable()
     {
         indexCurrent = 0;
