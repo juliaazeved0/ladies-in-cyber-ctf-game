@@ -17,7 +17,7 @@ public class DialogueManager : MonoBehaviour
     private const string PLAYER_NAME_KEY = "PLAYER_NAME";
     public Button buttonDone;
     public Button buttonExit;
-    public Image lockImage;
+    public GameObject lockImage;
     public TextMeshProUGUI dialogueNPC;
 
     public WriteMachine writeMachine;
