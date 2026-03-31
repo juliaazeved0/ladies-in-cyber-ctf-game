@@ -58462,7 +58462,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6676347415015105119, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
       propertyPath: m_Name
-      value: ScribbledBook
+      value: Laptop
       objectReference: {fileID: 0}
     - target: {fileID: 6691406633506826802, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
       propertyPath: m_Name
