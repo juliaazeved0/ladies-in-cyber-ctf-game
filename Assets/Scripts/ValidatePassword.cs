@@ -34,9 +34,12 @@ public class ValidatePassword : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)) //Verifica se a tecla Enter principal ou do num�rico foi apertada
+        if(loginPanel != null && loginPanel.activeSelf) //Garante que o Enter só funcione se a tela de login estiver visível
         {
-            CheckPassword(); //Se apertou no Enter, chama a fun��o que valida a senha
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)) //Verifica se a tecla Enter principal ou do num�rico foi apertada
+            {
+                CheckPassword(); //Se apertou no Enter, chama a fun��o que valida a senha
+            }
         }
     }
 

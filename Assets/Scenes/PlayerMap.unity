@@ -354,6 +354,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &8671390 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2586060926490144411, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
+  m_PrefabInstance: {fileID: 5577957365086859756}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8671394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8671390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75bb92f4a7c1ad54081a23d5e0851e74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &16527068
 GameObject:
   m_ObjectHideFlags: 0
@@ -86271,8 +86288,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 438248712220691470, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 438248712220691470, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
       propertyPath: m_SortingOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 438248712220691470, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 725319461
       objectReference: {fileID: 0}
     - target: {fileID: 774841431231484136, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
       propertyPath: m_fontSize
@@ -86500,11 +86525,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6721759296794522001, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
       propertyPath: m_Size.y
-      value: 0.59803796
+      value: 0.46090752
       objectReference: {fileID: 0}
     - target: {fileID: 6721759296794522001, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
       propertyPath: m_Offset.y
-      value: -0.054936692
+      value: -0.12350193
       objectReference: {fileID: 0}
     - target: {fileID: 6735909052186636748, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
       propertyPath: m_Name
@@ -86616,7 +86641,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8757360774332855839, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
       propertyPath: m_SortingLayer
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8757360774332855839, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
       propertyPath: m_SortingOrder
@@ -86624,7 +86649,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8757360774332855839, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
       propertyPath: m_SortingLayerID
-      value: 0
+      value: 725319461
       objectReference: {fileID: 0}
     - target: {fileID: 8980816808675673885, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
       propertyPath: m_Size.x
@@ -86666,6 +86691,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8800760744965188970, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1454670572}
+    - targetCorrespondingSourceObject: {fileID: 2586060926490144411, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8671394}
     - targetCorrespondingSourceObject: {fileID: 121103845611077175, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1379761713}
