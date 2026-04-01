@@ -56100,7 +56100,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -2.573723, y: 2.721887}
+  m_Offset: {x: 1.9888349, y: 2.6193917}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -56111,7 +56111,52 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10.635962, y: 1.1445131}
+  m_Size: {x: 1.510847, y: 0.93952227}
+  m_EdgeRadius: 0
+--- !u!61 &907443125
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907443116}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -4.123992, y: 2.4519966}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.24, y: 10.24}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.3764915, y: 1.520041}
   m_EdgeRadius: 0
 --- !u!1 &910382758
 GameObject:
@@ -60210,6 +60255,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75bb92f4a7c1ad54081a23d5e0851e74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &1352830193
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352830185}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.34430826, y: 2.2696288}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.24, y: 10.24}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.7224581, y: 1.3307471}
+  m_EdgeRadius: 0
 --- !u!114 &1357204977 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6113508124441448096, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
@@ -88492,12 +88582,20 @@ PrefabInstance:
         y''r''c9'
       objectReference: {fileID: 0}
     - target: {fileID: 4291275997938100210, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Size.x
+      value: 9.766556
+      objectReference: {fileID: 0}
+    - target: {fileID: 4291275997938100210, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Size.y
-      value: 6.3270183
+      value: 6.8158407
+      objectReference: {fileID: 0}
+    - target: {fileID: 4291275997938100210, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.22133255
       objectReference: {fileID: 0}
     - target: {fileID: 4291275997938100210, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Offset.y
-      value: -1.550317
+      value: -1.3059058
       objectReference: {fileID: 0}
     - target: {fileID: 4994046779274863975, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_SortingOrder
@@ -88604,12 +88702,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3524421176923481426, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1352830189}
+    - targetCorrespondingSourceObject: {fileID: 3524421176923481426, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1352830193}
     - targetCorrespondingSourceObject: {fileID: 1695497664426704959, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       insertIndex: -1
       addedObject: {fileID: 907443120}
     - targetCorrespondingSourceObject: {fileID: 1695497664426704959, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       insertIndex: -1
       addedObject: {fileID: 907443124}
+    - targetCorrespondingSourceObject: {fileID: 1695497664426704959, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 907443125}
   m_SourcePrefab: {fileID: 100100000, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
 --- !u!1001 &3180146508341945375
 PrefabInstance:
