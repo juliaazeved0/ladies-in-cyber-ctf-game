@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 55746946}
   - component: {fileID: 55746945}
   m_Layer: 5
-  m_Name: TextNormal
+  m_Name: NormalText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -264,8 +264,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 62
-  m_fontSizeBase: 62
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -330,7 +330,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12.3, y: 103.79}
+  m_AnchoredPosition: {x: 12.3, y: 88}
   m_SizeDelta: {x: 542.141, y: 402.408}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &293640376
@@ -580,7 +580,7 @@ GameObject:
   - component: {fileID: 782954026}
   - component: {fileID: 782954025}
   m_Layer: 5
-  m_Name: BackgroundNormal
+  m_Name: NormalBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -736,7 +736,7 @@ GameObject:
   - component: {fileID: 1194208221}
   - component: {fileID: 1194208220}
   m_Layer: 5
-  m_Name: TextWarning
+  m_Name: WarningText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1360,7 +1360,7 @@ GameObject:
   - component: {fileID: 1722729631}
   - component: {fileID: 1722729630}
   m_Layer: 5
-  m_Name: BackgroundWarning
+  m_Name: WarningBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1437,7 +1437,7 @@ GameObject:
   - component: {fileID: 1780543533}
   - component: {fileID: 1780543532}
   m_Layer: 5
-  m_Name: TextObjective
+  m_Name: ObjectiveText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1459,7 +1459,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12.3, y: 97}
+  m_AnchoredPosition: {x: 12.3, y: 88}
   m_SizeDelta: {x: 542.141, y: 402.408}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1780543532
@@ -1510,8 +1510,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 62
-  m_fontSizeBase: 62
+  m_fontSize: 60
+  m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1717,7 +1717,7 @@ GameObject:
   - component: {fileID: 2042303214}
   - component: {fileID: 2042303213}
   m_Layer: 5
-  m_Name: Modal
+  m_Name: Modal02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1794,7 +1794,7 @@ GameObject:
   - component: {fileID: 2077382195}
   - component: {fileID: 2077382194}
   m_Layer: 5
-  m_Name: TextFlag
+  m_Name: FlagText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
