@@ -68,3 +68,6 @@ TagManager:
   - name: UI
     uniqueID: 326117929
     locked: 0
+  - name: NamePlayer
+    uniqueID: 105384023
+    locked: 0
