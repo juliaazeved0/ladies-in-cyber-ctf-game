@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: node3
   m_EditorClassIdentifier: 
   talkNPC: "Acesse o terminal e execute o script de seguran\xE7a H2_RESET.SH por
-    miim, r\xE1pido!"
+    mim, r\xE1pido!"
   nextNode: {fileID: 0}
   characterNPC: {fileID: 21300000, guid: 04339bb0b8c72ff4d80630d436a7e24a, type: 3}
