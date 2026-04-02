@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CanvasManager : MonoBehaviour
 {
-    //singleton
+    //Singleton
     public static CanvasManager Instance;
 
     [Header("Panels/backgrounds UI")]
@@ -18,12 +18,13 @@ public class CanvasManager : MonoBehaviour
         if(Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
-         ClosedAllPanels();
+        ClosedAllPanels();
     }
  
     public void ClosedAllPanels()
