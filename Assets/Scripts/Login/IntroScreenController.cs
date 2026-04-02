@@ -24,6 +24,8 @@ public class IntroScreenController : MonoBehaviour
 
     private int currentStage = 0; //Cada vez que o jogador apertar e tecla E, o número aumenta e as telas avançam
 
+    private bool canAdvance = true; //Variável de controle para verificar se o avanço pelo teclado deve estar bloqueado
+
     void Start()
     {
         //Garante que o botão comece desativado
@@ -33,7 +35,7 @@ public class IntroScreenController : MonoBehaviour
     void Update()
     {
         //Só permite avançar com "E" se o painel de sucesso não estiver ativo
-        if(Input.GetKeyDown(KeyCode.E) && !successFlagPanel.activeSelf)
+        if(Input.GetKeyDown(KeyCode.E) && !successFlagPanel.activeSelf && canAdvance)
         {
             Advance();
         }
@@ -88,6 +90,7 @@ public class IntroScreenController : MonoBehaviour
             case 3: //Tela final
                 textFlag.SetActive(true);
                 if(flagButton != null) flagButton.SetActive(true); //Ativa o botão da flag apenas nessa etapa
+                canAdvance = false; //A tecla E não funciona mais
                 break;
             
             case 4: //Se a jogadora apertar "E" na tela da Flag sem clicar no botão, pode ou não deixar avançar. Apenas segurança

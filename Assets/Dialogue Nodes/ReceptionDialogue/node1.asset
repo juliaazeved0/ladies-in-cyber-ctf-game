@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: "\u201CBom dia. Posso ajudar?\u201D"
   options:
-  - "\u201CBom dia, sou a nova t\xE9cnica de ciberseguran\xE7a.\u201D"
-  - "\u201CBom dia. Estou aqui a trabalho.\u201D"
-  - "\u201CBom dia. Estou procurando o Rolf\u201D"
+  - "Bom dia, sou a nova t\xE9cnica de ciberseguran\xE7a."
+  - Bom dia. Estou aqui a trabalho.
+  - Bom dia. Estou procurando o Rolf.
   narratorFeedbacks:
   - "\u201CA afirma\xE7\xE3o direta chama aten\xE7\xE3o. Para algu\xE9m que ela n\xE3o
     conhece, isso soa apressado. Mas, agora voc\xEA tem um cargo definido.\u201D"

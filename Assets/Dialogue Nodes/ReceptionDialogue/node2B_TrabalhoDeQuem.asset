@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: "\u201CA trabalho de quem? Preciso de mais detalhes.\u201D"
   options:
-  - "\u201CSou do setor de seguran\xE7a da informa\xE7\xE3o\u201D"
+  - "\u201CSou do setor de seguran\xE7a da informa\xE7\xE3o.\u201D"
   - "\u201CVoc\xEA recebeu algum e-mail sobre verifica\xE7\xE3o de sistema?\u201D"
   - "\u201CQual sistema voc\xEAs usam aqui na entrada?\u201D"
   narratorFeedbacks:
