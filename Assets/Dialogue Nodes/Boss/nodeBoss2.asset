@@ -15,10 +15,10 @@ MonoBehaviour:
   question: "J\xE1 que voc\xEA passou por todos os desafios anteriores, vou deixar
     voc\xEA escolher a categoria do \xFAltimo."
   options:
-  - OSINT
-  - CRIPTOGRAFIA
-  - LINUX
-  - FORENSE
+  - A) OSINT
+  - B) CRIPTOGRAFIA
+  - C) LINUX
+  - D) FORENSE
   nextDialogue:
   - {fileID: 11400000, guid: cc1c29edd6588b14c92a9f587bdc14ef, type: 2}
   buttonType: 0
