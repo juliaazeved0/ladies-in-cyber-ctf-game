@@ -27,27 +27,27 @@ public class CanvasManager : MonoBehaviour
         ClosedAllPanels();
     }
 
-    void OnEnable()
-    {
-        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
-    }
+    //void OnEnable()
+    //{
+    //    UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+    //}
 
-    void OnDisable()
-    {
-        UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
+    //void OnDisable()
+    //{
+    //    UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+    //}
 
-    void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
-    {
-        allPanels.Clear();
+    //void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+    //{
+    //    allPanels.Clear();
 
-        foreach (var obj in GameObject.FindGameObjectsWithTag("UIPanel"))
-        {
-            allPanels.Add(obj);
-        }
+    //    foreach (var obj in GameObject.FindGameObjectsWithTag("UIPanel"))
+    //    {
+    //        allPanels.Add(obj);
+    //    }
 
-        ClosedAllPanels();
-    }
+    //    ClosedAllPanels();
+    //}
 
     public void ClosedAllPanels()
     {

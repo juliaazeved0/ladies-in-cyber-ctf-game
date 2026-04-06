@@ -6,15 +6,15 @@ using UnityEngine;
 public class ComputerInteraction : MonoBehaviour
 {
     [Header("Efeitos Visuais")]
-    public PulseOutline scriptPulse; //Arrastar o objeto que contém o script PulseOutline
+    public PulseOutline scriptPulse; //Arrastar o objeto que contem o script PulseOutline
 
     [Header("Interface de Interação")]
-    public GameObject interactionNotice; //Modal de interação
+    public GameObject interactionNotice; //Modal de interacao
 
     [Header("Sistema do Desafio")]
-    public GameObject initialBackground; //Painel do início do desafio
+    public GameObject initialBackground; //Painel do inicio do desafio
 
-    private bool playerIsNear = false; //Controla se a jogadora está perto do computador
+    private bool playerIsNear = false; //Controla se a jogadora esta perto do computador
 
     void Start()
     {

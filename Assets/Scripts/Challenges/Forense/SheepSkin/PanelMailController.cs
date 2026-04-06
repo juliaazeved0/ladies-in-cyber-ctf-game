@@ -19,7 +19,7 @@ public class PanelMailController : MonoBehaviour
     [Header("Feedback Visual")]
     [SerializeField] private GameObject imagemSelecaoLink;
 
-    public static bool pcInfectado = false; //Variável para ver se a jogadora acessou o link infectado
+    public static bool pcInfectado = false; //Variavel para ver se a jogadora acessou o link infectado
 
     public void AbrirPanelMailInput() //Abrir o painel principais de e-mails
     {
@@ -31,7 +31,7 @@ public class PanelMailController : MonoBehaviour
         panelMailInput.SetActive(false);
     }
 
-    //Funções para intercalar entre e-mails
+    //Funcoes para intercalar entre e-mails
     public void AbrirEmailRh()
     {
         panelEmailRh.SetActive(true);
@@ -59,7 +59,7 @@ public class PanelMailController : MonoBehaviour
 
     public void AbrirPanelGlitch()
     {
-        //Inicia a contagem automática
+        //Inicia a contagem automatica
         StartCoroutine(SequenciaGlitchParaRansomware());
     }
 
@@ -76,7 +76,7 @@ public class PanelMailController : MonoBehaviour
         panelPhishing.SetActive(true);
     }
     
-    //Função para retornar a tela inicial de e-mails
+    //Funcao para retornar a tela inicial de e-mails
     public void RetornarEmailPrincipal()
     {
         if (panelEmailRh != null) panelEmailRh.SetActive(false);
@@ -101,7 +101,7 @@ public class PanelMailController : MonoBehaviour
 
     void Update()
     {
-        //Booleano para verificar se a jogadora está segurando a tecla Control, seja a da direita ou esquerda
+        //Booleano para verificar se a jogadora esta segurando a tecla Control, seja a da direita ou esquerda
         bool teclaPressionada = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
 
         if(teclaPressionada && Input.GetKeyDown(KeyCode.U)) //Verifica se o Control está sendo pressionado e a tecla U também, ao mesmo tempo
@@ -112,11 +112,11 @@ public class PanelMailController : MonoBehaviour
 
     public void CopiarLink(string linkParaCopiar)
     {
-        GUIUtility.systemCopyBuffer = linkParaCopiar; //Quando a jogadora clica no link, ele é copiado
+        GUIUtility.systemCopyBuffer = linkParaCopiar; //Quando a jogadora clica no link, ele eh copiado
 
         if(imagemSelecaoLink != null)
         {
-            StopAllCoroutines(); //Garante que o cronômetro seja resetado antes de começar um novo
+            StopAllCoroutines(); //Garante que o cronometro seja resetado antes de começar um novo
             StartCoroutine(EfeitoMarcaTexto());
         }
     }
@@ -127,7 +127,7 @@ public class PanelMailController : MonoBehaviour
 
         yield return new WaitForSeconds(2f); //O efeito dura por 2 segundos
 
-        imagemSelecaoLink.SetActive(false); //Após os 2 segundos, desliga o objeto, ou seja, o efeito de "selecionado" some automaticamente
+        imagemSelecaoLink.SetActive(false); //Apos os 2 segundos, desliga o objeto, ou seja, o efeito de "selecionado" some automaticamente
     }
 
     IEnumerator SequenciaGlitchParaRansomware()
@@ -135,14 +135,14 @@ public class PanelMailController : MonoBehaviour
         //Ativa o painel de animação Glitch
         panelGlitch.SetActive(true);
 
-        //Espera exatamente 4 segundos para realizar a troca de painéis
+        //Espera exatamente 4 segundos para realizar a troca de paineis
         yield return new WaitForSeconds(4f);
 
         //Desativa o painel Glitch e ativa o painel de Ransomware
         panelGlitch.SetActive(false);
         panelRansomware.SetActive(true);
 
-        //Marca que o PC agora está no estado pós-ataque
+        //Marca que o PC agora esta no estado pos-ataque
         pcInfectado = true;
     }
 }

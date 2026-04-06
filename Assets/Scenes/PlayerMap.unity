@@ -89103,6 +89103,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2619879577836494931, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 70a5baf2ec58eee4dbbf0c8c65754c24, type: 2}
     - target: {fileID: 2880791636395465910, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -89122,6 +89126,10 @@ PrefabInstance:
     - target: {fileID: 5138657036259939397, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6281236259629527447, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: maxThickness
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6307240336143115395, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_SortingOrder
