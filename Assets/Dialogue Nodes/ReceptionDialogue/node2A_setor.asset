@@ -17,7 +17,7 @@ MonoBehaviour:
   options:
   - "\u201CVeio direto do time de TI, n\xE3o da recep\xE7\xE3o.\u201D"
   - "\u201CFui acionada por um alerta de integridade no controle de acesso.\u201D"
-  - "\u201CEssas verifica\xE7\xF5es nem sempre aparecem como chamado formal.\u201D"
+  - "\u201CEssas verifica\xE7oes nem sempre aparecem como chamado formal.\u201D"
   narratorFeedbacks:
   - "\u201CVoc\xEA demonstra conhecer a din\xE2mica interna entre setores.\u201D"
   - "\u201CO termo t\xE9cnico parece leg\xEDtimo. A secret\xE1ria se lembra de falhas
