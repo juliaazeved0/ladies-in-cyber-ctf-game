@@ -42,6 +42,8 @@ namespace BashTerminal
 
         public void OpenTerminal()
         {
+            // No script do Terminal, certifique-se de que isso aconteça ao abrir:
+            inputField.ActivateInputField();
             if (terminalPanel == null) return;
             terminalPanel.SetActive(true);
             isOpen = true;
@@ -50,10 +52,13 @@ namespace BashTerminal
             SetupFilesystem();
             string welcome = GetWelcomeMessage();
             if (!string.IsNullOrEmpty(welcome)) AppendLine(welcome);
-            AppendPrompt();
+            
             inputField.text = "";
             inputField.onSubmit.RemoveAllListeners();
             inputField.onSubmit.AddListener(HandleInput);
+            
+            // Inicializa com o prompt vazio se necessário ou apenas foca
+            RefreshOutput();
             StartCoroutine(FocusNextFrame());
         }
 
@@ -91,27 +96,33 @@ namespace BashTerminal
             if (inputField != null) { inputField.ActivateInputField(); inputField.Select(); }
         }
 
-        protected void AppendPrompt()
-        {
-            string path = GetDisplayPath();
-            outputBuffer.Append($"\n<color=#55FF55>{User}@{Hostname}</color>:<color=#5599FF>{path}</color>$ ");
-            RefreshOutput();
-        }
-
         protected string GetDisplayPath()
         {
             if (currentDirectory == HomeDirectory) return "~";
             return currentDirectory.Replace(HomeDirectory, "~");
         }
 
+        // --- LÓGICA DE INPUT CORRIGIDA ---
         protected void HandleInput(string input)
         {
             if (!isOpen) return;
-            outputBuffer.AppendLine(input);
-            if (!string.IsNullOrEmpty(input)) ProcessCommand(input.Trim());
-            AppendPrompt();
+
+            input = input.Trim();
+            
+            // Adiciona o comando digitado ao histórico com o estilo de prompt do Linux
+            outputBuffer.AppendLine($"<color=#55FF55>{User}@{Hostname}</color>:<color=#5599FF>{GetDisplayPath()}</color>$ {input}");
+
+            if (!string.IsNullOrEmpty(input))
+                ProcessCommand(input);
+
+            RefreshOutput();
             inputField.text = "";
             StartCoroutine(FocusNextFrame());
+        }
+
+        protected void AppendPrompt() 
+        { 
+            // Vazio, pois o HandleInput agora cuida de renderizar o prompt no histórico
         }
 
         protected virtual void ProcessCommand(string fullCommand)
@@ -138,7 +149,6 @@ namespace BashTerminal
         protected virtual bool ExecuteSpecialCommand(string cmd, string[] args, string fullCommand) => false;
         protected virtual string OnCatFile(string resolvedPath, string originalArg) => null;
 
-        // --- COMANDO LS ---
         protected string ExecuteLs(string[] args)
         {
             bool showHidden = args.Any(a => a.Contains("a"));
@@ -170,8 +180,6 @@ namespace BashTerminal
             return sb.ToString();
         }
 
-        // --- METODO QUE ESTAVA CAUSANDO O ERRO ---
-        // Adicionada a palavra 'virtual' para permitir override
         protected virtual string BuildPermString(string path, bool isDir, bool isExec)
         {
             string d = isDir ? "d" : "-";
@@ -203,30 +211,4 @@ namespace BashTerminal
             if (ownerGroup != null) fileOwners[path] = ownerGroup;
         }
     }
-    protected void HandleInput(string input)
-{
-    if (!isOpen) return;
-
-    input = input.Trim();
-    
-    // 1. Antes de limpar o input, mandamos o prompt + o comando pro histórico
-    // Isso faz com que a linha que você acabou de digitar "suba" para o OutputText
-    outputBuffer.AppendLine($"<color=#55FF55>{User}@{Hostname}</color>:<color=#5599FF>{GetDisplayPath()}</color>$ {input}");
-
-    if (!string.IsNullOrEmpty(input))
-        ProcessCommand(input);
-
-    // 2. Atualiza o texto de cima
-    RefreshOutput();
-
-    // 3. Limpa o campo onde você digita
-    inputField.text = "";
-    
-    // 4. Mantém o foco
-    StartCoroutine(FocusNextFrame());
-    }
-
-// O método AppendPrompt pode ficar vazio ou ser removido, 
-// já que o prompt agora é um objeto fixo na sua InputArea
-    protected void AppendPrompt() { }
 }

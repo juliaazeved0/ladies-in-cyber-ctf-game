@@ -2,55 +2,79 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using BashTerminal; // Adicionado para verificar o terminal se necessÃ¡rio
 
 public class NPCBossInteraction : MonoBehaviour
 {
     [Header("Settings NPC")]
-    public string uniqueSaveKey; //Chave para salvar se o desafio já foi concluído
-    public Image balloonNPC; //Imagem do balão acima do NPC
+    public string uniqueSaveKey;
+    public Image balloonNPC;
 
     [Header("Interaction")]
-    public GameObject interactionNotice; //Aviso na tela "Pressionar E"
+    public GameObject interactionNotice;
 
-    [Header("Systems (Assign one or both)")]
-    public DialogueManagerBoss dialogueManagerBoss; //Referência ao gerenciador de diálogo
+    [Header("Systems")]
+    public DialogueManagerBoss dialogueManagerBoss;
 
     [Header("Nodes")]
-    public DialogueNodeBoss firstNodeBoss; //Primeiro nó do diálogo desse NPC
+    public DialogueNodeBoss firstNodeBoss;
 
-    private bool playerIsHere = false; //Verifica se a jogadora está perto
-    private bool isCompleted = false; //Verifica se o desafio já foi concluído
-    private bool isTalking = false; //Controla se o diálogo já começou
+    [Header("External Blockers")]
+    public GameObject terminalPanel; // Arraste o painel do terminal aqui no Inspector
+
+    private bool playerIsHere = false;
+    private bool isCompleted = false;
+    private bool isTalking = false;
 
     void Start()
     {
-        if(interactionNotice != null) interactionNotice.SetActive(false); //Esconde o aviso no início
-        if(balloonNPC != null) balloonNPC.gameObject.SetActive(false); //Esconde o balão
-        CheckChallengeStatus(); //Verifica se já foi completado antes
+        if(interactionNotice != null) interactionNotice.SetActive(false);
+        if(balloonNPC != null) balloonNPC.gameObject.SetActive(false);
+        CheckChallengeStatus();
     }
 
     void Update()
     {
-        if(playerIsHere && Input.GetKeyDown(KeyCode.E) && !isCompleted) //Verifica se a jogadoraapertou E e não completou o desafio ainda
+        // 1. VERIFICAÃ‡ÃƒO DE BLOQUEIO:
+        // Se o Terminal estiver aberto, ignore completamente a tecla E do NPC
+        if (terminalPanel != null && terminalPanel.activeSelf)
         {
-            if(!isTalking)
+            return;
+        }
+
+        if(playerIsHere && Input.GetKeyDown(KeyCode.E) && !isCompleted)
+        {
+            // 2. VERIFICAÃ‡ÃƒO DO PAINEL DE DIÃLOGO:
+            // Se o painel de diÃ¡logo ainda NÃƒO estÃ¡ ativo, iniciamos a conversa
+            if(!isTalking && !dialogueManagerBoss.panelDialogue.activeSelf)
             {
-                //Se ainda não começou, inicia o diálogo
                 StartConversation();
                 isTalking = true;
+                
+                // Esconde o "Pressione E" ao comeÃ§ar a falar
+                if (interactionNotice != null) interactionNotice.SetActive(false);
             }
-            else
+            // 3. SE O PAINEL JÃ ESTÃ ABERTO:
+            // A tecla E servirÃ¡ apenas para avanÃ§ar o texto
+            else if (dialogueManagerBoss.panelDialogue.activeSelf)
             {
-                if(!dialogueManagerBoss.CurrentNodeHasOptions()) //Se já está conversando
+                if(!dialogueManagerBoss.CurrentNodeHasOptions())
                 {
-                    dialogueManagerBoss.ChooseOption(0); //Se não tem opções, avança automaticamente
+                    dialogueManagerBoss.ChooseOption(0); // AvanÃ§a o diÃ¡logo
                 }
                 else
                 {
-                    Debug.Log("Escolha uma opção no mouse para continuar!"); //Se tem opções, força a jogadora a clicar em uma delas
+                    Debug.Log("Escolha uma opÃ§Ã£o no mouse para continuar!");
                 }
-                
             }
+        }
+
+        // 4. LÃ“GICA DO BALÃƒO/AVISO:
+        // Se o diÃ¡logo fechar (pelo manager), resetamos o isTalking
+        if (isTalking && !dialogueManagerBoss.panelDialogue.activeSelf)
+        {
+            isTalking = false;
+            if (playerIsHere && interactionNotice != null) interactionNotice.SetActive(true);
         }
     }
 
@@ -58,8 +82,8 @@ public class NPCBossInteraction : MonoBehaviour
     {
         if(dialogueManagerBoss != null && firstNodeBoss != null)
         {
-            dialogueManagerBoss.firstNode = firstNodeBoss; //Define o início
-            dialogueManagerBoss.StartDialogue(); //Começa o diálogo
+            dialogueManagerBoss.firstNode = firstNodeBoss;
+            dialogueManagerBoss.StartDialogue();
         }
     }
 
@@ -67,14 +91,14 @@ public class NPCBossInteraction : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            playerIsHere = true; //Jogadora entrou na área de collider para aparecer os popups
-
+            playerIsHere = true;
             CheckChallengeStatus();
 
-            if(!isCompleted && interactionNotice != null)
+            // SÃ³ mostra o aviso se o diÃ¡logo NÃƒO estiver rolando e nÃ£o estiver completo
+            if(!isCompleted && !dialogueManagerBoss.panelDialogue.activeSelf)
             {
-                interactionNotice.SetActive(true); //Mostra o aviso "Pressione E"
-                if (balloonNPC != null) balloonNPC.gameObject.SetActive(true); //Mostra o balão
+                if (interactionNotice != null) interactionNotice.SetActive(true);
+                if (balloonNPC != null) balloonNPC.gameObject.SetActive(true);
             }
         }
     }
@@ -83,26 +107,18 @@ public class NPCBossInteraction : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            //Se a jogadora sair de perto da área de collider, a conversa reseta
             playerIsHere = false;
             isTalking = false;
 
-            if(interactionNotice != null)
-            {
-                interactionNotice.SetActive(false); //Esconde o aviso
+            if(interactionNotice != null) interactionNotice.SetActive(false);
+            if(balloonNPC != null) balloonNPC.gameObject.SetActive(false);
 
-                if(balloonNPC != null) balloonNPC.gameObject.SetActive(false); //Esconde o balão
-            }
-
-            //Fecha o painel de diálogo se a jogadora se afastar
             if(dialogueManagerBoss != null) dialogueManagerBoss.panelDialogue.SetActive(false);
         }
     }
 
     public void CheckChallengeStatus()
     {
-        //Se for 1 -> já completou
-        //Se for 0 -> ainda não completou
         if(!string.IsNullOrEmpty(uniqueSaveKey))
             isCompleted = PlayerPrefs.GetInt(uniqueSaveKey, 0) == 1;
     }

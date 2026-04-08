@@ -32,7 +32,7 @@ namespace BashTerminal
         /// </summary>
         public static bool challengeSolved = false;
 
-        private bool praiaInDocumentos = true;
+        public bool praiaInDocumentos = true;
 
         // ── Identity ──────────────────────────────────────────────────────────
         protected override string User => "BOSS";
