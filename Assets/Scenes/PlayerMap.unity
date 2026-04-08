@@ -514,7 +514,7 @@ GameObject:
   - component: {fileID: 16527071}
   - component: {fileID: 16527070}
   m_Layer: 5
-  m_Name: Button
+  m_Name: WppIconButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47557,8 +47557,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 532.6, y: -19.6}
-  m_SizeDelta: {x: 219.3471, y: 215.659}
+  m_AnchoredPosition: {x: 502.6892, y: -12}
+  m_SizeDelta: {x: 189.4363, y: 187.2437}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &69227529
 MonoBehaviour:
@@ -48225,6 +48225,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1326193230}
     m_Modifications:
+    - target: {fileID: 4904071052787868053, guid: 6f5024ad9540cb147be75c55d4da2a38, type: 3}
+      propertyPath: m_Name
+      value: ExitText
+      objectReference: {fileID: 0}
     - target: {fileID: 5782139982538599897, guid: 6f5024ad9540cb147be75c55d4da2a38, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -48568,8 +48572,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 276, y: -141.30466}
-  m_SizeDelta: {x: 143.7382, y: 110.7153}
+  m_AnchoredPosition: {x: 251, y: -137}
+  m_SizeDelta: {x: 119.8096, y: 88.2821}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &129452481
 MonoBehaviour:
@@ -51449,6 +51453,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1689875462}
     m_Modifications:
+    - target: {fileID: 4904071052787868053, guid: 6f5024ad9540cb147be75c55d4da2a38, type: 3}
+      propertyPath: m_Name
+      value: ExitText
+      objectReference: {fileID: 0}
     - target: {fileID: 5782139982538599897, guid: 6f5024ad9540cb147be75c55d4da2a38, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -55518,12 +55526,12 @@ GameObject:
   - component: {fileID: 858893023}
   - component: {fileID: 858893022}
   m_Layer: 0
-  m_Name: PopUpCaptureFlag
+  m_Name: PopupCaptureFlag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &858893021
 RectTransform:
   m_ObjectHideFlags: 0
@@ -55541,8 +55549,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2.0058, y: -29.1774}
-  m_SizeDelta: {x: 2081.7505, y: 867.585}
+  m_AnchoredPosition: {x: -2.0058, y: -0.73328}
+  m_SizeDelta: {x: 2081.7505, y: 871.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &858893022
 MonoBehaviour:
@@ -55616,7 +55624,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -75, y: -196}
+  m_AnchoredPosition: {x: -75, y: -177}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &861313126
@@ -56457,7 +56465,7 @@ GameObject:
   - component: {fileID: 937910868}
   - component: {fileID: 937910867}
   m_Layer: 5
-  m_Name: lockBoss
+  m_Name: LockBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57032,8 +57040,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -16.588387, y: 52.205734}
-  m_SizeDelta: {x: 1636.0526, y: 809.2303}
+  m_AnchoredPosition: {x: -7.859, y: 20.561813}
+  m_SizeDelta: {x: 1653.5114, y: 872.5181}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &995347771
 MonoBehaviour:
@@ -59209,7 +59217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2277509916494799420, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
       propertyPath: m_Name
-      value: BackgroundOssint
+      value: OssintBackground
       objectReference: {fileID: 0}
     - target: {fileID: 2540455535883173538, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
       propertyPath: m_Name
@@ -59405,7 +59413,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5585500968374080568, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
       propertyPath: m_Name
-      value: BackgroundNameNPC
+      value: NameNPCBackground
       objectReference: {fileID: 0}
     - target: {fileID: 5596964193363389534, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
       propertyPath: m_Name
@@ -59457,7 +59465,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7311277330899251233, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
       propertyPath: m_Name
-      value: BackgroundPlayerName
+      value: PlayerNameBackground
       objectReference: {fileID: 0}
     - target: {fileID: 7446214308676003092, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
       propertyPath: m_Size.x
@@ -59479,6 +59487,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7545299892684605986, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
+      propertyPath: m_Name
+      value: FullText
+      objectReference: {fileID: 0}
     - target: {fileID: 7621785404000311017, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
       propertyPath: m_Name
       value: OSSINTManager
@@ -59494,6 +59506,10 @@ PrefabInstance:
     - target: {fileID: 7722380796089817539, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
       propertyPath: m_SortingLayerID
       value: 725319461
+      objectReference: {fileID: 0}
+    - target: {fileID: 7757067510081198340, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
+      propertyPath: m_Name
+      value: TitleText
       objectReference: {fileID: 0}
     - target: {fileID: 7864921935357496181, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
       propertyPath: m_Name
@@ -60177,7 +60193,7 @@ GameObject:
   - component: {fileID: 1326193232}
   - component: {fileID: 1326193231}
   m_Layer: 0
-  m_Name: PanelBackgroundPC
+  m_Name: PCPanelBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60199,7 +60215,6 @@ RectTransform:
   - {fileID: 576878742}
   - {fileID: 527952992}
   - {fileID: 1894147439}
-  - {fileID: 1467923268}
   m_Father: {fileID: 1866007272}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -61364,16 +61379,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1467923267}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -12.593104}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 632792510}
-  m_Father: {fileID: 1326193230}
+  m_Father: {fileID: 1866007272}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1278.2507, y: -677.39264}
+  m_AnchoredPosition: {x: 0, y: -61}
   m_SizeDelta: {x: 407.5366, y: 67.2986}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1467923269
@@ -80055,7 +80070,7 @@ GameObject:
   - component: {fileID: 1689875464}
   - component: {fileID: 1689875463}
   m_Layer: 5
-  m_Name: PanelBackgroundTaskbar
+  m_Name: TaskbarPanelBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80178,7 +80193,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -569, y: 151}
+  m_AnchoredPosition: {x: -541, y: 151}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1717295306
@@ -80267,7 +80282,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -82.356445, y: 0, z: -407.35077, w: -381.84595}
+  m_margin: {x: -82.356445, y: 0, z: -377.44, w: -381.84595}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -80454,7 +80469,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 76, y: -36}
+  m_AnchoredPosition: {x: 76, y: -49}
   m_SizeDelta: {x: 813.9359, y: 445.9278}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1743605686
@@ -83213,8 +83228,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -328, y: -141.30466}
-  m_SizeDelta: {x: 143.7382, y: 110.7153}
+  m_AnchoredPosition: {x: -310, y: -137}
+  m_SizeDelta: {x: 119.8096, y: 88.2821}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1787899483
 MonoBehaviour:
@@ -84712,6 +84727,7 @@ RectTransform:
   m_Children:
   - {fileID: 1326193230}
   - {fileID: 1689875462}
+  - {fileID: 1467923268}
   m_Father: {fileID: 457717262}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -85108,7 +85124,7 @@ GameObject:
   - component: {fileID: 1901592475}
   - component: {fileID: 1901592474}
   m_Layer: 0
-  m_Name: ButtonExit
+  m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87186,7 +87202,7 @@ GameObject:
   - component: {fileID: 2038944675}
   - component: {fileID: 2038944674}
   m_Layer: 5
-  m_Name: Text
+  m_Name: TitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87925,7 +87941,7 @@ GameObject:
   - component: {fileID: 2103814500}
   - component: {fileID: 2103814499}
   m_Layer: 5
-  m_Name: BackgroundConversation
+  m_Name: ConversationBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89522,6 +89538,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 388754657203575704, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
     - target: {fileID: 438248712220691470, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
       propertyPath: m_SortingLayer
       value: 6
@@ -89805,6 +89825,10 @@ PrefabInstance:
     - target: {fileID: 5912805388568877059, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5978479317219025986, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
+      propertyPath: m_Name
+      value: FullText
       objectReference: {fileID: 0}
     - target: {fileID: 6014807437683480299, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
       propertyPath: m_SortingOrder
