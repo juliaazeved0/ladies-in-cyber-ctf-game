@@ -27,27 +27,16 @@ public class ValidatePassword : MonoBehaviour
     void Start()
     {
         errorMessage.SetActive(false); //Garante que o pop-up de erro comece escondido
-        if(taskbarPanel != null) taskbarPanel.SetActive(false); //Painel da �rea de trabalho comece desativado
+        if(taskbarPanel != null) taskbarPanel.SetActive(false); //Painel da area de trabalho comece desativado
         passwordField.ActivateInputField(); //Faz com que o cursos j� apare�a piscando dentro do Input Field, sem o jogador precisar clicar
         panelCaptureFlag.SetActive(false);
-    }
-
-    void Update()
-    {
-        if(loginPanel != null && loginPanel.activeSelf) //Garante que o Enter só funcione se a tela de login estiver visível
-        {
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)) //Verifica se a tecla Enter principal ou do num�rico foi apertada
-            {
-                CheckPassword(); //Se apertou no Enter, chama a fun��o que valida a senha
-            }
-        }
     }
 
     public void CheckPassword()
     {
         bool senhaEstaCorreta = string.Equals(passwordField.text, correctPassword, System.StringComparison.OrdinalIgnoreCase);
 
-        if (senhaEstaCorreta) //Verifica se o texto escrito no campo � igual ao da vari�vel
+        if (senhaEstaCorreta) //Verifica se o texto escrito no campo eh igual ao da variavel
         {
             errorMessage.SetActive(false); //Se for igual, esconde a mensagem de erro
             loginPanel.SetActive(false); //Desativa a tela inicial
