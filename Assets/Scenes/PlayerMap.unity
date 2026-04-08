@@ -88639,6 +88639,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Text
       objectReference: {fileID: 0}
+    - target: {fileID: 9019583783837097485, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9085186554768206942, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_Name
       value: Text
@@ -89184,7 +89188,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4478197801605495529, guid: 30fc10752d8935d49913c6d9aba81ad9, type: 3}
       propertyPath: m_fontSize
-      value: 8
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478197801605495529, guid: 30fc10752d8935d49913c6d9aba81ad9, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4478197801605495529, guid: 30fc10752d8935d49913c6d9aba81ad9, type: 3}
       propertyPath: m_fontSizeMax
