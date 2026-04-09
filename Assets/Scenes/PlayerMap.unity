@@ -91440,6 +91440,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ExitDialogue
       objectReference: {fileID: 0}
+    - target: {fileID: 2460113372201492822, guid: 2ce12bcfcf857a9449c39fd5c38e342f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672301030149441079, guid: 2ce12bcfcf857a9449c39fd5c38e342f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2884182763219273855, guid: 2ce12bcfcf857a9449c39fd5c38e342f, type: 3}
       propertyPath: m_text
       value: 'VINICIUS JR.
@@ -91549,6 +91557,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3361798408393907888, guid: 2ce12bcfcf857a9449c39fd5c38e342f, type: 3}
+    - {fileID: 2460113372201492822, guid: 2ce12bcfcf857a9449c39fd5c38e342f, type: 3}
+    - {fileID: 3848270791084968387, guid: 2ce12bcfcf857a9449c39fd5c38e342f, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7717640653903282213, guid: 2ce12bcfcf857a9449c39fd5c38e342f, type: 3}
       insertIndex: 3
