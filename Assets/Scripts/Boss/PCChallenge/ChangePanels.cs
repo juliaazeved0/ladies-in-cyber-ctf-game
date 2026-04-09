@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using BashTerminal; // RESOLVE O ERRO CS0103: Permite acessar a classe TerminalBoss
 
 public class ChangePanels : MonoBehaviour
 {
-    [Header("Pain�is")] //Gerenciador de paineis no Inspector
+    [Header("Painéis")] 
     public GameObject desktopBackground;
     public GameObject panelNotes;
     public GameObject panelSteghideError;
@@ -14,129 +15,94 @@ public class ChangePanels : MonoBehaviour
     public GameObject panelSuccessFlag;
 
     [Header("Referencias Externas")]
-    public Button steghideButton; //Apenas para setar o bot�o principal do desafio
+    public Button steghideButton; 
 
-    //Fun��es que ativam ou desativam paineis
+    // --- PAINEL DE NOTAS ---
     public void AbrirPanelNotes()
     {
-        if(panelNotes != null)
-        {
-            panelNotes.SetActive(true);
-        }
+        if(panelNotes != null) panelNotes.SetActive(true);
     }
 
     public void FecharPanelNotes()
     {
-        if(panelNotes != null)
-        {
-            panelNotes.SetActive(false);
-        }
+        if(panelNotes != null) panelNotes.SetActive(false);
     }
 
+    // --- PAINEL DE ERRO DO STEGHIDE ---
     public void AbrirPanelSteghideError()
     {
-        if(panelSteghideError != null)
-        {
-            panelSteghideError.SetActive(true);
-        }
+        if(panelSteghideError != null) panelSteghideError.SetActive(true);
     }
 
     public void FecharPanelSteghideError()
     {
-        if(panelSteghideError != null)
-        {
-            panelSteghideError.SetActive(false);
-        }
+        if(panelSteghideError != null) panelSteghideError.SetActive(false);
     }
 
+    // --- PAINEL DA PRAIA (SUCESSO STEGHIDE) ---
     public void AbrirPanelSteghideBeach()
     {
         if(panelSteghideBeach != null)
         {
+            // Seta a flag como resolvida caso venha de outra fonte
+            TerminalBoss.challengeSolved = true; 
             panelSteghideBeach.SetActive(true);
 
-            if (panelSteghideError == null) panelSteghideError.SetActive(false);
+            // Se o painel de erro estiver aberto, ele fecha ao abrir o de sucesso
+            if (panelSteghideError != null) panelSteghideError.SetActive(false);
         }
     }
 
     public void FecharPanelSteghideBeach()
     {
-        if(panelSteghideBeach != null)
-        {
-            panelSteghideBeach .SetActive(false);
-        }
+        if(panelSteghideBeach != null) panelSteghideBeach.SetActive(false);
     }
 
+    // --- PAINEL DE METADADOS ---
     public void AbrirPanelMetadadaInfo()
     {
-        if(panelMetadataInfo != null)
-        {
-            panelMetadataInfo.SetActive(true);
-        }
+        if(panelMetadataInfo != null) panelMetadataInfo.SetActive(true);
     }
 
     public void FecharPanelMetadadaInfo()
     {
-        if (panelMetadataInfo != null)
-        {
-            panelMetadataInfo.SetActive(false);
-        }
+        if (panelMetadataInfo != null) panelMetadataInfo.SetActive(false);
     }
 
+    // --- PAINEL DA FLAG FINAL ---
     public void AbrirPanelSuccessFlag()
     {
         if(panelSuccessFlag != null)
         {
             panelSuccessFlag.SetActive(true);
 
-            // Salva a flag do BOSS
-            string newFlag = SafeBase.ViewBase(SafeBase.flag_8);
-            FlagManager.Instance.SaveFlag("BOSS", newFlag);
+            // Salva a flag do BOSS usando o sistema de Base64
+            if (FlagManager.Instance != null)
+            {
+                string newFlag = SafeBase.ViewBase(SafeBase.flag_8);
+                FlagManager.Instance.SaveFlag("BOSS", newFlag);
+            }
         }
     }
 
     public void FecharPanelSuccessFlag()
     {
-        if(panelSuccessFlag != null)
-        {
-            panelSuccessFlag.SetActive(false);
-        }
+        if(panelSuccessFlag != null) panelSuccessFlag.SetActive(false);
     }
 
-    //Executa para salvar a flag
-    //public void OnClickButtonFlag()
-    //{
-    //    // 1. Verifica o painel (preven��o contra esquecimento no Inspector)
-    //    if (panelSuccessFlag != null)
-    //    {
-    //        panelSuccessFlag.SetActive(true);
-    //    }
-
-    //    // 2. Verifica se o FlagManager existe antes de tentar salvar
-    //    if (FlagManager.Instance != null)
-    //    {
-    //        string newFlag = SafeBase.ViewBase(SafeBase.flag_8);
-    //        FlagManager.Instance.SaveFlag(newFlag);
-    //    }
-    //    else
-    //    {
-    //        // Isso vai te avisar no Console se o FlagManager sumiu da cena
-    //        Debug.LogError("ERRO: FlagManager n�o encontrado na cena! Certifique-se de que o objeto do FlagManager existe.");
-    //    }
-    //}
-
-    //Esse m�todo foi vinculado no bot�o do Steghide da �rea de trabalho
+    // --- LÓGICA DO BOTÃO STEGHIDE NA DESKTOP ---
     public void AoClicarNoBotaoSteghide()
     {
-        if(AbrirTerminalBoss.challengeSolved == false) //A jogadora ainda n�o terminou o desafio no terminal
+        // Verifica a variável static do script TerminalBoss
+        if(TerminalBoss.challengeSolved == false) 
         {
-            AbrirPanelSteghideError(); //Abre o painel de erro
+            // A jogadora ainda não moveu o arquivo no terminal
+            AbrirPanelSteghideError(); 
         }
-        else //Se o arquivo "boss_resolvido.txt" foi detectado anteriormente
+        else 
         {
-            AbrirPanelSteghideBeach(); //Se j� resolveu o desafio no terminal, abre o painel de metadados
-
-            if(panelSteghideError != null) panelSteghideError.SetActive(false); //Garante que o painel de erro feche se ele estiver aberto
+            // O arquivo foi movido com sucesso no terminal, libera o acesso
+            AbrirPanelSteghideBeach(); 
         }
     }
 }

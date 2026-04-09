@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 85022338}
   - component: {fileID: 85022337}
   m_Layer: 5
-  m_Name: Arrow_Keyboard_Icon
+  m_Name: ArrowKeyboardIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 104032152}
   - component: {fileID: 104032151}
   m_Layer: 5
-  m_Name: Flag_Icon
+  m_Name: FlagIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -232,7 +232,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -606.24, y: -212.9}
+  m_AnchoredPosition: {x: -595, y: -212.9}
   m_SizeDelta: {x: 282.6359, y: 254.1897}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &104032151
@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 226801212}
   - component: {fileID: 226801211}
   m_Layer: 5
-  m_Name: Text
+  m_Name: TitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -548,7 +548,7 @@ GameObject:
   - component: {fileID: 320319035}
   - component: {fileID: 320319034}
   m_Layer: 5
-  m_Name: Arrow_Icon
+  m_Name: ArrowIcon02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -623,7 +623,7 @@ GameObject:
   - component: {fileID: 322121324}
   - component: {fileID: 322121323}
   m_Layer: 5
-  m_Name: Text
+  m_Name: BodyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -757,7 +757,7 @@ GameObject:
   - component: {fileID: 345881151}
   - component: {fileID: 345881150}
   m_Layer: 5
-  m_Name: Background_2
+  m_Name: BallsBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -833,7 +833,7 @@ GameObject:
   - component: {fileID: 357920007}
   - component: {fileID: 357920006}
   m_Layer: 5
-  m_Name: Keyboard_Icon
+  m_Name: Keyboardcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -909,7 +909,7 @@ GameObject:
   - component: {fileID: 380455381}
   - component: {fileID: 380455380}
   m_Layer: 5
-  m_Name: Background_3
+  m_Name: RayBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -984,7 +984,7 @@ GameObject:
   - component: {fileID: 481996942}
   - component: {fileID: 481996941}
   m_Layer: 5
-  m_Name: Arrow_Icon
+  m_Name: ArrowIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1568,7 +1568,7 @@ GameObject:
   - component: {fileID: 758143881}
   - component: {fileID: 758143880}
   m_Layer: 5
-  m_Name: Text
+  m_Name: BodyText02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1778,7 +1778,7 @@ GameObject:
   - component: {fileID: 858578864}
   - component: {fileID: 858578863}
   m_Layer: 5
-  m_Name: Text
+  m_Name: FlagButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1912,7 +1912,7 @@ GameObject:
   - component: {fileID: 951964326}
   - component: {fileID: 951964325}
   m_Layer: 5
-  m_Name: Backpack_Icon
+  m_Name: BackpackIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1934,8 +1934,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -597.3, y: -35.5}
-  m_SizeDelta: {x: 343.76, y: 200.0512}
+  m_AnchoredPosition: {x: -605, y: -45}
+  m_SizeDelta: {x: 390.4868, y: 238.1704}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &951964325
 MonoBehaviour:
@@ -1987,7 +1987,7 @@ GameObject:
   - component: {fileID: 952692350}
   - component: {fileID: 952692349}
   m_Layer: 5
-  m_Name: Panel_Tutorial_01
+  m_Name: TutorialPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2070,7 +2070,7 @@ GameObject:
   - component: {fileID: 958893575}
   - component: {fileID: 958893574}
   m_Layer: 5
-  m_Name: Arrow_Icon
+  m_Name: ArrowIcon03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2092,7 +2092,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -458.6, y: -171.6}
+  m_AnchoredPosition: {x: -468, y: -188}
   m_SizeDelta: {x: 224.98389, y: 141.45679}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &958893574
@@ -2145,7 +2145,7 @@ GameObject:
   - component: {fileID: 962661212}
   - component: {fileID: 962661211}
   m_Layer: 5
-  m_Name: Text
+  m_Name: AuxiliaryText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2279,7 +2279,7 @@ GameObject:
   - component: {fileID: 1116432165}
   - component: {fileID: 1116432164}
   m_Layer: 5
-  m_Name: Text
+  m_Name: AuxiliaryText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2413,7 +2413,7 @@ GameObject:
   - component: {fileID: 1216573203}
   - component: {fileID: 1216573202}
   m_Layer: 5
-  m_Name: Playbook_Icon
+  m_Name: PlaybookIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2435,7 +2435,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -593.5, y: 91.8}
+  m_AnchoredPosition: {x: -607, y: 91.8}
   m_SizeDelta: {x: 337.9355, y: 195.26}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1216573202
@@ -2488,7 +2488,7 @@ GameObject:
   - component: {fileID: 1312157067}
   - component: {fileID: 1312157066}
   m_Layer: 5
-  m_Name: Text
+  m_Name: PlaybookText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2623,7 +2623,7 @@ GameObject:
   - component: {fileID: 1322247189}
   - component: {fileID: 1322247188}
   m_Layer: 5
-  m_Name: Arrow_Icon
+  m_Name: ArrowIcon02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2645,7 +2645,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -458.6, y: -7.7}
+  m_AnchoredPosition: {x: -467, y: -43}
   m_SizeDelta: {x: 224.98389, y: 141.45679}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1322247188
@@ -2699,7 +2699,7 @@ GameObject:
   - component: {fileID: 1333927022}
   - component: {fileID: 1333927021}
   m_Layer: 5
-  m_Name: Next_02
+  m_Name: Return
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2830,7 +2830,7 @@ GameObject:
   - component: {fileID: 1413010424}
   - component: {fileID: 1413010423}
   m_Layer: 5
-  m_Name: Text
+  m_Name: AuxiliaryText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2964,7 +2964,7 @@ GameObject:
   - component: {fileID: 1477842981}
   - component: {fileID: 1477842980}
   m_Layer: 5
-  m_Name: Panel_Tutorial_02
+  m_Name: TutorialPanel02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3050,7 +3050,7 @@ GameObject:
   - component: {fileID: 1581347014}
   - component: {fileID: 1581347013}
   m_Layer: 5
-  m_Name: Text
+  m_Name: FlagTextBag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3231,7 +3231,7 @@ GameObject:
   - component: {fileID: 1647086854}
   - component: {fileID: 1647086853}
   m_Layer: 5
-  m_Name: E_Key
+  m_Name: EKey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3307,7 +3307,7 @@ GameObject:
   - component: {fileID: 1732780326}
   - component: {fileID: 1732780325}
   m_Layer: 5
-  m_Name: Text
+  m_Name: TitleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3441,7 +3441,7 @@ GameObject:
   - component: {fileID: 1971381178}
   - component: {fileID: 1971381177}
   m_Layer: 5
-  m_Name: Arrow_Icon
+  m_Name: ArrowIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3463,7 +3463,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -454.7, y: 132.2}
+  m_AnchoredPosition: {x: -467, y: 103}
   m_SizeDelta: {x: 224.98389, y: 141.45679}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1971381177
