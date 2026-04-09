@@ -1161,6 +1161,7 @@ MonoBehaviour:
   textObjective: {fileID: 1780543530}
   textFlag: {fileID: 2077382192}
   flagButton: {fileID: 293640376}
+  promptKey: {fileID: 2042303211}
 --- !u!4 &1354528825
 Transform:
   m_ObjectHideFlags: 0
@@ -1596,7 +1597,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 776.6, y: 449.9}
+  m_AnchoredPosition: {x: 788, y: 449.9}
   m_SizeDelta: {x: 1918.3, y: 1081}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1926070272
@@ -1741,7 +1742,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 776.6, y: 449.9}
+  m_AnchoredPosition: {x: 788, y: 449.9}
   m_SizeDelta: {x: 1918.3, y: 1081}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &2042303213
