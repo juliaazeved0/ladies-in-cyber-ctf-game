@@ -3657,7 +3657,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1870593159}
         m_TargetAssemblyTypeName: ChangePanels, Assembly-CSharp
-        m_MethodName: FecharPanelNotes
+        m_MethodName: AbrirPanelNotes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3898,7 +3898,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!1 &735928622
 GameObject:
@@ -4824,7 +4824,7 @@ PrefabInstance:
     - target: {fileID: 7441800840749679756, guid: 1a144026e8b11c34a9d73930bc3d035e, type: 3}
       propertyPath: allPanels.Array.data[9]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1308891032}
     - target: {fileID: 7441800840749679756, guid: 1a144026e8b11c34a9d73930bc3d035e, type: 3}
       propertyPath: allPanels.Array.data[10]
       value: 
@@ -5047,7 +5047,6 @@ Transform:
   - {fileID: 1278719199}
   - {fileID: 101323900}
   - {fileID: 1870593158}
-  - {fileID: 2083914190}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &903441949
@@ -7109,7 +7108,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!1 &1281589206
 GameObject:
@@ -11773,52 +11772,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2076915323}
   m_CullTransparentMesh: 1
---- !u!1 &2083914189
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2083914190}
-  - component: {fileID: 2083914191}
-  m_Layer: 0
-  m_Name: TerminalManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2083914190
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2083914189}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1142.9634, y: 584.9328, z: -5.0806623}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 866740472}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2083914191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2083914189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 952135f37987c6149aa3fbcc0ba8f222, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  steghideButton: {fileID: 0}
-  terminalSuccessPopup: {fileID: 0}
 --- !u!1 &2108938032
 GameObject:
   m_ObjectHideFlags: 0

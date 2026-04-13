@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement; // Adicionado para detectar mudança de cena
+using UnityEngine.SceneManagement;
 
 public class CanvasManager : MonoBehaviour
 {
@@ -19,37 +19,41 @@ public class CanvasManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            // Inscreve no evento de carregamento de cena para limpar painéis mortos
+            
             SceneManager.sceneLoaded += OnSceneLoaded;
+            
+            // CORREÇÃO: Inicia o minimapa ATIVADO (true)
+            ToggleMiniMap(true); 
         }
         else
         {
-            // Se já existe um, mas este novo tem painéis (é o prefab da cena do Boss)
-            // nós passamos os painéis dele para a instância principal antes de destruí-lo
+            // Transfere painéis para a instância persistente
             Instance.UpdatePanels(this.allPanels, this.miniMapContainer);
             Destroy(gameObject);
             return;
         }
         
         ClosedAllPanels();
+        
+        // CORREÇÃO: Garante que após fechar os painéis, o minimapa continue ATIVADO
+        ToggleMiniMap(true);
     }
 
     private void OnDestroy()
     {
-        // Limpeza de evento (boa prática)
         if (Instance == this)
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
     }
 
-    // Chamado sempre que uma nova cena carrega
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         RemoveDestroyedPanels();
+        // Opcional: Garante que o minimapa ligue ao carregar qualquer cena nova
+        ToggleMiniMap(true); 
     }
 
-    // Atualiza as referências quando um novo prefab de CanvasManager aparece em outra cena
     public void UpdatePanels(List<GameObject> newPanels, GameObject newMinimap)
     {
         allPanels.Clear();
@@ -61,6 +65,9 @@ public class CanvasManager : MonoBehaviour
         if (newMinimap != null) miniMapContainer = newMinimap;
         
         ClosedAllPanels();
+        
+        // CORREÇÃO: Ativa o minimapa quando as referências são atualizadas (ex: entrada na sala do Boss)
+        ToggleMiniMap(true);
     }
 
     private void RemoveDestroyedPanels()
@@ -72,7 +79,6 @@ public class CanvasManager : MonoBehaviour
     {
         foreach (GameObject panel in allPanels)
         {
-            // Verificação de nulidade adicionada aqui para evitar o MissingReferenceException
             if (panel != null)
             {
                 panel.SetActive(false);
@@ -86,7 +92,6 @@ public class CanvasManager : MonoBehaviour
 
         foreach (GameObject panel in allPanels)
         {
-            // Verificação de segurança: se o objeto foi destruído, ignora
             if (panel != null && panel.name == panelName)
             {
                 panel.SetActive(true);

@@ -5,15 +5,14 @@ using UnityEngine;
 public class ObjectInteractionBoss : MonoBehaviour
 {
     [Header("Settings object interactable")]
-    protected bool playerIsHere; 
-    public GameObject interactionNotice; 
-    public GameObject challengePanel; 
+    protected bool playerIsHere;
+    public GameObject interactionNotice;
+    public GameObject challengePanel;
 
     protected void Start()
     {
         if (interactionNotice != null) interactionNotice.SetActive(false);
-        
-        // Debug para verificar o estado ao iniciar a cena do Boss
+
         Debug.Log($"[ObjectInteractionBoss] Cena iniciada. Diálogo finalizado: {DialogueManagerBoss.dialogueBossFinished}");
     }
 
@@ -37,30 +36,43 @@ public class ObjectInteractionBoss : MonoBehaviour
 
     protected virtual void Update()
     {
-        // 1. Se o painel estiver aberto, mantém o aviso desligado
-        if (challengePanel != null && challengePanel.activeSelf)
+        // 1. Se qualquer painel de UI estiver aberto, bloqueia toda interação com E
+        //    Isso cobre: challengePanel, terminalPanel, panelNotes, steg, etc.
+        if (IsAnyPanelOpen())
         {
             if (interactionNotice != null && interactionNotice.activeSelf)
                 interactionNotice.SetActive(false);
-            return; 
+            return;
         }
 
-        // 2. Atualiza o aviso caso o diálogo termine enquanto o player está parado no collider
+        // 2. Atualiza o aviso caso o diálogo termine enquanto o player está no collider
         UpdateInteractionNotice();
 
-        // 3. Interação
+        // 3. Interação com tecla E
         if (playerIsHere && Input.GetKeyDown(KeyCode.E))
         {
-            // Verificação dupla: o diálogo terminou?
             if (DialogueManagerBoss.dialogueBossFinished)
             {
                 Interact();
             }
             else
             {
-                Debug.LogWarning("Tentativa de interagir com o PC antes de terminar o diálogo com o Boss.");
+                Debug.LogWarning("[ObjectInteractionBoss] Tentativa de interagir com o PC antes de terminar o diálogo com o Boss.");
             }
         }
+    }
+
+    // Retorna true se qualquer painel registrado no CanvasManager estiver ativo.
+    // Cobre challengePanel, terminalPanel e qualquer outro painel de desafio.
+    private bool IsAnyPanelOpen()
+    {
+        if (CanvasManager.Instance == null) return false;
+
+        foreach (GameObject panel in CanvasManager.Instance.allPanels)
+        {
+            if (panel != null && panel.activeSelf) return true;
+        }
+        return false;
     }
 
     private void UpdateInteractionNotice()
@@ -80,11 +92,11 @@ public class ObjectInteractionBoss : MonoBehaviour
         {
             CanvasManager.Instance.ToggleMiniMap(false);
             CanvasManager.Instance.OpenPanel(challengePanel.name);
-            Debug.Log($"Abrindo painel: {challengePanel.name}");
+            Debug.Log($"[ObjectInteractionBoss] Abrindo painel: {challengePanel.name}");
         }
         else
         {
-            Debug.LogError("ERRO: CanvasManager.Instance não encontrado! Verifique se o CanvasManager está na cena ou se é um DontDestroyOnLoad.");
+            Debug.LogError("[ObjectInteractionBoss] ERRO: CanvasManager.Instance não encontrado!");
         }
     }
 }

@@ -74,7 +74,7 @@ namespace BashTerminal
 
         protected override string GetHelpText()
         {
-            return "Comandos: ls, cd, mv, cat, clear, exit";
+            return "Comandos: ls, cd, mv, cat, clear, exit, cd..";
         }
 
         // ── ls override: mirror the shell script's dynamic state ──────────────

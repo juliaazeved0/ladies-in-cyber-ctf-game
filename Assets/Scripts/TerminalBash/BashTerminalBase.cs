@@ -42,14 +42,14 @@ namespace BashTerminal
 
         public void OpenTerminal()
         {
-            // No script do Terminal, certifique-se de que isso aconteça ao abrir:
-            inputField.ActivateInputField();
             if (terminalPanel == null) return;
+            
             terminalPanel.SetActive(true);
             isOpen = true;
             currentDirectory = HomeDirectory;
             outputBuffer.Clear();
             SetupFilesystem();
+            
             string welcome = GetWelcomeMessage();
             if (!string.IsNullOrEmpty(welcome)) AppendLine(welcome);
             
@@ -57,7 +57,6 @@ namespace BashTerminal
             inputField.onSubmit.RemoveAllListeners();
             inputField.onSubmit.AddListener(HandleInput);
             
-            // Inicializa com o prompt vazio se necessário ou apenas foca
             RefreshOutput();
             StartCoroutine(FocusNextFrame());
         }
@@ -93,7 +92,11 @@ namespace BashTerminal
         private IEnumerator FocusNextFrame()
         {
             yield return new WaitForSecondsRealtime(0.05f);
-            if (inputField != null) { inputField.ActivateInputField(); inputField.Select(); }
+            if (inputField != null) 
+            { 
+                inputField.ActivateInputField(); 
+                inputField.Select(); 
+            }
         }
 
         protected string GetDisplayPath()
@@ -102,33 +105,29 @@ namespace BashTerminal
             return currentDirectory.Replace(HomeDirectory, "~");
         }
 
-        // --- LÓGICA DE INPUT CORRIGIDA ---
         protected void HandleInput(string input)
         {
             if (!isOpen) return;
 
-            input = input.Trim();
+            string trimmedInput = input.Trim();
             
-            // Adiciona o comando digitado ao histórico com o estilo de prompt do Linux
-            outputBuffer.AppendLine($"<color=#55FF55>{User}@{Hostname}</color>:<color=#5599FF>{GetDisplayPath()}</color>$ {input}");
+            // Renderiza o prompt no histórico antes de processar
+            outputBuffer.AppendLine($"<color=#55FF55>{User}@{Hostname}</color>:<color=#5599FF>{GetDisplayPath()}</color>$ {trimmedInput}");
 
-            if (!string.IsNullOrEmpty(input))
-                ProcessCommand(input);
+            if (!string.IsNullOrEmpty(trimmedInput))
+                ProcessCommand(trimmedInput);
 
             RefreshOutput();
             inputField.text = "";
+            inputField.ActivateInputField(); // Mantém o foco após o Enter
             StartCoroutine(FocusNextFrame());
-        }
-
-        protected void AppendPrompt() 
-        { 
-            // Vazio, pois o HandleInput agora cuida de renderizar o prompt no histórico
         }
 
         protected virtual void ProcessCommand(string fullCommand)
         {
             string[] tokens = fullCommand.Split(new char[] { ' ' }, System.StringSplitOptions.RemoveEmptyEntries);
             if (tokens.Length == 0) return;
+            
             string cmd = tokens[0];
             string[] args = tokens.Skip(1).ToArray();
 
@@ -138,6 +137,7 @@ namespace BashTerminal
             {
                 case "ls": AppendLine(ExecuteLs(args)); break;
                 case "cd": ExecuteCd(args); break;
+                case "pwd": AppendLine(currentDirectory); break;
                 case "cat": AppendLine(ExecuteCat(args)); break;
                 case "clear": outputBuffer.Clear(); break;
                 case "help": AppendLine(GetHelpText()); break;
@@ -153,6 +153,7 @@ namespace BashTerminal
         {
             bool showHidden = args.Any(a => a.Contains("a"));
             bool longFormat = args.Any(a => a.Contains("l"));
+            
             var contents = files.Keys.Concat(directories)
                 .Where(p => p.StartsWith(currentDirectory) && p != currentDirectory)
                 .Select(p => p.Substring(currentDirectory.Length).TrimStart('/'))
@@ -189,22 +190,63 @@ namespace BashTerminal
 
         protected void ExecuteCd(string[] args)
         {
-            if (args.Length == 0) { currentDirectory = HomeDirectory; return; }
-            string target = currentDirectory + "/" + args[0];
-            if (directories.Contains(target)) currentDirectory = target;
-            else AppendLine("cd: diretorio nao encontrado.");
+            if (args.Length == 0 || args[0] == "~") 
+            { 
+                currentDirectory = HomeDirectory; 
+                return; 
+            }
+
+            string targetArg = args[0];
+
+            // Lógica para voltar diretório (cd ..)
+            if (targetArg == "..")
+            {
+                if (currentDirectory == "/" || currentDirectory == HomeDirectory && currentDirectory.Length <= 1)
+                {
+                    return; // Já está na raiz
+                }
+
+                int lastSlash = currentDirectory.LastIndexOf('/');
+                if (lastSlash > 0)
+                {
+                    currentDirectory = currentDirectory.Substring(0, lastSlash);
+                }
+                else
+                {
+                    currentDirectory = "/";
+                }
+                return;
+            }
+
+            // Lógica para entrar em diretório
+            string separator = currentDirectory.EndsWith("/") ? "" : "/";
+            string targetPath = currentDirectory + separator + targetArg;
+
+            if (directories.Contains(targetPath)) 
+            {
+                currentDirectory = targetPath;
+            }
+            else 
+            {
+                AppendLine($"bash: cd: {targetArg}: No such file or directory");
+            }
         }
 
         protected string ExecuteCat(string[] args)
         {
             if (args.Length == 0) return "cat: missing operand";
-            string path = currentDirectory + "/" + args[0];
+            
+            string separator = currentDirectory.EndsWith("/") ? "" : "/";
+            string path = currentDirectory + separator + args[0];
+            
             string intercepted = OnCatFile(path, args[0]);
             if (intercepted != null) return intercepted;
+            
             return files.ContainsKey(path) ? files[path] : "cat: arquivo nao encontrado.";
         }
 
         protected void AddDirectory(string path) => directories.Add(path);
+        
         protected void AddFile(string path, string content, string ownerGroup = null)
         {
             files[path] = content;
