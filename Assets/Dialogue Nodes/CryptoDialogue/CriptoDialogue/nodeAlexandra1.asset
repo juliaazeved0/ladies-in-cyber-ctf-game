@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37288b8cc8a1b8c4a934c05d643fec5f, type: 3}
-  m_Name: node01ViniPai
+  m_Name: nodeAlexandra1
   m_EditorClassIdentifier: 
-  talkNPC: "Algu\xE9m viu minha caneca do Star Wars? Eu n\xE3o consigo configurar
-    esse firewall sem cafe\xEDna no sangue. Se acharem, n\xE3o lavem, tira o gosto!"
-  nextNode: {fileID: 0}
-  characterNPC: {fileID: 21300000, guid: c146b557e94e0324e9acbc141ae41290, type: 3}
+  talkNPC: "Ol\xE1, poderia me ajudar a acessar o computador da minha colega Julia?"
+  nextNode: {fileID: 11400000, guid: 14b1c6fcd5c854b47ac829095ddfc724, type: 2}
+  characterNPC: {fileID: 159176775, guid: 7b895494c7b2e574bb624809ca7067e2, type: 3}

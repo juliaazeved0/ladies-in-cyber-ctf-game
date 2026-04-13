@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37288b8cc8a1b8c4a934c05d643fec5f, type: 3}
-  m_Name: node01ViniJr
+  m_Name: nodeViniJr1
   m_EditorClassIdentifier: 
   talkNPC: "E-eai? Beleza? Cara, aquele PC compartilhado ali do canto t\xE1... uh...
     atualizando o Windows. \xC9, isso mesmo. Melhor nem mexer nele agora, sabe como
