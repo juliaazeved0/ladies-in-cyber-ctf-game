@@ -30,6 +30,7 @@ public class ValidatePassword : MonoBehaviour
         if(taskbarPanel != null) taskbarPanel.SetActive(false); //Painel da area de trabalho comece desativado
         passwordField.ActivateInputField(); //Faz com que o cursos j� apare�a piscando dentro do Input Field, sem o jogador precisar clicar
         panelCaptureFlag.SetActive(false);
+        CanvasManager.Instance.ToggleMiniMap(true);
     }
 
     public void CheckPassword()
@@ -77,14 +78,31 @@ public class ValidatePassword : MonoBehaviour
         }
     }
 
-    public void ExitChallenge(){
-        if (finalPanel.activeSelf)
-        {
-            CanvasManager.Instance.ClosedPanel(finalPanel.name);
-            CanvasManager.Instance.ClosedPanel(loginPanel.name);
+    public void ExitChallenge()
+    {
+        // 1. Fecha os painéis internos deste script manualmente para garantir
+        if (loginPanel != null) loginPanel.SetActive(false);
+        if (taskbarPanel != null) taskbarPanel.SetActive(false);
+        if (finalPanel != null) finalPanel.SetActive(false);
+        if (panelCaptureFlag != null) panelCaptureFlag.SetActive(false);
+        if (whatsappWindow != null) whatsappWindow.SetActive(false);
 
+        // 2. Avisa ao CanvasManager para fechar o container principal (se houver um)
+        // Normalmente o 'loginPanel' ou um 'Parent' deles é o que está na lista do CanvasManager
+        if (CanvasManager.Instance != null)
+        {
+            // Usamos o nome do painel que você registrou no CanvasManager
+            // Se o loginPanel for o objeto principal do desafio no CanvasManager:
+            CanvasManager.Instance.ClosedPanel(loginPanel.name);
+            
+            // Se houver um painel de fundo ou um "ChallengePanel" genérico, feche-o aqui também:
+            // CanvasManager.Instance.ClosedPanel("NomeDoSeuPainelPrincipal");
+
+            CanvasManager.Instance.ToggleMiniMap(true); // Reabre o minimapa
         }
-        CanvasManager.Instance.ClosedPanel(loginPanel.name);
+
+        // 3. Reativa o script de interação para que o player possa abrir o PC de novo
+        if (interactionScript != null) interactionScript.enabled = true;
     }
 
     public void OpenFinalPanel()

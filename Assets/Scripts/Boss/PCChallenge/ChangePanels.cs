@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using BashTerminal; // RESOLVE O ERRO CS0103: Permite acessar a classe TerminalBoss
+using BashTerminal;
 
 public class ChangePanels : MonoBehaviour
 {
@@ -15,53 +15,65 @@ public class ChangePanels : MonoBehaviour
     public GameObject panelSuccessFlag;
 
     [Header("Referencias Externas")]
-    public Button steghideButton; 
+    public Button steghideButton;
+
+    // Fecha todos os sub-painéis do desktop sem afetar o painel pai (challengePanel).
+    // Nunca use CanvasManager.OpenPanel aqui — ele fecha TODOS os painéis da cena,
+    // incluindo o challengePanel, que é pai destes sub-painéis.
+    private void FecharTodosOsSubPaineis()
+    {
+        if (panelNotes != null)         panelNotes.SetActive(false);
+        if (panelSteghideError != null) panelSteghideError.SetActive(false);
+        if (panelSteghideBeach != null) panelSteghideBeach.SetActive(false);
+        if (panelMetadataInfo != null)  panelMetadataInfo.SetActive(false);
+        if (panelSuccessFlag != null)   panelSuccessFlag.SetActive(false);
+    }
 
     // --- PAINEL DE NOTAS ---
     public void AbrirPanelNotes()
     {
-        if(panelNotes != null) panelNotes.SetActive(true);
+        FecharTodosOsSubPaineis();
+        if (panelNotes != null) panelNotes.SetActive(true);
     }
 
     public void FecharPanelNotes()
     {
-        if(panelNotes != null) panelNotes.SetActive(false);
+        if (panelNotes != null) panelNotes.SetActive(false);
     }
 
     // --- PAINEL DE ERRO DO STEGHIDE ---
     public void AbrirPanelSteghideError()
     {
-        if(panelSteghideError != null) panelSteghideError.SetActive(true);
+        FecharTodosOsSubPaineis();
+        if (panelSteghideError != null) panelSteghideError.SetActive(true);
     }
 
     public void FecharPanelSteghideError()
     {
-        if(panelSteghideError != null) panelSteghideError.SetActive(false);
+        if (panelSteghideError != null) panelSteghideError.SetActive(false);
     }
 
     // --- PAINEL DA PRAIA (SUCESSO STEGHIDE) ---
     public void AbrirPanelSteghideBeach()
     {
-        if(panelSteghideBeach != null)
+        FecharTodosOsSubPaineis();
+        if (panelSteghideBeach != null)
         {
-            // Seta a flag como resolvida caso venha de outra fonte
-            TerminalBoss.challengeSolved = true; 
+            TerminalBoss.challengeSolved = true;
             panelSteghideBeach.SetActive(true);
-
-            // Se o painel de erro estiver aberto, ele fecha ao abrir o de sucesso
-            if (panelSteghideError != null) panelSteghideError.SetActive(false);
         }
     }
 
     public void FecharPanelSteghideBeach()
     {
-        if(panelSteghideBeach != null) panelSteghideBeach.SetActive(false);
+        if (panelSteghideBeach != null) panelSteghideBeach.SetActive(false);
     }
 
     // --- PAINEL DE METADADOS ---
     public void AbrirPanelMetadadaInfo()
     {
-        if(panelMetadataInfo != null) panelMetadataInfo.SetActive(true);
+        FecharTodosOsSubPaineis();
+        if (panelMetadataInfo != null) panelMetadataInfo.SetActive(true);
     }
 
     public void FecharPanelMetadadaInfo()
@@ -72,11 +84,11 @@ public class ChangePanels : MonoBehaviour
     // --- PAINEL DA FLAG FINAL ---
     public void AbrirPanelSuccessFlag()
     {
-        if(panelSuccessFlag != null)
+        FecharTodosOsSubPaineis();
+        if (panelSuccessFlag != null)
         {
             panelSuccessFlag.SetActive(true);
 
-            // Salva a flag do BOSS usando o sistema de Base64
             if (FlagManager.Instance != null)
             {
                 string newFlag = SafeBase.ViewBase(SafeBase.flag_8);
@@ -87,22 +99,26 @@ public class ChangePanels : MonoBehaviour
 
     public void FecharPanelSuccessFlag()
     {
-        if(panelSuccessFlag != null) panelSuccessFlag.SetActive(false);
+        // 1. Fecha o painel de sucesso da flag
+        if (panelSuccessFlag != null) panelSuccessFlag.SetActive(false);
+
+        // 2. Fecha todo o desafio do boss (challengePanel e seus filhos)
+        if (CanvasManager.Instance != null) CanvasManager.Instance.ClosedAllPanels();
+
+        // 3. Abre a bolsa de flags com o aviso de última chance antes dos créditos
+        if (InventoryManager.Instance != null) InventoryManager.Instance.AbrirBolsaFinalizacaoBoss();
     }
 
     // --- LÓGICA DO BOTÃO STEGHIDE NA DESKTOP ---
     public void AoClicarNoBotaoSteghide()
     {
-        // Verifica a variável static do script TerminalBoss
-        if(TerminalBoss.challengeSolved == false) 
+        if (TerminalBoss.challengeSolved == false)
         {
-            // A jogadora ainda não moveu o arquivo no terminal
-            AbrirPanelSteghideError(); 
+            AbrirPanelSteghideError();
         }
-        else 
+        else
         {
-            // O arquivo foi movido com sucesso no terminal, libera o acesso
-            AbrirPanelSteghideBeach(); 
+            AbrirPanelSteghideBeach();
         }
     }
 }
