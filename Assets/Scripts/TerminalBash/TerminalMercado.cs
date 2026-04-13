@@ -1,20 +1,21 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace BashTerminal
 {
-    /// <summary>
-    /// WebGL terminal for the "Mercado Escondido" challenge.
+    ///<summary>
+    ///WebGL terminal for the "Mercado Escondido" challenge.
     ///
-    /// Simulates Luiz's workstation (hidrogenio-pc).
-    /// Victory: navigate to ~/.backup/.old/.cache and run  cat notas.txt
+    ///Simulates Luiz's workstation (hidrogenio-pc).
+    ///Victory: navigate to ~/.backup/.old/.cache and run  cat notas.txt
     ///
-    /// Unity setup:
-    ///   - Attach this component to a GameObject in the Mercado challenge scene.
-    ///   - Wire terminalPanel / outputText / inputField in the Inspector.
-    ///   - Wire popUpSucesso and popCaptureFlag se usar.
-    ///   - Hook the button OnClick -> OnClickTerminalMercado()
-    ///   - Hook the close button OnClick -> CloseTerminal()
-    /// </summary>
+    ///Unity setup:
+    ///- Attach this component to a GameObject in the Mercado challenge scene.
+    ///- Wire terminalPanel / outputText / inputField in the Inspector.
+    ///- Wire popUpSucesso and popCaptureFlag se usar.
+    /// - Hook the button OnClick -> OnClickTerminalMercado()
+    /// - Hook the close button OnClick -> CloseTerminal()
+    ///</summary>
     public class TerminalMercado : BashTerminalBase
     {
         [Header("Desafio Mercado")]
@@ -103,6 +104,44 @@ namespace BashTerminal
 
             if (popCaptureFlag != null)
                 popCaptureFlag.SetActive(true);
+        }
+
+        protected override bool ExecuteSpecialCommand(string cmd, string[] args, string fullCommand)
+        {
+            //Detecta se o comando eh "cd" e se o argumento eh ".."
+            if(cmd == "cd" && args.Length > 0 && args[0] == "..")
+            {
+                //Se ja estiver no Home, nao deixa voltar mais (para nao quebrar o desafio)
+                if(currentDirectory == HomeDirectory)
+                {
+                    AppendLine("bash: cd: ja esta no diretorio home.");
+                }
+                else
+                {
+                    //Logica para subir um nivel no caminho de texto
+                    //Exemplo: /home/Luiz/.backuo -> /home/Luiz
+                    int lastSlash = currentDirectory.LastIndexOf('/');
+                    if(lastSlash > 0)
+                    {
+                        string newPath = currentDirectory.Substring(0, lastSlash);
+
+                        //Verifica se o novo caminho existe no sistema de arquivos
+                        if (directories.Contains(newPath))
+                        {
+                            currentDirectory = newPath;
+                            //AppendLine(""); //Pula linha para indicar sucesso
+                        }
+                        else
+                        {
+                            //Fallback: se algo der errado, volta para o inicio
+                            currentDirectory = HomeDirectory;
+                            AppendLine("");
+                        }
+                    }
+                }
+                return true; //Avisa a base que esse comando ja foi tratado
+            }
+            return false; //Se for outro comando, deixa a classe base tentar resolver
         }
     }
 }
