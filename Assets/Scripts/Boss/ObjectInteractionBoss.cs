@@ -5,14 +5,16 @@ using UnityEngine;
 public class ObjectInteractionBoss : MonoBehaviour
 {
     [Header("Settings object interactable")]
-    protected bool playerIsHere; // Verifica se a jogadora está dentro do collider do objeto
-    public GameObject interactionNotice; // Aviso de "Pressione E"
-    public GameObject challengePanel; // Painel que será aberto ao interagir
+    protected bool playerIsHere; 
+    public GameObject interactionNotice; 
+    public GameObject challengePanel; 
 
     protected void Start()
     {
-        // Garante que o aviso de "Pressione E" comece desativado
-        if (interactionNotice != null) interactionNotice.SetActive(false); 
+        if (interactionNotice != null) interactionNotice.SetActive(false);
+        
+        // Debug para verificar o estado ao iniciar a cena do Boss
+        Debug.Log($"[ObjectInteractionBoss] Cena iniciada. Diálogo finalizado: {DialogueManagerBoss.dialogueBossFinished}");
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
@@ -20,12 +22,7 @@ public class ObjectInteractionBoss : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerIsHere = true;
-
-            // Só ativa o aviso se o diálogo com o Boss já estiver terminado
-            if (interactionNotice != null && DialogueManagerBoss.dialogueBossFinished)
-            {
-                interactionNotice.SetActive(true);
-            }
+            UpdateInteractionNotice();
         }
     }
 
@@ -34,48 +31,60 @@ public class ObjectInteractionBoss : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerIsHere = false;
-
-            if (interactionNotice != null)
-            {
-                interactionNotice.SetActive(false);
-            }
+            if (interactionNotice != null) interactionNotice.SetActive(false);
         }
     }
 
     protected virtual void Update()
     {
-        // 1. VERIFICAÇÃO DE BLOQUEIO: Se o painel estiver aberto, ignora todo o resto
+        // 1. Se o painel estiver aberto, mantém o aviso desligado
         if (challengePanel != null && challengePanel.activeSelf)
         {
-            // Opcional: Esconde o "Pressione E" enquanto o painel está na tela
             if (interactionNotice != null && interactionNotice.activeSelf)
-            {
                 interactionNotice.SetActive(false);
+            return; 
+        }
+
+        // 2. Atualiza o aviso caso o diálogo termine enquanto o player está parado no collider
+        UpdateInteractionNotice();
+
+        // 3. Interação
+        if (playerIsHere && Input.GetKeyDown(KeyCode.E))
+        {
+            // Verificação dupla: o diálogo terminou?
+            if (DialogueManagerBoss.dialogueBossFinished)
+            {
+                Interact();
             }
-            return; // Sai do Update aqui, impedindo que o Input.GetKeyDown seja ouvido
+            else
+            {
+                Debug.LogWarning("Tentativa de interagir com o PC antes de terminar o diálogo com o Boss.");
+            }
         }
+    }
 
-        // 2. LÓGICA DE EXIBIÇÃO DO AVISO:
-        // Se a jogadora estiver na área e o diálogo acabar, o aviso aparece 
-        // sem precisar sair e entrar novamente na área de Collider.
-        if (playerIsHere && DialogueManagerBoss.dialogueBossFinished && interactionNotice != null && !interactionNotice.activeSelf)
+    private void UpdateInteractionNotice()
+    {
+        if (playerIsHere && DialogueManagerBoss.dialogueBossFinished)
         {
-            interactionNotice.SetActive(true);
-        }
-
-        // 3. INTERAÇÃO: Só chega aqui se o painel estiver FECHADO (devido ao return acima)
-        if (playerIsHere && Input.GetKeyDown(KeyCode.E) && DialogueManagerBoss.dialogueBossFinished)
-        {
-            Interact();
+            if (interactionNotice != null && !interactionNotice.activeSelf)
+                interactionNotice.SetActive(true);
         }
     }
 
     protected virtual void Interact()
     {
-        // Esconde o aviso ao interagir
         if (interactionNotice != null) interactionNotice.SetActive(false);
 
-        CanvasManager.Instance.ToggleMiniMap(false); // Desativa o mini-mapa
-        CanvasManager.Instance.OpenPanel(challengePanel.name); // Abre o painel correspondente
+        if (CanvasManager.Instance != null)
+        {
+            CanvasManager.Instance.ToggleMiniMap(false);
+            CanvasManager.Instance.OpenPanel(challengePanel.name);
+            Debug.Log($"Abrindo painel: {challengePanel.name}");
+        }
+        else
+        {
+            Debug.LogError("ERRO: CanvasManager.Instance não encontrado! Verifique se o CanvasManager está na cena ou se é um DontDestroyOnLoad.");
+        }
     }
 }

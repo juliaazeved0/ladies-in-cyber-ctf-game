@@ -14,6 +14,10 @@ public class NPCJoanaInteraction : MonoBehaviour
     [Header("Dialogue")]
     public DialogueManager dialogueManager;
 
+    [Header("Debug")]
+    public bool debugMode = false;
+
+
     void Start()
     {
         if (interactionNotice != null)
@@ -29,7 +33,7 @@ public class NPCJoanaInteraction : MonoBehaviour
 
         if (dialogueManager != null && DialogueManager.isDialogueActive) return;
 
-        if (AreAllFlagsCollected() && Input.GetKeyDown(KeyCode.E))
+        if ((AreAllFlagsCollected() || debugMode) && Input.GetKeyDown(KeyCode.E))
         {
             if (dialogueManager != null)
             {
@@ -48,7 +52,7 @@ public class NPCJoanaInteraction : MonoBehaviour
         {
             playerIsHere = true;
 
-            if (AreAllFlagsCollected())
+            if (AreAllFlagsCollected() || debugMode)
             {
                 if (interactionNotice != null)
                     interactionNotice.SetActive(true);

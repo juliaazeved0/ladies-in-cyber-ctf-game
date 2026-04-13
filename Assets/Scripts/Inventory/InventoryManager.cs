@@ -18,6 +18,11 @@ public class InventoryManager : MonoBehaviour
 
     private RectTransform currentButton; 
 
+    void Start(){
+        panelBagBackground.SetActive(false);
+        panelPlayBookBackground.SetActive(false);
+    }
+
     void Update()
     {
 
@@ -29,21 +34,30 @@ public class InventoryManager : MonoBehaviour
 
     public void OnClickBag()
     {
-        CanvasManager.Instance.OpenPanel(panelBagBackground.name);
+        if(panelPlayBookBackground.activeSelf){
+            panelPlayBookBackground.SetActive(false);
+            panelBagBackground.SetActive(true);
+        }
+        panelBagBackground.SetActive(true);
         MoveToButton(buttonBag);
     }
 
     public void OnClickPlayBook()
     {
-        CanvasManager.Instance.OpenPanel(panelPlayBookBackground.name);
+        if (panelBagBackground.activeSelf){
+            panelBagBackground.SetActive(false);
+            panelPlayBookBackground.SetActive(true);
+        }
+        panelPlayBookBackground.SetActive(true);
         MoveToButton(buttonPlayBook);
     }
     
 
     public void ExitInventory()
     {
-        CanvasManager.Instance.ClosedPanel(gameObject.name);
         borderImage.gameObject.SetActive(false);
+        panelBagBackground.SetActive(false);
+        panelPlayBookBackground.SetActive(false);
     }
 
     public void MoveToButton(RectTransform newButton)

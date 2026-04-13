@@ -30,6 +30,7 @@ public class ValidatePassword : MonoBehaviour
         if(taskbarPanel != null) taskbarPanel.SetActive(false); //Painel da area de trabalho comece desativado
         passwordField.ActivateInputField(); //Faz com que o cursos j� apare�a piscando dentro do Input Field, sem o jogador precisar clicar
         panelCaptureFlag.SetActive(false);
+        CanvasManager.Instance.ToggleMiniMap(false);
     }
 
     public void CheckPassword()
@@ -82,9 +83,10 @@ public class ValidatePassword : MonoBehaviour
         {
             CanvasManager.Instance.ClosedPanel(finalPanel.name);
             CanvasManager.Instance.ClosedPanel(loginPanel.name);
-
+            CanvasManager.Instance.ToggleMiniMap(true); //Reabre o minimapa
         }
         CanvasManager.Instance.ClosedPanel(loginPanel.name);
+        CanvasManager.Instance.ToggleMiniMap(true);//Reabre o minimapa
     }
 
     public void OpenFinalPanel()
