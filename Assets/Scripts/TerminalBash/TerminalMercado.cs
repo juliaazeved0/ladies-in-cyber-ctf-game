@@ -95,7 +95,7 @@ namespace BashTerminal
             AppendLine("Nota de Luiz: 'Nunca confie no que esta na superficie.'");
             AppendLine("");
             AppendLine($"<color=#FFFF55>[FLAG: {flag}]</color>");
-            AppendLine("");
+            AppendLine("Flag copiada para a Bolsa de Flags com sucesso!");
 
             FlagManager.Instance.SaveFlag("Mercado Escondido", flag);
 
