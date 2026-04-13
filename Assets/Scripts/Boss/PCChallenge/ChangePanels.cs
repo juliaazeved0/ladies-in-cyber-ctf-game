@@ -17,26 +17,28 @@ public class ChangePanels : MonoBehaviour
     [Header("Referencias Externas")]
     public Button steghideButton; 
 
+
+
     // --- PAINEL DE NOTAS ---
     public void AbrirPanelNotes()
     {
-        if(panelNotes != null) panelNotes.SetActive(true);
+        if(panelNotes != null) CanvasManager.Instance.OpenPanel(panelNotes.name);
     }
 
     public void FecharPanelNotes()
     {
-        if(panelNotes != null) panelNotes.SetActive(false);
+        if(panelNotes != null) CanvasManager.Instance.ClosedPanel(panelNotes.name);
     }
 
     // --- PAINEL DE ERRO DO STEGHIDE ---
     public void AbrirPanelSteghideError()
     {
-        if(panelSteghideError != null) panelSteghideError.SetActive(true);
+        if(panelSteghideError != null) CanvasManager.Instance.OpenPanel(panelSteghideError.name);
     }
 
     public void FecharPanelSteghideError()
     {
-        if(panelSteghideError != null) panelSteghideError.SetActive(false);
+        if(panelSteghideError != null) CanvasManager.Instance.ClosedPanel(panelSteghideError.name);
     }
 
     // --- PAINEL DA PRAIA (SUCESSO STEGHIDE) ---
@@ -46,27 +48,27 @@ public class ChangePanels : MonoBehaviour
         {
             // Seta a flag como resolvida caso venha de outra fonte
             TerminalBoss.challengeSolved = true; 
-            panelSteghideBeach.SetActive(true);
+            CanvasManager.Instance.OpenPanel(panelSteghideBeach.name);
 
             // Se o painel de erro estiver aberto, ele fecha ao abrir o de sucesso
-            if (panelSteghideError != null) panelSteghideError.SetActive(false);
+            if (panelSteghideError != null) CanvasManager.Instance.ClosedPanel(panelSteghideError.name);
         }
     }
 
     public void FecharPanelSteghideBeach()
     {
-        if(panelSteghideBeach != null) panelSteghideBeach.SetActive(false);
+        if(panelSteghideBeach != null) CanvasManager.Instance.ClosedPanel(panelSteghideBeach.name);
     }
 
     // --- PAINEL DE METADADOS ---
     public void AbrirPanelMetadadaInfo()
     {
-        if(panelMetadataInfo != null) panelMetadataInfo.SetActive(true);
+        if(panelMetadataInfo != null) CanvasManager.Instance.OpenPanel(panelMetadataInfo.name);
     }
 
     public void FecharPanelMetadadaInfo()
     {
-        if (panelMetadataInfo != null) panelMetadataInfo.SetActive(false);
+        if (panelMetadataInfo != null) CanvasManager.Instance.ClosedPanel(panelMetadataInfo.name);
     }
 
     // --- PAINEL DA FLAG FINAL ---
@@ -74,7 +76,7 @@ public class ChangePanels : MonoBehaviour
     {
         if(panelSuccessFlag != null)
         {
-            panelSuccessFlag.SetActive(true);
+            CanvasManager.Instance.OpenPanel(panelSuccessFlag.name);
 
             // Salva a flag do BOSS usando o sistema de Base64
             if (FlagManager.Instance != null)
@@ -87,7 +89,7 @@ public class ChangePanels : MonoBehaviour
 
     public void FecharPanelSuccessFlag()
     {
-        if(panelSuccessFlag != null) panelSuccessFlag.SetActive(false);
+        if(panelSuccessFlag != null) CanvasManager.Instance.ClosedPanel(panelSuccessFlag.name);
     }
 
     // --- LÓGICA DO BOTÃO STEGHIDE NA DESKTOP ---
