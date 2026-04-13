@@ -59941,6 +59941,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FullText
       objectReference: {fileID: 0}
+    - target: {fileID: 5726241494907541126, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.12
+      objectReference: {fileID: 0}
     - target: {fileID: 5819801332812396768, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
       propertyPath: m_Name
       value: FrontChairTwo
@@ -60078,8 +60082,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 8720547793649935378, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8720547793649935378, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
       propertyPath: m_SortingOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8720547793649935378, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8720547793649935378, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -89832,6 +89844,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1649250121497920538, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Canvas
+      objectReference: {fileID: 0}
     - target: {fileID: 1676551844940738890, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_SortingLayer
       value: 4
@@ -89847,6 +89863,10 @@ PrefabInstance:
     - target: {fileID: 2996871475731660984, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
       value: NameBackground
+      objectReference: {fileID: 0}
+    - target: {fileID: 3056435087144022829, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Text
       objectReference: {fileID: 0}
     - target: {fileID: 3091758776240838510, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_AnchorMax.x
@@ -89979,6 +89999,10 @@ PrefabInstance:
     - target: {fileID: 6370370483200926563, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: rightPassword
       value: t3cl4d01ntu1t1v0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6522026658430695755, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_fontStyle
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6584838602011791897, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
@@ -90660,6 +90684,22 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 70a5baf2ec58eee4dbbf0c8c65754c24, type: 2}
+    - target: {fileID: 2870473312831618454, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Size.x
+      value: 4.9937744
+      objectReference: {fileID: 0}
+    - target: {fileID: 2870473312831618454, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Size.y
+      value: 4.4859934
+      objectReference: {fileID: 0}
+    - target: {fileID: 2870473312831618454, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.054088593
+      objectReference: {fileID: 0}
+    - target: {fileID: 2870473312831618454, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.24498415
+      objectReference: {fileID: 0}
     - target: {fileID: 2880791636395465910, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_Sprite
       value: 
