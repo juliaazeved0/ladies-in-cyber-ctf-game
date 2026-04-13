@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement; // Adicionado para detectar mudança de cena
 
 public class CanvasManager : MonoBehaviour
 {
@@ -19,29 +19,37 @@ public class CanvasManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            // Inscreve no evento de carregamento de cena para limpar painéis mortos
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
-            // Transfere os novos painéis da cena para a instância persistente
+            // Se já existe um, mas este novo tem painéis (é o prefab da cena do Boss)
+            // nós passamos os painéis dele para a instância principal antes de destruí-lo
             Instance.UpdatePanels(this.allPanels, this.miniMapContainer);
             Destroy(gameObject);
             return;
         }
+        
         ClosedAllPanels();
     }
 
     private void OnDestroy()
     {
-        if (Instance == this) SceneManager.sceneLoaded -= OnSceneLoaded;
+        // Limpeza de evento (boa prática)
+        if (Instance == this)
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
     }
 
+    // Chamado sempre que uma nova cena carrega
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Limpa referências de objetos que foram destruídos na troca de cena
-        allPanels.RemoveAll(panel => panel == null);
+        RemoveDestroyedPanels();
     }
 
+    // Atualiza as referências quando um novo prefab de CanvasManager aparece em outra cena
     public void UpdatePanels(List<GameObject> newPanels, GameObject newMinimap)
     {
         allPanels.Clear();
@@ -49,27 +57,36 @@ public class CanvasManager : MonoBehaviour
         {
             if (p != null) allPanels.Add(p);
         }
+        
         if (newMinimap != null) miniMapContainer = newMinimap;
+        
+        ClosedAllPanels();
+    }
+
+    private void RemoveDestroyedPanels()
+    {
+        allPanels.RemoveAll(panel => panel == null);
     }
 
     public void ClosedAllPanels()
     {
         foreach (GameObject panel in allPanels)
         {
-            if (panel != null) panel.SetActive(false);
+            // Verificação de nulidade adicionada aqui para evitar o MissingReferenceException
+            if (panel != null)
+            {
+                panel.SetActive(false);
+            }
         }
     }
 
-    // closeOthers = true é o padrão, mantendo compatibilidade com o resto do jogo
-    public void OpenPanel(string panelName, bool closeOthers = true)
+    public void OpenPanel(string panelName)
     {
-        if (closeOthers)
-        {
-            ClosedAllPanels();
-        }
+        ClosedAllPanels();
 
         foreach (GameObject panel in allPanels)
         {
+            // Verificação de segurança: se o objeto foi destruído, ignora
             if (panel != null && panel.name == panelName)
             {
                 panel.SetActive(true);
@@ -92,6 +109,9 @@ public class CanvasManager : MonoBehaviour
 
     public void ToggleMiniMap(bool isActive)
     {
-        if (miniMapContainer != null) miniMapContainer.SetActive(isActive);
+        if (miniMapContainer != null)
+        {
+            miniMapContainer.SetActive(isActive);
+        }
     }
 }
