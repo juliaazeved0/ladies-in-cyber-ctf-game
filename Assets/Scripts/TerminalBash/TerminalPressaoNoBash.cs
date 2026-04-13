@@ -151,7 +151,7 @@ namespace BashTerminal
             AppendLine("<color=#55FF55>> SUCESSO: Pressao do modulo H2 estabilizada. Sistema reiniciado.</color>");
             AppendLine("");
             AppendLine($"<color=#FFFF55>[FLAG: {flag}]</color>");
-            AppendLine("");
+            AppendLine("Flag copiada paraa a Bolsa de Flags com sucesso!");
 
             // Salva o progresso
             FlagManager.Instance.SaveFlag("Pressao no Bash", flag);
