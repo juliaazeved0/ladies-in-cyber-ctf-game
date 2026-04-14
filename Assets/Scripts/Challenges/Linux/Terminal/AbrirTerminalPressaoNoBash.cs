@@ -215,7 +215,9 @@ public class AbrirTerminalPressaoNoBash : MonoBehaviour
         {
             objectPulse.StopPulsing();
             CanvasManager.Instance.ClosedPanel("ChallengePressureBash");
+            CanvasManager.Instance.ToggleMiniMap(true);
         }
         CanvasManager.Instance.ClosedPanel("ChallengePressureBash");
+        CanvasManager.Instance.ToggleMiniMap(true);
     }
 }

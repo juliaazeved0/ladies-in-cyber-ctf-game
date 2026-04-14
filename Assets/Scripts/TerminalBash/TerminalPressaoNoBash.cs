@@ -179,6 +179,7 @@ namespace BashTerminal
                 objectPulse.StopPulsing();
 
             CanvasManager.Instance.ClosedPanel("ChallengePressureBash");
+            CanvasManager.Instance.ToggleMiniMap(true);
         }
     }
 }

@@ -21,6 +21,7 @@ namespace BashTerminal
         [Header("Desafio Mercado")]
         [SerializeField] private GameObject popUpSucesso;
         [SerializeField] private GameObject popCaptureFlag;
+        public PulseOutline objectPulse;
 
         // ── Identity ──────────────────────────────────────────────────────────
         protected override string User => "Luiz";
@@ -29,6 +30,15 @@ namespace BashTerminal
 
         // ── Entry points ──────────────────────────────────────────────────────
         /// <summary>Call from the terminal button OnClick event.</summary>
+        public void ClosedChallenge()
+        {
+            if (objectPulse != null && popCaptureFlag != null && popCaptureFlag.activeSelf)
+                objectPulse.StopPulsing();
+
+            CanvasManager.Instance.ClosedPanel("ChallengeHiddenMarket");
+            CanvasManager.Instance.ToggleMiniMap(true);
+        }
+
         public void OnClickTerminalMercado()
         {
             OpenTerminal();

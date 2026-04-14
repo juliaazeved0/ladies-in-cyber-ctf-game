@@ -14,7 +14,7 @@ public class InventoryManager : MonoBehaviour
 
     [Header("Endgame Boss")]
     [SerializeField] private GameObject panelEndgameWarning;
-    
+
     // VARIÁVEL DE CONTROLE: Só permite o "E" se o Boss foi finalizado
     private bool aguardandoConfirmacaoFinal = false;
 
@@ -43,7 +43,6 @@ public class InventoryManager : MonoBehaviour
 
     void Update()
     {
-        // 1. Movimentação visual da borda
         if (currentButton != null && borderImage != null)
         {
             borderImage.position = Vector3.Lerp(
@@ -53,7 +52,6 @@ public class InventoryManager : MonoBehaviour
             );
         }
 
-        // 2. LOGICA DA TECLA E: Só funciona se aguardandoConfirmacaoFinal for true
         if (aguardandoConfirmacaoFinal && Input.GetKeyDown(KeyCode.E))
         {
             ConfirmarColetaDasFlags();
@@ -65,9 +63,9 @@ public class InventoryManager : MonoBehaviour
         panelBagBackground.SetActive(false);
         panelPlayBookBackground.SetActive(false);
         if (panelEndgameWarning != null) panelEndgameWarning.SetActive(false);
-        modalLinkCTF.SetActive(false);
-        buttonLinkCTF.SetActive(false);
-        modalContinueCredits.SetActive(false);
+        if (modalLinkCTF != null) modalLinkCTF.SetActive(false);
+        if (buttonLinkCTF != null) buttonLinkCTF.SetActive(false);
+        if (modalContinueCredits != null) modalContinueCredits.SetActive(false);
         aguardandoConfirmacaoFinal = false;
     }
 
@@ -87,7 +85,7 @@ public class InventoryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Chamado ao vencer o Boss. Libera o uso da tecla E.
+    /// Chamado ao vencer o Boss. Abre a bolsa com o aviso de última chance.
     /// </summary>
     public void AbrirBolsaFinalizacaoBoss()
     {
@@ -95,13 +93,12 @@ public class InventoryManager : MonoBehaviour
 
         panelPlayBookBackground.SetActive(false);
         panelBagBackground.SetActive(true);
-        modalLinkCTF.SetActive(true);
-        buttonLinkCTF.SetActive(true);
-        modalContinueCredits.SetActive(true);
 
+        if (modalLinkCTF != null) modalLinkCTF.SetActive(true);
+        if (buttonLinkCTF != null) buttonLinkCTF.SetActive(true);
+        if (modalContinueCredits != null) modalContinueCredits.SetActive(true);
         if (panelEndgameWarning != null) panelEndgameWarning.SetActive(true);
 
-        // ATIVA A TRAVA: Agora a tecla E pode ser usada
         aguardandoConfirmacaoFinal = true;
 
         MoveToButton(buttonBag);
@@ -109,25 +106,24 @@ public class InventoryManager : MonoBehaviour
 
     public void ConfirmarColetaDasFlags()
     {
-        // Segurança extra: Mesmo chamando via botão, resetamos a trava
         aguardandoConfirmacaoFinal = false;
+
+        // Desativa o canvas persistente do inventário (DontDestroyOnLoad) para que
+        // ele não fique renderizado por cima da cena de créditos.
+        // transform.root sobe até o GameObject raiz do canvas persistente.
+        transform.root.gameObject.SetActive(false);
+
         SceneManager.LoadScene("Credits");
     }
-    
+
     public void AbrirLinkCTF()
     {
-    string url = "https://ctf.itaipuparquetec.org.br/";
-    
-    // Abre o link no navegador padrão
-    Application.OpenURL(url);
-    
-    Debug.Log("Abrindo link do CTF: " + url);
+        Application.OpenURL("https://ctf.itaipuparquetec.org.br/");
+        Debug.Log("[InventoryManager] Abrindo link do CTF.");
     }
 
     public void ExitInventory()
     {
-        // Se o jogador sair do inventário, desativamos a trava do E 
-        // para ele não ir para os créditos sem querer durante o gameplay normal
         aguardandoConfirmacaoFinal = false;
 
         if (inventoryPanel != null) inventoryPanel.SetActive(false);

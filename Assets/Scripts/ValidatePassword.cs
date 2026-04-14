@@ -22,7 +22,8 @@ public class ValidatePassword : MonoBehaviour
     public MonoBehaviour interactionScript; //Script que abre o PC
 
     [Header("Janelas")]
-    public GameObject whatsappWindow; //Painel da janela do WhatsApp
+    public GameObject whatsappWindow; 
+    public GameObject trashWindow; 
 
     void Start()
     {
@@ -68,6 +69,11 @@ public class ValidatePassword : MonoBehaviour
     public void ClosedJustPanelCurrent()
     {
         panelCaptureFlag.SetActive(false);
+    }
+
+    public void ClosedPanelTrash(){
+        trashWindow.SetActive(false);
+        CanvasManager.Instance.ToggleMiniMap(true);
     }
 
     public void OpenWhatsAppWindow()
