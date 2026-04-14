@@ -86282,6 +86282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbba2456790b5e740abd0e5bca0fec1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossMusic: {fileID: 8300000, guid: 0eaf24a4245034347bf2f9f708f1a255, type: 3}
 --- !u!1 &1922420899
 GameObject:
   m_ObjectHideFlags: 0
@@ -89852,6 +89853,10 @@ PrefabInstance:
     - target: {fileID: 2555222127246691409, guid: 803f6279183426c499acf047408ae04a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2863266615397569410, guid: 803f6279183426c499acf047408ae04a, type: 3}
+      propertyPath: panelFadeBlack
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7261672801190229450, guid: 803f6279183426c499acf047408ae04a, type: 3}
       propertyPath: m_Name

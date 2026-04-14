@@ -125,8 +125,6 @@ public class InventoryManager : MonoBehaviour
     public void ExitInventory()
     {
         aguardandoConfirmacaoFinal = false;
-
-        if (inventoryPanel != null) inventoryPanel.SetActive(false);
         borderImage.gameObject.SetActive(false);
         panelBagBackground.SetActive(false);
         panelPlayBookBackground.SetActive(false);
