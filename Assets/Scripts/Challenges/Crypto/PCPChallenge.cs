@@ -119,5 +119,6 @@ public class PCPChallenge : MonoBehaviour
     public void OnClickExit()
     {
             CanvasManager.Instance.ClosedPanel(canvasChallenge.name);
+            CanvasManager.Instance.ToggleMiniMap(true);
     }
 }

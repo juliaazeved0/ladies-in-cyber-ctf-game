@@ -14,6 +14,7 @@ public class FileNavigationManager : MonoBehaviour
     public Transform popUpConatiner;
 
     public GameObject boardFolders;
+    public GameObject buttonEnter;
 
     private Stack<GameObject> historyStack = new Stack<GameObject>();
     private GameObject currentOpenFolder;
@@ -85,6 +86,8 @@ public class FileNavigationManager : MonoBehaviour
 
             child.gameObject.SetActive(false);
         }
+        boardFolders.SetActive(false);
+        buttonEnter.SetActive(true);
     }
 
 }

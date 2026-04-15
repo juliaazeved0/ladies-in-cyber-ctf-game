@@ -54201,6 +54201,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 670949314}
   m_CullTransparentMesh: 1
+--- !u!1 &673856447 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7041321428752000761, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+  m_PrefabInstance: {fileID: 2759342970082349630}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &690229076
 GameObject:
   m_ObjectHideFlags: 0
@@ -90276,6 +90281,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NameBackground
       objectReference: {fileID: 0}
+    - target: {fileID: 7800066837402641341, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: buttonEnter
+      value: 
+      objectReference: {fileID: 673856447}
     - target: {fileID: 8211663778272922076, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: cameraMiniMap
       value: 

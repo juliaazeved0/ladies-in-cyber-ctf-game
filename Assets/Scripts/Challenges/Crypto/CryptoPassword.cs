@@ -71,6 +71,7 @@ public class CryptoPassword : MonoBehaviour
     {
    
     CanvasManager.Instance.ClosedPanel(panelChallenge.name);
+    CanvasManager.Instance.ToggleMiniMap(true);
 
     if (flagCaptured)
     {
