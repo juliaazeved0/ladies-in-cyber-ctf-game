@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1085902897847719520}
   - component: {fileID: 7760773213196055507}
   m_Layer: 5
-  m_Name: btnPlayAgain
+  m_Name: BtnPlayAgain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 822184295261032364}
   - component: {fileID: 5912805388568877059}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -363,7 +363,7 @@ GameObject:
   - component: {fileID: 5834337835212405088}
   - component: {fileID: 4592413548483492426}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -498,7 +498,7 @@ GameObject:
   - component: {fileID: 829100663419794316}
   - component: {fileID: 4700103781810860659}
   m_Layer: 5
-  m_Name: btnOption1
+  m_Name: BtnOption1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -789,7 +789,7 @@ GameObject:
   - component: {fileID: 462013424999688463}
   - component: {fileID: 4716857341004101791}
   m_Layer: 5
-  m_Name: nameNPC
+  m_Name: NameNPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -922,7 +922,7 @@ GameObject:
   - component: {fileID: 2091581172753330546}
   - component: {fileID: 88444687348568741}
   m_Layer: 0
-  m_Name: Fern_12
+  m_Name: Fern12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1007,7 +1007,7 @@ GameObject:
   - component: {fileID: 5102052899920505507}
   - component: {fileID: 5957610049171199279}
   m_Layer: 5
-  m_Name: BackgroundWhiteOptions
+  m_Name: WhiteOptionsBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1307,7 +1307,7 @@ GameObject:
   - component: {fileID: 5761419710417858962}
   - component: {fileID: 3159090990666087066}
   m_Layer: 0
-  m_Name: Fern_08
+  m_Name: Fern08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1392,7 +1392,7 @@ GameObject:
   - component: {fileID: 3168085536397257117}
   - component: {fileID: 1289125383537268523}
   m_Layer: 5
-  m_Name: PanelDialogueSecretary
+  m_Name: DialogueSecretaryPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1619,7 +1619,7 @@ GameObject:
   - component: {fileID: 5778557953125108692}
   - component: {fileID: 6014807437683480299}
   m_Layer: 0
-  m_Name: Red_Sofa_02
+  m_Name: RedSofa02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1806,7 +1806,7 @@ GameObject:
   - component: {fileID: 438248712220691470}
   - component: {fileID: 6721759296794522001}
   m_Layer: 0
-  m_Name: Water_Cooler
+  m_Name: WaterCooler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1935,7 +1935,7 @@ GameObject:
   - component: {fileID: 5977146155440750320}
   - component: {fileID: 5082482463113901264}
   m_Layer: 0
-  m_Name: Blue_Sofa_02
+  m_Name: BlueSofa02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2171,7 +2171,7 @@ GameObject:
   - component: {fileID: 6236462128647374081}
   - component: {fileID: 9168494620330392802}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2304,7 +2304,7 @@ GameObject:
   - component: {fileID: 13018745185022179}
   - component: {fileID: 4157550654974532380}
   m_Layer: 0
-  m_Name: Green_Sofa_02
+  m_Name: GreenSofa02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2388,7 +2388,7 @@ GameObject:
   - component: {fileID: 7891982122782054340}
   - component: {fileID: 2557652988106331459}
   m_Layer: 0
-  m_Name: Fern_06
+  m_Name: Fern06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3064,7 +3064,7 @@ GameObject:
   - component: {fileID: 4719196451646267383}
   - component: {fileID: 4346714691242826674}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3274,7 +3274,7 @@ GameObject:
   - component: {fileID: 8929155620224342217}
   - component: {fileID: 9028006873302816218}
   m_Layer: 0
-  m_Name: Fern_07
+  m_Name: Fern07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3359,7 +3359,7 @@ GameObject:
   - component: {fileID: 3092686000939199862}
   - component: {fileID: 5255714482245848074}
   m_Layer: 5
-  m_Name: PanelNarrator
+  m_Name: NarratorPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3651,11 +3651,11 @@ Transform:
   m_Children:
   - {fileID: 5674487306995522101}
   - {fileID: 7210494720010449230}
-  - {fileID: 8166230448580964753}
   - {fileID: 4577450238299916785}
-  - {fileID: 7289823606375385887}
-  - {fileID: 4919712059089527491}
   - {fileID: 8717222451288363508}
+  - {fileID: 4919712059089527491}
+  - {fileID: 7289823606375385887}
+  - {fileID: 8166230448580964753}
   - {fileID: 345382997285990996}
   - {fileID: 642291115911266288}
   - {fileID: 3810886025244910564}
@@ -3684,7 +3684,7 @@ GameObject:
   - component: {fileID: 4581819847716897765}
   - component: {fileID: 3391693576808246504}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3818,7 +3818,7 @@ GameObject:
   - component: {fileID: 8043746256764421065}
   - component: {fileID: 8622479055618244894}
   m_Layer: 5
-  m_Name: BackgroundNameNPC
+  m_Name: NameNPCBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3978,7 +3978,7 @@ GameObject:
   - component: {fileID: 2372073669772954420}
   - component: {fileID: 7878871319805524504}
   m_Layer: 5
-  m_Name: Text
+  m_Name: FullText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4112,7 +4112,7 @@ GameObject:
   - component: {fileID: 8009136701728532382}
   - component: {fileID: 6305561604388006285}
   m_Layer: 0
-  m_Name: Fern_13
+  m_Name: Fern13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4197,7 +4197,7 @@ GameObject:
   - component: {fileID: 5149522981736027462}
   - component: {fileID: 8782904467896223908}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4332,7 +4332,7 @@ GameObject:
   - component: {fileID: 3848907874103886815}
   - component: {fileID: 102290546718738645}
   m_Layer: 5
-  m_Name: btnOption3
+  m_Name: BtnOption3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4778,7 +4778,7 @@ GameObject:
   - component: {fileID: 2744366820682945850}
   - component: {fileID: 8645675911046045984}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4911,7 +4911,7 @@ GameObject:
   - component: {fileID: 7031470369584577104}
   - component: {fileID: 3818386911581423475}
   m_Layer: 0
-  m_Name: Fern_11
+  m_Name: Fern11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4998,7 +4998,7 @@ GameObject:
   - component: {fileID: 1564918432999809075}
   - component: {fileID: 4786228619053202905}
   m_Layer: 0
-  m_Name: Blue_Sofa
+  m_Name: BlueSofa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5218,7 +5218,7 @@ GameObject:
   - component: {fileID: 1607622999217916187}
   - component: {fileID: 6694552846527609488}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5432,7 +5432,7 @@ GameObject:
   - component: {fileID: 6541968996133802701}
   - component: {fileID: 7862724221949277635}
   m_Layer: 0
-  m_Name: Fern_09
+  m_Name: Fern09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5518,7 +5518,7 @@ GameObject:
   - component: {fileID: 6387506033582934141}
   - component: {fileID: 1413925327214813954}
   m_Layer: 5
-  m_Name: btnDone
+  m_Name: BtnDone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5649,7 +5649,7 @@ GameObject:
   - component: {fileID: 777503263120781908}
   - component: {fileID: 3214177689199613623}
   m_Layer: 0
-  m_Name: Fern_02
+  m_Name: Fern02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5734,7 +5734,7 @@ GameObject:
   - component: {fileID: 1153124149106041100}
   - component: {fileID: 2463552208090588183}
   m_Layer: 5
-  m_Name: Image
+  m_Name: BalloonImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6028,7 +6028,7 @@ GameObject:
   - component: {fileID: 566971833311848578}
   - component: {fileID: 1349999684769748711}
   m_Layer: 0
-  m_Name: Fern_03
+  m_Name: Fern03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6112,7 +6112,7 @@ GameObject:
   - component: {fileID: 3775618179418374296}
   - component: {fileID: 6804095875871877129}
   m_Layer: 0
-  m_Name: Fern_10
+  m_Name: Fern10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6287,7 +6287,7 @@ GameObject:
   - component: {fileID: 2107038169118494216}
   - component: {fileID: 8156355552502405752}
   m_Layer: 5
-  m_Name: BackgroundName
+  m_Name: NameBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6362,7 +6362,7 @@ GameObject:
   - component: {fileID: 4681670513029065272}
   - component: {fileID: 4082155796841067322}
   m_Layer: 0
-  m_Name: Fern_05
+  m_Name: Fern05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6446,7 +6446,7 @@ GameObject:
   - component: {fileID: 8864763696168150233}
   - component: {fileID: 5411985659245478076}
   m_Layer: 0
-  m_Name: Green_Sofa
+  m_Name: GreenSofa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6661,7 +6661,7 @@ GameObject:
   - component: {fileID: 5919552205780090668}
   - component: {fileID: 4707291680935352133}
   m_Layer: 5
-  m_Name: BackgroundBorderOptions
+  m_Name: BorderOptionsBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6736,7 +6736,7 @@ GameObject:
   - component: {fileID: 7898607266980110369}
   - component: {fileID: 7108727548402282163}
   m_Layer: 0
-  m_Name: Red_Sofa
+  m_Name: RedSofa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6822,7 +6822,7 @@ GameObject:
   - component: {fileID: 9109726192482285262}
   - component: {fileID: 2383966145481077721}
   m_Layer: 5
-  m_Name: btnOption2
+  m_Name: BtnOption2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7085,7 +7085,7 @@ GameObject:
   - component: {fileID: 7533236605537489137}
   - component: {fileID: 6341473273218342665}
   m_Layer: 5
-  m_Name: btnExit
+  m_Name: BtnExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7217,7 +7217,7 @@ GameObject:
   - component: {fileID: 2484946187496544283}
   - component: {fileID: 6918423448715211514}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7352,7 +7352,7 @@ GameObject:
   - component: {fileID: 774841431231484136}
   - component: {fileID: 4098799228345062674}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7499,7 +7499,7 @@ GameObject:
   - component: {fileID: 3124633700327622383}
   - component: {fileID: 1429474810484398047}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7632,7 +7632,7 @@ GameObject:
   - component: {fileID: 5674956089386363247}
   - component: {fileID: 2106068164035172465}
   m_Layer: 0
-  m_Name: Fern_04
+  m_Name: Fern04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

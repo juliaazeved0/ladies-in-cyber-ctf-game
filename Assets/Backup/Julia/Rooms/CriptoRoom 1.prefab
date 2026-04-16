@@ -301,7 +301,7 @@ GameObject:
   - component: {fileID: 1410983106774772143}
   - component: {fileID: 7524378774981614354}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -561,7 +561,7 @@ GameObject:
   - component: {fileID: 3176376601684090170}
   - component: {fileID: 1821448900102938699}
   m_Layer: 0
-  m_Name: Plant_02
+  m_Name: Plant02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1356,7 +1356,7 @@ GameObject:
   - component: {fileID: 2664926640557240201}
   - component: {fileID: 6775807696177701793}
   m_Layer: 5
-  m_Name: Canvas (1)
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1457,7 +1457,7 @@ GameObject:
   - component: {fileID: 3463137690078629415}
   - component: {fileID: 4291275997938100210}
   m_Layer: 0
-  m_Name: pc (2)
+  m_Name: Pc04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2062,7 +2062,7 @@ GameObject:
   - component: {fileID: 2481191775911808235}
   - component: {fileID: 3487654475973968726}
   m_Layer: 0
-  m_Name: Table_Plant
+  m_Name: TablePlant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2192,7 +2192,7 @@ GameObject:
   - component: {fileID: 7379867627019713054}
   - component: {fileID: 1576359969851342150}
   m_Layer: 0
-  m_Name: sofa (1)
+  m_Name: Sofa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2470,7 +2470,7 @@ GameObject:
   - component: {fileID: 9017967476690808841}
   - component: {fileID: 2582078676402262655}
   m_Layer: 0
-  m_Name: table
+  m_Name: Table02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2735,7 +2735,7 @@ GameObject:
   - component: {fileID: 1062456886004674914}
   - component: {fileID: 5316646971753481446}
   m_Layer: 0
-  m_Name: pc
+  m_Name: Pc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2999,7 +2999,7 @@ GameObject:
   - component: {fileID: 8639730321948473312}
   - component: {fileID: 2430360648156519574}
   m_Layer: 0
-  m_Name: table2
+  m_Name: Table03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3131,7 +3131,7 @@ GameObject:
   - component: {fileID: 3228097270988599716}
   - component: {fileID: 3707793262492842108}
   m_Layer: 0
-  m_Name: pcJulia
+  m_Name: PcJulia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3291,7 +3291,7 @@ GameObject:
   - component: {fileID: 5723168890369089043}
   - component: {fileID: 1197874112106940740}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4039,7 +4039,7 @@ GameObject:
   - component: {fileID: 1676551844940738890}
   - component: {fileID: 7535752268689096983}
   m_Layer: 0
-  m_Name: pc (3)
+  m_Name: Pc03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5445,7 +5445,7 @@ GameObject:
   - component: {fileID: 5021744345792645865}
   - component: {fileID: 8774040504162303772}
   m_Layer: 0
-  m_Name: freezer
+  m_Name: Freezer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5573,7 +5573,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4099166027899223463}
   m_Layer: 0
-  m_Name: pcNPC
+  m_Name: PcNPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5610,7 +5610,7 @@ GameObject:
   - component: {fileID: 3291524808801679258}
   - component: {fileID: 2898943041501958051}
   m_Layer: 5
-  m_Name: Text
+  m_Name: FullText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6726,7 +6726,7 @@ GameObject:
   - component: {fileID: 1586553599945277187}
   - component: {fileID: 6113508124441448096}
   m_Layer: 5
-  m_Name: Image
+  m_Name: BalloonImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6939,7 +6939,7 @@ GameObject:
   - component: {fileID: 6079617558137239578}
   - component: {fileID: 4434441030827785986}
   m_Layer: 0
-  m_Name: plantsgreen
+  m_Name: GreenPlant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7024,7 +7024,7 @@ GameObject:
   - component: {fileID: 7400597058287434309}
   - component: {fileID: 633415701301947072}
   m_Layer: 0
-  m_Name: sofa (2)
+  m_Name: Sofa02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8252,7 +8252,7 @@ GameObject:
   - component: {fileID: 3386361704028278691}
   - component: {fileID: 7783599268764266597}
   m_Layer: 5
-  m_Name: Text
+  m_Name: FullText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8387,7 +8387,7 @@ GameObject:
   - component: {fileID: 5182390220981946643}
   - component: {fileID: 6959104891711053539}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9509,6 +9509,7 @@ MonoBehaviour:
   pathText: {fileID: 1246165714318538739}
   popUpConatiner: {fileID: 4271533977663359820}
   boardFolders: {fileID: 6983058166272404308}
+  buttonEnter: {fileID: 0}
 --- !u!1 &8276081254287694892
 GameObject:
   m_ObjectHideFlags: 0
@@ -9731,7 +9732,7 @@ GameObject:
   - component: {fileID: 5528801956984403869}
   - component: {fileID: 7962998049225016246}
   m_Layer: 0
-  m_Name: table (1)
+  m_Name: Table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9862,7 +9863,7 @@ GameObject:
   - component: {fileID: 4876744899078855174}
   - component: {fileID: 8476897512912258195}
   m_Layer: 0
-  m_Name: pc (1)
+  m_Name: Pc02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10194,7 +10195,7 @@ GameObject:
   - component: {fileID: 6188275484989772550}
   - component: {fileID: 7946764736940297087}
   m_Layer: 0
-  m_Name: pcPoly
+  m_Name: PcPoly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10491,7 +10492,7 @@ GameObject:
   - component: {fileID: 7181581436303985908}
   - component: {fileID: 7581115652106176507}
   m_Layer: 0
-  m_Name: plants
+  m_Name: Plants
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11202,6 +11203,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1674682678918000059, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
+      propertyPath: m_Name
+      value: ConfirmButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1979397797579951515, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
+      propertyPath: m_Name
+      value: InteractionNotice
+      objectReference: {fileID: 0}
     - target: {fileID: 2251859569586216294, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -11214,6 +11223,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: DialogueAleNPC, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 3483992782526482681, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
+      propertyPath: m_Name
+      value: ExitButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3502900808758752650, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
     - target: {fileID: 3893840363540083719, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -11222,13 +11239,41 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ExitDialogue
       objectReference: {fileID: 0}
+    - target: {fileID: 4006186223780193599, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190805568922178713, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
+      propertyPath: m_Name
+      value: FullText
+      objectReference: {fileID: 0}
+    - target: {fileID: 5076660549826618029, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
+      propertyPath: m_Name
+      value: NameBackground
+      objectReference: {fileID: 0}
+    - target: {fileID: 5267391047857644734, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467912339087943449, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
+      propertyPath: m_Name
+      value: NameNPCBackground
+      objectReference: {fileID: 0}
     - target: {fileID: 5734218898990939777, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
       propertyPath: m_Name
       value: DialogueCriptoManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5742220196013515464, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
+      propertyPath: m_Name
+      value: NameNPC
+      objectReference: {fileID: 0}
     - target: {fileID: 6852112722046190058, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
       propertyPath: m_Name
       value: DialogueNPCCrypto
+      objectReference: {fileID: 0}
+    - target: {fileID: 7461004325831887128, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
+      propertyPath: m_Name
+      value: Text
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

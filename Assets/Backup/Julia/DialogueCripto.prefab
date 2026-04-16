@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 7750251100538552617}
   - component: {fileID: 2973021696357353496}
   m_Layer: 5
-  m_Name: confirmButton
+  m_Name: ConfirmButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -365,7 +365,7 @@ GameObject:
   - component: {fileID: 3787559107775682909}
   - component: {fileID: 5192627579447016438}
   m_Layer: 5
-  m_Name: InteractionNotice (1)
+  m_Name: InteractionNotice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -443,7 +443,7 @@ GameObject:
   - component: {fileID: 5910801549406300564}
   - component: {fileID: 3893840363540083719}
   m_Layer: 5
-  m_Name: exitButton
+  m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -575,7 +575,7 @@ GameObject:
   - component: {fileID: 8520169178805129681}
   - component: {fileID: 6454384530692914500}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -709,7 +709,7 @@ GameObject:
   - component: {fileID: 9108172738529878342}
   - component: {fileID: 3236576336916336207}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -843,7 +843,7 @@ GameObject:
   - component: {fileID: 3450861735386619903}
   - component: {fileID: 5739873062825049112}
   m_Layer: 5
-  m_Name: Text
+  m_Name: FullText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1054,7 +1054,7 @@ GameObject:
   - component: {fileID: 4224250248941138444}
   - component: {fileID: 2818881740825152031}
   m_Layer: 5
-  m_Name: BackgroundName
+  m_Name: NameBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1130,7 +1130,7 @@ GameObject:
   - component: {fileID: 4747969568929539324}
   - component: {fileID: 6970814627230221780}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1264,7 +1264,7 @@ GameObject:
   - component: {fileID: 8049445310896216604}
   - component: {fileID: 8331176043243017196}
   m_Layer: 5
-  m_Name: BackgroundNameNPC
+  m_Name: NameNPCBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1371,7 +1371,7 @@ GameObject:
   - component: {fileID: 1061896427112701393}
   - component: {fileID: 7859172561659913653}
   m_Layer: 5
-  m_Name: nameNPC
+  m_Name: NameNPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1824,7 +1824,7 @@ GameObject:
   - component: {fileID: 3911084624350511717}
   - component: {fileID: 2842429244719493699}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
