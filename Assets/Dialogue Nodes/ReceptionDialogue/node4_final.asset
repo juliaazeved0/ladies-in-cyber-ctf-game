@@ -15,10 +15,9 @@ MonoBehaviour:
   question: "\u201CPode me explicar por que n\xE3o estou achando seus dados de acesso
     padr\xE3o aqui?\u201D"
   options:
-  - "\u201CMeu cadastro ainda pode constar como desconhecido, estou come\xE7ando
-    agora.\u201D"
-  - "\u201CPerdi meu crach\xE1 hoje, ainda n\xE3o consegui regularizar.\u201D"
-  - "\u201CPodemos resolver isso de outra forma\u2026\u201D"
+  - "A) Meu cadastro ainda pode constar como desconhecido, estou come\xE7ando agora."
+  - "B) Perdi meu crach\xE1 hoje, ainda n\xE3o consegui regularizar."
+  - "C) Podemos resolver isso de outra forma\u2026"
   narratorFeedbacks:
   - "\u201CA explica\xE7\xE3o soa poss\xEDvel, mas ainda fr\xE1gil. Contudo, ela
     decide dar um voto de confian\xE7a.\u201D"

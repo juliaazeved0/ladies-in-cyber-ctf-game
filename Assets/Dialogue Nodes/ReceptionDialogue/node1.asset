@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc344bf1847f7284ba70f62fdd0f60c5, type: 3}
   m_Name: node1
   m_EditorClassIdentifier: 
-  question: "\u201CBom dia. Posso ajudar?\u201D"
+  question: Bom dia. Posso ajudar?
   options:
-  - "Bom dia, sou a nova t\xE9cnica de ciberseguran\xE7a."
-  - Bom dia. Estou aqui a trabalho.
-  - Bom dia. Estou procurando o Rolf.
+  - "A) Bom dia. Sou a nova t\xE9cnica de ciberseguran\xE7a."
+  - B) Bom dia. Estou aqui a trabalho.
+  - C) Bom dia. Estou procurando o Rolf.
   narratorFeedbacks:
-  - "\u201CA afirma\xE7\xE3o direta chama aten\xE7\xE3o. Para algu\xE9m que ela n\xE3o
-    conhece, isso soa apressado. Mas, agora voc\xEA tem um cargo definido.\u201D"
-  - "\u201CUma resposta neutra. Voc\xEA evita se expor cedo demais.\u201D"
-  - "\u201CCitar um nome interno desperta curiosidade, e um pouco de cautela. Ser\xE1
-    que essa foi a escolha certa?\u201D"
+  - "A afirma\xE7\xE3o direta chama aten\xE7\xE3o. Para algu\xE9m que ela n\xE3o
+    conhece, isso soa apressado. Mas, agora voc\xEA tem um cargo definido."
+  - "Uma resposta neutra. Voc\xEA evita se expor cedo demais."
+  - "Citar um nome interno desperta curiosidade, e um pouco de cautela. Ser\xE1 que
+    essa foi a escolha certa?"
   nextDialogue:
   - {fileID: 11400000, guid: 49d14efa35ee17947b4df2358f2b6b73, type: 2}
   - {fileID: 11400000, guid: 2dc7ac6edb82e7d4196e78ec577065e1, type: 2}
