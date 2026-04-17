@@ -15,7 +15,7 @@ MonoBehaviour:
   question: "\u201CEntendi\u2026 Tivemos alguns problemas recentes mesmo. Mas ainda
     preciso confirmar seu cadastro.\u201D"
   options:
-  - "\u201CCerto, entendo.\u201D"
+  - A) Certo, entendo.
   narratorFeedbacks:
   - "\u201CEla parece considerar suas palavras com mais aten\xE7\xE3o agora. A postura
     dela muda. Voc\xEA sente que est\xE1 perto de conseguir o que almeja.\u201D"

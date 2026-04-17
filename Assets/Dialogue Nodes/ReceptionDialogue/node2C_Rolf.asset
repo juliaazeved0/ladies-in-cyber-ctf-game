@@ -15,9 +15,9 @@ MonoBehaviour:
   question: "\u201CO Rolf quase n\xE3o aparece na recep\xE7\xE3o. Ele resolve tudo
     por e-mail. O que voc\xEA deseja?\u201D"
   options:
-  - "\u201CNa verdade, estou aqui por uma verifica\xE7\xE3o t\xE9cnica.\u201D"
-  - "\u201CDeixa pra l\xE1, vou aguardar.\u201D"
-  - "\u201CSim, ele mesmo me encaminhou para vir aqui via e-mail.\u201D"
+  - "A) Na verdade, estou aqui por uma verifica\xE7\xE3o t\xE9cnica."
+  - "B) Deixa pra l\xE1, vou aguardar."
+  - C) Sim, ele mesmo me encaminhou para vir aqui via e-mail.
   narratorFeedbacks:
   - "\u201CVoc\xEA redireciona o assunto para algo plaus\xEDvel. Agora voc\xEA tem
     um cargo definido.\u201D"

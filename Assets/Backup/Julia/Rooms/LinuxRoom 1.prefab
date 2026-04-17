@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4911006206048153251}
   - component: {fileID: 7652154162413068424}
   m_Layer: 5
-  m_Name: Text
+  m_Name: FullText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 4679014479175281052}
   - component: {fileID: 7776520523238124599}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 6248227338995980421}
   - component: {fileID: 7680075844521759119}
   m_Layer: 5
-  m_Name: Text
+  m_Name: FullText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -416,7 +416,7 @@ GameObject:
   - component: {fileID: 7698793679195174521}
   - component: {fileID: 6342384277382554316}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1640,7 +1640,7 @@ GameObject:
   - component: {fileID: 1361317330568504632}
   - component: {fileID: 1395019315344583689}
   m_Layer: 5
-  m_Name: ballon_NPCLuiz
+  m_Name: BalloonNPCLuiz
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2207,7 +2207,7 @@ GameObject:
   - component: {fileID: 2062084560119943266}
   - component: {fileID: 1874099825463478153}
   m_Layer: 5
-  m_Name: Canvas (1)
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2308,7 +2308,7 @@ GameObject:
   - component: {fileID: 5280368937156499239}
   - component: {fileID: 7914747984144900164}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2667,7 +2667,7 @@ GameObject:
   - component: {fileID: 5984584168930525387}
   - component: {fileID: 3231795053513641258}
   m_Layer: 5
-  m_Name: Text
+  m_Name: FullText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3374,7 +3374,7 @@ GameObject:
   - component: {fileID: 8226987533153154624}
   - component: {fileID: 2001722632843706822}
   m_Layer: 5
-  m_Name: InteractionNoticeCarlos (1)
+  m_Name: InteractionNoticeCarlosTwo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3451,7 +3451,7 @@ GameObject:
   - component: {fileID: 6309127961074628667}
   - component: {fileID: 7684107720371754767}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3803,7 +3803,7 @@ GameObject:
   - component: {fileID: 2861740536583035538}
   - component: {fileID: 1331211320537433413}
   m_Layer: 5
-  m_Name: ballon_NPCCarlos
+  m_Name: BalloonNPCCarlos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4161,7 +4161,7 @@ GameObject:
   - component: {fileID: 8362274369108442749}
   - component: {fileID: 2287643312204393167}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5449,7 +5449,7 @@ GameObject:
   - component: {fileID: 3222884245341427254}
   - component: {fileID: 281956296411007710}
   m_Layer: 5
-  m_Name: Canvas (1)
+  m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5639,6 +5639,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1674682678918000059, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
+      propertyPath: m_Name
+      value: ConfirmButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1979397797579951515, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
+      propertyPath: m_Name
+      value: InteractionNotice
+      objectReference: {fileID: 0}
     - target: {fileID: 2251859569586216294, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -5651,6 +5659,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: DialogueAleNPC, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 3483992782526482681, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
+      propertyPath: m_Name
+      value: ExitButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3502900808758752650, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
     - target: {fileID: 3893840363540083719, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -5658,6 +5674,14 @@ PrefabInstance:
     - target: {fileID: 3893840363540083719, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ExitDialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 4006186223780193599, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 4190805568922178713, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
+      propertyPath: m_Name
+      value: FullText
       objectReference: {fileID: 0}
     - target: {fileID: 4371289441498965276, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
       propertyPath: m_SizeDelta.x
@@ -5675,9 +5699,25 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.69
       objectReference: {fileID: 0}
+    - target: {fileID: 5076660549826618029, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
+      propertyPath: m_Name
+      value: NameBackground
+      objectReference: {fileID: 0}
+    - target: {fileID: 5267391047857644734, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467912339087943449, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
+      propertyPath: m_Name
+      value: NameNPCBackground
+      objectReference: {fileID: 0}
     - target: {fileID: 5734218898990939777, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
       propertyPath: m_Name
       value: DialogueCarlosManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5742220196013515464, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
+      propertyPath: m_Name
+      value: NameNPC
       objectReference: {fileID: 0}
     - target: {fileID: 6852112722046190058, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
       propertyPath: m_Name
@@ -5698,6 +5738,10 @@ PrefabInstance:
     - target: {fileID: 7356741896947674797, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 20.548
+      objectReference: {fileID: 0}
+    - target: {fileID: 7461004325831887128, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
+      propertyPath: m_Name
+      value: Text
       objectReference: {fileID: 0}
     - target: {fileID: 7802607461870537927, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
       propertyPath: m_Sprite
@@ -5977,6 +6021,10 @@ PrefabInstance:
     - target: {fileID: 7356741896947674797, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 20.548
+      objectReference: {fileID: 0}
+    - target: {fileID: 7461004325831887128, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
+      propertyPath: m_Name
+      value: Text
       objectReference: {fileID: 0}
     - target: {fileID: 7802607461870537927, guid: 98b996df6d2f2f447a47ceeccfd8b18a, type: 3}
       propertyPath: m_Sprite

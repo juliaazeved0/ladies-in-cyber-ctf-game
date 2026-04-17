@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc344bf1847f7284ba70f62fdd0f60c5, type: 3}
   m_Name: node2B_TrabalhoDeQuem
   m_EditorClassIdentifier: 
-  question: "\u201CA trabalho de quem? Preciso de mais detalhes.\u201D"
+  question: A trabalho de quem? Preciso de mais detalhes.
   options:
-  - "\u201CSou do setor de seguran\xE7a da informa\xE7\xE3o.\u201D"
-  - "\u201CVoc\xEA recebeu algum e-mail sobre verifica\xE7\xE3o de sistema?\u201D"
-  - "\u201CQual sistema voc\xEAs usam aqui na entrada?\u201D"
+  - "A) Sou do setor de seguran\xE7a da informa\xE7\xE3o."
+  - "C) Voc\xEA recebeu algum e-mail sobre verifica\xE7\xE3o de sistema?"
+  - "C) Qual sistema voc\xEAs usam aqui na entrada?"
   narratorFeedbacks:
   - "\u201CUma resposta objetiva, sem detalhes excessivos. Agora voc\xEA tem um cargo
     definido.\u201D"

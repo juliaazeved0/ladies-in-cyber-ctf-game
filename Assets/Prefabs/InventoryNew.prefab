@@ -384,7 +384,7 @@ GameObject:
   - component: {fileID: 1937352709865241195}
   - component: {fileID: 4755060612153026330}
   m_Layer: 5
-  m_Name: buttonLink
+  m_Name: LinkButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -953,7 +953,7 @@ GameObject:
   - component: {fileID: 7559867949475209065}
   - component: {fileID: 5311010626122158545}
   m_Layer: 5
-  m_Name: modalTextLink
+  m_Name: LinkTextModal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1104,7 +1104,7 @@ GameObject:
   - component: {fileID: 241181928533102125}
   - component: {fileID: 121186905966986555}
   m_Layer: 5
-  m_Name: modalInteraction
+  m_Name: InteractionModal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1253,11 +1253,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1829717955368042343, guid: 5e15e543fce5e5c4eb01145aad909b7b, type: 3}
       propertyPath: m_Name
-      value: PanelPlayBook01
+      value: PlayBookPanel01
       objectReference: {fileID: 0}
     - target: {fileID: 2281920585747994586, guid: 5e15e543fce5e5c4eb01145aad909b7b, type: 3}
       propertyPath: m_Name
-      value: Inventory
+      value: InventoryNew
       objectReference: {fileID: 0}
     - target: {fileID: 2474481165821986244, guid: 5e15e543fce5e5c4eb01145aad909b7b, type: 3}
       propertyPath: m_text
@@ -1518,6 +1518,10 @@ PrefabInstance:
     - target: {fileID: 7987234178872404222, guid: 5e15e543fce5e5c4eb01145aad909b7b, type: 3}
       propertyPath: m_Name
       value: BorderButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8216057976682382699, guid: 5e15e543fce5e5c4eb01145aad909b7b, type: 3}
+      propertyPath: m_Name
+      value: BagPanel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
