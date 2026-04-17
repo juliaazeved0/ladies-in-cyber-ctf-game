@@ -10,8 +10,8 @@ namespace BashTerminal
 {
     public abstract class BashTerminalBase : MonoBehaviour
     {
-        [Header("Terminal UI - Referencias")]
-        [SerializeField] protected GameObject terminalPanel; 
+        [Header("Terminal UI - Referências")]
+        [SerializeField] protected GameObject terminalPanel;
         [SerializeField] protected TMP_Text outputText;
         [SerializeField] protected TMP_InputField inputField;
         [SerializeField] protected ScrollRect scrollRect;
@@ -43,20 +43,20 @@ namespace BashTerminal
         public void OpenTerminal()
         {
             if (terminalPanel == null) return;
-            
+
             terminalPanel.SetActive(true);
             isOpen = true;
             currentDirectory = HomeDirectory;
             outputBuffer.Clear();
             SetupFilesystem();
-            
+
             string welcome = GetWelcomeMessage();
             if (!string.IsNullOrEmpty(welcome)) AppendLine(welcome);
-            
+
             inputField.text = "";
             inputField.onSubmit.RemoveAllListeners();
             inputField.onSubmit.AddListener(HandleInput);
-            
+
             RefreshOutput();
             StartCoroutine(FocusNextFrame());
         }
@@ -92,26 +92,73 @@ namespace BashTerminal
         private IEnumerator FocusNextFrame()
         {
             yield return new WaitForSecondsRealtime(0.05f);
-            if (inputField != null) 
-            { 
-                inputField.ActivateInputField(); 
-                inputField.Select(); 
+            if (inputField != null)
+            {
+                inputField.ActivateInputField();
+                inputField.Select();
             }
+        }
+
+        // --- LÓGICA DE NAVEGAÇÃO DE CAMINHOS ---
+
+        protected string ResolvePath(string inputPath)
+        {
+            if (string.IsNullOrEmpty(inputPath)) return currentDirectory;
+
+            string pathBase;
+
+            // Caminho absoluto ou relativo à Home
+            if (inputPath.StartsWith("/"))
+            {
+                pathBase = inputPath;
+            }
+            else if (inputPath.StartsWith("~"))
+            {
+                pathBase = HomeDirectory + inputPath.Substring(1);
+            }
+            else
+            {
+                // Caminho relativo ao diretório atual
+                string separator = currentDirectory.EndsWith("/") ? "" : "/";
+                pathBase = currentDirectory + separator + inputPath;
+            }
+
+            // Normalização de ".." e "."
+            string[] parts = pathBase.Split(new char[] { '/' }, System.StringSplitOptions.RemoveEmptyEntries);
+            List<string> resolvedParts = new List<string>();
+
+            foreach (string part in parts)
+            {
+                if (part == ".") continue;
+                if (part == "..")
+                {
+                    if (resolvedParts.Count > 0) resolvedParts.RemoveAt(resolvedParts.Count - 1);
+                }
+                else
+                {
+                    resolvedParts.Add(part);
+                }
+            }
+
+            string result = "/" + string.Join("/", resolvedParts);
+            return (result == "//") ? "/" : result;
         }
 
         protected string GetDisplayPath()
         {
             if (currentDirectory == HomeDirectory) return "~";
-            return currentDirectory.Replace(HomeDirectory, "~");
+            if (currentDirectory.StartsWith(HomeDirectory))
+                return "~" + currentDirectory.Substring(HomeDirectory.Length);
+            return currentDirectory;
         }
+
+        // --- PROCESSAMENTO DE COMANDOS ---
 
         protected void HandleInput(string input)
         {
             if (!isOpen) return;
 
             string trimmedInput = input.Trim();
-            
-            // Renderiza o prompt no histórico antes de processar
             outputBuffer.AppendLine($"<color=#55FF55>{User}@{Hostname}</color>:<color=#5599FF>{GetDisplayPath()}</color>$ {trimmedInput}");
 
             if (!string.IsNullOrEmpty(trimmedInput))
@@ -119,7 +166,6 @@ namespace BashTerminal
 
             RefreshOutput();
             inputField.text = "";
-            inputField.ActivateInputField(); // Mantém o foco após o Enter
             StartCoroutine(FocusNextFrame());
         }
 
@@ -127,7 +173,7 @@ namespace BashTerminal
         {
             string[] tokens = fullCommand.Split(new char[] { ' ' }, System.StringSplitOptions.RemoveEmptyEntries);
             if (tokens.Length == 0) return;
-            
+
             string cmd = tokens[0];
             string[] args = tokens.Skip(1).ToArray();
 
@@ -139,6 +185,8 @@ namespace BashTerminal
                 case "cd": ExecuteCd(args); break;
                 case "pwd": AppendLine(currentDirectory); break;
                 case "cat": AppendLine(ExecuteCat(args)); break;
+                case "mkdir": ExecuteMkdir(args); break;
+                case "touch": ExecuteTouch(args); break;
                 case "clear": outputBuffer.Clear(); break;
                 case "help": AppendLine(GetHelpText()); break;
                 case "exit": CloseTerminal(); break;
@@ -149,28 +197,37 @@ namespace BashTerminal
         protected virtual bool ExecuteSpecialCommand(string cmd, string[] args, string fullCommand) => false;
         protected virtual string OnCatFile(string resolvedPath, string originalArg) => null;
 
+        // --- IMPLEMENTAÇÃO DOS COMANDOS BÁSICOS ---
+
         protected string ExecuteLs(string[] args)
         {
             bool showHidden = args.Any(a => a.Contains("a"));
             bool longFormat = args.Any(a => a.Contains("l"));
-            
+
+            // Resolve qual pasta listar (ls ou ls /caminho)
+            string targetPath = args.Length > 0 && !args[0].StartsWith("-") ? ResolvePath(args[0]) : currentDirectory;
+
+            if (!directories.Contains(targetPath)) return $"ls: cannot access '{targetPath}': No such directory";
+
             var contents = files.Keys.Concat(directories)
-                .Where(p => p.StartsWith(currentDirectory) && p != currentDirectory)
-                .Select(p => p.Substring(currentDirectory.Length).TrimStart('/'))
+                .Where(p => p.StartsWith(targetPath) && p != targetPath)
+                .Select(p => p.Substring(targetPath.Length).TrimStart('/'))
                 .Where(p => !p.Contains("/"))
+                .OrderBy(p => p)
                 .ToList();
 
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             foreach (var item in contents)
             {
                 if (!showHidden && item.StartsWith(".")) continue;
-                string path = currentDirectory + "/" + item;
-                bool isDir = directories.Contains(path);
-                bool isExec = executableFiles.Contains(path);
+                
+                string fullPath = (targetPath.EndsWith("/") ? targetPath : targetPath + "/") + item;
+                bool isDir = directories.Contains(fullPath);
+                bool isExec = executableFiles.Contains(fullPath);
 
                 if (longFormat)
                 {
-                    sb.AppendLine($"{BuildPermString(path, isDir, isExec)}  {User}  {item}");
+                    sb.AppendLine($"{BuildPermString(fullPath, isDir, isExec)}  {User}  {item}");
                 }
                 else
                 {
@@ -181,6 +238,47 @@ namespace BashTerminal
             return sb.ToString();
         }
 
+        protected void ExecuteCd(string[] args)
+        {
+            string target = (args.Length == 0) ? HomeDirectory : ResolvePath(args[0]);
+
+            if (directories.Contains(target))
+            {
+                currentDirectory = target;
+            }
+            else
+            {
+                AppendLine($"bash: cd: {args[0]}: No such file or directory");
+            }
+        }
+
+        protected string ExecuteCat(string[] args)
+        {
+            if (args.Length == 0) return "cat: missing operand";
+
+            string path = ResolvePath(args[0]);
+            string intercepted = OnCatFile(path, args[0]);
+            if (intercepted != null) return intercepted;
+
+            if (directories.Contains(path)) return $"cat: {args[0]}: Is a directory";
+            return files.ContainsKey(path) ? files[path] : $"cat: {args[0]}: No such file or directory";
+        }
+
+        protected void ExecuteMkdir(string[] args)
+        {
+            if (args.Length == 0) { AppendLine("mkdir: missing operand"); return; }
+            string path = ResolvePath(args[0]);
+            if (directories.Contains(path)) return;
+            AddDirectory(path);
+        }
+
+        protected void ExecuteTouch(string[] args)
+        {
+            if (args.Length == 0) { AppendLine("touch: missing operand"); return; }
+            string path = ResolvePath(args[0]);
+            if (!files.ContainsKey(path)) AddFile(path, "");
+        }
+
         protected virtual string BuildPermString(string path, bool isDir, bool isExec)
         {
             string d = isDir ? "d" : "-";
@@ -188,65 +286,8 @@ namespace BashTerminal
             return $"{d}rwxr-{x}r-{x}";
         }
 
-        protected void ExecuteCd(string[] args)
-        {
-            if (args.Length == 0 || args[0] == "~") 
-            { 
-                currentDirectory = HomeDirectory; 
-                return; 
-            }
-
-            string targetArg = args[0];
-
-            // Lógica para voltar diretório (cd ..)
-            if (targetArg == "..")
-            {
-                if (currentDirectory == "/" || currentDirectory == HomeDirectory && currentDirectory.Length <= 1)
-                {
-                    return; // Já está na raiz
-                }
-
-                int lastSlash = currentDirectory.LastIndexOf('/');
-                if (lastSlash > 0)
-                {
-                    currentDirectory = currentDirectory.Substring(0, lastSlash);
-                }
-                else
-                {
-                    currentDirectory = "/";
-                }
-                return;
-            }
-
-            // Lógica para entrar em diretório
-            string separator = currentDirectory.EndsWith("/") ? "" : "/";
-            string targetPath = currentDirectory + separator + targetArg;
-
-            if (directories.Contains(targetPath)) 
-            {
-                currentDirectory = targetPath;
-            }
-            else 
-            {
-                AppendLine($"bash: cd: {targetArg}: No such file or directory");
-            }
-        }
-
-        protected string ExecuteCat(string[] args)
-        {
-            if (args.Length == 0) return "cat: missing operand";
-            
-            string separator = currentDirectory.EndsWith("/") ? "" : "/";
-            string path = currentDirectory + separator + args[0];
-            
-            string intercepted = OnCatFile(path, args[0]);
-            if (intercepted != null) return intercepted;
-            
-            return files.ContainsKey(path) ? files[path] : "cat: arquivo nao encontrado.";
-        }
-
         protected void AddDirectory(string path) => directories.Add(path);
-        
+
         protected void AddFile(string path, string content, string ownerGroup = null)
         {
             files[path] = content;

@@ -23,6 +23,7 @@ public class UnlockBossRoom : MonoBehaviour
     [Header("Fade Global (Animator no Panel preto da tela inteira)")]
     public Animator fadeAnimator;
     public GameObject panelBlack;
+    public GameObject imageLock;
 
     [Header("Referências Extras")]
     public LockObjectInteraction lockInteraction;
@@ -34,20 +35,34 @@ public class UnlockBossRoom : MonoBehaviour
 
     [Header("Posição de spawn inicial na BossRoom")]
     [Tooltip("Coordenadas onde a player vai aparecer na primeira entrada na BossRoom.")]
-    public Vector2 bossRoomSpawnPosition = new Vector2(-2.8f, -2.5f);
+    public Vector2 bossRoomSpawnPosition = new Vector2(-2.54f, -3.34f); 
 
     private string correctPassword = "1541";
     private bool isTransitioning = false;
 
     void Start()
+{
+    if (PlayerPrefs.GetInt("BossRoomUnlocked", 0) == 1)
     {
-        // Restaura o estado de desbloqueio após reload de página.
-        if (PlayerPrefs.GetInt("BossRoomUnlocked", 0) == 1)
-        {
-            unlocked = true;
-            if (lockObject != null) lockObject.SetActive(false);
-        }
+        unlocked = true;
+        if (lockObject != null) lockObject.SetActive(false);
     }
+
+    // Roda APÓS DataPlayerPosition.OnSceneLoaded(), que salva a posição do
+    // collider de saída como BossRoom_PlayerX/Y/Z. Aqui desfazemos isso,
+    // garantindo que na próxima entrada a player nasça no spawn correto.
+    if (PlayerPrefs.GetInt("ReturningFromBoss", 0) == 1)
+    {
+        PlayerPrefs.DeleteKey("ReturningFromBoss");
+        PlayerPrefs.SetFloat("BossRoom_PlayerX", bossRoomSpawnPosition.x);
+        PlayerPrefs.SetFloat("BossRoom_PlayerY", bossRoomSpawnPosition.y);
+        PlayerPrefs.SetFloat("BossRoom_PlayerZ", 0f);
+        PlayerPrefs.Save();
+        panelBlack.SetActive(true);
+        fadeAnimator.SetTrigger("FadeIn");
+    }
+}
+
 
     public void OpenPasswordPanel()
     {
@@ -102,8 +117,9 @@ public class UnlockBossRoom : MonoBehaviour
     {
         input.text = "ACESSO CONCEDIDO";
         lockObject.SetActive(false);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         unlocked = true;
+        imageLock.SetActive(false);
 
         // Persiste o desbloqueio e define a posição de spawn na BossRoom
         // (apenas se ainda não foi definida por uma sessão anterior).

@@ -16,18 +16,18 @@ public class SimpleDialogue : MonoBehaviour
     public Image characterPlayer;
     public GameObject miniMapCanvas;
     public GameObject cameraMiniMap;
-    public Button confirmButton; // Opcional
+    public Button confirmButton;
 
     [Header("Dinamic variable")]
-    public PulseOutline pulsingObject; // Opcional
+    public PulseOutline pulsingObject;
 
     private bool readyToSpeak = false;
-    protected bool isTalking = false; // <--- ADICIONADO AQUI: O crachá que diz se este NPC é o dono da conversa
+    protected bool isTalking = false;
 
     [Header("Buttons")]
     public Button buttonExit;
 
-    [Header ("Nodes")]
+    [Header("Nodes")]
     public NPCDialogueNode firstNode;
     protected NPCDialogueNode dialogueCurrent;
 
@@ -38,15 +38,14 @@ public class SimpleDialogue : MonoBehaviour
 
     void Update()
     {
-        // <--- MODIFICADO AQUI: Agora ele exige que readyToSpeak seja true E que isTalking seja true!
-        if(!readyToSpeak || !isTalking)
+        if (!readyToSpeak || !isTalking)
         {
             return;
         }
 
-        if(panelDialogue.activeSelf && Input.GetKeyDown(KeyCode.E))
+        if (panelDialogue.activeSelf && Input.GetKeyDown(KeyCode.E))
         {
-           NextTalk();
+            NextTalk();
         }
     }
 
@@ -61,11 +60,11 @@ public class SimpleDialogue : MonoBehaviour
         StopAllCoroutines();
 
         isSimpleDialogueActive = true;
-        isTalking = true; // <--- ADICIONADO AQUI: Pega o crachá de fala ao iniciar a conversa
+        isTalking = true;
 
-        if(textDialogue != null) textDialogue.text = "";
-        if(confirmButton != null) confirmButton.gameObject.SetActive(false);
-        if(buttonExit != null) buttonExit.gameObject.SetActive(true);
+        if (textDialogue != null) textDialogue.text = "";
+        if (confirmButton != null) confirmButton.gameObject.SetActive(false);
+        if (buttonExit != null) buttonExit.gameObject.SetActive(true);
 
         firstNode = inicialNode;
 
@@ -97,28 +96,28 @@ public class SimpleDialogue : MonoBehaviour
 
         writeMachine.Run(node.talkNPC, textDialogue);
 
-        if(characterNPC != null)
+        if (characterNPC != null)
             characterNPC.sprite = node.characterNPC;
     }
 
     public virtual void NextTalk()
     {
-        //if (WriteMachine.IsTyping)
-        // {
-        //    WriteMachine.Complete();
-        //    return;
-        //}
+        if (writeMachine.IsTyping)
+        {
+            writeMachine.Complete();
+            return;
+        }
 
-        if(dialogueCurrent.nextNode != null)
+        if (dialogueCurrent.nextNode != null)
         {
             DialogueView(dialogueCurrent.nextNode);
         }
         else
         {
-            if(confirmButton != null)
+            if (confirmButton != null)
                 confirmButton.gameObject.SetActive(true);
 
-            if(buttonExit != null)
+            if (buttonExit != null)
                 buttonExit.gameObject.SetActive(false);
         }
     }
@@ -126,7 +125,7 @@ public class SimpleDialogue : MonoBehaviour
     public void ExitDialogue()
     {
         isSimpleDialogueActive = false;
-        isTalking = false; // <--- ADICIONADO AQUI: Devolve o crachá de fala ao sair da conversa
+        isTalking = false;
 
         CanvasManager.Instance.ClosedPanel(panelDialogue.name);
         CanvasManager.Instance.ToggleMiniMap(true);
@@ -136,7 +135,7 @@ public class SimpleDialogue : MonoBehaviour
     {
         ExitDialogue();
 
-        if(pulsingObject != null)
+        if (pulsingObject != null)
         {
             pulsingObject.StartPulsing();
             pulsingObject = null;

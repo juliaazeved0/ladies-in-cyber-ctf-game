@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 public class LoadScenes : MonoBehaviour
 {
     private string targetScene;
+    
+    // Coordenadas fixas para o nascimento no mapa
+    private Vector2 mapSpawnPosition = new Vector2(-38.12f, -36.71f);
 
     void Start()
     {
@@ -19,6 +22,16 @@ public class LoadScenes : MonoBehaviour
         if (!string.IsNullOrEmpty(playerName))
         {
             targetScene = "PlayerMap";
+
+            // CORREÇÃO DIRETA NO PLAYERPREFS:
+            // Como não alteramos o DataPlayerPosition, nós editamos as chaves 
+            // que ele usa (NomeDaCena + Eixo) ANTES da cena carregar.
+            PlayerPrefs.SetFloat("PlayerMap_PlayerX", mapSpawnPosition.x);
+            PlayerPrefs.SetFloat("PlayerMap_PlayerY", mapSpawnPosition.y);
+            PlayerPrefs.SetFloat("PlayerMap_PlayerZ", 0f);
+            
+            // Força o salvamento das alterações no disco
+            PlayerPrefs.Save();
         }
         else
         {
@@ -28,23 +41,18 @@ public class LoadScenes : MonoBehaviour
 
     private IEnumerator LoadAsync(string sceneName)
     {
-        // Marca o tempo exato em que a tela de loading começou
         float startTime = Time.time;
-        float minimumLoadTime = 3f; // Tempo mínimo em segundos
+        float minimumLoadTime = 3f; 
 
-        // Começa a carregar a próxima cena silenciosamente
         AsyncOperation loading = SceneManager.LoadSceneAsync(sceneName);
         loading.allowSceneActivation = false;
 
         while (!loading.isDone)
         {
-            // Calcula quanto tempo já passou desde que o Start() rodou
             float timeElapsed = Time.time - startTime;
 
-            // Se o Unity terminou de carregar (0.9f) E já se passaram 3 segundos...
             if (loading.progress >= 0.9f && timeElapsed >= minimumLoadTime)
             {
-                // Libera a cena nova para aparecer na tela
                 loading.allowSceneActivation = true;
             }
 

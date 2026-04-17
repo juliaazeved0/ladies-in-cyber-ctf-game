@@ -6,11 +6,11 @@ using UnityEngine.EventSystems; //Detectar cliques
 
 public class LoginSystem : MonoBehaviour, IPointerClickHandler
 {
-    [Header("Configurações de Login")]
+    [Header("Configuraï¿½ï¿½es de Login")]
     public TMP_InputField inputPassword; //Campo onde a jogadora digita a senha
     public string passwordCorrect = "Ch3f1nh0"; //Senha correta guardada em uma string
 
-    [Header("Telas")] //Painéis utilizados no Inspector
+    [Header("Telas")] //Painï¿½is utilizados no Inspector
     public GameObject initialBackground;
     public GameObject desktopBackground;
     public GameObject errorPopup; 
@@ -33,21 +33,21 @@ public class LoginSystem : MonoBehaviour, IPointerClickHandler
 
     void Update()
     {
-        //Se o diálogo não acabou, o campo de senha fica desativado
+        //Se o diï¿½logo nï¿½o acabou, o campo de senha fica desativado
         if(inputPassword != null)
         {
             inputPassword.interactable = DialogueManagerBoss.dialogueBossFinished;
         }
     }
 
-    public void ValidatePasswordBoss() //Validação da senha
+    public void ValidatePasswordBoss() //Validaï¿½ï¿½o da senha
     {
-        if (!DialogueManagerBoss.dialogueBossFinished) //Se o diálogo ainda não terminou, nem tenta validar
+        if (!DialogueManagerBoss.dialogueBossFinished) //Se o diï¿½logo ainda nï¿½o terminou, nem tenta validar
         {
             return;
         }
 
-        if(inputPassword.text.Trim() == passwordCorrect) //Verifica se a senha escrita no input é igual a senha correta
+        if(inputPassword.text.Trim() == passwordCorrect) //Verifica se a senha escrita no input ï¿½ igual a senha correta
         {
             ChangeScreen(); //Se colocar a senha correta, troca de painel
         }
@@ -58,11 +58,11 @@ public class LoginSystem : MonoBehaviour, IPointerClickHandler
 
             //Chama o feedback de erro
             StopCoroutine("ShowErrorTemporary"); //Evita duplicar coroutine
-            StartCoroutine(ShowErrorTemporary()); //Mostra o erro temporária
+            StartCoroutine(ShowErrorTemporary()); //Mostra o erro temporï¿½ria
         }
     }
 
-    void ChangeScreen() //Mudança de telas
+    void ChangeScreen() //Mudanï¿½a de telas
     {
         initialBackground.SetActive(false);
         desktopBackground.SetActive(true);
@@ -70,7 +70,7 @@ public class LoginSystem : MonoBehaviour, IPointerClickHandler
 
     public void CopyPassword(string password)
     {
-        GUIUtility.systemCopyBuffer = password; //Copia o texto para a área de transferência
+        GUIUtility.systemCopyBuffer = password; //Copia o texto para a ï¿½rea de transferï¿½ncia
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -82,6 +82,11 @@ public class LoginSystem : MonoBehaviour, IPointerClickHandler
             StopAllCoroutines(); //Para efeitos anteriores
             StartCoroutine(HighlightEffect()); //Inicia efeito visual
         }
+    }
+
+    public void ExitChallengBoss()
+    {
+        desktopBackground.SetActive(false);
     }
 
     IEnumerator HighlightEffect()

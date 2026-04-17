@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class SimpleDialogueNoHelp : SimpleDialogue
 {
-   public override void NextTalk()
+    public override void NextTalk()
     {
+        if (writeMachine.IsTyping)
+        {
+            writeMachine.Complete();
+            return;
+        }
+
         if (dialogueCurrent.nextNode != null)
         {
             DialogueView(dialogueCurrent.nextNode);

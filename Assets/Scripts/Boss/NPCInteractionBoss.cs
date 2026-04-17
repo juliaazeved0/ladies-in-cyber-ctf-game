@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using BashTerminal; // Adicionado para verificar o terminal se necessário
+using BashTerminal;
 
 public class NPCBossInteraction : MonoBehaviour
 {
@@ -20,7 +20,7 @@ public class NPCBossInteraction : MonoBehaviour
     public DialogueNodeBoss firstNodeBoss;
 
     [Header("External Blockers")]
-    public GameObject terminalPanel; // Arraste o painel do terminal aqui no Inspector
+    public GameObject terminalPanel;
 
     private bool playerIsHere = false;
     private bool isCompleted = false;
@@ -28,39 +28,38 @@ public class NPCBossInteraction : MonoBehaviour
 
     void Start()
     {
-        if(interactionNotice != null) interactionNotice.SetActive(false);
-        if(balloonNPC != null) balloonNPC.gameObject.SetActive(false);
+        if (interactionNotice != null) interactionNotice.SetActive(false);
+        if (balloonNPC != null) balloonNPC.gameObject.SetActive(false);
         CheckChallengeStatus();
     }
 
     void Update()
     {
-        // 1. VERIFICAÇÃO DE BLOQUEIO:
-        // Se o Terminal estiver aberto, ignore completamente a tecla E do NPC
+        // Se o Terminal estiver aberto, ignora a tecla E
         if (terminalPanel != null && terminalPanel.activeSelf)
         {
             return;
         }
 
-        if(playerIsHere && Input.GetKeyDown(KeyCode.E) && !isCompleted)
+        if (playerIsHere && Input.GetKeyDown(KeyCode.E) && !isCompleted)
         {
-            // 2. VERIFICAÇÃO DO PAINEL DE DIÁLOGO:
-            // Se o painel de diálogo ainda NÃO está ativo, iniciamos a conversa
-            if(!isTalking && !dialogueManagerBoss.panelDialogue.activeSelf)
+            // Painel fechado: inicia a conversa
+            if (!isTalking && !dialogueManagerBoss.panelDialogue.activeSelf)
             {
                 StartConversation();
                 isTalking = true;
-                
-                // Esconde o "Pressione E" ao começar a falar
                 if (interactionNotice != null) interactionNotice.SetActive(false);
             }
-            // 3. SE O PAINEL JÁ ESTÁ ABERTO:
-            // A tecla E servirá apenas para avançar o texto
+            // Painel aberto: 1º E completa o texto, 2º E avança o node
             else if (dialogueManagerBoss.panelDialogue.activeSelf)
             {
-                if(!dialogueManagerBoss.CurrentNodeHasOptions())
+                if (dialogueManagerBoss.writeMachine.IsTyping)
                 {
-                    dialogueManagerBoss.ChooseOption(0); // Avança o diálogo
+                    dialogueManagerBoss.writeMachine.Complete();
+                }
+                else if (!dialogueManagerBoss.CurrentNodeHasOptions())
+                {
+                    dialogueManagerBoss.ChooseOption(0);
                 }
                 else
                 {
@@ -69,8 +68,7 @@ public class NPCBossInteraction : MonoBehaviour
             }
         }
 
-        // 4. LÓGICA DO BALÃO/AVISO:
-        // Se o diálogo fechar (pelo manager), resetamos o isTalking
+        // Se o diálogo fechar, reseta o isTalking
         if (isTalking && !dialogueManagerBoss.panelDialogue.activeSelf)
         {
             isTalking = false;
@@ -80,7 +78,7 @@ public class NPCBossInteraction : MonoBehaviour
 
     private void StartConversation()
     {
-        if(dialogueManagerBoss != null && firstNodeBoss != null)
+        if (dialogueManagerBoss != null && firstNodeBoss != null)
         {
             dialogueManagerBoss.firstNode = firstNodeBoss;
             dialogueManagerBoss.StartDialogue();
@@ -94,8 +92,7 @@ public class NPCBossInteraction : MonoBehaviour
             playerIsHere = true;
             CheckChallengeStatus();
 
-            // Só mostra o aviso se o diálogo NÃO estiver rolando e não estiver completo
-            if(!isCompleted && !dialogueManagerBoss.panelDialogue.activeSelf)
+            if (!isCompleted && !dialogueManagerBoss.panelDialogue.activeSelf)
             {
                 if (interactionNotice != null) interactionNotice.SetActive(true);
                 if (balloonNPC != null) balloonNPC.gameObject.SetActive(true);
@@ -110,16 +107,16 @@ public class NPCBossInteraction : MonoBehaviour
             playerIsHere = false;
             isTalking = false;
 
-            if(interactionNotice != null) interactionNotice.SetActive(false);
-            if(balloonNPC != null) balloonNPC.gameObject.SetActive(false);
+            if (interactionNotice != null) interactionNotice.SetActive(false);
+            if (balloonNPC != null) balloonNPC.gameObject.SetActive(false);
 
-            if(dialogueManagerBoss != null) dialogueManagerBoss.panelDialogue.SetActive(false);
+            if (dialogueManagerBoss != null) dialogueManagerBoss.panelDialogue.SetActive(false);
         }
     }
 
     public void CheckChallengeStatus()
     {
-        if(!string.IsNullOrEmpty(uniqueSaveKey))
+        if (!string.IsNullOrEmpty(uniqueSaveKey))
             isCompleted = PlayerPrefs.GetInt(uniqueSaveKey, 0) == 1;
     }
 }

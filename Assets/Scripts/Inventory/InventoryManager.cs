@@ -12,10 +12,7 @@ public class InventoryManager : MonoBehaviour
     public GameObject panelPlayBookBackground;
     public GameObject inventoryPanel;
 
-    [Header("Endgame Boss")]
-    [SerializeField] private GameObject panelEndgameWarning;
 
-    // VARIÁVEL DE CONTROLE: Só permite o "E" se o Boss foi finalizado
     private bool aguardandoConfirmacaoFinal = false;
 
     [Header("Settings - Buttons & Border")]
@@ -62,7 +59,6 @@ public class InventoryManager : MonoBehaviour
     {
         panelBagBackground.SetActive(false);
         panelPlayBookBackground.SetActive(false);
-        if (panelEndgameWarning != null) panelEndgameWarning.SetActive(false);
         if (modalLinkCTF != null) modalLinkCTF.SetActive(false);
         if (buttonLinkCTF != null) buttonLinkCTF.SetActive(false);
         if (modalContinueCredits != null) modalContinueCredits.SetActive(false);
@@ -73,46 +69,41 @@ public class InventoryManager : MonoBehaviour
     {
         panelPlayBookBackground.SetActive(false);
         panelBagBackground.SetActive(true);
-        if (panelEndgameWarning != null) panelEndgameWarning.SetActive(false);
         MoveToButton(buttonBag);
     }
 
     public void OnClickPlayBook()
     {
+        if (aguardandoConfirmacaoFinal) return;
+
         panelBagBackground.SetActive(false);
         panelPlayBookBackground.SetActive(true);
         MoveToButton(buttonPlayBook);
     }
 
-    /// <summary>
-    /// Chamado ao vencer o Boss. Abre a bolsa com o aviso de última chance.
-    /// </summary>
     public void AbrirBolsaFinalizacaoBoss()
     {
         if (inventoryPanel != null) inventoryPanel.SetActive(true);
 
         panelPlayBookBackground.SetActive(false);
-        panelBagBackground.SetActive(true);
 
         if (modalLinkCTF != null) modalLinkCTF.SetActive(true);
         if (buttonLinkCTF != null) buttonLinkCTF.SetActive(true);
         if (modalContinueCredits != null) modalContinueCredits.SetActive(true);
-        if (panelEndgameWarning != null) panelEndgameWarning.SetActive(true);
+       
 
         aguardandoConfirmacaoFinal = true;
 
         MoveToButton(buttonBag);
+
+        // Abre por último para não ser fechado pelo OnEnable() dos modals acima.
+        panelBagBackground.SetActive(true);
     }
 
     public void ConfirmarColetaDasFlags()
     {
         aguardandoConfirmacaoFinal = false;
-
-        // Desativa o canvas persistente do inventário (DontDestroyOnLoad) para que
-        // ele não fique renderizado por cima da cena de créditos.
-        // transform.root sobe até o GameObject raiz do canvas persistente.
         transform.root.gameObject.SetActive(false);
-
         SceneManager.LoadScene("Credits");
     }
 
@@ -128,7 +119,6 @@ public class InventoryManager : MonoBehaviour
         borderImage.gameObject.SetActive(false);
         panelBagBackground.SetActive(false);
         panelPlayBookBackground.SetActive(false);
-        if (panelEndgameWarning != null) panelEndgameWarning.SetActive(false);
     }
 
     public void MoveToButton(RectTransform newButton)

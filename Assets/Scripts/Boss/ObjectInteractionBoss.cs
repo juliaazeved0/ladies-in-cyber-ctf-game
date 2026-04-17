@@ -18,7 +18,7 @@ public class ObjectInteractionBoss : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && DialogueManagerBoss.dialogueBossFinished)
         {
             playerIsHere = true;
             UpdateInteractionNotice();
