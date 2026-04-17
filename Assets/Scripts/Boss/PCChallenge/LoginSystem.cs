@@ -6,11 +6,11 @@ using UnityEngine.EventSystems; //Detectar cliques
 
 public class LoginSystem : MonoBehaviour, IPointerClickHandler
 {
-    [Header("Configura��es de Login")]
+    [Header("Configuracoes de Login")]
     public TMP_InputField inputPassword; //Campo onde a jogadora digita a senha
     public string passwordCorrect = "Ch3f1nh0"; //Senha correta guardada em uma string
 
-    [Header("Telas")] //Pain�is utilizados no Inspector
+    [Header("Telas")] //Paineis utilizados no Inspector
     public GameObject initialBackground;
     public GameObject desktopBackground;
     public GameObject errorPopup; 
@@ -29,40 +29,63 @@ public class LoginSystem : MonoBehaviour, IPointerClickHandler
         }
 
         if(errorPopup != null) errorPopup.SetActive(false); //Garante que o popup de erro inicie escondido
+
+        if(inputPassword != null)
+        {
+            inputPassword.onEndEdit.AddListener(delegate { OnEndEditValidate(); });
+        }
     }
 
     void Update()
     {
-        //Se o di�logo n�o acabou, o campo de senha fica desativado
+        //Se o dialogo nao acabou, o campo de senha fica desativado
         if(inputPassword != null)
         {
             inputPassword.interactable = DialogueManagerBoss.dialogueBossFinished;
         }
     }
 
-    public void ValidatePasswordBoss() //Valida��o da senha
+    public void ValidatePasswordBoss() //Validacao da senha
     {
-        if (!DialogueManagerBoss.dialogueBossFinished) //Se o di�logo ainda n�o terminou, nem tenta validar
+        if (!DialogueManagerBoss.dialogueBossFinished) //Se o dialogo ainda nao terminou, nem tenta validar
         {
             return;
         }
 
-        if(inputPassword.text.Trim() == passwordCorrect) //Verifica se a senha escrita no input � igual a senha correta
+        string senhaDigitada = inputPassword.text.Trim();
+
+        Debug.Log("Tentativa de Login com: " + senhaDigitada);
+
+        if(senhaDigitada == passwordCorrect)
         {
-            ChangeScreen(); //Se colocar a senha correta, troca de painel
+            Debug.Log("SENHA CORRETA!");
+            ChangeScreen();
         }
         else
         {
-            inputPassword.text = ""; //Limpa o campo
-            inputPassword.ActivateInputField(); //Foca novamente no campo de input
-
-            //Chama o feedback de erro
-            StopCoroutine("ShowErrorTemporary"); //Evita duplicar coroutine
-            StartCoroutine(ShowErrorTemporary()); //Mostra o erro tempor�ria
+            Debug.Log("SENHA INCORRETA!");
+            inputPassword.text = "";
+            inputPassword.ActivateInputField();
+            StopCoroutine("ShowErrorTemporary");
+            StartCoroutine(ShowErrorTemporary());
         }
+        
+        //if (inputPassword.text.Trim() == passwordCorrect) //Verifica se a senha escrita no input eh igual a senha correta
+        //{
+        //    ChangeScreen(); //Se colocar a senha correta, troca de painel
+        //}
+        //else
+        //{
+         //   inputPassword.text = ""; //Limpa o campo
+         //   inputPassword.ActivateInputField(); //Foca novamente no campo de input
+         //
+         //   //Chama o feedback de erro
+         //   StopCoroutine("ShowErrorTemporary"); //Evita duplicar coroutine
+        //    StartCoroutine(ShowErrorTemporary()); //Mostra o erro tempor�ria
+        //}
     }
 
-    void ChangeScreen() //Mudan�a de telas
+    void ChangeScreen() //Mudanca de telas
     {
         initialBackground.SetActive(false);
         desktopBackground.SetActive(true);
@@ -70,7 +93,7 @@ public class LoginSystem : MonoBehaviour, IPointerClickHandler
 
     public void CopyPassword(string password)
     {
-        GUIUtility.systemCopyBuffer = password; //Copia o texto para a �rea de transfer�ncia
+        GUIUtility.systemCopyBuffer = password; //Copia o texto para a area de transferencia
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -105,6 +128,16 @@ public class LoginSystem : MonoBehaviour, IPointerClickHandler
             errorPopup.SetActive(true);
             yield return new WaitForSeconds(2f); //Tempo que ele fica aparecendo na tela
             errorPopup.SetActive(false);
+        }
+    }
+
+    private void OnEndEditValidate()
+    {
+        // No WebGL, é mais seguro checar apenas se o texto não está vazio 
+        // ou confiar no clique do botão físico "ENTRAR" que você criou.
+        if (!string.IsNullOrEmpty(inputPassword.text))
+        {
+            ValidatePasswordBoss();
         }
     }
 }

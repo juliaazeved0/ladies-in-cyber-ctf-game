@@ -923,9 +923,8 @@ MonoBehaviour:
   inputPassword: {fileID: 1835341010}
   passwordCorrect: Ch3f1nh0
   initialBackground: {fileID: 1321393701}
+  desktopBackground: {fileID: 1308891032}
   errorPopup: {fileID: 350431659}
-  exitButton: {fileID: 1477256111}
-  desktopBackground: {fileID: 1321393701}
   postItText: {fileID: 1757867404}
   highlightBackground: {fileID: 980440916}
 --- !u!1 &161816907
@@ -2433,6 +2432,7 @@ GameObject:
   - component: {fileID: 418299130}
   - component: {fileID: 418299132}
   - component: {fileID: 418299131}
+  - component: {fileID: 418299133}
   m_Layer: 0
   m_Name: ComputerTrigger
   m_TagString: Untagged
@@ -2462,7 +2462,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 418299129}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 89ae10c931d1d0d46b80c3a749c2f947, type: 3}
   m_Name: 
@@ -2515,6 +2515,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.98244154, y: 3.5836458}
   m_EdgeRadius: 0
+--- !u!114 &418299133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 418299129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a99393f8c7fc9543afa2a4b8aee3dd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionNotice: {fileID: 1175607048}
+  challengePanel: {fileID: 1321393701}
+  scriptPulse: {fileID: 1399246980}
 --- !u!1 &469708409
 GameObject:
   m_ObjectHideFlags: 0
@@ -3118,9 +3133,8 @@ MonoBehaviour:
   inputPassword: {fileID: 1835341010}
   passwordCorrect: Ch3f1nh0
   initialBackground: {fileID: 1321393701}
-  errorPopup: {fileID: 350431659}
-  exitButton: {fileID: 1477256111}
   desktopBackground: {fileID: 1308891032}
+  errorPopup: {fileID: 350431659}
   postItText: {fileID: 1757867404}
   highlightBackground: {fileID: 980440916}
 --- !u!1 &532816793
@@ -5759,7 +5773,7 @@ GameObject:
   - component: {fileID: 865409758}
   - component: {fileID: 865409757}
   m_Layer: 0
-  m_Name: bossteletransportFade
+  m_Name: BossTeletransportFade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9729,11 +9743,6 @@ MonoBehaviour:
   m_MaximumFOV: 60
   m_MinimumOrthoSize: 1
   m_MaximumOrthoSize: 5000
---- !u!1 &1477256111 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6955225747969921448, guid: 6f5024ad9540cb147be75c55d4da2a38, type: 3}
-  m_PrefabInstance: {fileID: 843795757}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1581219460
 GameObject:
   m_ObjectHideFlags: 0

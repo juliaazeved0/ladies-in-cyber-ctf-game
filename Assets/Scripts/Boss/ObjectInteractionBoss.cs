@@ -9,7 +9,7 @@ public class ObjectInteractionBoss : MonoBehaviour
     public GameObject interactionNotice;
     public GameObject challengePanel;
 
-    protected void Start()
+    protected virtual void Start()
     {
         if (interactionNotice != null) interactionNotice.SetActive(false);
 
