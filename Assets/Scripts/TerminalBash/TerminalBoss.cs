@@ -123,11 +123,26 @@ namespace BashTerminal
             string src = args[0];
             string dst = args[1];
 
-            bool srcIsPraia = src == "praia.jpg";
-            bool dstIsImagens = dst == "../Imagens" || dst == "/home/BOSS/Imagens";
-            bool inDocumentos = currentDirectory == "/home/BOSS/Documentos";
+            // Remove a barra final ('/') para validar tanto "../Imagens" quanto "../Imagens/"
+            string cleanSrc = src.TrimEnd('/');
+            string cleanDst = dst.TrimEnd('/');
 
-            if (inDocumentos && srcIsPraia && dstIsImagens)
+            // Variações aceitas para a origem (src) e destino (dst)
+            bool srcIsPraia = (cleanSrc == "praia.jpg" || cleanSrc == "./praia.jpg");
+            bool dstIsImagens = (cleanDst == "../Imagens" || cleanDst == "/home/BOSS/Imagens" || cleanDst == "~/Imagens");
+            
+            // Permite também que a jogadora faça o comando direto da pasta /home/BOSS
+            bool srcIsPraiaFromHome = (cleanSrc == "Documentos/praia.jpg" || cleanSrc == "./Documentos/praia.jpg");
+            bool dstIsImagensFromHome = (cleanDst == "Imagens" || cleanDst == "./Imagens" || cleanDst == "/home/BOSS/Imagens" || cleanDst == "~/Imagens");
+
+            bool inDocumentos = currentDirectory == "/home/BOSS/Documentos";
+            bool inHome = currentDirectory == "/home/BOSS";
+
+            // Checa se ela acertou o comando estando em 'Documentos' ou em 'home'
+            bool validMoveFromDocumentos = inDocumentos && srcIsPraia && dstIsImagens;
+            bool validMoveFromHome = inHome && srcIsPraiaFromHome && dstIsImagensFromHome;
+
+            if (validMoveFromDocumentos || validMoveFromHome)
             {
                 if (!praiaInDocumentos)
                 {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using BashTerminal;
+using UnityEngine.SceneManagement;
 
 public class ChangePanels : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class ChangePanels : MonoBehaviour
 
     [Header("Referencias Externas")]
     public Button steghideButton;
+    public GameObject exitButtonGeral;
 
     // Fecha todos os sub-painéis do desktop sem afetar o painel pai (challengePanel).
     // Nunca use CanvasManager.OpenPanel aqui — ele fecha TODOS os painéis da cena,
@@ -81,7 +83,7 @@ public class ChangePanels : MonoBehaviour
         if (panelMetadataInfo != null) panelMetadataInfo.SetActive(false);
     }
 
-    // --- PAINEL DA FLAG FINAL ---
+   // --- PAINEL DA FLAG FINAL ---
     public void AbrirPanelSuccessFlag()
     {
         FecharTodosOsSubPaineis();
@@ -89,21 +91,42 @@ public class ChangePanels : MonoBehaviour
         {
             panelSuccessFlag.SetActive(true);
 
+            // 1. Esconde o botão de "Sair" do PC para a jogadora não fugir do final!
+            if (exitButtonGeral != null) 
+                exitButtonGeral.SetActive(false);
+
             if (FlagManager.Instance != null)
             {
                 string newFlag = SafeBase.ViewBase(SafeBase.flag_8);
                 FlagManager.Instance.SaveFlag("BOSS", newFlag);
             }
+
+            // 2. Inicia o cronômetro para avançar sozinho
+            StartCoroutine(AvancarParaFinalAutomaticamente());
         }
     }
+    private IEnumerator AvancarParaFinalAutomaticamente()
+    {
+        // Espera 4 segundos para a jogadora ler a tela de Sucesso e ver a Flag
+        // Você pode mudar esse número 4f para o tempo que achar melhor!
+        yield return new WaitForSeconds(4f);
+        
+        // Chama a função que você já tem para fechar o PC e abrir a bolsa
+        FecharPanelSuccessFlag();
+    }
 
-    public void FecharPanelSuccessFlag()
+  public void FecharPanelSuccessFlag()
     {
         // 1. Fecha o painel de sucesso da flag
         if (panelSuccessFlag != null) panelSuccessFlag.SetActive(false);
 
-        // 2. Fecha todo o desafio do boss (challengePanel e seus filhos)
-        if (CanvasManager.Instance != null) CanvasManager.Instance.ClosedAllPanels();
+        // GARANTIA ABSOLUTA: Desliga o fundo do PC à força para ele não ficar "escondido" atrás da bolsa!
+        if (desktopBackground != null) desktopBackground.SetActive(false);
+
+        // 2. A MÁGICA DO CONGELAMENTO: 
+        // Nós removemos a linha do "ClosedAllPanels()". 
+        // Assim, o jogo acha que você ainda está em um menu e mantém a Kassime travada,
+        // impedindo que ela ande ou converse com o Rolf!
 
         // 3. Abre a bolsa de flags com o aviso de última chance antes dos créditos
         if (InventoryManager.Instance != null) InventoryManager.Instance.AbrirBolsaFinalizacaoBoss();

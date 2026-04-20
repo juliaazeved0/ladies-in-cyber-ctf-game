@@ -2,40 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ServerController : LockObjectInteraction //Já possui todas as funções de interação do LockObjectInteraction
+public class ServerController : LockObjectInteraction //Jï¿½ possui todas as funï¿½ï¿½es de interaï¿½ï¿½o do LockObjectInteraction
 {
-    [Header("Objetos dos Cadeados")] //Título visual no Inspector e permite que arraste objetos
+    [Header("Objetos dos Cadeados")] //Tï¿½tulo visual no Inspector e permite que arraste objetos
     public SpriteRenderer lockClosed; //Imagem do cadeado fechado
     public SpriteRenderer lockOpened; //Imagem do cadeado aberto
 
     [Header("Estado Final")]
-    public bool finalizado = false; //Variável para indicar se o desafio do servidor foi concluído
+    public bool finalizado = false; //Variï¿½vel para indicar se o desafio do servidor foi concluï¿½do
     public GameObject panelConnect; //Painel que aparece quando os cabos precisam ser conectados
 
     void Start()
     {
-        isUnlocked = false; //O servidor começa bloqueado
-        finalizado = false; //Garante que o desafio do servidor também começa não finalizado
+        isUnlocked = false; //O servidor comeï¿½a bloqueado
+        finalizado = false; //Garante que o desafio do servidor tambï¿½m comeï¿½a nï¿½o finalizado
 
-        //Verifica se o objeto foi arrastado no Inspector. Se foi, ativa o cadeado fechado. Ou seja, o servidor começa visualmente bloqueado
+        //Verifica se o objeto foi arrastado no Inspector. Se foi, ativa o cadeado fechado. Ou seja, o servidor comeï¿½a visualmente bloqueado
         if (lockClosed != null) lockClosed.gameObject.SetActive(true);
 
-        //Desativa o cadeado aberto. Assim, só aparece o cadeado fechado no início
+        //Desativa o cadeado aberto. Assim, sï¿½ aparece o cadeado fechado no inï¿½cio
         if(lockOpened != null) lockOpened.gameObject.SetActive(false);
 
-        //Painel que o desafio aparece quando o servidor é desbloqueado, sendo desativado no início
+        //Painel que o desafio aparece quando o servidor ï¿½ desbloqueado, sendo desativado no inï¿½cio
         if(challengePanel != null) challengePanel.gameObject.SetActive(false);
 
-        //Garante que o painel de conexão de cabos comece escondido
+        //Garante que o painel de conexï¿½o de cabos comece escondido
         if (panelConnect != null) panelConnect.SetActive(false);
     }
 
     protected override void Update()
     {
-        base.Update(); //Detecta a tecla E, aparição do modal e a lógica de proximidade
+        base.Update(); //Detecta a tecla E, apariï¿½ï¿½o do modal e a lï¿½gica de proximidade
     }
 
-    public void UnlockByHacking() //Função chamada pelo ManagerPanels
+    public void UnlockByHacking() //Funï¿½ï¿½o chamada pelo ManagerPanels
     {
         isUnlocked = true; //Marca o servidor como desbloqueado depois de ser acessado no PC
 
@@ -44,20 +44,20 @@ public class ServerController : LockObjectInteraction //Já possui todas as funçõ
         if (lockOpened != null) lockOpened.gameObject.SetActive(true); //Mostrado o cadeado aberto
     }
 
-    protected override void Interact() //Função chamada quando a jogadora pressiona a tecla E perto do objeto
+    protected override void Interact() //Funï¿½ï¿½o chamada quando a jogadora pressiona a tecla E perto do objeto
     {
-        if (finalizado) //A partir disso, quando a jogadora interagir novamente, mostra apenas o painel de conexão com os cabos
+        if (finalizado) //A partir disso, quando a jogadora interagir novamente, mostra apenas o painel de conexï¿½o com os cabos
         {
             if(panelConnect != null)
             {
-                panelConnect.SetActive(true); //Mostra o painel de conexão dos cabos
+                panelConnect.SetActive(true); //Mostra o painel de conexï¿½o dos cabos
 
                 if (interactionNotice != null) interactionNotice.SetActive(false); //Esconde o modal
             }
-            return; //Interrompe a função, nada mais abaixo é executado
+            return; //Interrompe a funï¿½ï¿½o, nada mais abaixo ï¿½ executado
         }
         
-        //Só permite a interação se o servidor for hackeado pelo PC
+        //Sï¿½ permite a interaï¿½ï¿½o se o servidor for hackeado pelo PC
         if (isUnlocked)
         {
             if (challengePanel != null)

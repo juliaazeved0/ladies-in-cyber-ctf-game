@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using TMPro;
 
 public class UnlockBossRoom : MonoBehaviour
@@ -20,10 +21,9 @@ public class UnlockBossRoom : MonoBehaviour
     public PulseOutline pulse;
     private bool unlocked = false;
 
-    [Header("Fade Global (Animator no Panel preto da tela inteira)")]
+    [Header("Fade Global (Panel preto da tela inteira)")]
     public Animator fadeAnimator;
     public GameObject panelBlack;
-    public GameObject imageLock;
 
     [Header("Referências Extras")]
     public LockObjectInteraction lockInteraction;
@@ -35,34 +35,55 @@ public class UnlockBossRoom : MonoBehaviour
 
     [Header("Posição de spawn inicial na BossRoom")]
     [Tooltip("Coordenadas onde a player vai aparecer na primeira entrada na BossRoom.")]
-    public Vector2 bossRoomSpawnPosition = new Vector2(-2.54f, -3.34f); 
+    public Vector2 bossRoomSpawnPosition = new Vector2(-2.8f, -2.5f);
 
     private string correctPassword = "1541";
     private bool isTransitioning = false;
 
     void Start()
+    {
+        if (PlayerPrefs.GetInt("BossRoomUnlocked", 0) == 1)
+        {
+            unlocked = true;
+            if (lockObject != null) lockObject.SetActive(false);
+        }
+
+        if (PlayerPrefs.GetInt("ReturningFromBoss", 0) == 1)
+        {
+            PlayerPrefs.DeleteKey("ReturningFromBoss");
+            PlayerPrefs.SetFloat("BossRoom_PlayerX", bossRoomSpawnPosition.x);
+            PlayerPrefs.SetFloat("BossRoom_PlayerY", bossRoomSpawnPosition.y);
+            PlayerPrefs.SetFloat("BossRoom_PlayerZ", 0f);
+            PlayerPrefs.Save();
+            StartCoroutine(FazerFadeIn());
+        }
+    }
+
+    private IEnumerator FazerFadeIn()
 {
-    if (PlayerPrefs.GetInt("BossRoomUnlocked", 0) == 1)
+    Image fadeImage = panelBlack.GetComponent<Image>();
+    Animator anim = panelBlack.GetComponent<Animator>();
+    if (anim != null) anim.enabled = false;
+
+    panelBlack.SetActive(true);
+    Color cor = fadeImage.color;
+    cor.a = 1f;
+    fadeImage.color = cor;
+
+    float tempo = 0f;
+    float duracaoFade = 1f;
+
+    while (tempo < duracaoFade)
     {
-        unlocked = true;
-        if (lockObject != null) lockObject.SetActive(false);
+        tempo += Time.deltaTime;
+        cor.a = Mathf.Clamp01(1f - (tempo / duracaoFade));
+        fadeImage.color = cor;
+        yield return null;
     }
 
-    // Roda APÓS DataPlayerPosition.OnSceneLoaded(), que salva a posição do
-    // collider de saída como BossRoom_PlayerX/Y/Z. Aqui desfazemos isso,
-    // garantindo que na próxima entrada a player nasça no spawn correto.
-    if (PlayerPrefs.GetInt("ReturningFromBoss", 0) == 1)
-    {
-        PlayerPrefs.DeleteKey("ReturningFromBoss");
-        PlayerPrefs.SetFloat("BossRoom_PlayerX", bossRoomSpawnPosition.x);
-        PlayerPrefs.SetFloat("BossRoom_PlayerY", bossRoomSpawnPosition.y);
-        PlayerPrefs.SetFloat("BossRoom_PlayerZ", 0f);
-        PlayerPrefs.Save();
-        panelBlack.SetActive(true);
-        fadeAnimator.SetTrigger("FadeIn");
-    }
+    panelBlack.SetActive(false);
+    if (anim != null) anim.enabled = true; // reativa para o próximo uso
 }
-
 
     public void OpenPasswordPanel()
     {
@@ -92,15 +113,9 @@ public class UnlockBossRoom : MonoBehaviour
             CanvasManager.Instance.ClosedPanel(panelDialogueJoana.name);
     }
 
-    public void PressKey(string value)
-    {
-        input.text += value;
-    }
+    public void PressKey(string value) { input.text += value; }
 
-    public void ClearInput()
-    {
-        input.text = "";
-    }
+    public void ClearInput() { input.text = ""; }
 
     public void PressEnter()
     {
@@ -116,21 +131,15 @@ public class UnlockBossRoom : MonoBehaviour
     IEnumerator SuccessRoutine()
     {
         input.text = "ACESSO CONCEDIDO";
+        
+        // MUDANÇA: Reduzido de 3f para 0.5f para ser quase instantâneo!
+        yield return new WaitForSeconds(0.5f); 
+        
         lockObject.SetActive(false);
-        yield return new WaitForSeconds(1f);
         unlocked = true;
-        imageLock.SetActive(false);
-
-        // Persiste o desbloqueio e define a posição de spawn na BossRoom
-        // (apenas se ainda não foi definida por uma sessão anterior).
         PlayerPrefs.SetInt("BossRoomUnlocked", 1);
-        if (!PlayerPrefs.HasKey("BossRoom_PlayerX"))
-        {
-            PlayerPrefs.SetFloat("BossRoom_PlayerX", bossRoomSpawnPosition.x);
-            PlayerPrefs.SetFloat("BossRoom_PlayerY", bossRoomSpawnPosition.y);
-        }
         PlayerPrefs.Save();
-
+        
         CloseDevicePanel();
     }
 
@@ -143,9 +152,7 @@ public class UnlockBossRoom : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && unlocked && !isTransitioning)
-        {
             IniciarTransiçãoBoss(other);
-        }
     }
 
     private void IniciarTransiçãoBoss(Collider2D other)
@@ -160,6 +167,11 @@ public class UnlockBossRoom : MonoBehaviour
     {
         if (bossMusic != null)
             BackgroundMusic.ChangeMusic(bossMusic);
+
+        PlayerPrefs.SetFloat("BossRoom_PlayerX", bossRoomSpawnPosition.x);
+        PlayerPrefs.SetFloat("BossRoom_PlayerY", bossRoomSpawnPosition.y);
+        PlayerPrefs.SetFloat("BossRoom_PlayerZ", 0f);
+        PlayerPrefs.Save();
 
         Debug.Log("Carregando cena: " + bossSceneName);
         SceneManager.LoadSceneAsync(bossSceneName);

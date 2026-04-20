@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI; 
 
 public class InventoryManager : MonoBehaviour
 {
@@ -11,7 +12,6 @@ public class InventoryManager : MonoBehaviour
     public GameObject panelBagBackground;
     public GameObject panelPlayBookBackground;
     public GameObject inventoryPanel;
-
 
     private bool aguardandoConfirmacaoFinal = false;
 
@@ -35,7 +35,26 @@ public class InventoryManager : MonoBehaviour
 
     void Start()
     {
-        InitialState();
+        // 1. A MEMÓRIA: Salvamos o que o seu clique já ativou!
+        // Se você clicou na bolsa, o script vai saber que ela tem que ficar ligada.
+        bool bagJaEstavaAberta = panelBagBackground != null && panelBagBackground.activeSelf;
+        bool bookJaEstavaAberto = panelPlayBookBackground != null && panelPlayBookBackground.activeSelf;
+        bool bordaJaEstavaAtiva = borderImage != null && borderImage.gameObject.activeSelf;
+
+        // 2. O AQUECIMENTO DA UNITY
+        if (panelBagBackground != null) panelBagBackground.SetActive(true);
+        if (panelPlayBookBackground != null) panelPlayBookBackground.SetActive(true);
+        Canvas.ForceUpdateCanvases(); 
+
+        // 3. A RESTAURAÇÃO: Devolvemos tudo do jeitinho que o seu clique mandou
+        if (panelBagBackground != null) panelBagBackground.SetActive(bagJaEstavaAberta);
+        if (panelPlayBookBackground != null) panelPlayBookBackground.SetActive(bookJaEstavaAberto);
+        if (borderImage != null) borderImage.gameObject.SetActive(bordaJaEstavaAtiva);
+        
+        // Garante que a tela de créditos não apareça solta
+        if (modalLinkCTF != null) modalLinkCTF.SetActive(false);
+        if (buttonLinkCTF != null) buttonLinkCTF.SetActive(false);
+        if (modalContinueCredits != null) modalContinueCredits.SetActive(false);
     }
 
     void Update()
@@ -57,8 +76,8 @@ public class InventoryManager : MonoBehaviour
 
     private void InitialState()
     {
-        panelBagBackground.SetActive(false);
-        panelPlayBookBackground.SetActive(false);
+        if (panelBagBackground != null) panelBagBackground.SetActive(false);
+        if (panelPlayBookBackground != null) panelPlayBookBackground.SetActive(false);
         if (modalLinkCTF != null) modalLinkCTF.SetActive(false);
         if (buttonLinkCTF != null) buttonLinkCTF.SetActive(false);
         if (modalContinueCredits != null) modalContinueCredits.SetActive(false);
@@ -91,13 +110,11 @@ public class InventoryManager : MonoBehaviour
         if (buttonLinkCTF != null) buttonLinkCTF.SetActive(true);
         if (modalContinueCredits != null) modalContinueCredits.SetActive(true);
        
-
         aguardandoConfirmacaoFinal = true;
 
         MoveToButton(buttonBag);
 
-        // Abre por último para não ser fechado pelo OnEnable() dos modals acima.
-        panelBagBackground.SetActive(true);
+        if (panelBagBackground != null) panelBagBackground.SetActive(true);
     }
 
     public void ConfirmarColetaDasFlags()
@@ -116,14 +133,14 @@ public class InventoryManager : MonoBehaviour
     public void ExitInventory()
     {
         aguardandoConfirmacaoFinal = false;
-        borderImage.gameObject.SetActive(false);
-        panelBagBackground.SetActive(false);
-        panelPlayBookBackground.SetActive(false);
+        if (borderImage != null) borderImage.gameObject.SetActive(false);
+        if (panelBagBackground != null) panelBagBackground.SetActive(false);
+        if (panelPlayBookBackground != null) panelPlayBookBackground.SetActive(false);
     }
 
     public void MoveToButton(RectTransform newButton)
     {
-        borderImage.gameObject.SetActive(true);
+        if (borderImage != null) borderImage.gameObject.SetActive(true);
         currentButton = newButton;
     }
 }

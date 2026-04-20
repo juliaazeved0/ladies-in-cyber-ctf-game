@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "CTF-Ladies-in-cyber.sln"
+    "dotnet.defaultSolution": "ladies-in-cyber-ctf-game-collab-julia-polyana-map.sln"
 }

@@ -1,143 +1,104 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro; //Biblioteca para usar o TextMeshPro
-using UnityEngine.EventSystems; //Detectar cliques
+using TMPro;
+using UnityEngine.EventSystems;
 
-public class LoginSystem : MonoBehaviour, IPointerClickHandler
+public class LoginSystem : MonoBehaviour
 {
     [Header("Configuracoes de Login")]
-    public TMP_InputField inputPassword; //Campo onde a jogadora digita a senha
-    public string passwordCorrect = "Ch3f1nh0"; //Senha correta guardada em uma string
+    public TMP_InputField inputPassword;
+    public string passwordCorrect = "Ch3f1nh0";
 
-    [Header("Telas")] //Paineis utilizados no Inspector
+    [Header("Telas")]
     public GameObject initialBackground;
     public GameObject desktopBackground;
-    public GameObject errorPopup; 
+    public GameObject errorPopup;
 
     [Header("Post-it")]
-    [SerializeField] private TMP_Text postItText; //Texto do post-it
-    [SerializeField] private GameObject highlightBackground; //Fundo de destaque ao clicar
-
-    private Color originalColor; //Guarda a cor original do texto
+    [SerializeField] private TMP_InputField postItInput;
+    [SerializeField] private GameObject highlightBackground;
 
     void Start()
     {
-        if(postItText != null)
-        {
-            originalColor = postItText.color; //Salva a cor original
-        }
+        if (errorPopup != null) errorPopup.SetActive(false);
 
-        if(errorPopup != null) errorPopup.SetActive(false); //Garante que o popup de erro inicie escondido
-
-        if(inputPassword != null)
+        if (postItInput != null)
         {
-            inputPassword.onEndEdit.AddListener(delegate { OnEndEditValidate(); });
+            postItInput.readOnly = true;
+            postItInput.interactable = true;
         }
     }
 
     void Update()
     {
-        //Se o dialogo nao acabou, o campo de senha fica desativado
-        if(inputPassword != null)
-        {
+        if (inputPassword != null)
             inputPassword.interactable = DialogueManagerBoss.dialogueBossFinished;
-        }
     }
 
-    public void ValidatePasswordBoss() //Validacao da senha
+    public void ValidatePasswordBoss()
     {
-        if (!DialogueManagerBoss.dialogueBossFinished) //Se o dialogo ainda nao terminou, nem tenta validar
+        if (!DialogueManagerBoss.dialogueBossFinished) return;
+
+        if (inputPassword.text.Trim() == passwordCorrect)
         {
-            return;
-        }
-
-        string senhaDigitada = inputPassword.text.Trim();
-
-        Debug.Log("Tentativa de Login com: " + senhaDigitada);
-
-        if(senhaDigitada == passwordCorrect)
-        {
-            Debug.Log("SENHA CORRETA!");
             ChangeScreen();
         }
         else
         {
-            Debug.Log("SENHA INCORRETA!");
             inputPassword.text = "";
             inputPassword.ActivateInputField();
             StopCoroutine("ShowErrorTemporary");
             StartCoroutine(ShowErrorTemporary());
         }
-        
-        //if (inputPassword.text.Trim() == passwordCorrect) //Verifica se a senha escrita no input eh igual a senha correta
-        //{
-        //    ChangeScreen(); //Se colocar a senha correta, troca de painel
-        //}
-        //else
-        //{
-         //   inputPassword.text = ""; //Limpa o campo
-         //   inputPassword.ActivateInputField(); //Foca novamente no campo de input
-         //
-         //   //Chama o feedback de erro
-         //   StopCoroutine("ShowErrorTemporary"); //Evita duplicar coroutine
-        //    StartCoroutine(ShowErrorTemporary()); //Mostra o erro tempor�ria
-        //}
     }
 
-    void ChangeScreen() //Mudanca de telas
+    void ChangeScreen()
     {
         initialBackground.SetActive(false);
         desktopBackground.SetActive(true);
     }
 
-    public void CopyPassword(string password)
+    public void CopyPostIt()
     {
-        GUIUtility.systemCopyBuffer = password; //Copia o texto para a area de transferencia
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if(eventData.pointerCurrentRaycast.gameObject == postItText.gameObject) //Verifica se clicou no post-it
+        if (postItInput != null && !string.IsNullOrEmpty(postItInput.text))
         {
-            CopyPassword(postItText.text); //Copia a senha
-
-            StopAllCoroutines(); //Para efeitos anteriores
-            StartCoroutine(HighlightEffect()); //Inicia efeito visual
+            GUIUtility.systemCopyBuffer = postItInput.text;
+            StopAllCoroutines();
+            StartCoroutine(HighlightEffect());
         }
     }
 
-    public void ExitChallengBoss()
+   public void ExitChallengBoss()
     {
+        // 1. Reseta o PC deixando a tela de login pronta para a próxima vez
+        initialBackground.SetActive(true);
         desktopBackground.SetActive(false);
+
+        if (CanvasManager.Instance != null)
+        {
+            // 2. A MÁGICA: Avisamos o CanvasManager para fechar o painel pai de verdade!
+            // É isso que destrava o movimento da player e libera a tecla E de novo.
+            CanvasManager.Instance.ClosedAllPanels();
+            
+            CanvasManager.Instance.ToggleMiniMap(true);
+        }
     }
 
     IEnumerator HighlightEffect()
     {
-        highlightBackground.SetActive(true); //Mostra o destaque
-
-        yield return new WaitForSeconds(1.5f); //Espera 1.5 segundos
-
-        highlightBackground.SetActive(false); //Esconde o destaque depois que os segundos acabaram
+        if (highlightBackground != null) highlightBackground.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        if (highlightBackground != null) highlightBackground.SetActive(false);
     }
 
-    IEnumerator ShowErrorTemporary() //Corrotina para mostrar o erro por apenas 2 segundos
+    IEnumerator ShowErrorTemporary()
     {
-        if(errorPopup != null)
+        if (errorPopup != null)
         {
             errorPopup.SetActive(true);
-            yield return new WaitForSeconds(2f); //Tempo que ele fica aparecendo na tela
+            yield return new WaitForSeconds(2f);
             errorPopup.SetActive(false);
-        }
-    }
-
-    private void OnEndEditValidate()
-    {
-        // No WebGL, é mais seguro checar apenas se o texto não está vazio 
-        // ou confiar no clique do botão físico "ENTRAR" que você criou.
-        if (!string.IsNullOrEmpty(inputPassword.text))
-        {
-            ValidatePasswordBoss();
         }
     }
 }
