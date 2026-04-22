@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class SimpleDialogue : MonoBehaviour
 {
-   
     [Header("Elements UI")]
     public GameObject panelDialogue;
     public TextMeshProUGUI textDialogue;
-    public Image characterNPC; 
+    public Image characterNPC;
     public WriteMachine writeMachine;
     public TextMeshProUGUI playerNameplate;
     public Image characterPlayer;
@@ -18,57 +18,69 @@ public class SimpleDialogue : MonoBehaviour
     public GameObject cameraMiniMap;
     public Button confirmButton;
 
-    private bool readyToSpeak = false; 
+    [Header("Dinamic variable")]
+    public PulseOutline pulsingObject;
+
+    private bool readyToSpeak = false;
+    protected bool isTalking = false;
 
     [Header("Buttons")]
     public Button buttonExit;
 
-
-    [Header ("Nodes")]
+    [Header("Nodes")]
     public NPCDialogueNode firstNode;
-    private NPCDialogueNode dialogueCurrent;
+    protected NPCDialogueNode dialogueCurrent;
+
+    [Header("Control inventory")]
+    public static bool isSimpleDialogueActive = false;
 
     public const string PLAYER_NAME_KEY = "PLAYER_NAME";
 
-
     void Update()
     {
-        if(!readyToSpeak)
+        if (!readyToSpeak || !isTalking)
         {
             return;
         }
-        
-        if(panelDialogue.activeSelf && Input.GetKeyDown(KeyCode.E))
+
+        if (panelDialogue.activeSelf && Input.GetKeyDown(KeyCode.E))
         {
-           NextTalk();
+            NextTalk();
         }
     }
 
     void Start()
     {
-        //panelChallenge1.SetActive(false);
-        //panelChallenge2.SetActive(false);
-        //panelDialogue.SetActive(false);
-        confirmButton.gameObject.SetActive(false);
         string namePlayer = PlayerPrefs.GetString(PLAYER_NAME_KEY, "Jogadora");
         playerNameplate.text = namePlayer.ToUpper();
     }
 
     public void StartDialogue(NPCDialogueNode inicialNode)
     {
+        StopAllCoroutines();
+
+        isSimpleDialogueActive = true;
+        isTalking = true;
+
+        if (textDialogue != null) textDialogue.text = "";
+        if (confirmButton != null) confirmButton.gameObject.SetActive(false);
+        if (buttonExit != null) buttonExit.gameObject.SetActive(true);
+
         firstNode = inicialNode;
 
         if (firstNode != null)
         {
             CanvasManager.Instance.OpenPanel(panelDialogue.name);
             CanvasManager.Instance.ToggleMiniMap(false);
-            confirmButton.gameObject.SetActive(false);
-            
 
             DialogueView(firstNode);
 
             readyToSpeak = false;
             StartCoroutine(ReleaseInput());
+        }
+        else
+        {
+            Debug.LogError("node vazio");
         }
     }
 
@@ -84,33 +96,49 @@ public class SimpleDialogue : MonoBehaviour
 
         writeMachine.Run(node.talkNPC, textDialogue);
 
-        characterNPC.sprite = node.characterNPC;
-
+        if (characterNPC != null)
+            characterNPC.sprite = node.characterNPC;
     }
 
-    public void NextTalk()
+    public virtual void NextTalk()
     {
-       //if (WriteMachine.IsTyping)
-       // {
-       //    WriteMachine.Complete();
-       //    return;
-       //}
+        if (writeMachine.IsTyping)
+        {
+            writeMachine.Complete();
+            return;
+        }
 
-        if(dialogueCurrent.nextNode != null)
+        if (dialogueCurrent.nextNode != null)
         {
             DialogueView(dialogueCurrent.nextNode);
         }
-        else 
+        else
         {
-            confirmButton.gameObject.SetActive(true);
-            buttonExit.gameObject.SetActive(false);
+            if (confirmButton != null)
+                confirmButton.gameObject.SetActive(true);
+
+            if (buttonExit != null)
+                buttonExit.gameObject.SetActive(false);
         }
     }
 
     public void ExitDialogue()
     {
+        isSimpleDialogueActive = false;
+        isTalking = false;
+
         CanvasManager.Instance.ClosedPanel(panelDialogue.name);
         CanvasManager.Instance.ToggleMiniMap(true);
     }
 
+    public virtual void ConfirmHelp()
+    {
+        ExitDialogue();
+
+        if (pulsingObject != null)
+        {
+            pulsingObject.StartPulsing();
+            pulsingObject = null;
+        }
+    }
 }

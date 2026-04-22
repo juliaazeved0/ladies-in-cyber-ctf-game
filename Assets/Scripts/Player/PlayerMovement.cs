@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-    public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]
     private int speed;
@@ -34,9 +34,28 @@ using UnityEngine;
     private void Update()
     {
         ReadInput();
+
+        // Bloqueia movimento e animação se qualquer painel de UI estiver aberto
+        if (IsAnyPanelOpen())
+        {
+            inputMovement = Vector2.zero;
+        }
+
         UpdateDirectionState();
         UpdateAnimatorParameters();
         UpdateSpriteFlip();
+    }
+
+    // Verifica se algum painel gerenciado pelo CanvasManager está ativo na cena
+    private bool IsAnyPanelOpen()
+    {
+        if (CanvasManager.Instance == null) return false;
+
+        foreach (GameObject panel in CanvasManager.Instance.allPanels)
+        {
+            if (panel != null && panel.activeSelf) return true;
+        }
+        return false;
     }
 
     private void ReadInput()
@@ -57,14 +76,11 @@ using UnityEngine;
 
     private void UpdateAnimatorParameters()
     {
-        float dx = inputMovement.x;
-
-        bool isMoving = Mathf.Abs(dx) > deadzone
-                        || Mathf.Abs(inputMovement.y) > deadzone
-                        || Input.GetKey(KeyCode.A)
-                        || Input.GetKey(KeyCode.D)
-                        || Input.GetKey(KeyCode.LeftArrow)
-                        || Input.GetKey(KeyCode.RightArrow);
+        // Usa apenas inputMovement (já zerado quando painel está aberto).
+        // GetAxisRaw("Horizontal/Vertical") captura WASD e setas nativamente,
+        // então as verificações extras de Input.GetKey eram redundantes.
+        bool isMoving = Mathf.Abs(inputMovement.x) > deadzone
+                     || Mathf.Abs(inputMovement.y) > deadzone;
 
         animator.SetBool(movementHash, isMoving);
         animator.SetBool(idleHash, !isMoving);

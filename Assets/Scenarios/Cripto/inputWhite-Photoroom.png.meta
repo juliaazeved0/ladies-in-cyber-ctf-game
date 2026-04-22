@@ -94,19 +94,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: Windows Store Apps
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -126,10 +113,10 @@ TextureImporter:
       name: inputWhite-Photoroom_0
       rect:
         serializedVersion: 2
-        x: 148
-        y: 316
-        width: 972
-        height: 266
+        x: 145
+        y: 280
+        width: 988
+        height: 326
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 300c5bc171a86e844baff2ee0f4053ce
-      internalID: 1672032644
+      spriteID: d63431d75aae1704e80da64ecd4aa57f
+      internalID: -468783786
       vertices: []
       indices: 
       edges: []
@@ -154,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      inputWhite-Photoroom_0: 1672032644
+      inputWhite-Photoroom_0: -468783786
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

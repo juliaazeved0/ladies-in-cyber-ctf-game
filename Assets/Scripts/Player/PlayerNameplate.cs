@@ -6,8 +6,8 @@ public class PlayerNameplate : MonoBehaviour
     public TextMeshProUGUI nameplatePlayer;
     public TextMeshProUGUI nameplateIdPlayer; 
 
-    public const string PLAYER_NAME_KEY = "PLAYER_NAME";
-    public const string PLAYER_NAMEPLATE_KEY = "nameplatePlayer"; 
+    private const string PLAYER_NAME_KEY = "PLAYER_NAME";
+    private const string PLAYER_NAMEPLATE_KEY = "nameplatePlayer"; 
 
     void Start()
     {

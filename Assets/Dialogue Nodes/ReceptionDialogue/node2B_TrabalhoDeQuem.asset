@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc344bf1847f7284ba70f62fdd0f60c5, type: 3}
+  m_Name: node2B_TrabalhoDeQuem
+  m_EditorClassIdentifier: 
+  question: A trabalho de quem? Preciso de mais detalhes.
+  options:
+  - "A) Sou do setor de seguran\xE7a da informa\xE7\xE3o."
+  - "C) Voc\xEA recebeu algum e-mail sobre verifica\xE7\xE3o de sistema?"
+  - "C) Qual sistema voc\xEAs usam aqui na entrada?"
+  narratorFeedbacks:
+  - "\u201CUma resposta objetiva, sem detalhes excessivos. Agora voc\xEA tem um cargo
+    definido.\u201D"
+  - "\u201CVoc\xEA desloca a valida\xE7\xE3o para algo que ela pode lembrar.\u201D"
+  - "\u201CA pergunta foi longe demais. Voc\xEA cruzou uma linha sens\xEDvel.\u201D"
+  nextDialogue:
+  - {fileID: 11400000, guid: 11d8719ad42fb2640be591cc04bfa2d5, type: 2}
+  - {fileID: 11400000, guid: 11d8719ad42fb2640be591cc04bfa2d5, type: 2}
+  - {fileID: 11400000, guid: fdf18e5a2db800245b01db01b85c707f, type: 2}
+  buttonType: 0

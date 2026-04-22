@@ -5,19 +5,28 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/LoginScene.unity
-    guid: 11068cb81e31f274899264e060fe5d70
   - enabled: 0
     path: Assets/Scenes/IntroductionGame.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
+    path: Assets/Scenes/Load.unity
+    guid: 009fb0d4165bdcd40aa3f2202829f262
+  - enabled: 1
+    path: Assets/Scenes/LoginScene.unity
+    guid: 11068cb81e31f274899264e060fe5d70
+  - enabled: 1
     path: Assets/Scenes/Gameplay.unity
     guid: 359dc67c61085aa4bae3d2d8f975b035
+  - enabled: 1
+    path: Assets/Scenes/Introduction.unity
+    guid: da4875e7cdbdea249a71fa987d037f52
   - enabled: 1
     path: Assets/Scenes/PlayerMap.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/Introduction.unity
-    guid: da4875e7cdbdea249a71fa987d037f52
+    path: Assets/Scenes/BossRoom.unity
+    guid: 2d504ebb2cc4ba647be7e09495e78214
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 3058fba9073eb304dbc9e63d32675bdd
   m_configObjects: {}

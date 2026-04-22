@@ -9,36 +9,34 @@ public class SecretaryInteraction : MonoBehaviour
     public Image interactionNotice;
     public DialogueManager dialogueManager;
 
-
     void Start()
     {
-        if(interactionNotice != null)
-        interactionNotice.gameObject.SetActive(false);
-        
+        if(interactionNotice != null) interactionNotice.gameObject.SetActive(false);
     }
 
     void Update()
     {
-        int playerDone = PlayerPrefs.GetInt(DialogueManager.INICIAL_KEY, 0);
+        int playerDone = PlayerPrefs.GetInt(DialogueManager.INICIAL_KEY, 0); //Verifica se o dialogo inicial ja foi feito
 
-        if (playerIsHere && Input.GetKeyDown(KeyCode.E) && playerDone == 0)
-        {
-           
-            if (interactionNotice != null)
-                interactionNotice.gameObject.SetActive(false);
-
+        if(playerIsHere && Input.GetKeyDown(KeyCode.E) && playerDone == 0) //Apenas dispara o dialogo se a jogadora estiver perto e clicar na tecla E
+        { 
+            if (interactionNotice != null) interactionNotice.gameObject.SetActive(false);
     
-            dialogueManager.StartDialogue();
+            if(dialogueManager != null) dialogueManager.StartDialogue();
         }
     }
+
     private void OnTriggerEnter2D(Collider2D collison)
     {
-        playerIsHere = true;
-        int playerDone = PlayerPrefs.GetInt(DialogueManager.INICIAL_KEY, 0);
-
-        if(collison.CompareTag("Player") && playerDone == 0)
+        if(collison.CompareTag("Player")) //Verifica se eh a player
         {
-            interactionNotice.gameObject.SetActive(true);
+            int playerDone = PlayerPrefs.GetInt(DialogueManager.INICIAL_KEY, 0);
+
+            if(playerDone == 0)
+            {
+                playerIsHere = true; //Apenas vira TRUE se for a player
+                if(interactionNotice != null) interactionNotice.gameObject.SetActive(true);
+            }
         }
     }
 

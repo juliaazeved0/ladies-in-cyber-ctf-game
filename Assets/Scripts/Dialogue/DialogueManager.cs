@@ -17,7 +17,7 @@ public class DialogueManager : MonoBehaviour
     private const string PLAYER_NAME_KEY = "PLAYER_NAME";
     public Button buttonDone;
     public Button buttonExit;
-    public Image lockImage;
+    public GameObject lockImage;
     public TextMeshProUGUI dialogueNPC;
 
     public WriteMachine writeMachine;
@@ -29,19 +29,40 @@ public class DialogueManager : MonoBehaviour
     public DialogueNode firstNode; 
     private DialogueNode dialogueCurrent; 
 
+    [Header("UI do Narrador")]
+    public GameObject panelNarrator;
+    public TextMeshProUGUI textNarrator;
+    public Button buttonNextNarrator;
+
+    [Header("Control inventory")]
+    public static bool isDialogueActive = false;
+
+    [Header("Objetos do Mapa")]
+    public GameObject lockLadder; // Variável renomeada
+    
+    private DialogueNode pendingNextNode;
+
 
     void Start()
     {
-
         panelDialogue.SetActive(false);
+
+        if(panelNarrator != null) panelNarrator.SetActive(false);
+        if(buttonNextNarrator != null) buttonNextNarrator.onClick.AddListener(OnClickNextNarrator);
 
         buttonExit.gameObject.SetActive(false);
 
         int dialogueInicialDone = PlayerPrefs.GetInt(INICIAL_KEY, 0);
 
-       if (dialogueInicialDone == 1)
+        if (dialogueInicialDone == 1)
         {
-        lockImage.gameObject.SetActive(false);
+            lockImage.gameObject.SetActive(false);
+            
+            // Verificação adicionada: Mantém a escada/bloqueio desativado se já tiver o progresso
+            if (lockLadder != null) 
+            {
+                lockLadder.SetActive(false);
+            }
         }
         
         string playerName = PlayerPrefs.GetString(PLAYER_NAME_KEY, "Jogadora");
@@ -56,6 +77,8 @@ public class DialogueManager : MonoBehaviour
     {
         if (firstNode != null)
         {
+            isDialogueActive = true; // Tranca o inventário ao iniciar o diálogo
+
             panelDialogue.SetActive(true);
             miniMapCanvas.SetActive(false);
             cameraMiniMap.SetActive(false);
@@ -72,31 +95,28 @@ public class DialogueManager : MonoBehaviour
     public void DialogueView(DialogueNode node)
     {
         dialogueCurrent = node;
-        //questionText.text = node.question;
         writeMachine.Run(node.question, questionText);
 
         bool isLastNode = (node.nextDialogue.Length == 0);
 
         if(isLastNode)
         { 
-
             buttonPlayAgain.gameObject.SetActive(false);
             buttonDone.gameObject.SetActive(false);
             buttonExit.gameObject.SetActive(false);
 
-                
-                if (node.buttonType == ButtonType.PlayAgain)
-                {
-                    buttonPlayAgain.gameObject.SetActive(true);
-                }
-                else if (node.buttonType == ButtonType.Done)
-                {
-                    buttonDone.gameObject.SetActive(true);
-                }
-                else 
-                {
-                    buttonExit.gameObject.SetActive(true);
-                }
+            if (node.buttonType == ButtonType.PlayAgain)
+            {
+                buttonPlayAgain.gameObject.SetActive(true);
+            }
+            else if (node.buttonType == ButtonType.Done)
+            {
+                buttonDone.gameObject.SetActive(true);
+            }
+            else 
+            {
+                buttonExit.gameObject.SetActive(true);
+            }
         }
         else
         {
@@ -107,11 +127,9 @@ public class DialogueManager : MonoBehaviour
 
         for (int i = 0; i < buttonOption.Length; i++)
         {
-           
             if (i < node.options.Length)
             {
                 buttonOption[i].gameObject.SetActive(true);
-                
                 buttonOption[i].GetComponentInChildren<TextMeshProUGUI>().text = node.options[i];
             }
             else
@@ -123,24 +141,31 @@ public class DialogueManager : MonoBehaviour
 
     public void OnClickDone()
     {
-            PlayerPrefs.SetInt(INICIAL_KEY, 1);
-            PlayerPrefs.Save();
+        isDialogueActive = false; 
 
-            panelDialogue.SetActive(false);
-            miniMapCanvas.SetActive(true);
-            cameraMiniMap.SetActive(true);
-            lockImage.gameObject.SetActive(false);
-            dialogueNPC.text = "Bem-vinda ao Centro de Tecnologia do Itaipu Parquetec!";
-            playerNameplate.SetNameplateIdPlayer();
-       
+        PlayerPrefs.SetInt(INICIAL_KEY, 1);
+        PlayerPrefs.Save();
+
+        panelDialogue.SetActive(false);
+        miniMapCanvas.SetActive(true);
+        cameraMiniMap.SetActive(true);
+    
+        if(lockImage != null) lockImage.gameObject.SetActive(false);
+        
+        dialogueNPC.text = "Bem-vinda ao Centro de Tecnologia do Itaipu Parquetec!";
+        
+        if(playerNameplate != null) playerNameplate.SetNameplateIdPlayer();
+    
+        if (lockLadder != null) lockLadder.SetActive(false);
     }
 
     public void OnClickExit()
     {
+        isDialogueActive = false; 
+
         panelDialogue.SetActive(false);
         miniMapCanvas.SetActive(true);
         cameraMiniMap.SetActive(true);
-        
     }
 
     public void DialoguePlayAgain()
@@ -150,16 +175,35 @@ public class DialogueManager : MonoBehaviour
 
     public void ChooseOption(int index)
     {
-       
-        DialogueNode next = dialogueCurrent.nextDialogue[index];
+        pendingNextNode = dialogueCurrent.nextDialogue[index];
 
-        if (next != null)
+        if (dialogueCurrent.narratorFeedbacks != null && index < dialogueCurrent.narratorFeedbacks.Length)
         {
-            DialogueView(next);
+            textNarrator.text = dialogueCurrent.narratorFeedbacks[index];
+        }
+
+        for (int i = 0; i < buttonOption.Length; i++)
+        {
+            buttonOption[i].gameObject.SetActive(false);
+        }
+
+        panelNarrator.SetActive(true);
+    }
+
+    public void OnClickNextNarrator()
+    {
+        panelNarrator.SetActive(false);
+        if (pendingNextNode != null)
+        {
+            DialogueView(pendingNextNode);
         }
         else
         {
+            isDialogueActive = false; 
+
             panelDialogue.SetActive(false);
+            miniMapCanvas.SetActive(true);
+            cameraMiniMap.SetActive(true);
         }
     }
 }

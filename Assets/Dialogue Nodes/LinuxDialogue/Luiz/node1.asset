@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37288b8cc8a1b8c4a934c05d643fec5f, type: 3}
+  m_Name: node1
+  m_EditorClassIdentifier: 
+  talkNPC: "Ei... Que bom que voc\xEA chegou. Eu sou t\xE3o descuidado que perdi
+    a minha lista de compras..."
+  nextNode: {fileID: 11400000, guid: e122b89e828d63346a2a50d00abeb15c, type: 2}
+  characterNPC: {fileID: 21300000, guid: c18690061a94e5d4cac76e5af62e3023, type: 3}

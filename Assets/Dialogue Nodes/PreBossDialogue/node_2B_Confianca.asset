@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc344bf1847f7284ba70f62fdd0f60c5, type: 3}
+  m_Name: node_2B_Confianca
+  m_EditorClassIdentifier: 
+  question: " \u201CMais de dez anos, meu fio! J\xE1 vi muita gente entrar e sair,
+    vi o sistema mudar... mas o povo n\xE3o muda. Senha dif\xEDcil ningu\xE9m quer,
+    n\xE9? Usam a mesma faz tempo.\u201D"
+  options:
+  - "A. \u201CS\xE9rio? Ele usa senha fraca mesmo com toda essa tecnologia?\u201D"
+  - "B. \u201CImagino o que voc\xEA j\xE1 deve ter visto de papel colado por a\xED...\u201D"
+  - "C. \u201CPois \xE9, o sistema muda, mas a pregui\xE7a continua.\u201D"
+  narratorFeedbacks:
+  - "\u201CEla te deu uma pista de ouro sobre 'senhas fracas'. Explore isso.\u201D"
+  - "\u201CVoc\xEA tocou no ponto fraco da seguran\xE7a f\xEDsica: post-its e anota\xE7\xF5es.\u201D"
+  - "\u201CManter a conversa informal mant\xE9m a guarda dela baixa.\u201D"
+  nextDialogue:
+  - {fileID: 11400000, guid: 12579f2704fc07b43b567a35c9030f0c, type: 2}
+  - {fileID: 11400000, guid: 12579f2704fc07b43b567a35c9030f0c, type: 2}
+  - {fileID: 11400000, guid: 12579f2704fc07b43b567a35c9030f0c, type: 2}
+  buttonType: 0

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc344bf1847f7284ba70f62fdd0f60c5, type: 3}
+  m_Name: node1_abordagem
+  m_EditorClassIdentifier: 
+  question: " \u201CBoa tarde\u2026 t\xE1 procurando algu\xE9m? Essa \xE1rea costuma
+    ser restrita agora \xE0 tarde.\u201D"
+  options:
+  - "A. \u201CEstou procurando o Rolf. Sabe se ele est\xE1?\u201D"
+  - "B. \u201CVoc\xEA trabalha aqui h\xE1 muito tempo? Parece conhecer bem cada canto.\u201D"
+  - "C. \u201CO Rolf \xE9 sempre assim... distra\xEDdo? Ele costuma esquecer coisas
+    importantes?\u201D"
+  narratorFeedbacks:
+  - " \u201CPerguntar pelo 'chefe' \xE9 um come\xE7o padr\xE3o, mas pode parecer
+    formal demais para ela.\u201D"
+  - "\u201CElogiar o tempo de casa e a compet\xEAncia dela cria uma conex\xE3o imediata.
+    As pessoas gostam de ser reconhecidas.\u201D"
+  - " \u201CUma pergunta direta sobre o alvo. Um pouco arriscado, mas pode render
+    fofocas \xFAteis.\u201D"
+  nextDialogue:
+  - {fileID: 11400000, guid: 49b800d98d87b584cbbfe884752b8ba9, type: 2}
+  - {fileID: 11400000, guid: 0860fa295401ee94a94d5eee9b3b9e19, type: 2}
+  - {fileID: 11400000, guid: 0860fa295401ee94a94d5eee9b3b9e19, type: 2}
+  buttonType: 0

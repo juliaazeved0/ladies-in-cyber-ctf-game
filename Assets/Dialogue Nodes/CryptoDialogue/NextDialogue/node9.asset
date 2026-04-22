@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37288b8cc8a1b8c4a934c05d643fec5f, type: 3}
+  m_Name: node9
+  m_EditorClassIdentifier: 
+  talkNPC: "Acho que ela deve ter codificado. Poderia dar uma olhada no computador
+    dela para mim e ver se consegue descriptograf\xE1-lo?"
+  nextNode: {fileID: 11400000, guid: 9d99a0feba9486147bd549cd2a5f40fb, type: 2}
+  characterNPC: {fileID: 159176775, guid: 7b895494c7b2e574bb624809ca7067e2, type: 3}

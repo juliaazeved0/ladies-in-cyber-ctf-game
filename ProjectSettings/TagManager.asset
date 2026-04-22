@@ -3,13 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - NPC_Interactable
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Interactable
+  - 
   - Water
   - UI
   - 
@@ -41,4 +40,34 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Paredes
+    uniqueID: 3207721645
+    locked: 0
+  - name: "Ch\xE3o"
+    uniqueID: 3929410993
+    locked: 0
+  - name: Portas
+    uniqueID: 552934259
+    locked: 0
+  - name: "Objetos Atr\xE1s"
+    uniqueID: 725319461
+    locked: 0
+  - name: Player
+    uniqueID: 3635004667
+    locked: 0
+  - name: Objetos a frente
+    uniqueID: 349323599
+    locked: 0
+  - name: Dinamicos
+    uniqueID: 3944505497
+    locked: 0
+  - name: Objetos na parede
+    uniqueID: 3081277337
+    locked: 0
+  - name: NamePlayer
+    uniqueID: 105384023
+    locked: 0
+  - name: UI
+    uniqueID: 326117929
     locked: 0
