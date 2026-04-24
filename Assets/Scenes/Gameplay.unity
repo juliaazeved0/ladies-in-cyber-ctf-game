@@ -833,7 +833,7 @@ GameObject:
   - component: {fileID: 357920007}
   - component: {fileID: 357920006}
   m_Layer: 5
-  m_Name: Keyboardcon
+  m_Name: KeyboardIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1385,7 +1385,7 @@ GameObject:
   - component: {fileID: 693152028}
   - component: {fileID: 693152029}
   m_Layer: 5
-  m_Name: Next
+  m_Name: NextButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2699,7 +2699,7 @@ GameObject:
   - component: {fileID: 1333927022}
   - component: {fileID: 1333927021}
   m_Layer: 5
-  m_Name: Return
+  m_Name: ReturnButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
