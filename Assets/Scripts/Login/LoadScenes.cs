@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 public class LoadScenes : MonoBehaviour
 {
     private string targetScene;
-    
-    // Coordenadas fixas para o nascimento no mapa
+
     private Vector2 mapSpawnPosition = new Vector2(-38.12f, -36.71f);
 
     void Start()
@@ -23,15 +22,14 @@ public class LoadScenes : MonoBehaviour
         {
             targetScene = "PlayerMap";
 
-            // CORREÇÃO DIRETA NO PLAYERPREFS:
-            // Como não alteramos o DataPlayerPosition, nós editamos as chaves 
-            // que ele usa (NomeDaCena + Eixo) ANTES da cena carregar.
-            PlayerPrefs.SetFloat("PlayerMap_PlayerX", mapSpawnPosition.x);
-            PlayerPrefs.SetFloat("PlayerMap_PlayerY", mapSpawnPosition.y);
-            PlayerPrefs.SetFloat("PlayerMap_PlayerZ", 0f);
-            
-            // Força o salvamento das alterações no disco
-            PlayerPrefs.Save();
+            // Só define o spawn padrão se ainda não há posição salva
+            if (!PlayerPrefs.HasKey("PlayerMap_PlayerX"))
+            {
+                PlayerPrefs.SetFloat("PlayerMap_PlayerX", mapSpawnPosition.x);
+                PlayerPrefs.SetFloat("PlayerMap_PlayerY", mapSpawnPosition.y);
+                PlayerPrefs.SetFloat("PlayerMap_PlayerZ", 0f);
+                PlayerPrefs.Save();
+            }
         }
         else
         {
@@ -42,7 +40,7 @@ public class LoadScenes : MonoBehaviour
     private IEnumerator LoadAsync(string sceneName)
     {
         float startTime = Time.time;
-        float minimumLoadTime = 3f; 
+        float minimumLoadTime = 3f;
 
         AsyncOperation loading = SceneManager.LoadSceneAsync(sceneName);
         loading.allowSceneActivation = false;
@@ -52,11 +50,9 @@ public class LoadScenes : MonoBehaviour
             float timeElapsed = Time.time - startTime;
 
             if (loading.progress >= 0.9f && timeElapsed >= minimumLoadTime)
-            {
                 loading.allowSceneActivation = true;
-            }
 
-            yield return null; 
+            yield return null;
         }
     }
 }

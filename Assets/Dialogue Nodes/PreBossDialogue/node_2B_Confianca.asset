@@ -21,7 +21,7 @@ MonoBehaviour:
   - "C. \u201CPois \xE9, o sistema muda, mas a pregui\xE7a continua.\u201D"
   narratorFeedbacks:
   - "\u201CEla te deu uma pista de ouro sobre 'senhas fracas'. Explore isso.\u201D"
-  - "\u201CVoc\xEA tocou no ponto fraco da seguran\xE7a f\xEDsica: post-its e anota\xE7\xF5es.\u201D"
+  - "\u201CVoc\xEA tocou no ponto fraco da seguran\xE7a f\xEDsica: post-its e anota\xE7oes.\u201D"
   - "\u201CManter a conversa informal mant\xE9m a guarda dela baixa.\u201D"
   nextDialogue:
   - {fileID: 11400000, guid: 12579f2704fc07b43b567a35c9030f0c, type: 2}
