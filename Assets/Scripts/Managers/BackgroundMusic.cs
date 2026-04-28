@@ -1,6 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Gerenciador global de musica de fundo que persiste entre cenas.
+/// Implementa o padrao Singleton para garantir que apenas uma instancia exista.
+/// </summary>
 public class BackgroundMusic : MonoBehaviour
 {
     private static BackgroundMusic instance;
@@ -8,13 +12,13 @@ public class BackgroundMusic : MonoBehaviour
 
     void Awake()
     {
-        if (instance == null)
+        if(instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject); 
-     
             audioSource = GetComponent<AudioSource>();
-            if (audioSource != null)
+
+            if(audioSource != null)
             {
                 audioSource.loop = true;
             }
@@ -25,32 +29,40 @@ public class BackgroundMusic : MonoBehaviour
         }
     }
 
-    // Método para trocar a música com fade
+    /// <summary>
+    /// Troca a trilha sonora atual por uma nova, aplicando um efeito de fade.
+    /// </summary>
+    /// <param name="newClip">O novo arquivo de audio (AudioClip) a ser reproduzido.</param>
+    /// <param name="fadeDuration">Duracao do efeito de transicao em segundos.</param>
     public static void ChangeMusic(AudioClip newClip, float fadeDuration = 1f)
     {
-        if (instance != null && instance.audioSource != null && newClip != null)
+        if(instance != null && instance.audioSource != null && newClip != null)
         {
             instance.StartCoroutine(instance.FadeMusic(newClip, fadeDuration));
         }
     }
 
+    /// <summary>
+    /// Controla a interpolacao do volume para realizar o crossfade entre clipes.
+    /// </summary>
     private IEnumerator FadeMusic(AudioClip newClip, float fadeDuration)
     {
-        // Fade out da música atual
         float startVolume = audioSource.volume;
-        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+
+        //Fade out
+        for(float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
             audioSource.volume = Mathf.Lerp(startVolume, 0, t / fadeDuration);
             yield return null;
         }
         audioSource.volume = 0;
 
-        // Troca o clip e inicia
+        //Troca o arquivo
         audioSource.clip = newClip;
         audioSource.Play();
 
-        // Fade in da nova música
-        for (float t = 0; t < fadeDuration; t += Time.deltaTime)
+        //Fade in
+        for(float t = 0; t < fadeDuration; t += Time.deltaTime)
         {
             audioSource.volume = Mathf.Lerp(0, startVolume, t / fadeDuration);
             yield return null;
