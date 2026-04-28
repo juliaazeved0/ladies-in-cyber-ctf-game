@@ -8,18 +8,18 @@ public class ClipboardManager : MonoBehaviour
 
     public void CopyToClipboard()
     {
-        Debug.Log("1. The copy button was clicked!");
+        Debug.Log("copy clicado");
 
         if (slotText == null)
         {
-            Debug.LogError("2. ERROR: The 'Slot Text' is empty in the Inspector. Drag the Text object here!");
+            Debug.LogError("slot vazio");
             return;
         }
 
         string textToCopy = slotText.text;
-        Debug.Log("3. The text found in the slot is: [" + textToCopy + "]");
+        Debug.Log("texto do slot[" + textToCopy + "]");
 
-        // Extrai apenas a flag (parte após " - ")
+        // Extrai apenas a flag dps de -
         string flagToCopy = textToCopy;
         if (textToCopy.Contains(" - "))
         {
@@ -33,11 +33,11 @@ public class ClipboardManager : MonoBehaviour
         if (!string.IsNullOrEmpty(flagToCopy))
         {
             GUIUtility.systemCopyBuffer = flagToCopy;
-            Debug.Log("4. SUCCESS! Sent to Windows/Linux clipboard: [" + flagToCopy + "]");
+            Debug.Log("flag copiada [" + flagToCopy + "]");
         }
         else
         {
-            Debug.LogWarning("5. The text was empty, so nothing was copied.");
+            Debug.LogWarning("nao copiada");
         }
     }
 }
