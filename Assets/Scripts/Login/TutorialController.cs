@@ -3,42 +3,57 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Gerencia a navegacao entre as telas do tutorial inicia.
+/// Responsavel por alternar a visibilidade dos paineis e carregar a cena do jogo.
+/// </summary>
 public class TutorialController : MonoBehaviour
 {
-    //Referências dos painéis
-    public GameObject panel1;
-    public GameObject panel2;
+    [Header("Configuracoes dos Paineis")]
+    [SerializeField] public GameObject panel1;
+    [SerializeField] public GameObject panel2;
 
-    public string nextSceneName = "PlayerMap"; //Nome da próxima cena
+    [Header("Configuracoes de Fluxo")]
+    [SerializeField] public string nextSceneName = "PlayerMap";
 
-    private int count = 0; //Indica em qual tela o usuário está
+    private int count = 0; //Estado atual do tutorial (0 = Tela 1, 1 = Tela 2)
 
-    void Start() //QUando a cena começa
+    /// <summary>
+    /// Configura o estado inicial do tutorial ao carregar a cena.
+    /// </summary>
+    void Start()
     {
-        panel1.SetActive(true); //Painel 1 aparece
-        panel2.SetActive(false); //Painel 2 fica escondido
-    }
-    public void OnNextClicked() //Botão de avançar
-    {
-        if(count == 0) //Primeira vez que o botão é clicado
-        {
-            panel1.SetActive(false); //Esconde a tela 1
-            panel2.SetActive(true); //Mostra a tela 2
-            count = 1; //Agora vai para a tela 2
-        }
-        else if(count == 1) //Segunda vez que o botão é clicado
-        {
-            SceneManager.LoadScene(nextSceneName); //Sai do tutorial e vai para outra cena
-        }
+        panel1.SetActive(true);
+        panel2.SetActive(false);
     }
 
-    public void OnBackClicked() //Botão de voltar
+    /// <summary>
+    /// Avanca para a proxima tela do tutorial.
+    /// </summary>
+    public void OnNextClicked()
     {
-        if(count == 1) //Se o usuário estiver na tela 2
+        if(count == 0)
         {
-            panel2.SetActive(false); //Esconde a tela 2
-            panel1.SetActive(true); //Mostra a tela 1
-            count = 0; //Atualiza o estado da variável, ou seja, volta para o início do tutorial
+            panel1.SetActive(false);
+            panel2.SetActive(true);
+            count = 1;
+        }
+        else if(count == 1)
+        {
+            SceneManager.LoadScene(nextSceneName);
+        }
+    }
+
+    /// <summary>
+    /// Retorna para a tela anterior do tutorial.
+    /// </summary>
+    public void OnBackClicked()
+    {
+        if(count == 1)
+        {
+            panel2.SetActive(false);
+            panel1.SetActive(true);
+            count = 0;
         }
     }
 }
