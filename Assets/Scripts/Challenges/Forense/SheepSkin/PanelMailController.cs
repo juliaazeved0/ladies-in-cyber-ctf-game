@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PanelMailController : MonoBehaviour
 {
-    [Header("Painéis Principais")]
+    [Header("Painï¿½is Principais")]
     public GameObject panelMailInput;
     public GameObject panelEmailRh;
     public GameObject panelEmailKassime;
@@ -104,7 +104,7 @@ public class PanelMailController : MonoBehaviour
         //Booleano para verificar se a jogadora esta segurando a tecla Control, seja a da direita ou esquerda
         bool teclaPressionada = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
 
-        if(teclaPressionada && Input.GetKeyDown(KeyCode.U)) //Verifica se o Control está sendo pressionado e a tecla U também, ao mesmo tempo
+        if(teclaPressionada && Input.GetKeyDown(KeyCode.U)) //Verifica se o Control estï¿½ sendo pressionado e a tecla U tambï¿½m, ao mesmo tempo
         {
             AbrirPanelInspect(); //Abre o painel com o link
         }
@@ -116,7 +116,7 @@ public class PanelMailController : MonoBehaviour
 
         if(imagemSelecaoLink != null)
         {
-            StopAllCoroutines(); //Garante que o cronometro seja resetado antes de começar um novo
+            StopAllCoroutines(); //Garante que o cronometro seja resetado antes de comeï¿½ar um novo
             StartCoroutine(EfeitoMarcaTexto());
         }
     }
@@ -132,7 +132,7 @@ public class PanelMailController : MonoBehaviour
 
     IEnumerator SequenciaGlitchParaRansomware()
     {
-        //Ativa o painel de animação Glitch
+        //Ativa o painel de animaï¿½ï¿½o Glitch
         panelGlitch.SetActive(true);
 
         //Espera exatamente 4 segundos para realizar a troca de paineis
