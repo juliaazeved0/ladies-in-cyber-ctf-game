@@ -1,16 +1,24 @@
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// Responsavel por extrair o valor da flag em um slot de texto e
+/// copiar o conteudo para a area de transferencia do sistema.
+/// </summary>
 public class ClipboardManager : MonoBehaviour
 {
     [Header("Text to Copy")]
+    [Tooltip("O elemento de texto que contem a string formatada 'Desafio - Flag'.")]
     public TextMeshProUGUI slotText;
 
+    /// <summary>
+    /// Copia a parte da Flag (apos o ' - ') para o clipboard.
+    /// </summary>
     public void CopyToClipboard()
     {
         Debug.Log("1. The copy button was clicked!");
 
-        if (slotText == null)
+        if(slotText == null)
         {
             Debug.LogError("2. ERROR: The 'Slot Text' is empty in the Inspector. Drag the Text object here!");
             return;
@@ -19,18 +27,20 @@ public class ClipboardManager : MonoBehaviour
         string textToCopy = slotText.text;
         Debug.Log("3. The text found in the slot is: [" + textToCopy + "]");
 
-        // Extrai apenas a flag (parte após " - ")
         string flagToCopy = textToCopy;
+
+        //Extrai apenas a flag (parte apos " - ")
         if (textToCopy.Contains(" - "))
         {
             string[] parts = textToCopy.Split(new string[] { " - " }, System.StringSplitOptions.None);
-            if (parts.Length >= 2)
+
+            if(parts.Length >= 2)
             {
                 flagToCopy = parts[1];
             }
         }
 
-        if (!string.IsNullOrEmpty(flagToCopy))
+        if(!string.IsNullOrEmpty(flagToCopy))
         {
             GUIUtility.systemCopyBuffer = flagToCopy;
             Debug.Log("4. SUCCESS! Sent to Windows/Linux clipboard: [" + flagToCopy + "]");

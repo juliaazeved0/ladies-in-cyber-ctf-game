@@ -54565,7 +54565,7 @@ GameObject:
   - component: {fileID: 553821001}
   - component: {fileID: 553821000}
   m_Layer: 0
-  m_Name: Ladder (1)
+  m_Name: Ladder02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98882,6 +98882,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.06
       objectReference: {fileID: 0}
+    - target: {fileID: 4461213232035995361, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
+      propertyPath: m_Name
+      value: NextButton
+      objectReference: {fileID: 0}
     - target: {fileID: 4544491037752498475, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
       propertyPath: m_Name
       value: Reception
@@ -99012,7 +99016,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5978479317219025986, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
       propertyPath: m_Name
-      value: FullText
+      value: Text
       objectReference: {fileID: 0}
     - target: {fileID: 6014807437683480299, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
       propertyPath: m_SortingOrder

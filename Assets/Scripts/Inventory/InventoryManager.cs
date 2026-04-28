@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI; 
 
+/// <summary>
+/// Gerencia a interface do inventario, alterando entre a Bolsa de Flags e o Livro,
+/// e controla a transicao para o final do jogo.
+/// </summary>
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
@@ -20,7 +24,7 @@ public class InventoryManager : MonoBehaviour
     public RectTransform buttonPlayBook;
     public RectTransform borderImage;
 
-    [Header("Exibidos no final Boss")]
+    [Header("End Game - Boss State")]
     public GameObject modalLinkCTF;
     public GameObject buttonLinkCTF;
     public GameObject modalContinueCredits;
@@ -30,31 +34,31 @@ public class InventoryManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null) Instance = this;
+        if(Instance == null) Instance = this;
     }
 
     void Start()
     {
-        // 1. A MEMÓRIA: Salvamos o que o seu clique já ativou!
-        // Se você clicou na bolsa, o script vai saber que ela tem que ficar ligada.
+        //Truque de "Layout": Forca a ativacao/desativacao para que a Unity
+        //calcule as posicoes ds elementos de UI corretamente antes da jogadora ver
         bool bagJaEstavaAberta = panelBagBackground != null && panelBagBackground.activeSelf;
         bool bookJaEstavaAberto = panelPlayBookBackground != null && panelPlayBookBackground.activeSelf;
         bool bordaJaEstavaAtiva = borderImage != null && borderImage.gameObject.activeSelf;
 
-        // 2. O AQUECIMENTO DA UNITY
-        if (panelBagBackground != null) panelBagBackground.SetActive(true);
-        if (panelPlayBookBackground != null) panelPlayBookBackground.SetActive(true);
+        if(panelBagBackground != null) panelBagBackground.SetActive(true);
+        if(panelPlayBookBackground != null) panelPlayBookBackground.SetActive(true);
+
         Canvas.ForceUpdateCanvases(); 
 
-        // 3. A RESTAURAÇÃO: Devolvemos tudo do jeitinho que o seu clique mandou
-        if (panelBagBackground != null) panelBagBackground.SetActive(bagJaEstavaAberta);
-        if (panelPlayBookBackground != null) panelPlayBookBackground.SetActive(bookJaEstavaAberto);
-        if (borderImage != null) borderImage.gameObject.SetActive(bordaJaEstavaAtiva);
+        //Restaurando o estado real
+        if(panelBagBackground != null) panelBagBackground.SetActive(bagJaEstavaAberta);
+        if(panelPlayBookBackground != null) panelPlayBookBackground.SetActive(bookJaEstavaAberto);
+        if(borderImage != null) borderImage.gameObject.SetActive(bordaJaEstavaAtiva);
         
-        // Garante que a tela de créditos não apareça solta
-        if (modalLinkCTF != null) modalLinkCTF.SetActive(false);
-        if (buttonLinkCTF != null) buttonLinkCTF.SetActive(false);
-        if (modalContinueCredits != null) modalContinueCredits.SetActive(false);
+        //Limpeza inicial de estados do Boss
+        if(modalLinkCTF != null) modalLinkCTF.SetActive(false);
+        if(buttonLinkCTF != null) buttonLinkCTF.SetActive(false);
+        if(modalContinueCredits != null) modalContinueCredits.SetActive(false);
     }
 
     void Update()
@@ -93,7 +97,7 @@ public class InventoryManager : MonoBehaviour
 
     public void OnClickPlayBook()
     {
-        if (aguardandoConfirmacaoFinal) return;
+        if(aguardandoConfirmacaoFinal) return;
 
         panelBagBackground.SetActive(false);
         panelPlayBookBackground.SetActive(true);
@@ -102,19 +106,18 @@ public class InventoryManager : MonoBehaviour
 
     public void AbrirBolsaFinalizacaoBoss()
     {
-        if (inventoryPanel != null) inventoryPanel.SetActive(true);
+        if(inventoryPanel != null) inventoryPanel.SetActive(true);
 
         panelPlayBookBackground.SetActive(false);
 
-        if (modalLinkCTF != null) modalLinkCTF.SetActive(true);
-        if (buttonLinkCTF != null) buttonLinkCTF.SetActive(true);
-        if (modalContinueCredits != null) modalContinueCredits.SetActive(true);
+        if(modalLinkCTF != null) modalLinkCTF.SetActive(true);
+        if(buttonLinkCTF != null) buttonLinkCTF.SetActive(true);
+        if(modalContinueCredits != null) modalContinueCredits.SetActive(true);
        
         aguardandoConfirmacaoFinal = true;
-
         MoveToButton(buttonBag);
 
-        if (panelBagBackground != null) panelBagBackground.SetActive(true);
+        if(panelBagBackground != null) panelBagBackground.SetActive(true);
     }
 
     public void ConfirmarColetaDasFlags()
@@ -133,14 +136,14 @@ public class InventoryManager : MonoBehaviour
     public void ExitInventory()
     {
         aguardandoConfirmacaoFinal = false;
-        if (borderImage != null) borderImage.gameObject.SetActive(false);
-        if (panelBagBackground != null) panelBagBackground.SetActive(false);
-        if (panelPlayBookBackground != null) panelPlayBookBackground.SetActive(false);
+        if(borderImage != null) borderImage.gameObject.SetActive(false);
+        if(panelBagBackground != null) panelBagBackground.SetActive(false);
+        if(panelPlayBookBackground != null) panelPlayBookBackground.SetActive(false);
     }
 
     public void MoveToButton(RectTransform newButton)
     {
-        if (borderImage != null) borderImage.gameObject.SetActive(true);
+        if(borderImage != null) borderImage.gameObject.SetActive(true);
         currentButton = newButton;
     }
 }
