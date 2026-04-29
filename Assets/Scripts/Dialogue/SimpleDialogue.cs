@@ -5,6 +5,10 @@ using TMPro;
 using UnityEngine.UI;
 using System;
 
+/// <summary>
+/// Controlador principal do sistema de dialogo.
+/// Gerencia a exibicao de textos, troca de nos e integracao com efeitos de cenario.
+/// </summary>
 public class SimpleDialogue : MonoBehaviour
 {
     [Header("Elements UI")]
@@ -19,6 +23,7 @@ public class SimpleDialogue : MonoBehaviour
     public Button confirmButton;
 
     [Header("Dinamic variable")]
+    [Tooltip("Objeto que recebera destaque visual apos o termino do dialogo.")]
     public PulseOutline pulsingObject;
 
     private bool readyToSpeak = false;
@@ -38,12 +43,13 @@ public class SimpleDialogue : MonoBehaviour
 
     void Update()
     {
-        if (!readyToSpeak || !isTalking)
+        //So processa input se o dialogo estiver ativo e pronto
+        if(!readyToSpeak || !isTalking)
         {
             return;
         }
 
-        if (panelDialogue.activeSelf && Input.GetKeyDown(KeyCode.E))
+        if(panelDialogue.activeSelf && Input.GetKeyDown(KeyCode.E))
         {
             NextTalk();
         }
@@ -51,10 +57,14 @@ public class SimpleDialogue : MonoBehaviour
 
     void Start()
     {
+        //Recupera o nome da jogadora para mostrar na tela
         string namePlayer = PlayerPrefs.GetString(PLAYER_NAME_KEY, "Jogadora");
         playerNameplate.text = namePlayer.ToUpper();
     }
 
+    /// <summary>
+    /// Inicia ua nova conversa a partir de um no especifico.
+    /// </summary>
     public void StartDialogue(NPCDialogueNode inicialNode)
     {
         StopAllCoroutines();
@@ -62,19 +72,20 @@ public class SimpleDialogue : MonoBehaviour
         isSimpleDialogueActive = true;
         isTalking = true;
 
-        if (textDialogue != null) textDialogue.text = "";
-        if (confirmButton != null) confirmButton.gameObject.SetActive(false);
-        if (buttonExit != null) buttonExit.gameObject.SetActive(true);
+        if(textDialogue != null) textDialogue.text = "";
+        if(confirmButton != null) confirmButton.gameObject.SetActive(false);
+        if(buttonExit != null) buttonExit.gameObject.SetActive(true);
 
         firstNode = inicialNode;
 
-        if (firstNode != null)
+        if(firstNode != null)
         {
             CanvasManager.Instance.OpenPanel(panelDialogue.name);
             CanvasManager.Instance.ToggleMiniMap(false);
 
             DialogueView(firstNode);
 
+            //Evita que o mesmo clique que iniciou o dialogo ja pule a primeira frase
             readyToSpeak = false;
             StartCoroutine(ReleaseInput());
         }
@@ -96,28 +107,32 @@ public class SimpleDialogue : MonoBehaviour
 
         writeMachine.Run(node.talkNPC, textDialogue);
 
-        if (characterNPC != null)
+        if(characterNPC != null)
             characterNPC.sprite = node.characterNPC;
     }
 
+    /// <summary>
+    /// Avanca o dialogo. Se estiver digitando, completa a frase. Se terminou, passa para o proximo no.
+    /// </summary>
     public virtual void NextTalk()
     {
-        if (writeMachine.IsTyping)
+        if(writeMachine.IsTyping)
         {
             writeMachine.Complete();
             return;
         }
 
-        if (dialogueCurrent.nextNode != null)
+        if(dialogueCurrent.nextNode != null)
         {
             DialogueView(dialogueCurrent.nextNode);
         }
         else
         {
-            if (confirmButton != null)
+            //Ativa o botao de conclusao
+            if(confirmButton != null)
                 confirmButton.gameObject.SetActive(true);
 
-            if (buttonExit != null)
+            if(buttonExit != null)
                 buttonExit.gameObject.SetActive(false);
         }
     }
@@ -131,14 +146,18 @@ public class SimpleDialogue : MonoBehaviour
         CanvasManager.Instance.ToggleMiniMap(true);
     }
 
+    /// <summary>
+    /// Chamado pelo botao de confirmacao ao final da conversa
+    /// </summary>
     public virtual void ConfirmHelp()
     {
         ExitDialogue();
 
-        if (pulsingObject != null)
+        //Se houver um objeto para destacar, ativa a pulsacao
+        if(pulsingObject != null)
         {
             pulsingObject.StartPulsing();
-            pulsingObject = null;
+            pulsingObject = null; //Limpa para a proxima interacao
         }
     }
 }
