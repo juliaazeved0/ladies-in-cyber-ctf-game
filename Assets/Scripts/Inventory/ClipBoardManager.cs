@@ -27,10 +27,7 @@ public class ClipboardManager : MonoBehaviour
         string textToCopy = slotText.text;
         Debug.Log("texto do slot[" + textToCopy + "]");
 
-<<<<<<< HEAD
         // Extrai apenas a flag dps de -
-=======
->>>>>>> aa32d9583d26a4cf39bbc9ec0c5a3254faa1967d
         string flagToCopy = textToCopy;
 
         //Extrai apenas a flag (parte apos " - ")

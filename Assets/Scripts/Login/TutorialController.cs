@@ -10,7 +10,6 @@ using UnityEngine.UI;
 /// </summary>
 public class TutorialController : MonoBehaviour
 {
-<<<<<<< HEAD
     [Header("Painéis")]
     public GameObject panel1;
     public GameObject panel2;
@@ -23,25 +22,10 @@ public class TutorialController : MonoBehaviour
 
     private int count = 0;
 
-=======
-    [Header("Configuracoes dos Paineis")]
-    [SerializeField] public GameObject panel1;
-    [SerializeField] public GameObject panel2;
-
-    [Header("Configuracoes de Fluxo")]
-    [SerializeField] public string nextSceneName = "PlayerMap";
-
-    private int count = 0; //Estado atual do tutorial (0 = Tela 1, 1 = Tela 2)
-
-    /// <summary>
-    /// Configura o estado inicial do tutorial ao carregar a cena.
-    /// </summary>
->>>>>>> aa32d9583d26a4cf39bbc9ec0c5a3254faa1967d
     void Start()
     {
         panel1.SetActive(true);
         panel2.SetActive(false);
-<<<<<<< HEAD
 
         if (panelBlack != null)
             fadeImage = panelBlack.GetComponent<Image>();
@@ -50,22 +34,11 @@ public class TutorialController : MonoBehaviour
     public void OnNextClicked()
     {
         if (count == 0)
-=======
-    }
-
-    /// <summary>
-    /// Avanca para a proxima tela do tutorial.
-    /// </summary>
-    public void OnNextClicked()
-    {
-        if(count == 0)
->>>>>>> aa32d9583d26a4cf39bbc9ec0c5a3254faa1967d
         {
             panel1.SetActive(false);
             panel2.SetActive(true);
             count = 1;
         }
-<<<<<<< HEAD
         else if (count == 1)
         {
             StartCoroutine(FazerFadeECarregar());
@@ -75,20 +48,6 @@ public class TutorialController : MonoBehaviour
     public void OnBackClicked()
     {
         if (count == 1)
-=======
-        else if(count == 1)
-        {
-            SceneManager.LoadScene(nextSceneName);
-        }
-    }
-
-    /// <summary>
-    /// Retorna para a tela anterior do tutorial.
-    /// </summary>
-    public void OnBackClicked()
-    {
-        if(count == 1)
->>>>>>> aa32d9583d26a4cf39bbc9ec0c5a3254faa1967d
         {
             panel2.SetActive(false);
             panel1.SetActive(true);
