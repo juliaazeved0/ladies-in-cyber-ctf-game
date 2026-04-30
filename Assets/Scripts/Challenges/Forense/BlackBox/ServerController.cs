@@ -12,7 +12,7 @@ public class ServerController : LockObjectInteraction //J� possui todas as fun
     public bool finalizado = false; //Vari�vel para indicar se o desafio do servidor foi conclu�do
     public GameObject panelConnect; //Painel que aparece quando os cabos precisam ser conectados
 
-    void Start()
+    new void Start()
     {
         isUnlocked = false; //O servidor come�a bloqueado
         finalizado = false; //Garante que o desafio do servidor tamb�m come�a n�o finalizado
