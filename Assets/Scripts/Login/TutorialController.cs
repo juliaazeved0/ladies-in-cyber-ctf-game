@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,76 +9,91 @@ using UnityEngine.UI;
 /// </summary>
 public class TutorialController : MonoBehaviour
 {
-    [Header("Painéis")]
-    public GameObject panel1;
-    public GameObject panel2;
+    [Header("Panels")]
+    [Tooltip("Lista de paineis tutoriais em ordem.")]
+    [SerializeField] private GameObject[] panels;
 
-    public string nextSceneName = "PlayerMap";
+    [Header("Navigation")]
+    [SerializeField] private string nextSceneName = "PlayerMap";
 
-    [Header("Fade Visual")]
-    [SerializeField] private GameObject panelBlack;
+    [Header("Visual Fade")]
+    [SerializeField] private GameObject fadePanel;
+    [SerializeField] private float fadeDuration = 1f;
+
     private Image fadeImage;
-
-    private int count = 0;
+    private int currentPanelIndex = 0;
 
     void Start()
     {
-        panel1.SetActive(true);
-        panel2.SetActive(false);
+        InitializeUI();
+    }
 
-        if (panelBlack != null)
-            fadeImage = panelBlack.GetComponent<Image>();
+    private void InitializeUI()
+    {
+        //Garante que apenas o primeiro painel esteja ativo
+        for(int i = 0; i < panels.Length; i++)
+        {
+            panels[i].SetActive(i == 0);
+        }
+
+        if(fadePanel != null)
+        {
+            fadeImage = fadePanel.GetComponent<Image>();
+            fadePanel.SetActive(false); //Esconde o fade no início
+        }
     }
 
     public void OnNextClicked()
     {
-        if (count == 0)
+        if(currentPanelIndex < panels.Length - 1)
         {
-            panel1.SetActive(false);
-            panel2.SetActive(true);
-            count = 1;
+            //Avanca para o proximo painel
+            panels[currentPanelIndex].SetActive(false);
+            currentPanelIndex++;
+            panels[currentPanelIndex].SetActive(true);
         }
-        else if (count == 1)
+        else
         {
-            StartCoroutine(FazerFadeECarregar());
+            //Se for o ultimo, inicia a transicao de cena
+            StartCoroutine(FadeAndLoadRoutine());
         }
     }
 
     public void OnBackClicked()
     {
-        if (count == 1)
+        if(currentPanelIndex > 0)
         {
-            panel2.SetActive(false);
-            panel1.SetActive(true);
-            count = 0;
+            //Volta para o painel anterior
+            panels[currentPanelIndex].SetActive(false);
+            currentPanelIndex--;
+            panels[currentPanelIndex].SetActive(true);
         }
     }
 
-    private IEnumerator FazerFadeECarregar()
+    private IEnumerator FadeAndLoadRoutine()
     {
-        if (panelBlack != null && fadeImage != null)
+        if(fadePanel != null && fadeImage != null)
         {
-            Animator anim = panelBlack.GetComponent<Animator>();
-            if (anim != null) anim.enabled = false;
+            //Desativa Animator se existir para nao conflitar com o fade manual
+            Animator anim = fadePanel.GetComponent<Animator>();
+            if(anim != null) anim.enabled = false;
 
-            panelBlack.SetActive(true);
-            Color cor = fadeImage.color;
-            cor.a = 0f;
-            fadeImage.color = cor;
+            fadePanel.SetActive(true);
+            Color color = fadeImage.color;
 
-            float tempo = 0f;
-            float duracaoFade = 1f;
+            float elapsed = 0f;
 
-            while (tempo < duracaoFade)
+            while(elapsed < fadeDuration)
             {
-                tempo += Time.deltaTime;
-                cor.a = Mathf.Clamp01(tempo / duracaoFade);
-                fadeImage.color = cor;
+                elapsed += Time.deltaTime;
+                color.a = Mathf.Clamp01(elapsed / fadeDuration);
+                fadeImage.color = color;
                 yield return null;
             }
         }
         else
         {
+            //Delay de seguranca caso nao haja painel de fade
             yield return new WaitForSeconds(0.5f);
         }
 
