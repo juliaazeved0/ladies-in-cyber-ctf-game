@@ -2544,8 +2544,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "PLAYBOOK: ESTE LIVRO CONT\xC9M INFORMA\xC7\xD5ES SOBRE CADA CATEGORIA QUE
-    PODE TE GUIAR DURANTE O JOGO!"
+  m_text: "PLAYBOOK: ESTE LIVRO CONT\xC9M INFORMA\xC7\xD5ES SOBRE CADA CATEGORIA
+    QUE PODE TE GUIAR DURANTE O JOGO!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c8b2d073c88508943b8712f4e34c6966, type: 2}
   m_sharedMaterial: {fileID: -8451331422274171582, guid: c8b2d073c88508943b8712f4e34c6966, type: 2}
@@ -3227,10 +3227,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe25fb481983e23428093fdb906f56a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel1: {fileID: 952692347}
-  panel2: {fileID: 1477842978}
+  panels:
+  - {fileID: 952692347}
+  - {fileID: 1477842978}
   nextSceneName: PlayerMap
-  panelBlack: {fileID: 958202519}
+  fadePanel: {fileID: 958202519}
+  fadeDuration: 1
 --- !u!1 &1647086851
 GameObject:
   m_ObjectHideFlags: 0
