@@ -417,7 +417,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1354528824}
         m_TargetAssemblyTypeName: IntroScreenController, Assembly-CSharp
-        m_MethodName: ShowSuccessFlagPanel
+        m_MethodName: OnFlagButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -942,7 +942,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1354528824}
         m_TargetAssemblyTypeName: IntroScreenController, Assembly-CSharp
-        m_MethodName: CloseSuccessAndFinish
+        m_MethodName: FinishIntroduction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
