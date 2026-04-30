@@ -54,7 +54,7 @@ public class BossTeleportTrigger : MonoBehaviour
             fadeImage.color = cor;
 
             float tempo = 0f;
-            float duracaoFade = 1f;
+            float duracaoFade = 0.5f;
 
             while (tempo < duracaoFade)
             {
@@ -66,7 +66,7 @@ public class BossTeleportTrigger : MonoBehaviour
         }
         else
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
         }
 
         // 2. ADICIONADO: Troca a música de volta para a música do mapa!
