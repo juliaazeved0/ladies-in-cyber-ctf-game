@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//script criado para o efeito de pulsar nos outlines
-//deve ser adicionado ao objeto com material do shader
+/// <summary>
+/// Cria um efeito de pulsacao no contorno (outline) de um Sprite atraves do Shader.
+/// Serve ara destacar objetos interativos ou guiar a jogadora.
+/// </summary>
 public class PulseOutline : MonoBehaviour
 {
     [Header("Settings pulse effect")]
@@ -20,8 +22,11 @@ public class PulseOutline : MonoBehaviour
     void Start()
     {
         var renderer = GetComponent<SpriteRenderer>();
+
         if(renderer != null)
         {
+            //.material cria uma instancia unica para este objeto,
+            //evitando que todos os objetos com o mesmo material pulsem juntos
             myMaterial = renderer.material;
         }
         thicknessID = Shader.PropertyToID("_OutlineThickness");
@@ -40,14 +45,15 @@ public class PulseOutline : MonoBehaviour
     {
         if(isPulsing && myMaterial != null)
         {
+            //Mathf.PingPong cria o efeito de "ida e volta" suave
             float currentThickness = Mathf.PingPong(Time.time * pulseSpeed, maxThickness);
             myMaterial.SetFloat(thicknessID, currentThickness);
         }
     }
 
-// metodo para chamar no botao de ajudar
-// arrastar o objeto q contem esse script no botao e selecionar a funcao abaixo
-// com o objeto q contem esse script selecionado, deve arrastar o panel do dialogo q deve ser fechado
+    /// <summary>
+    /// Ativa o efeito de pulsacao e torna o contorno visivel.
+    /// </summary>
     public void StartPulsing()
     {
         isPulsing = true;
@@ -57,8 +63,10 @@ public class PulseOutline : MonoBehaviour
         }
     }
 
-
-// para chamar quando a player concluir a task 
+    /// <summary>
+    /// Desativa o efeito e esconde o contorno.
+    /// Metodo chamado quando a jogadora se afasta do objeto.
+    /// </summary>
     public void StopPulsing()
     {
         isPulsing = false;
@@ -67,8 +75,6 @@ public class PulseOutline : MonoBehaviour
         {
             myMaterial.SetFloat(thicknessID, 0.0f);
             myMaterial.SetFloat("_OutlineAlphaMultiplier", 0.0f);
-        
         }
-       
     }
 }

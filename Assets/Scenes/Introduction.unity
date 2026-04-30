@@ -1153,13 +1153,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0b9fc73327cdb64bbc45f5d4018c7fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundWarning: {fileID: 1722729628}
-  backgroundNormal: {fileID: 782954023}
-  successFlagPanel: {fileID: 53541115}
-  textWarning: {fileID: 1194208218}
-  textNormal: {fileID: 55746944}
-  textObjective: {fileID: 1780543530}
-  textFlag: {fileID: 2077382192}
+  warningBackground: {fileID: 1722729628}
+  normalBackground: {fileID: 782954023}
+  flagSuccessPanel: {fileID: 53541115}
+  warningText: {fileID: 1194208218}
+  normalText: {fileID: 55746944}
+  objectiveText: {fileID: 1780543530}
+  flagText: {fileID: 2077382192}
   flagButton: {fileID: 293640376}
   promptKey: {fileID: 2042303211}
 --- !u!4 &1354528825

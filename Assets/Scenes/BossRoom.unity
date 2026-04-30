@@ -2583,7 +2583,7 @@ GameObject:
   - component: {fileID: 471556568}
   - component: {fileID: 471556567}
   m_Layer: 0
-  m_Name: FrameProhibitedToFilm
+  m_Name: ProhibitedSign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3471,7 +3471,7 @@ GameObject:
   - component: {fileID: 559705060}
   - component: {fileID: 559705059}
   m_Layer: 0
-  m_Name: BackgroundBoss
+  m_Name: BossBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9489,7 +9489,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 34
+  field of view: 40
   orthographic: 1
   orthographic size: 7
   m_Depth: -1
@@ -9516,7 +9516,7 @@ Transform:
   m_GameObject: {fileID: 1418484521}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -34.386665, y: -32.37, z: -10}
+  m_LocalPosition: {x: 1.4633336, y: -0.4400003, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10863,7 +10863,7 @@ GameObject:
   - component: {fileID: 1753749095}
   - component: {fileID: 1753749093}
   m_Layer: 0
-  m_Name: RestrictedAccessFramework
+  m_Name: RestrictedAccessSign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12702,7 +12702,7 @@ GameObject:
   - component: {fileID: 2069930919}
   - component: {fileID: 2069930918}
   m_Layer: 5
-  m_Name: PanelFadeBlack
+  m_Name: BlackFadePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

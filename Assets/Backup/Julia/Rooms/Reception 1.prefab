@@ -2477,7 +2477,7 @@ GameObject:
   - component: {fileID: 3429674009246536275}
   - component: {fileID: 2450254068065674294}
   m_Layer: 0
-  m_Name: SecretaryNPC
+  m_Name: NPCSecretary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3512,7 +3512,7 @@ GameObject:
   - component: {fileID: 4923470273314202506}
   - component: {fileID: 4604866447286383952}
   m_Layer: 5
-  m_Name: Button
+  m_Name: NextButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
