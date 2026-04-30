@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class LoadScenes : MonoBehaviour
 {
-    [Header("Configuracoes de Destino")]
+    [Header("Settings")]
     [Tooltip("Nome da cena que sera carregada.")]
     private string targetScene;
 
