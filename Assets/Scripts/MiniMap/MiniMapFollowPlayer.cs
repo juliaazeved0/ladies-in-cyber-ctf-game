@@ -2,29 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Controla a posicao da camera do MiniMapa para seguir a jogadora.
+/// Garante que o alvo seja encontrado mesmo apos trocas de cena.
+/// </summary>
 public class MiniMapFollowPlayer : MonoBehaviour
 {
-    public Transform target;
+    [Tooltip("O alvo que o MiniMapa deve seguir (Player).")]
+    [SerializeField] private Transform target;
 
     void LateUpdate()
     {
-        // 1. A MÁGICA: Se eu não tenho um alvo (ou acabei de trocar de cena), eu procuro por ele!
-        if (target == null)
+        //Se nao possui um alvo ou troca de cena, procura por ele
+        if(target == null)
         {
-            // Procura qualquer objeto na tela que tenha a Tag "Player"
             GameObject playerOnMap = GameObject.FindGameObjectWithTag("Player");
             
-            if (playerOnMap != null)
+            if(playerOnMap != null)
             {
-                target = playerOnMap.transform; // Achei! Agora eu sigo ele.
+                target = playerOnMap.transform;
             }
             else
             {
-                return; // Se eu não achei ninguém (ex: a tela ainda está preta carregando), eu espero.
+                return;
             }
         }
 
-        // 2. Se eu tenho um alvo, eu sigo ele!
+        //Se possuir um alvo, segue
         transform.position = new Vector3(
             target.position.x,
             target.position.y,

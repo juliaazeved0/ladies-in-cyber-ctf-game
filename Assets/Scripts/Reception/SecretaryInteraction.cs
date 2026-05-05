@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
+/// <summary>
+/// Gerencia a interacao entre a jogadora e a NPC Secretaria.
+/// Mostra um aviso visual e inicia o dialogo quando a tecla de interacao eh pressionada.
+/// </summary>
 public class SecretaryInteraction : MonoBehaviour
 {
+    [Header("UI & Feedback")]
+    [SerializeField] private Image interactionNotice;
+
+    [Header("References")]
+    [SerializeField] private DialogueManager dialogueManager;
+
     private bool playerIsHere = false;
-    public Image interactionNotice;
-    public DialogueManager dialogueManager;
 
     void Start()
     {
@@ -20,7 +28,7 @@ public class SecretaryInteraction : MonoBehaviour
 
         if(playerIsHere && Input.GetKeyDown(KeyCode.E) && playerDone == 0) //Apenas dispara o dialogo se a jogadora estiver perto e clicar na tecla E
         { 
-            if (interactionNotice != null) interactionNotice.gameObject.SetActive(false);
+            if(interactionNotice != null) interactionNotice.gameObject.SetActive(false);
     
             if(dialogueManager != null) dialogueManager.StartDialogue();
         }
@@ -35,6 +43,7 @@ public class SecretaryInteraction : MonoBehaviour
             if(playerDone == 0)
             {
                 playerIsHere = true; //Apenas vira TRUE se for a player
+
                 if(interactionNotice != null) interactionNotice.gameObject.SetActive(true);
             }
         }
@@ -45,7 +54,8 @@ public class SecretaryInteraction : MonoBehaviour
         if(collison.CompareTag("Player"))
         {
             playerIsHere = false;
-            if (interactionNotice != null)
+
+            if(interactionNotice != null)
             {
                 interactionNotice.gameObject.SetActive(false);
             }

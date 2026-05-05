@@ -1,47 +1,50 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Gerencia o sistema de dialogos, incluindo a interface do usuario,
+/// escolhas da jogadora e o progresso narrativo (Narrador e NPCs).
+/// </summary>
 public class DialogueManager : MonoBehaviour
 {
-    [Header("UI elements")]
-    public GameObject panelDialogue;
-    public TextMeshProUGUI questionText;
-    public Image characterNPC;
-    public Button[] buttonOption;
-    public GameObject miniMapCanvas;
-    public GameObject cameraMiniMap;
-    public Button buttonPlayAgain;
-    public TextMeshProUGUI playerNameText;
-    private const string PLAYER_NAME_KEY = "PLAYER_NAME";
-    public Button buttonDone;
-    public Button buttonExit;
-    public GameObject lockImage;
-    public TextMeshProUGUI dialogueNPC;
+    [Header("UI Elements")]
+    [SerializeField] private GameObject panelDialogue;
+    [SerializeField] private TextMeshProUGUI questionText;
+    [SerializeField] private Image characterNPC;
+    [SerializeField] private Button[] buttonOption;
+    [SerializeField] private GameObject miniMapCanvas;
+    [SerializeField] private GameObject cameraMiniMap;
+    [SerializeField] private Button buttonPlayAgain;
+    [SerializeField] private TextMeshProUGUI playerNameText;
+    [SerializeField] private Button buttonDone;
+    [SerializeField] private Button buttonExit;
+    [SerializeField] private GameObject lockImage;
+    [SerializeField] private TextMeshProUGUI dialogueNPC;
 
-    public WriteMachine writeMachine;
+    [Header("References")]
+    [SerializeField] private WriteMachine writeMachine;
+    [SerializeField] private PlayerNameplate playerNameplate;
 
-    public PlayerNameplate playerNameplate;
-    public const string INICIAL_KEY = "dialogueInicial";
-
-    [Header("Nodes")]
-    public DialogueNode firstNode; 
-    private DialogueNode dialogueCurrent; 
-
-    [Header("UI do Narrador")]
-    public GameObject panelNarrator;
-    public TextMeshProUGUI textNarrator;
-    public Button buttonNextNarrator;
-
-    [Header("Control inventory")]
-    public static bool isDialogueActive = false;
-
-    [Header("Objetos do Mapa")]
-    public GameObject lockLadder; // Variável renomeada
-    
+    [Header("Dialogue Nodes")]
+    [SerializeField] private DialogueNode firstNode;
+    private DialogueNode dialogueCurrent;
     private DialogueNode pendingNextNode;
 
+    [Header("Narrator UI")]
+    [SerializeField] private GameObject panelNarrator;
+    [SerializeField] private TextMeshProUGUI textNarrator;
+    [SerializeField] private Button buttonNextNarrator;
+
+    [Header("Game State")]
+    public static bool isDialogueActive = false;
+
+    [Header("Wordl Objects")]
+    [SerializeField] private GameObject lockLadder;
+
+    //Chaves de persistencia
+    private const string PLAYER_NAME_KEY = "PLAYER_NAME";
+    public const string INICIAL_KEY = "dialogueInicial";
 
     void Start()
     {
@@ -54,12 +57,11 @@ public class DialogueManager : MonoBehaviour
 
         int dialogueInicialDone = PlayerPrefs.GetInt(INICIAL_KEY, 0);
 
-        if (dialogueInicialDone == 1)
+        if(dialogueInicialDone == 1)
         {
             lockImage.gameObject.SetActive(false);
             
-            // Verificação adicionada: Mantém a escada/bloqueio desativado se já tiver o progresso
-            if (lockLadder != null) 
+            if(lockLadder != null) 
             {
                 lockLadder.SetActive(false);
             }
@@ -67,7 +69,7 @@ public class DialogueManager : MonoBehaviour
         
         string playerName = PlayerPrefs.GetString(PLAYER_NAME_KEY, "Jogadora");
 
-        if (playerNameText != null)
+        if(playerNameText != null)
         {
             playerNameText.text = playerName.ToUpper();
         }
@@ -75,9 +77,9 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue()
     {
-        if (firstNode != null)
+        if(firstNode != null)
         {
-            isDialogueActive = true; // Tranca o inventário ao iniciar o diálogo
+            isDialogueActive = true;
 
             panelDialogue.SetActive(true);
             miniMapCanvas.SetActive(false);
@@ -87,7 +89,7 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("inspector error");
+            Debug.LogWarning("Erro no Inspector!");
         }
     }
 
@@ -105,11 +107,11 @@ public class DialogueManager : MonoBehaviour
             buttonDone.gameObject.SetActive(false);
             buttonExit.gameObject.SetActive(false);
 
-            if (node.buttonType == ButtonType.PlayAgain)
+            if(node.buttonType == ButtonType.PlayAgain)
             {
                 buttonPlayAgain.gameObject.SetActive(true);
             }
-            else if (node.buttonType == ButtonType.Done)
+            else if(node.buttonType == ButtonType.Done)
             {
                 buttonDone.gameObject.SetActive(true);
             }
@@ -125,9 +127,9 @@ public class DialogueManager : MonoBehaviour
             buttonExit.gameObject.SetActive(true);
         }
 
-        for (int i = 0; i < buttonOption.Length; i++)
+        for(int i = 0; i < buttonOption.Length; i++)
         {
-            if (i < node.options.Length)
+            if(i < node.options.Length)
             {
                 buttonOption[i].gameObject.SetActive(true);
                 buttonOption[i].GetComponentInChildren<TextMeshProUGUI>().text = node.options[i];
@@ -155,8 +157,7 @@ public class DialogueManager : MonoBehaviour
         dialogueNPC.text = "Bem-vinda ao Centro de Tecnologia do Itaipu Parquetec!";
         
         if(playerNameplate != null) playerNameplate.SetNameplateIdPlayer();
-    
-        if (lockLadder != null) lockLadder.SetActive(false);
+        if(lockLadder != null) lockLadder.SetActive(false);
     }
 
     public void OnClickExit()
@@ -177,12 +178,12 @@ public class DialogueManager : MonoBehaviour
     {
         pendingNextNode = dialogueCurrent.nextDialogue[index];
 
-        if (dialogueCurrent.narratorFeedbacks != null && index < dialogueCurrent.narratorFeedbacks.Length)
+        if(dialogueCurrent.narratorFeedbacks != null && index < dialogueCurrent.narratorFeedbacks.Length)
         {
             textNarrator.text = dialogueCurrent.narratorFeedbacks[index];
         }
 
-        for (int i = 0; i < buttonOption.Length; i++)
+        for(int i = 0; i < buttonOption.Length; i++)
         {
             buttonOption[i].gameObject.SetActive(false);
         }
@@ -193,7 +194,7 @@ public class DialogueManager : MonoBehaviour
     public void OnClickNextNarrator()
     {
         panelNarrator.SetActive(false);
-        if (pendingNextNode != null)
+        if(pendingNextNode != null)
         {
             DialogueView(pendingNextNode);
         }

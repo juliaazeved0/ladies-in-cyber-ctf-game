@@ -2,22 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Gerencia a movimentacao da jogadora, logica de animacao e inversao de sprite (flip).
+/// Bloqueia o movimento automaticamente se houver paineis de interface abertos.
+/// </summary>
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]
-    private int speed;
+    [Header("Movement Settings")]
+    [SerializeField] private int speed;
+
     private Rigidbody2D characterBody;
-    private Vector2 velocity;
-    private Vector2 inputMovement;
+    private Animator animator;
     private SpriteRenderer spriteRenderer;
 
-    private Animator animator;
-    private const float deadzone = 0.1f;
-
-    private int movementHash = Animator.StringToHash("movement");
-    private int idleHash = Animator.StringToHash("idle");
+    private Vector2 velocity;
+    private Vector2 inputMovement;
 
     private int lastHorizontal = 1;
+    private const float deadzone = 0.1f;
+
+    //Hashes de animacao para melhor performance
+    private int movementHash = Animator.StringToHash("movement");
+    private int idleHash = Animator.StringToHash("idle");
 
     private void Awake()
     {
@@ -35,8 +41,8 @@ public class PlayerMovement : MonoBehaviour
     {
         ReadInput();
 
-        // Bloqueia movimento e animação se qualquer painel de UI estiver aberto
-        if (IsAnyPanelOpen())
+        //Bloqueia movimento se a UI estiver aberta
+        if(IsAnyPanelOpen())
         {
             inputMovement = Vector2.zero;
         }
@@ -46,18 +52,17 @@ public class PlayerMovement : MonoBehaviour
         UpdateSpriteFlip();
     }
 
-    // Verifica se algum painel gerenciado pelo CanvasManager está ativo na cena
-    private bool IsAnyPanelOpen()
+    //Movimentacao baseada em fisica usando Rigidbody2D
+    private void FixedUpdate()
     {
-        if (CanvasManager.Instance == null) return false;
-
-        foreach (GameObject panel in CanvasManager.Instance.allPanels)
-        {
-            if (panel != null && panel.activeSelf) return true;
-        }
-        return false;
+        Vector2 delta = inputMovement * velocity * Time.deltaTime;
+        Vector2 newPosition = characterBody.position + delta;
+        characterBody.MovePosition(newPosition);
     }
 
+    /// <summary>
+    /// Le as entradas da jogadora (WASD / Setas).
+    /// </summary>
     private void ReadInput()
     {
         inputMovement = new Vector2(
@@ -66,19 +71,37 @@ public class PlayerMovement : MonoBehaviour
         );
     }
 
+    /// <summary>
+    /// Verifica no CanvasManager se existe algum painel ativo.
+    /// </summary>
+    /// <returns></returns>
+    private bool IsAnyPanelOpen()
+    {
+        if(CanvasManager.Instance == null) return false;
+
+        foreach(GameObject panel in CanvasManager.Instance.allPanels)
+        {
+            if(panel != null && panel.activeSelf) return true;
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Atualiza a ultima direcao horizontal para manter o flip correto quando parado.
+    /// </summary>
     private void UpdateDirectionState()
     {
         float dx = inputMovement.x;
 
-        if (dx > deadzone) lastHorizontal = 1;
-        else if (dx < -deadzone) lastHorizontal = -1;
+        if(dx > deadzone) lastHorizontal = 1;
+        else if(dx < -deadzone) lastHorizontal = -1;
     }
 
+    /// <summary>
+    /// Atualiza as variaveis do Animator
+    /// </summary>
     private void UpdateAnimatorParameters()
     {
-        // Usa apenas inputMovement (já zerado quando painel está aberto).
-        // GetAxisRaw("Horizontal/Vertical") captura WASD e setas nativamente,
-        // então as verificações extras de Input.GetKey eram redundantes.
         bool isMoving = Mathf.Abs(inputMovement.x) > deadzone
                      || Mathf.Abs(inputMovement.y) > deadzone;
 
@@ -86,28 +109,25 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool(idleHash, !isMoving);
     }
 
+    /// <summary>
+    /// Controla a inversao horizontal do sprite.
+    /// </summary>
     private void UpdateSpriteFlip()
     {
         float dx = inputMovement.x;
 
-        if (dx > deadzone)
+        if(dx > deadzone)
         {
             spriteRenderer.flipX = false;
         }
-        else if (dx < -deadzone)
+        else if(dx < -deadzone)
         {
             spriteRenderer.flipX = true;
         }
         else
         {
+            //Mantem a direcao do ultimo movimento
             spriteRenderer.flipX = (lastHorizontal == -1);
         }
-    }
-
-    private void FixedUpdate()
-    {
-        Vector2 delta = inputMovement * velocity * Time.deltaTime;
-        Vector2 newPosition = characterBody.position + delta;
-        characterBody.MovePosition(newPosition);
     }
 }
