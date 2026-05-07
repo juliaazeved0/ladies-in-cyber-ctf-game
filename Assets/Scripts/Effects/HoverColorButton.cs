@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class JuicyButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    [Header("Configurações")]
+    [Header("Settings")]
     [Tooltip("A escala do botao quando pressionado.")]
     public float scaleOnClick = 0.9f;
 

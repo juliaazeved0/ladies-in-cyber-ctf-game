@@ -5,18 +5,19 @@ using UnityEngine;
 
 /// <summary>
 /// Cria um efeito de pulsacao no contorno (outline) de um Sprite atraves do Shader.
-/// Serve ara destacar objetos interativos ou guiar a jogadora.
+/// Serve para destacar objetos interativos ou guiar a jogadora.
 /// </summary>
 public class PulseOutline : MonoBehaviour
 {
-    [Header("Settings pulse effect")]
-    public float pulseSpeed = 0.05f;
-    public float maxThickness = 0.05f;
-    public bool startActive = false;
+    [Header("Pulse Settings")]
+    [SerializeField] private float pulseSpeed = 0.05f;
+    [SerializeField] private float maxThickness = 0.05f;
+    [SerializeField] private bool startActive = false;
 
     private Material myMaterial;
     private bool isPulsing = false;
 
+    //Id de propriedade do Shader para melhor performance
     private int thicknessID;
 
     void Start()
@@ -57,6 +58,7 @@ public class PulseOutline : MonoBehaviour
     public void StartPulsing()
     {
         isPulsing = true;
+
         if(myMaterial != null)
         {
             myMaterial.SetFloat("_OutlineAlphaMultiplier", 1.0f);
@@ -65,7 +67,6 @@ public class PulseOutline : MonoBehaviour
 
     /// <summary>
     /// Desativa o efeito e esconde o contorno.
-    /// Metodo chamado quando a jogadora se afasta do objeto.
     /// </summary>
     public void StopPulsing()
     {

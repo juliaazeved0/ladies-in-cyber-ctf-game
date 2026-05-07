@@ -1,58 +1,57 @@
 using UnityEngine;
-using UnityEngine.Rendering;
 
 namespace BashTerminal
 {
-    ///<summary>
-    ///WebGL terminal for the "Mercado Escondido" challenge.
-    ///
-    ///Simulates Luiz's workstation (hidrogenio-pc).
-    ///Victory: navigate to ~/.backup/.old/.cache and run  cat notas.txt
-    ///
-    ///Unity setup:
-    ///- Attach this component to a GameObject in the Mercado challenge scene.
-    ///- Wire terminalPanel / outputText / inputField in the Inspector.
-    ///- Wire popUpSucesso and popCaptureFlag se usar.
-    /// - Hook the button OnClick -> OnClickTerminalMercado()
-    /// - Hook the close button OnClick -> CloseTerminal()
-    ///</summary>
+    /// <summary>
+    /// Terminal WebGL para o desafio "Mercado Escondido".
+    /// Simula a estacao de trabalho do Luiz (hidrogenio-pc).
+    /// Objetivo: Navegar ate ~/.backup/.old/.cache e ler notas.txt.
+    /// </summary>
     public class TerminalMercado : BashTerminalBase
     {
-        [Header("Desafio Mercado")]
-        [SerializeField] private GameObject popUpSucesso;
-        [SerializeField] private GameObject popCaptureFlag;
+        [Header("Challenge Settings")]
+        [SerializeField] private GameObject sucessPopup;
+        [SerializeField] private GameObject captureFlagPopup;
+
+        [Tooltip("Efeito de pulsacao para destacar o objeto apos a vitoria.")]
         public PulseOutline objectPulse;
 
-        // ── Identity ──────────────────────────────────────────────────────────
+        //Identidade (Bash)
         protected override string User => "Luiz";
         protected override string Hostname => "hidrogenio-pc";
         protected override string HomeDirectory => "/home/Luiz";
 
-        // ── Entry points ──────────────────────────────────────────────────────
-        /// <summary>Call from the terminal button OnClick event.</summary>
+        /// <summary>
+        /// Finaliza o desafio e limpa o feedback visual.
+        /// </summary>
         public void ClosedChallenge()
         {
-            if (objectPulse != null && popCaptureFlag != null && popCaptureFlag.activeSelf)
+            if(objectPulse != null && captureFlagPopup != null && captureFlagPopup.activeSelf)
                 objectPulse.StopPulsing();
 
-            CanvasManager.Instance.ClosedPanel("ChallengeHiddenMarket");
+            CanvasManager.Instance.ClosedPanel("HiddenMarketChallenge");
             CanvasManager.Instance.ToggleMiniMap(true);
         }
 
+        /// <summary>
+        /// Chamado pelo botao do Teminal na cena do Mercado.
+        /// </summary>
         public void OnClickTerminalMercado()
         {
             OpenTerminal();
         }
 
-        // ── Filesystem ────────────────────────────────────────────────────────
+        //Sistema de Arquivos
         protected override void SetupFilesystem()
         {
+            //Estrutura de Diretorios (focada em caminhos ocultos)
             AddDirectory("/home/Luiz");
             AddDirectory("/home/Luiz/documentos");
             AddDirectory("/home/Luiz/.backup");
             AddDirectory("/home/Luiz/.backup/.old");
             AddDirectory("/home/Luiz/.backup/.old/.cache");
 
+            //Arquivos de "Distracao" e Imersao
             AddFile("/home/Luiz/sistema_2021.bak",
                 "Backup corrompido - arquivo ilegivel\n0x0000: FF FE 00 01 AB CD EF 22 ...");
 
@@ -62,11 +61,11 @@ namespace BashTerminal
             AddFile("/home/Luiz/documentos/notas.txt",
                 "Pista: verifique o cache oculto.");
 
-            // Victory file - its content is handled specially in OnCatFile()
+            //Arquivo de Vitoria: O conteudo "__victory__" eh interceptado no OnCatFile
             AddFile("/home/Luiz/.backup/.old/.cache/notas.txt", "__victory__");
         }
 
-        // ── Welcome / help ────────────────────────────────────────────────────
+        //Mensagens do Terminal
         protected override string GetWelcomeMessage()
         {
             return "ESTACAO DE TRABALHO - ANALISTA LUIZ\nDigite 'help' para comandos.";
@@ -86,15 +85,16 @@ namespace BashTerminal
                 "  exit       - Fecha o terminal.";
         }
 
-        // ── Victory interception via cat ──────────────────────────────────────
+        //Interceptacao de Vitoria via Comando 'cat'
         protected override string OnCatFile(string resolvedPath, string originalArg)
         {
-            if (resolvedPath == "/home/Luiz/.backup/.old/.cache/notas.txt")
+            //Verifica se o caminho resolvido eh o arquivo final do desafio
+            if(resolvedPath == "/home/Luiz/.backup/.old/.cache/notas.txt")
             {
                 TriggerVictory();
-                return "";
+                return ""; //Retorna vazio pois a mensagem de vitoria ja sera impressa no terminal
             }
-            return null;
+            return null; //Deixa a base ler o conteudo normal para outros arquivos
         }
 
         private void TriggerVictory()
@@ -109,49 +109,48 @@ namespace BashTerminal
 
             FlagManager.Instance.SaveFlag("Mercado Escondido", flag);
 
-            if (popUpSucesso != null)
-                popUpSucesso.SetActive(true);
+            if(sucessPopup != null)
+                sucessPopup.SetActive(true);
 
-            if (popCaptureFlag != null)
-                popCaptureFlag.SetActive(true);
+            if(captureFlagPopup != null)
+                captureFlagPopup.SetActive(true);
         }
 
+        //Comndos Especiais
         protected override bool ExecuteSpecialCommand(string cmd, string[] args, string fullCommand)
         {
-            //Detecta se o comando eh "cd" e se o argumento eh ".."
+            //Logica customizada para o comando "cd .."
             if(cmd == "cd" && args.Length > 0 && args[0] == "..")
             {
-                //Se ja estiver no Home, nao deixa voltar mais (para nao quebrar o desafio)
+                //Se ja estiver na Home, impede de voltar para a raiz do sistema (/) por seguranca do desafio
                 if(currentDirectory == HomeDirectory)
                 {
                     AppendLine("bash: cd: ja esta no diretorio home.");
                 }
                 else
                 {
-                    //Logica para subir um nivel no caminho de texto
-                    //Exemplo: /home/Luiz/.backuo -> /home/Luiz
+                    //Logica para subir um nivel no caminho (Path manipulation)
                     int lastSlash = currentDirectory.LastIndexOf('/');
+
                     if(lastSlash > 0)
                     {
                         string newPath = currentDirectory.Substring(0, lastSlash);
 
-                        //Verifica se o novo caminho existe no sistema de arquivos
-                        if (directories.Contains(newPath))
+                        //Valida se o diretorio existe antes de mudar
+                        if(directories.Contains(newPath))
                         {
                             currentDirectory = newPath;
-                            //AppendLine(""); //Pula linha para indicar sucesso
                         }
                         else
                         {
-                            //Fallback: se algo der errado, volta para o inicio
                             currentDirectory = HomeDirectory;
                             AppendLine("");
                         }
                     }
                 }
-                return true; //Avisa a base que esse comando ja foi tratado
+                return true;
             }
-            return false; //Se for outro comando, deixa a classe base tentar resolver
+            return false;
         }
     }
 }

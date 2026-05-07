@@ -51674,6 +51674,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -21.19571
       objectReference: {fileID: 0}
+    - target: {fileID: 2439666152004899600, guid: 648ee521520970c4ca26ff39fee0aa3d, type: 3}
+      propertyPath: m_Name
+      value: InputField
+      objectReference: {fileID: 0}
     - target: {fileID: 3430694652789142107, guid: 648ee521520970c4ca26ff39fee0aa3d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -66536,8 +66540,8 @@ MonoBehaviour:
   outputText: {fileID: 206701147}
   inputField: {fileID: 2110678067}
   scrollRect: {fileID: 1994427560}
-  popUpSucesso: {fileID: 548097133}
-  popCaptureFlag: {fileID: 1055385242}
+  sucessPopup: {fileID: 548097133}
+  captureFlagPopup: {fileID: 1055385242}
   objectPulse: {fileID: 752310397}
 --- !u!114 &1394277588
 MonoBehaviour:
@@ -96912,6 +96916,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConfirmButton
       objectReference: {fileID: 0}
+    - target: {fileID: 1095614319278724330, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
+      propertyPath: m_Name
+      value: SucessPanel
+      objectReference: {fileID: 0}
     - target: {fileID: 1160975721675375509, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -96943,6 +96951,10 @@ PrefabInstance:
     - target: {fileID: 1740214560447544076, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_Name
       value: ExitButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1756704357650668668, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
+      propertyPath: m_Name
+      value: HiddenMarketChallenge
       objectReference: {fileID: 0}
     - target: {fileID: 1793302020913514111, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_Name
@@ -97019,6 +97031,10 @@ PrefabInstance:
     - target: {fileID: 3010232026201976255, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_Name
       value: ExitButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3023635887464191819, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
+      propertyPath: m_Name
+      value: PcPanel
       objectReference: {fileID: 0}
     - target: {fileID: 3269414529273319296, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_SortingOrder
@@ -97240,9 +97256,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: NameNPC
       objectReference: {fileID: 0}
+    - target: {fileID: 7609582399779353956, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
+      propertyPath: m_Name
+      value: FlagCapturePanel
+      objectReference: {fileID: 0}
     - target: {fileID: 7630783189168067144, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_Name
       value: InteractionNoticeLuizTwo
+      objectReference: {fileID: 0}
+    - target: {fileID: 7635153971130952608, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
+      propertyPath: m_Name
+      value: BashButton
       objectReference: {fileID: 0}
     - target: {fileID: 7639233449478264446, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -97347,6 +97371,10 @@ PrefabInstance:
     - target: {fileID: 9099552282764502641, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166536577207010296, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
+      propertyPath: isUnlocked
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
