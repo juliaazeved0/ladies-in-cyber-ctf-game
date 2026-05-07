@@ -49766,7 +49766,7 @@ GameObject:
   - component: {fileID: 249146683}
   - component: {fileID: 249146688}
   m_Layer: 0
-  m_Name: DiretoraNPC
+  m_Name: NPCDirector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50464,7 +50464,7 @@ GameObject:
   - component: {fileID: 284683993}
   - component: {fileID: 284683992}
   m_Layer: 0
-  m_Name: JuliaANPC
+  m_Name: NPCJuliaA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55749,7 +55749,7 @@ GameObject:
   - component: {fileID: 619792845}
   - component: {fileID: 619792844}
   m_Layer: 0
-  m_Name: JuliaDNPC
+  m_Name: NPCJuliaD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56275,7 +56275,7 @@ GameObject:
   - component: {fileID: 640410497}
   - component: {fileID: 640410496}
   m_Layer: 0
-  m_Name: FrancieleNPC
+  m_Name: NPCFranciele
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58470,7 +58470,7 @@ GameObject:
   - component: {fileID: 806251749}
   - component: {fileID: 806251754}
   m_Layer: 0
-  m_Name: MariamNPC
+  m_Name: NPCMariam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58768,7 +58768,7 @@ GameObject:
   - component: {fileID: 846031722}
   - component: {fileID: 846031721}
   m_Layer: 5
-  m_Name: BalloonNPC
+  m_Name: NPCBalloon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66575,7 +66575,7 @@ GameObject:
   - component: {fileID: 1398667565}
   - component: {fileID: 1398667564}
   m_Layer: 0
-  m_Name: PolyanaNPC
+  m_Name: NPCPolyana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68919,7 +68919,7 @@ GameObject:
   - component: {fileID: 1572364563}
   - component: {fileID: 1572364562}
   m_Layer: 0
-  m_Name: KassimeNPC
+  m_Name: NPCKassime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87692,7 +87692,7 @@ GameObject:
   - component: {fileID: 1759766292}
   - component: {fileID: 1759766291}
   m_Layer: 0
-  m_Name: HeloisaNPC
+  m_Name: NPCHeloisa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92417,7 +92417,7 @@ GameObject:
   - component: {fileID: 1881653828}
   - component: {fileID: 1881653827}
   m_Layer: 0
-  m_Name: BackgroundDiretora
+  m_Name: BackgroundDirector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
