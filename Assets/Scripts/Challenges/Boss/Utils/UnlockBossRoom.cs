@@ -4,51 +4,52 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
+/// <summary>
+/// Gerencia o desbloqueio do BossRoom atraves de senha e controla a transicao de cena.
+/// </summary>
 public class UnlockBossRoom : MonoBehaviour
 {
-    [Header("Panels UI")]
+    [Header("UI Panels")]
     public GameObject passwordPanel;
     public GameObject devicePanel;
     public GameObject panelDialogueJoana;
 
-    [Header("Input")]
+    [Header("Input Settings")]
     public TMP_InputField input;
+    [SerializeField] private string correctPassword = "1541";
 
-    [Header("Puzzle Visual Lock (Panel que cobre a sala)")]
+    [Header("Visual Feedback")]
+    [Tooltip("Objeto que obstrui a entrada da sala ate ser desbloqueado.")]
     public GameObject lockObject;
-
-    [Header("Pulse do Device")]
     public PulseOutline pulse;
-    private bool unlocked = false;
 
-    [Header("Fade Global (Panel preto da tela inteira)")]
+    [Header("Transition Settings")]
     public Animator fadeAnimator;
     public GameObject panelBlack;
-
-    [Header("Referências Extras")]
-    public LockObjectInteraction lockInteraction;
-    public DialogueManager dialogueManager;
-
-    [Header("Cena Boss")]
     public string bossSceneName = "BossRoom";
     public AudioClip bossMusic;
 
-    [Header("Posição de spawn inicial na BossRoom")]
-    [Tooltip("Coordenadas onde a player vai aparecer na primeira entrada na BossRoom.")]
+    [Header("Extra References")]
+    public LockObjectInteraction lockInteraction;
+    public DialogueManager dialogueManager;
+
+    [Header("Spawn Configuration")]
+    [Tooltip("Coordenadas de spawn na primeira entrada no BossRoom.")]
     public Vector2 bossRoomSpawnPosition = new Vector2(-2.8f, -2.5f);
 
-    private string correctPassword = "1541";
+    private bool unlocked = false;
     private bool isTransitioning = false;
 
     void Start()
     {
-        if (PlayerPrefs.GetInt("BossRoomUnlocked", 0) == 1)
+        if(PlayerPrefs.GetInt("BossRoomUnlocked", 0) == 1)
         {
             unlocked = true;
-            if (lockObject != null) lockObject.SetActive(false);
+
+            if(lockObject != null) lockObject.SetActive(false);
         }
 
-        if (PlayerPrefs.GetInt("ReturningFromBoss", 0) == 1)
+        if(PlayerPrefs.GetInt("ReturningFromBoss", 0) == 1)
         {
             PlayerPrefs.DeleteKey("ReturningFromBoss");
             PlayerPrefs.SetFloat("BossRoom_PlayerX", bossRoomSpawnPosition.x);
@@ -63,7 +64,8 @@ public class UnlockBossRoom : MonoBehaviour
 {
     Image fadeImage = panelBlack.GetComponent<Image>();
     Animator anim = panelBlack.GetComponent<Animator>();
-    if (anim != null) anim.enabled = false;
+
+    if(anim != null) anim.enabled = false;
 
     panelBlack.SetActive(true);
     Color cor = fadeImage.color;
@@ -73,7 +75,7 @@ public class UnlockBossRoom : MonoBehaviour
     float tempo = 0f;
     float duracaoFade = 1f;
 
-    while (tempo < duracaoFade)
+    while(tempo < duracaoFade)
     {
         tempo += Time.deltaTime;
         cor.a = Mathf.Clamp01(1f - (tempo / duracaoFade));
@@ -82,21 +84,26 @@ public class UnlockBossRoom : MonoBehaviour
     }
 
     panelBlack.SetActive(false);
-    if (anim != null) anim.enabled = true; // reativa para o próximo uso
+
+    if(anim != null) anim.enabled = true;
 }
 
+    //Logica de UI e Input
     public void OpenPasswordPanel()
     {
         dialogueManager.OnClickExit();
         CanvasManager.Instance.OpenPanel(passwordPanel.name);
-        if (pulse != null) pulse.StartPulsing();
+
+        if(pulse != null) pulse.StartPulsing();
     }
 
     public void ClosePasswordPanel()
     {
         CanvasManager.Instance.ClosedPanel(passwordPanel.name);
-        if (pulse != null) pulse.StopPulsing();
-        if (lockInteraction != null) lockInteraction.isUnlocked = true;
+
+        if(pulse != null) pulse.StopPulsing();
+        if(lockInteraction != null) lockInteraction.isUnlocked = true;
+
         CanvasManager.Instance.ToggleMiniMap(true);
     }
 
@@ -109,7 +116,8 @@ public class UnlockBossRoom : MonoBehaviour
     {
         CanvasManager.Instance.ClosedPanel(devicePanel.name);
         CanvasManager.Instance.ToggleMiniMap(true);
-        if (panelDialogueJoana != null)
+
+        if(panelDialogueJoana != null)
             CanvasManager.Instance.ClosedPanel(panelDialogueJoana.name);
     }
 
@@ -119,7 +127,7 @@ public class UnlockBossRoom : MonoBehaviour
 
     public void PressEnter()
     {
-        if (input.text == correctPassword)
+        if(input.text == correctPassword)
             StartCoroutine(SuccessRoutine());
         else
         {
@@ -131,12 +139,11 @@ public class UnlockBossRoom : MonoBehaviour
     IEnumerator SuccessRoutine()
     {
         input.text = "ACESSO CONCEDIDO";
-        
-        // MUDANÇA: Reduzido de 3f para 0.5f para ser quase instantâneo!
         yield return new WaitForSeconds(0.5f); 
         
         lockObject.SetActive(false);
         unlocked = true;
+
         PlayerPrefs.SetInt("BossRoomUnlocked", 1);
         PlayerPrefs.Save();
         
@@ -151,7 +158,7 @@ public class UnlockBossRoom : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && unlocked && !isTransitioning)
+        if(other.CompareTag("Player") && unlocked && !isTransitioning)
             IniciarTransiçãoBoss(other);
     }
 
@@ -165,7 +172,7 @@ public class UnlockBossRoom : MonoBehaviour
 
     public void CarregarCenaBoss()
     {
-        if (bossMusic != null)
+        if(bossMusic != null)
             BackgroundMusic.ChangeMusic(bossMusic);
 
         PlayerPrefs.SetFloat("BossRoom_PlayerX", bossRoomSpawnPosition.x);
