@@ -1,81 +1,110 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
+/// <summary>
+/// Gerencia a interface a logica de validacao de dominio para o desafio Sheep´s Skin
+/// </summary>
 public class PanelController : MonoBehaviour
 {
-    [Header("Pain�is Principais")] //T�tulo para organizar o Inspector
-    //Permite que os pain�is sejam arrastados para o Inspector
-    public GameObject panelInitialBackground;
-    public GameObject panelNetguard;
-    public TMP_InputField tentativaDominio; //Refer�ncia para o campo onde a jogadora digita o texto
-    public GameObject panelWrongDomain;
-    public GameObject panelRightDomain;
-    public GameObject panelFlagSuccess;
+    [Header("Main Panels")]
+    [Tooltip("Fundo principal da interface do computador.")]
+    public GameObject initialBackground;
 
-    [Header("Referencias de Limpeza")]
-    public GameObject panelMailInput;
-    public GameObject panelRansomware;
+    [Tooltip("Painel da ferramenta Netguard para insercao de dominios.")]
+    public GameObject netguardPanel;
 
-    [Header("Dom�nio Correto")]
-    [SerializeField] private string dominioCorreto = "http://login-fake-bank.xyz/auth-steal"; //Vari�vel de texto que guarda a resposta correta
+    [Tooltip("Campo de texto onde a jogadora digita o dominio suspeito.")]
+    public TMP_InputField domainInputField;
 
-    public void AbrirPanelNetguard() //Abre apenas o painel Netguard
+    [Header("Feedback Panels")]
+    public GameObject wrongDomainPanel;
+    public GameObject rightDomainPanel;
+    public GameObject flagSuccessPanel;
+
+    [Header("Cleanup References")]
+    [Tooltip("Paineis internos que devem ser limpos ao sair do PC.")]
+    public GameObject mailInputPanel;
+    public GameObject ransonwarePanel;
+
+    [Header("Validation Settings")]
+    [Tooltip("O dominio exato que a jogadora deve identificador como malicioso.")]
+    [SerializeField] private string correctDomain = "http://login-fake-bank.xyz/auth-steal";
+
+    /// <summary>
+    /// Abre a ferramenta Netguard e reseta o campo de entrada.
+    /// </summary>
+    public void OpenNetguardPanel()
     {
-        panelInitialBackground.SetActive(true); //Mostrar o painel inicial
+        if(initialBackground != null) initialBackground.SetActive(true);
 
-        if(panelNetguard != null) panelNetguard.SetActive(false); //Garante que o painel de input do domínio esteja limpo
-
-        tentativaDominio.text = ""; //Limpa qualquer texto digitado anteriormente
-        panelNetguard.SetActive(true); //Mostra o painel Netguard
-    }
-
-    public void AbrirPanelFlagSuccess() //Abre apenas o painel de sucesso
-    {
-        tentativaDominio.text = "";
-        panelFlagSuccess.SetActive(true);
-
-        string newFlag = SafeBase.ViewBase(SafeBase.flag_4); //Adiciona flag ao inventário
-        // Ajustado para incluir o nome do desafio
-        FlagManager.Instance.SaveFlag("Sheep’s Skin", newFlag);
-    }
-
-    public void FecharPainel(GameObject painel) //Arrasta no Inspector qual painel quer fechar
-    {
-        if (painel != null) //Verifica se esqueceu de arrastar o objeto no Inspector
+        //Garante que o painel de input esteja limpo antes de mostrar
+        if(netguardPanel != null)
         {
-            tentativaDominio.text = ""; //Limpa o input ao fechar
-            painel.SetActive(false); //Desativa o painel passado por par�metro
+            netguardPanel.SetActive(false);
+            domainInputField.text = "";
+            netguardPanel.SetActive(true);
+        } 
+    }
+
+    /// <summary>
+    /// Ativa o painel de sucesso final e salva a flag no inventario.
+    /// </summary>
+    public void OpenFlagSuccessPanel()
+    {
+        domainInputField.text = "";
+        if(flagSuccessPanel != null) flagSuccessPanel.SetActive(true);
+
+        //Recupera a flag criptografada e salva no sistema global
+        string newFlag = SafeBase.ViewBase(SafeBase.flag_4);
+
+        if(FlagManager.Instance != null)
+        {
+            FlagManager.Instance.SaveFlag("Sheep’s Skin", newFlag);
         }
     }
 
-    //Fun��o de verifica��o sobre o dom�nio correto
-    public void EnviarDominio()
+    /// <summary>
+    /// Fecha um painel especifico passado via Inspector.
+    /// </summary>
+    public void ClosePanel(GameObject targetPanel)
     {
-        //Verifica se o que foi digitado � igual ao dom�nio correto
-        if(tentativaDominio.text.Trim() == dominioCorreto) //Trim() remove espa�os acidentais antes ou depois do texto
+        if(targetPanel != null)
         {
-            tentativaDominio.text = "";
-            panelRightDomain.SetActive(true); //Abre o painel de sucesso
+            domainInputField.text = "";
+            targetPanel.SetActive(false);
+        }
+    }
+
+    /// <summary>
+    /// Verifica se o dominio digitado condiz com a resposta correta.
+    /// </summary>
+    public void SubmitDomain()
+    {
+        //O uso do Trim() eh essencial para evitar erros por espacos acidentais
+        if(domainInputField.text.Trim() == correctDomain)
+        {
+            domainInputField.text = "";
+            if(rightDomainPanel != null) rightDomainPanel.SetActive(true);
         }
         else
         {
-            tentativaDominio.text = "";
-            panelWrongDomain.SetActive(true); //Abre o painel de erro
+            domainInputField.text = "";
+            if(wrongDomainPanel != null) wrongDomainPanel.SetActive(true);
         }
     }
 
-    public void BackMap() //Retornar ao mini mapa
+    /// <summary>
+    /// Desliga a interface do computador e retorna para a exploracao no mapa.
+    /// </summary>
+    public void BackToMap()
     {
-        if(panelInitialBackground != null) //Verifica se foi arrastado no Inspector
+        if(initialBackground != null)
         {
-            //Desliga os painéis internos para que o PC resete ao fundo limpo
-            if(panelMailInput != null) panelMailInput.SetActive(false);
-            if(panelRansomware != null) panelRansomware.SetActive(false);
+            //Reseta o estado dos paineis internos para uma nova tentativa posterior
+            if(mailInputPanel != null) mailInputPanel.SetActive(false);
+            if(ransonwarePanel != null) ransonwarePanel.SetActive(false);
 
-            panelInitialBackground.SetActive(false); //Fecha o fundo inicial
+            initialBackground.SetActive(false);
         }
     }
 }
