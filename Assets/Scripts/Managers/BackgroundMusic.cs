@@ -12,10 +12,12 @@ public class BackgroundMusic : MonoBehaviour
 
     void Awake()
     {
+        //Implementacao do Singleton
         if(instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject); 
+
             audioSource = GetComponent<AudioSource>();
 
             if(audioSource != null)
@@ -25,6 +27,7 @@ public class BackgroundMusic : MonoBehaviour
         }
         else
         {
+            //Se uma nova cena instanciar outro objeto de musica identico, destroi a duplicata para nao sobrepor o audio
             Destroy(gameObject);
         }
     }
@@ -32,8 +35,6 @@ public class BackgroundMusic : MonoBehaviour
     /// <summary>
     /// Troca a trilha sonora atual por uma nova, aplicando um efeito de fade.
     /// </summary>
-    /// <param name="newClip">O novo arquivo de audio (AudioClip) a ser reproduzido.</param>
-    /// <param name="fadeDuration">Duracao do efeito de transicao em segundos.</param>
     public static void ChangeMusic(AudioClip newClip, float fadeDuration = 1f)
     {
         if(instance != null && instance.audioSource != null && newClip != null)

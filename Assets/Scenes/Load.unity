@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c096ef0b01bd134aac5e995a3756e85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapSpawnPosition: {x: -38.12, y: -36.71}
 --- !u!1 &114062327
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,7 +495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fee662acec5ab645975c3a0f1e0b178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiImage: {fileID: 809245512}
+  targetImage: {fileID: 809245512}
   frames:
   - {fileID: 21300000, guid: 4c89ff5d1c920f242832de108075c03b, type: 3}
   - {fileID: 21300000, guid: b2d11e732f2141341acdedb509a044c8, type: 3}
@@ -516,7 +517,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b0404b3c5e35e4541909596d9ecdce01, type: 3}
   - {fileID: 21300000, guid: fa3a4e0838c039147b84b7a01317bc60, type: 3}
   - {fileID: 21300000, guid: 639bb22457d8dc147ae48a50edd5984f, type: 3}
-  - {fileID: 21300000, guid: bde24b050d7257946b4f608a3bafddad, type: 3}
   - {fileID: 21300000, guid: bde24b050d7257946b4f608a3bafddad, type: 3}
   framesPerSecond: 7
 --- !u!95 &509235544

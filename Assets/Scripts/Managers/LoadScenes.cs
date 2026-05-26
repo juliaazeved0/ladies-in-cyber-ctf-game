@@ -12,7 +12,9 @@ public class LoadScenes : MonoBehaviour
     [Tooltip("Nome da cena que sera carregada.")]
     private string targetScene;
 
-    private Vector2 mapSpawnPosition = new Vector2(-38.12f, -36.71f);
+    [Header("Spawn Configuration")]
+    [Tooltip("Coordenadas padrao de spawn no mapa caso a jogadora nao tenha dados salvos.")]
+    [SerializeField] private Vector2 mapSpawnPosition = new Vector2(-38.12f, -36.71f);
 
     void Start()
     {
@@ -28,12 +30,13 @@ public class LoadScenes : MonoBehaviour
     {
         string playerName = PlayerPrefs.GetString("PLAYER_NAME", "");
 
+        //Se o nome da jogadora existir, significa que a sessao esta ativa
         if(!string.IsNullOrEmpty(playerName))
         {
             targetScene = "PlayerMap";
 
-            // Só define o spawn padrão se ainda não há posição salva
-            if (!PlayerPrefs.HasKey("PlayerMap_PlayerX"))
+            //So define o spawn padrao se ainda nao ha posicao salva
+            if(!PlayerPrefs.HasKey("PlayerMap_PlayerX"))
             {
                 PlayerPrefs.SetFloat("PlayerMap_PlayerX", mapSpawnPosition.x);
                 PlayerPrefs.SetFloat("PlayerMap_PlayerY", mapSpawnPosition.y);
@@ -43,6 +46,7 @@ public class LoadScenes : MonoBehaviour
         }
         else
         {
+            //Se nao houver dados de login, redireciona para a tela de autenticacao
             targetScene = "LoginScene";
         }
     }
@@ -50,8 +54,6 @@ public class LoadScenes : MonoBehaviour
     /// <summary>
     /// Executa o carregamento assincrono da cena com um delay minimo visual.
     /// </summary>
-    /// <param name="sceneName">Nome da cena</param>
-    /// <returns>IEnumerator para controle da Corrotina.</returns>
     private IEnumerator LoadAsync(string sceneName)
     {
         float startTime = Time.time;
@@ -66,6 +68,7 @@ public class LoadScenes : MonoBehaviour
         {
             float timeElapsed = Time.time - startTime;
 
+            //A cena so eh liberada se o carregamento interno terminou E o tempo minimo de splash passou
             if (loading.progress >= 0.9f && timeElapsed >= minimumLoadTime)
                 loading.allowSceneActivation = true;
 

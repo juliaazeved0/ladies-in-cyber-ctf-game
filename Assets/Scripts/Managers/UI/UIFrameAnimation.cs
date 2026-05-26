@@ -6,9 +6,11 @@ using UnityEngine.UI;
 /// </summary>
 public class UIFrameAnimation : MonoBehaviour
 {
+    [Header("Target UI ELements")]
     [Tooltip("Componente de interface que mostrara os frames.")]
-    public Image uiImage;
+    public Image targetImage;
 
+    [Header("Animation Settings")]
     [Tooltip("Lista de sprites para a animacao.")]
     public Sprite[] frames;
 
@@ -17,23 +19,24 @@ public class UIFrameAnimation : MonoBehaviour
 
     private void Awake()
     {
-        //Se uiImage for nula, tenta encontrar no próprio GameObject
-        if(uiImage == null)
+        //Se targetImage for nula, tenta encontrar no proprio GameObject
+        if(targetImage == null)
         {
-            uiImage = GetComponent<Image>();
+            targetImage = GetComponent<Image>();
 
             //Se ainda for nulo, avisa no console para evitar o crash
-            if(uiImage == null)
+            if(targetImage == null)
             {
-                Debug.LogError($"UIFrameAnimation em {gameObject.name} precisa de um componente Image!");
+                Debug.LogError($"[UIFrameAnimation] O GameObject {gameObject.name} precisa de um componente Image!");
             }
         }
     }
     private void Update()
     {
-        if(frames.Length == 0) return; //Se a lista estiver vazia, para a execucao e nem faz a conta
+        //Se a lista estiver vazia ou nula, interrompe a execucao
+        if(frames.Length == 0) return;
 
         int index = (int)(Time.time * framesPerSecond) % frames.Length;
-        uiImage.sprite = frames[index];
+        targetImage.sprite = frames[index];
     }
 }
