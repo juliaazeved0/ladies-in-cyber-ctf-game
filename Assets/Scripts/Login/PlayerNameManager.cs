@@ -7,6 +7,7 @@ using TMPro;
 /// </summary>
 public class PlayerNameManager : MonoBehaviour
 {
+    [Header("UI Components")]
     [Tooltip("Campo de texto onde a jogadora digita o nome.")]
     [SerializeField] private TMP_InputField nameInput;
 
