@@ -9,6 +9,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
+    [Tooltip("Velocidade base de movimento da jogadora.")]
     [SerializeField] private int speed;
 
     private Rigidbody2D characterBody;
@@ -57,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 delta = inputMovement * velocity * Time.deltaTime;
         Vector2 newPosition = characterBody.position + delta;
+
         characterBody.MovePosition(newPosition);
     }
 

@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 [DefaultExecutionOrder(-10)]
 public class DataPlayerPosition : MonoBehaviour
 {
-    //Referencia estatica para o Transform da jogadora, acessivel globalmente
     public static Transform PlayerTransform { get; private set; }
 
     private string sceneName;
@@ -59,9 +58,9 @@ public class DataPlayerPosition : MonoBehaviour
     {
         if(mode == LoadSceneMode.Additive) return;
 
-        SaveGame(); //Salva a posicao da cena anterior
+        SaveGame();
         sceneName = scene.name;
-        LoadGame(); //Carrega a posicao (se existir) na nova cena
+        LoadGame();
     }
 
     /// <summary>

@@ -10,20 +10,19 @@ public class LoadSceneIntroduction : MonoBehaviour
     public bool playerIsHere = false;
     private const string INTRO_KEY = "introductionComplete";
 
+    /// <summary>
+    /// Detecta a entrada fisica da jogadora na area e dispara o carregamento aditivo se for a primeira vez.
+    /// </summary>
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        //Confirma se quem bateu foi a player e se a cena ja nao esta abrindo
         if(collision.CompareTag("Player") && !playerIsHere)
         {
-            //Le a memoria: 0 significa que nao viu, 1 significa que ja viu
             int introDone = PlayerPrefs.GetInt(INTRO_KEY, 0);
 
-            //Se ele ainda NAO viu a tela (0)
             if(introDone == 0)
             {
                 Debug.Log("Primeira vez da player na area.");
                 
-                //Salva IMEDIATAMENTE no PlayerPrefs que ele ja ativou essa area
                 PlayerPrefs.SetInt(INTRO_KEY, 1);
                 PlayerPrefs.Save();
                     
@@ -38,6 +37,9 @@ public class LoadSceneIntroduction : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Detecta a saida da jogadora da area do colisor e redefine os sinalizadores de presenca.
+    /// </summary>
     public void OnTriggerExit2D(Collider2D collision)
     {
         //Destrava a variavel caso a jogadora saia da area

@@ -9,9 +9,9 @@ using UnityEngine.UI;
 /// </summary>
 public class TutorialController : MonoBehaviour
 {
-    [Header("Panels")]
-    [Tooltip("Lista de paineis tutoriais em ordem.")]
-    [SerializeField] private GameObject[] panels;
+    [Header("Panels Configuration")]
+    [Tooltip("Lista de paineis tutoriais ordenados que serao mostrados em sequencia.")]
+    [SerializeField] private GameObject[] tutorialPanels;
 
     [Header("Navigation")]
     [SerializeField] private string nextSceneName = "PlayerMap";
@@ -31,9 +31,9 @@ public class TutorialController : MonoBehaviour
     private void InitializeUI()
     {
         //Garante que apenas o primeiro painel esteja ativo
-        for(int i = 0; i < panels.Length; i++)
+        for(int i = 0; i < tutorialPanels.Length; i++)
         {
-            panels[i].SetActive(i == 0);
+            tutorialPanels[i].SetActive(i == 0);
         }
 
         if(fadePanel != null)
@@ -45,12 +45,12 @@ public class TutorialController : MonoBehaviour
 
     public void OnNextClicked()
     {
-        if(currentPanelIndex < panels.Length - 1)
+        if(currentPanelIndex < tutorialPanels.Length - 1)
         {
             //Avanca para o proximo painel
-            panels[currentPanelIndex].SetActive(false);
+            tutorialPanels[currentPanelIndex].SetActive(false);
             currentPanelIndex++;
-            panels[currentPanelIndex].SetActive(true);
+            tutorialPanels[currentPanelIndex].SetActive(true);
         }
         else
         {
@@ -64,9 +64,9 @@ public class TutorialController : MonoBehaviour
         if(currentPanelIndex > 0)
         {
             //Volta para o painel anterior
-            panels[currentPanelIndex].SetActive(false);
+            tutorialPanels[currentPanelIndex].SetActive(false);
             currentPanelIndex--;
-            panels[currentPanelIndex].SetActive(true);
+            tutorialPanels[currentPanelIndex].SetActive(true);
         }
     }
 

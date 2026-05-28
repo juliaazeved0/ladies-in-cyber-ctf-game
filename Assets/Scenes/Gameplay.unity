@@ -3227,7 +3227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe25fb481983e23428093fdb906f56a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panels:
+  tutorialPanels:
   - {fileID: 952692347}
   - {fileID: 1477842978}
   nextSceneName: PlayerMap

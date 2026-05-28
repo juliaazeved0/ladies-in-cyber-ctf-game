@@ -7,18 +7,18 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class IntroScreenController : MonoBehaviour
 {
-    [Header("Backgrounds")]
+    [Header("Background Panels")]
     [SerializeField] private GameObject warningBackground;
     [SerializeField] private GameObject normalBackground;
     [SerializeField] private GameObject flagSuccessPanel;
 
-    [Header("Text Elements")]
+    [Header("Text Interface Elements")]
     [SerializeField] private GameObject warningText;
     [SerializeField] private GameObject normalText;
     [SerializeField] private GameObject objectiveText;
     [SerializeField] private GameObject flagText;
 
-    [Header("Interactions")]
+    [Header("Interactions and Inputs")]
     [SerializeField] private GameObject flagButton;
     [SerializeField] private GameObject promptKey;
 
@@ -54,12 +54,17 @@ public class IntroScreenController : MonoBehaviour
         if(flagSuccessPanel != null)
         {
             flagSuccessPanel.SetActive(true);
+
             if(flagText != null) flagText.SetActive(false);
             if(flagButton != null) flagButton.SetActive(false);
 
-            //Salvar a flag
+            //Salva a flag no inventario
             string newFlag = SafeBase.ViewBase(SafeBase.flag_0);
-            FlagManager.Instance.SaveFlag("Introdução", newFlag);
+
+            if(FlagManager.Instance != null)
+            {
+                FlagManager.Instance.SaveFlag("Introdução", newFlag);
+            }
         }
     }
 
@@ -70,6 +75,8 @@ public class IntroScreenController : MonoBehaviour
     {
         PlayerPrefs.SetInt(INTRO_KEY, 1);
         PlayerPrefs.Save();
+
+        Debug.Log("[IntroScreenController] Introducao concluida. Descarregando cena 'Introduction'...");
         SceneManager.UnloadSceneAsync("Introduction");
     }
 
@@ -100,6 +107,7 @@ public class IntroScreenController : MonoBehaviour
                 if(flagText != null) flagText.SetActive(true);
                 if(flagButton != null) flagButton.SetActive(true);
                 if(promptKey != null) promptKey.SetActive(false);
+
                 canAdvance = false; //Bloqueia avanco via tecla E
                 break;
             

@@ -7,11 +7,11 @@ using TMPro;
 /// </summary>
 public class PlayerNameplate : MonoBehaviour
 {
-    [Header("UI References")]
+    [Header("UI Text Components")]
     [SerializeField] private TextMeshProUGUI nameplatePlayer;
     [SerializeField] private TextMeshProUGUI nameplateIdPlayer; 
 
-    //Cgaves constantes para evitar erros de digitacao ao acessar o PlayerPrefs
+    //Chaves constantes para evitar erros de digitacao ao acessar o PlayerPrefs
     private const string PLAYER_NAME_KEY = "PLAYER_NAME";
     private const string PLAYER_NAMEPLATE_KEY = "nameplatePlayer"; 
 
@@ -20,12 +20,9 @@ public class PlayerNameplate : MonoBehaviour
     /// </summary>
     void Start()
     {
-     
-        //Recupera o nome da jogadora (Padrao: Player)
         string namePlayer = PlayerPrefs.GetString(PLAYER_NAME_KEY, "PLAYER");
         nameplatePlayer.text = namePlayer.ToUpper();
 
-        //Recupera o ID da jogadora
         string savedId = PlayerPrefs.GetString(PLAYER_NAMEPLATE_KEY, ""); 
 
         if(!string.IsNullOrEmpty(savedId))

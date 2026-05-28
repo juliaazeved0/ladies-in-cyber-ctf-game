@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -8,6 +6,7 @@ using UnityEngine;
 /// </summary>
 public class MiniMapFollowPlayer : MonoBehaviour
 {
+    [Header("Target Tracking")]
     [Tooltip("O alvo que o MiniMapa deve seguir (Player).")]
     [SerializeField] private Transform target;
 

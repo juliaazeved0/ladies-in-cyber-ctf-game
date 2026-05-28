@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -16,7 +14,7 @@ public class DynamicSorting : MonoBehaviour
 
         if(spriteRenderer == null)
         {
-            Debug.LogWarning("DynamicSorting: No SpriteRenderer found on " + gameObject.name + ". Script will not work.");
+            Debug.LogWarning($"[DynamicSorting] Erro: Nenhum SpriteRenderer encontrado em {gameObject.name}. O script sera desativado automaticamente.");
             enabled = false;
         }
     }

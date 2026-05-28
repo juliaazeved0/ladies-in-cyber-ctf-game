@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
@@ -9,6 +7,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class WelcomePlayer : MonoBehaviour
 {
+    [Header("UI Components")]
     [Tooltip("Texto da UI que mostrara a mensagem de boas-vindas.")]
     [SerializeField] private TMP_Text welcomeText;
 
