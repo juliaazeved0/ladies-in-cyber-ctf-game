@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
-/// Gerencia a navegacao entre as telas do tutorial inicia.
-/// Responsavel por alternar a visibilidade dos paineis e carregar a cena do jogo.
+/// Controla a navegacao entre paineis de tutorial e, ao finalizar a
+/// sequencia, realiza um fade-in visual antes de carregar a proxima cena.
 /// </summary>
 public class TutorialController : MonoBehaviour
 {
@@ -28,9 +28,19 @@ public class TutorialController : MonoBehaviour
         InitializeUI();
     }
 
+    /// <summary>
+    /// Garante que apenas o primeiro painel do tutorial esteja visivel no inicio,
+    /// e prepara o painel de fade (desativado por padrao).
+    /// </summary>
     private void InitializeUI()
     {
-        //Garante que apenas o primeiro painel esteja ativo
+        //Se o array nao for preenchido no Inspector, evita erros e avisa caso esteja vazio
+        if(tutorialPanels == null || tutorialPanels.Length == 0)
+        {
+            Debug.LogError($"{gameObject.name} não possui painéis de tutorial configurados!");
+            return;
+        }
+
         for(int i = 0; i < tutorialPanels.Length; i++)
         {
             tutorialPanels[i].SetActive(i == 0);
@@ -39,43 +49,56 @@ public class TutorialController : MonoBehaviour
         if(fadePanel != null)
         {
             fadeImage = fadePanel.GetComponent<Image>();
-            fadePanel.SetActive(false); //Esconde o fade no início
+
+            if(fadeImage == null)
+            {
+                Debug.LogWarning($"{fadePanel.name} não possui um componente Image! O fade visual será substituído por uma espera fixa.");
+            }
+
+            fadePanel.SetActive(false);
         }
     }
 
+    /// <summary>
+    /// Avanca para o proximo painel do tutorial. Se ja estiver no ultimo,
+    /// inicia o fade e o carregamento da proxima cena.
+    /// </summary>
     public void OnNextClicked()
     {
         if(currentPanelIndex < tutorialPanels.Length - 1)
         {
-            //Avanca para o proximo painel
             tutorialPanels[currentPanelIndex].SetActive(false);
             currentPanelIndex++;
             tutorialPanels[currentPanelIndex].SetActive(true);
         }
         else
         {
-            //Se for o ultimo, inicia a transicao de cena
             StartCoroutine(FadeAndLoadRoutine());
         }
     }
 
+    //Volta para o painel anterior do tutorial, se houver um
     public void OnBackClicked()
     {
         if(currentPanelIndex > 0)
         {
-            //Volta para o painel anterior
             tutorialPanels[currentPanelIndex].SetActive(false);
             currentPanelIndex--;
             tutorialPanels[currentPanelIndex].SetActive(true);
         }
     }
 
+    /// <summary>
+    /// Realiza um fade visual antes de carregar a proxima cena. Se nao houver um painel
+    /// de fade ou imagem configurados, apenas aguarda um tempo fixo como fallback.
+    /// </summary>
     private IEnumerator FadeAndLoadRoutine()
     {
         if(fadePanel != null && fadeImage != null)
         {
-            //Desativa Animator se existir para nao conflitar com o fade manual
+            //Desativa qualquer Animator no painel de fade para evitar que ele sobrescreva
             Animator anim = fadePanel.GetComponent<Animator>();
+
             if(anim != null) anim.enabled = false;
 
             fadePanel.SetActive(true);
@@ -93,8 +116,15 @@ public class TutorialController : MonoBehaviour
         }
         else
         {
-            //Delay de seguranca caso nao haja painel de fade
+            //Sem painel de fade configurado, apenas espera um tempo fixo antes de trocar de cena
             yield return new WaitForSeconds(0.5f);
+        }
+
+        //Verifica se a cena existe e esta registrada no Build Settings
+        if (!Application.CanStreamedLevelBeLoaded(nextSceneName))
+        {
+            Debug.LogError($"A cena '{nextSceneName}' não existe ou não está no Build Settings!");
+            yield break;
         }
 
         SceneManager.LoadScene(nextSceneName);

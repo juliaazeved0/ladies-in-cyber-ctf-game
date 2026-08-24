@@ -3,8 +3,9 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems; 
 
 /// <summary>
-/// Adiciona efeitos de polimento aos botoes, como uma mudanca de cor no Hover
-/// e alteracao de escala no clique, utilizando as interfaces de evento do EventSystem.
+/// Adiciona feedback visual a um botao de UI: muda a cor ao passar
+/// o mouse por cima e reduz levemente a escala ao ser pressionado,
+/// simulando um efeito tatil de clique.
 /// </summary>
 public class JuicyButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -15,51 +16,48 @@ public class JuicyButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     [Tooltip("A cor do botao quando o mouse passa por cima.")]
     public Color hoverColor = new Color(0.8f, 0.8f, 0.8f, 1f); 
 
+    //Guarda os valores originais para restaurar corretamente apo o clique terminar
     private Vector3 originalScale;
     private Color originalColor;
     private Image buttonImage;
 
     void Start()
     {
-        //Salva o estado inicial para poder retornar a ele depois
         originalScale = transform.localScale;
         buttonImage = GetComponent<Image>();
         
         if(buttonImage != null)
+        {
             originalColor = buttonImage.color;
+        }
+        else
+        {
+            //Avisa caso o objeti nao tenha um Imagem, ja que sem ele o efeito de hover nao tera efeito nenhum
+            Debug.LogWarning($"{gameObject.name} não possui um componente Image. O efeito de hover não será aplicado!");
+        }
     }
 
-    /// <summary>
-    /// Evento chamado quando o cursor entra na area do botao (hover).
-    /// </summary>
+    //Chamado quando o mouse entra na area do botao
     public void OnPointerEnter(PointerEventData eventData)
     {
         if(buttonImage != null)
             buttonImage.color = hoverColor; 
     }
 
-    /// <summary>
-    /// Evento chamado quando o cursor sai da area do botao.
-    /// </summary>
+    //Chamado quando o mouse sai da area do botao
     public void OnPointerExit(PointerEventData eventData)
     {
         if(buttonImage != null)
             buttonImage.color = originalColor; 
     }
 
-    /// <summary>
-    /// Evento chamado quando o botao do mouse eh pressionado sobre o objeto.
-    /// </summary>
+    //Chamado quando o botao do mouse eh pressionado sobre esse objeto
     public void OnPointerDown(PointerEventData eventData)
     {
-        //Feedback visual de "apertar"
         transform.localScale = new Vector3(scaleOnClick, scaleOnClick, 1f);
     }
 
-    /// <summary>
-    /// Evento chamado quando o botao do mouse eh solto.
-    /// </summary>
-    /// <param name="eventData"></param>
+    //Chamado quando o botao do mouse eh solto
     public void OnPointerUp(PointerEventData eventData)
     {
         transform.localScale = originalScale; 

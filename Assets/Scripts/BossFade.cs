@@ -1,23 +1,28 @@
 using UnityEngine;
 
+/// <summary>
+/// Garante que exista apenas um painel de fade "PanelFade" ativo na cena
+/// do boss, destruindo qualquer duplicata remanescente ao carregar. 
+/// </summary>
 public class BossFadeManager : MonoBehaviour
 {
     void Awake()
     {
-        // 1. LIMPEZA: Procura o painel que veio da cena anterior (o "intruso")
-        // O nome deve ser o nome que o objeto tinha na cena do mapa
-        GameObject antigoFade = GameObject.Find("PanelFade"); 
+        //Busca por um nome na hierarquia
+        GameObject oldFade = GameObject.Find("PanelFade"); 
         
-        if (antigoFade != null && antigoFade != this.gameObject)
+        if(oldFade != null && oldFade != this.gameObject)
         {
-            Destroy(antigoFade);
+            Destroy(oldFade);
         }
     }
 
-    // 2. O MÉTODO DO EVENTO: Adicione este no último frame da sua animação
-    public void FinalizarFadeBoss()
+    /// <summary>
+    /// Chamado ao final da animacao/efeito de fade do boss, desativando
+    /// o painel para liberar a interacao da jogadora com aq cena novamente.
+    /// </summary>
+    public void FinishedFadeBoss()
     {
-        // Desativa o próprio painel onde o script está colado
         gameObject.SetActive(false);
         
         Debug.Log("Luzes acesas! O painel foi desativado e os cliques liberados.");

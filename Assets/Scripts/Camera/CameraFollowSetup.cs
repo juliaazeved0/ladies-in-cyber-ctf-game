@@ -2,36 +2,33 @@ using UnityEngine;
 using Cinemachine;
 
 /// <summary>
-/// Atribui dinamicamente o alvo de seguimento (Follow) da Cinemachine Virtual Camera
-/// para a jogadora persistente (DontDestroyOnLoad).
+/// Configura a camera virtual do Cinemachine para 
+/// seguir a jogadora assim que a cena carrega.
 /// </summary>
 public class CameraFollowSetup : MonoBehaviour
 {
     void Start()
     {
-
-        //Obtem a referencia estatica do Transform da jogadora
+        //Busca a referencia da jogadora salva de forma persistente
         Transform playerTransform = DataPlayerPosition.PlayerTransform;
 
         if(playerTransform == null)
         {
-            Debug.LogWarning("[CameraFollowSetup] DataPlayerPosition.PlayerTransform é null. " +
+            Debug.LogError("DataPlayerPosition.PlayerTransform é null. " +
                              "Verifique se a player existe na cena inicial.");
             return;
         }
 
-        //Tenta obter o componente da Virtual Camera
         var virtualCamera = GetComponent<CinemachineVirtualCamera>();
 
         if(virtualCamera != null)
         {
-            //Atribui a jogadora como alvo para a camera seguir
+            //Define o alvo que a camera virtual deve seguir
             virtualCamera.Follow = playerTransform;
         }
         else
         {
-            Debug.LogWarning("[CameraFollowSetup] CinemachineVirtualCamera não encontrado " +
-                             "neste GameObject.");
+            Debug.LogError("CinemachineVirtualCamera não encontrado " + "neste GameObject.");
         }
     }
 }

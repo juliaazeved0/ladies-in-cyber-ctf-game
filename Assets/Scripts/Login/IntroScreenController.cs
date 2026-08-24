@@ -2,8 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Controla o fluxo da cena de Introducao, gerenciando o progresso do tutorial,
-/// a exibicao de paineis e a captura da flag inicial.
+/// Controla a sequencia da fase, alternando entre estagios dos textos conforme a
+/// jogadora pressiona uma tecla de avanco, e finaliza descarregando a cena de inicio.
 /// </summary>
 public class IntroScreenController : MonoBehaviour
 {
@@ -22,7 +22,8 @@ public class IntroScreenController : MonoBehaviour
     [SerializeField] private GameObject flagButton;
     [SerializeField] private GameObject promptKey;
 
-    //Chave para persistir o status de conclusao da introducao
+    //Chave usada para marcar que a jogadora ja viu a introducao,
+    //evitando que ela seja mostrada novamente em sessoes futuras
     public const string INTRO_KEY = "introductionComplete";
 
     private int currentStage = 0;
@@ -30,16 +31,17 @@ public class IntroScreenController : MonoBehaviour
 
     void Start()
     {
-        //Configuracao inicial para garantir que a UI comece no estado correto
+        //Garante que os elementos de "sucesso" comecem escondidos
         if(flagButton != null) flagButton.SetActive(false);
         if(flagSuccessPanel != null) flagSuccessPanel.SetActive(false);
     }
 
     void Update()
     {
-        //Verifica o avanco via teclado (apenas se permitido e painel de sucesso fechado)
         bool isSuccessPanelActive = flagSuccessPanel != null && flagSuccessPanel.activeSelf;
       
+        //AVanca de estagio com a tecla E, desde que o painel de sucesso nao esteja visivel e o
+        //avanco nao tenha sido bloqueado
         if(Input.GetKeyDown(KeyCode.E) && !isSuccessPanelActive && canAdvance)
         {
             AdvanceStage();
@@ -47,7 +49,8 @@ public class IntroScreenController : MonoBehaviour
     }
 
     /// <summary>
-    /// Chamado ao clicar no botao da flag. Mostra o painel de sucesso e salva a flag.
+    /// Chamado pelo botao e captura da flag. Revela o painel de sucesso, gera a flag
+    /// decodificada via SafeBase e a registra no FlagManager.
     /// </summary>
     public void OnFlagButtonClicked()
     {
@@ -58,7 +61,6 @@ public class IntroScreenController : MonoBehaviour
             if(flagText != null) flagText.SetActive(false);
             if(flagButton != null) flagButton.SetActive(false);
 
-            //Salva a flag no inventario
             string newFlag = SafeBase.ViewBase(SafeBase.flag_0);
 
             if(FlagManager.Instance != null)
@@ -68,27 +70,25 @@ public class IntroScreenController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Finaliza a introducao e descarrega a cena da memoria.
-    /// </summary>
+    //Marca a introducao como concluida em PlayerPrefs e descarrega a cena de introducao
     public void FinishIntroduction()
     {
         PlayerPrefs.SetInt(INTRO_KEY, 1);
         PlayerPrefs.Save();
 
-        Debug.Log("[IntroScreenController] Introducao concluida. Descarregando cena 'Introduction'...");
+        Debug.Log("Introducao concluida. Descarregando cena 'Introduction'...");
         SceneManager.UnloadSceneAsync("Introduction");
     }
 
     /// <summary>
-    /// Gerencia a transicao entre os estagios da introducao.
+    /// Avanca para o proximo estagio da introducao, ativando/desativando
+    /// os elementos da UI correspondentes a cada etapa da narrativa.
     /// </summary>
     void AdvanceStage()
     {
         currentStage++;
 
-        //Reset visual: Desativa todos os textos antes de ativar o proximo
-        ToggleAllTexts(false);
+        ToggleAllTexts(false); //Desliga todos os textos antes de ativar os do novo estagio
 
         switch(currentStage)
         {
@@ -108,7 +108,9 @@ public class IntroScreenController : MonoBehaviour
                 if(flagButton != null) flagButton.SetActive(true);
                 if(promptKey != null) promptKey.SetActive(false);
 
-                canAdvance = false; //Bloqueia avanco via tecla E
+                //A partir daqui, o avanco deixa de depender da tecla E e
+                //passa a depender do clique no botao da flag
+                canAdvance = false;
                 break;
             
             case 4:
@@ -121,7 +123,8 @@ public class IntroScreenController : MonoBehaviour
     }
 
     /// <summary>
-    /// Metodo auxiliar para evitar repeticao de codigo ao limpar a tela.
+    /// Liga ou desliga todos os textos de estagio de uma vez,
+    /// usado como um reset antes de ativar o texto do estagio atual.
     /// </summary>
     private void ToggleAllTexts(bool state)
     {

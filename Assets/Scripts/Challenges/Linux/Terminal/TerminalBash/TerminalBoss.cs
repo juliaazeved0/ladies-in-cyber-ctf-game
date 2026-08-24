@@ -22,7 +22,7 @@ namespace BashTerminal
     /// </summary>
     public class TerminalBoss : BashTerminalBase
     {
-        [Header("Desafio Boss")]
+        [Header("Boss Challenge")]
         [SerializeField] private Button steghideButton;
         [SerializeField] private GameObject terminalSuccessPopup;
 
@@ -81,9 +81,10 @@ namespace BashTerminal
         protected override void ProcessCommand(string fullCommand)
         {
             string[] tokens = fullCommand.Split(new char[] { ' ' }, System.StringSplitOptions.RemoveEmptyEntries);
-            if (tokens.Length == 0) return;
 
-            if (tokens[0] == "ls")
+            if(tokens.Length == 0) return;
+
+            if(tokens[0] == "ls")
             {
                 AppendLine(ExecuteBossLs());
                 return;
@@ -94,16 +95,16 @@ namespace BashTerminal
 
         private string ExecuteBossLs()
         {
-            if (currentDirectory == "/home/BOSS")
+            if(currentDirectory == "/home/BOSS")
                 return "Documentos/  Imagens/  Projetos/";
 
-            if (currentDirectory == "/home/BOSS/Documentos")
+            if(currentDirectory == "/home/BOSS/Documentos")
                 return praiaInDocumentos ? "praia.jpg" : "pasta vazia";
 
-            if (currentDirectory == "/home/BOSS/Imagens")
+            if(currentDirectory == "/home/BOSS/Imagens")
                 return praiaInDocumentos ? "pasta vazia" : "praia.jpg";
 
-            if (currentDirectory == "/home/BOSS/Projetos")
+            if(currentDirectory == "/home/BOSS/Projetos")
                 return "system_core.bin  logs_setor_7.db";
 
             return "";
@@ -112,9 +113,9 @@ namespace BashTerminal
         // ── mv: the only special command for Boss ─────────────────────────────
         protected override bool ExecuteSpecialCommand(string cmd, string[] args, string fullCommand)
         {
-            if (cmd != "mv") return false;
+            if(cmd != "mv") return false;
 
-            if (args.Length < 2)
+            if(args.Length < 2)
             {
                 AppendLine("Erro: sintaxe incorreta. Uso: mv [arquivo] [destino]");
                 return true;
@@ -123,28 +124,28 @@ namespace BashTerminal
             string src = args[0];
             string dst = args[1];
 
-            // Remove a barra final ('/') para validar tanto "../Imagens" quanto "../Imagens/"
+            //Remove a barra final ('/') para validar tanto "../Imagens" quanto "../Imagens/"
             string cleanSrc = src.TrimEnd('/');
             string cleanDst = dst.TrimEnd('/');
 
-            // Variações aceitas para a origem (src) e destino (dst)
+            //Variacoes aceitas para a origem (src) e destino (dst)
             bool srcIsPraia = (cleanSrc == "praia.jpg" || cleanSrc == "./praia.jpg");
             bool dstIsImagens = (cleanDst == "../Imagens" || cleanDst == "/home/BOSS/Imagens" || cleanDst == "~/Imagens");
             
-            // Permite também que a jogadora faça o comando direto da pasta /home/BOSS
+            //Permite tambem que a jogadora faca o comando direto da pasta /home/BOSS
             bool srcIsPraiaFromHome = (cleanSrc == "Documentos/praia.jpg" || cleanSrc == "./Documentos/praia.jpg");
             bool dstIsImagensFromHome = (cleanDst == "Imagens" || cleanDst == "./Imagens" || cleanDst == "/home/BOSS/Imagens" || cleanDst == "~/Imagens");
 
             bool inDocumentos = currentDirectory == "/home/BOSS/Documentos";
             bool inHome = currentDirectory == "/home/BOSS";
 
-            // Checa se ela acertou o comando estando em 'Documentos' ou em 'home'
+            //Checa se ela acertou o comando estando em 'Documentos' ou em 'home'
             bool validMoveFromDocumentos = inDocumentos && srcIsPraia && dstIsImagens;
             bool validMoveFromHome = inHome && srcIsPraiaFromHome && dstIsImagensFromHome;
 
-            if (validMoveFromDocumentos || validMoveFromHome)
+            if(validMoveFromDocumentos || validMoveFromHome)
             {
-                if (!praiaInDocumentos)
+                if(!praiaInDocumentos)
                 {
                     AppendLine("Erro: Arquivo nao encontrado.");
                     return true;
@@ -174,10 +175,10 @@ namespace BashTerminal
         {
             challengeSolved = true;
 
-            if (steghideButton != null)
+            if(steghideButton != null)
                 steghideButton.interactable = true;
 
-            if (terminalSuccessPopup != null)
+            if(terminalSuccessPopup != null)
                 terminalSuccessPopup.SetActive(true);
 
             Debug.Log("TerminalBoss: arquivo movido! Steghide desbloqueado.");

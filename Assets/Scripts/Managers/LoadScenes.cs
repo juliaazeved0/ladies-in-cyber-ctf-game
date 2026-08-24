@@ -3,8 +3,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Responsável por gerenciar o fluxo de carregamento entre cenas,
-/// garantindo a persistencia de posicao e tempo minimo de loading.
+/// Decide qual cena carregar com base no progresso salvo da jogadora
+/// (login feito ou nao) e realiza o carregamento assincrono com um
+/// tempo minimo de exibicao da tela de loading.
 /// </summary>
 public class LoadScenes : MonoBehaviour
 {
@@ -18,24 +19,27 @@ public class LoadScenes : MonoBehaviour
 
     void Start()
     {
+        //Define qual cena carregar (login ou mapa) e prepara o spawn, se necessario
         SceneVerify();
+
+        //So entao inicia o carregamento assincrono da cena ja decidida
         StartCoroutine(LoadAsync(targetScene));
     }
 
     /// <summary>
-    /// Verifica o estado da jogadora e define qual cena carregar.
-    /// Caso logado, reseta a posicao no PlayerPrefs para o spawn fixo.
+    /// Verifica se existe um nome de jogadora salvo em PlayerPrefs.
+    /// Se existir, direciona para a cena do mapa e garante uma posicao
+    /// de spawn padrao. Caso contrario, direciona para a tela de login.
     /// </summary>
     public void SceneVerify()
     {
         string playerName = PlayerPrefs.GetString("PLAYER_NAME", "");
 
-        //Se o nome da jogadora existir, significa que a sessao esta ativa
         if(!string.IsNullOrEmpty(playerName))
         {
             targetScene = "PlayerMap";
 
-            //So define o spawn padrao se ainda nao ha posicao salva
+            //So grava a posicao padrao se ainda nao houver posicao salva, evitando sobrescrever
             if(!PlayerPrefs.HasKey("PlayerMap_PlayerX"))
             {
                 PlayerPrefs.SetFloat("PlayerMap_PlayerX", mapSpawnPosition.x);
@@ -46,30 +50,37 @@ public class LoadScenes : MonoBehaviour
         }
         else
         {
-            //Se nao houver dados de login, redireciona para a tela de autenticacao
             targetScene = "LoginScene";
         }
     }
 
     /// <summary>
-    /// Executa o carregamento assincrono da cena com um delay minimo visual.
+    /// Carrega a cena de forma assincrona, mas segura a ativacao ate que um
+    /// tempo minimo tenha passado, evitando que a tela de loading "pisque"
+    /// rapido demais quando a cena carrega quase instantaneamente.
     /// </summary>
     private IEnumerator LoadAsync(string sceneName)
     {
+        //Verifica se a cena existe e esta registrada no Build Settings
+        if(!Application.CanStreamedLevelBeLoaded(sceneName))
+        {
+            Debug.LogError($"A cena '{sceneName}' não existe ou não está no Build Settings!");
+            yield break;
+        }
+
         float startTime = Time.time;
         float minimumLoadTime = 3f;
 
         AsyncOperation loading = SceneManager.LoadSceneAsync(sceneName);
 
-        //Bloqueia a entrada automatica na cena assim que o carregamento termina
+        //Trava a troca de cena em 90% ate liberarmos manualmente abaixo
         loading.allowSceneActivation = false;
 
         while(!loading.isDone)
         {
             float timeElapsed = Time.time - startTime;
 
-            //A cena so eh liberada se o carregamento interno terminou E o tempo minimo de splash passou
-            if (loading.progress >= 0.9f && timeElapsed >= minimumLoadTime)
+            if(loading.progress >= 0.9f && timeElapsed >= minimumLoadTime)
                 loading.allowSceneActivation = true;
 
             yield return null;

@@ -3,7 +3,8 @@ using UnityEngine.SceneManagement;
 using TMPro;
 
 /// <summary>
-/// Gerencia a coleta do nome da jogadora na tela de Login e salva localmente.
+/// Gerencia a entrada de nome da jogadora na tela de login, salvando
+/// o valor em PlayerPrefs e avancando para a cena de gameplay.
 /// </summary>
 public class PlayerNameManager : MonoBehaviour
 {
@@ -11,17 +12,24 @@ public class PlayerNameManager : MonoBehaviour
     [Tooltip("Campo de texto onde a jogadora digita o nome.")]
     [SerializeField] private TMP_InputField nameInput;
 
-    //Chave usada para identificar o nome no PlayerPrefs
+    //Chave publica para que outros scripts leiam o mesmo valor salvo sem precisar repetir a string manualmente
     public const string PLAYER_NAME_KEY = "PLAYER_NAME";
 
     /// <summary>
-    /// Valida o nome digitado, salva no sistema e carrega a cena de Gameplay.
+    /// Chamado pelo botao "Play" da UI. Valida, salva e avanca de cena.
     /// </summary>
     public void OnClickPlay()
     {
+        //Evita NullReferenceException caso o campo nao tenha sido arrastado no Inspector
+        if(nameInput == null)
+        {
+            Debug.LogError($"{gameObject.name} esta sem referência ao InputField!");
+            return;
+        }
+
         string playerName = nameInput.text.Trim();
 
-        //Evita avancar sem um nome valido
+        //Evita salvar e avancar de cena com um nome vazio ou so espacos
         if(string.IsNullOrEmpty(playerName))
             return;
 

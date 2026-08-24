@@ -2,7 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Anima uma sequencia de sprites em um componente de UI Image.
+/// Anima uma UI Image trocando seus sprites em sequencia, simulando uma
+/// animacao quadro a quadro em uma taxa de FPS configuravel.
 /// </summary>
 public class UIFrameAnimation : MonoBehaviour
 {
@@ -19,22 +20,21 @@ public class UIFrameAnimation : MonoBehaviour
 
     private void Awake()
     {
-        //Se targetImage for nula, tenta encontrar no proprio GameObject
+        //Se nao arrastou a referencia no Inspector, tenta pegar o componente Image no proprio GameObject
         if(targetImage == null)
         {
             targetImage = GetComponent<Image>();
 
-            //Se ainda for nulo, avisa no console para evitar o crash
             if(targetImage == null)
             {
-                Debug.LogError($"[UIFrameAnimation] O GameObject {gameObject.name} precisa de um componente Image!");
+                Debug.LogError($"O GameObject {gameObject.name} precisa de um componente Image!");
             }
         }
     }
     private void Update()
     {
-        //Se a lista estiver vazia ou nula, interrompe a execucao
-        if(frames.Length == 0) return;
+        //Sem frames, nao ha o que animar
+        if(frames == null || frames.Length == 0) return;
 
         int index = (int)(Time.time * framesPerSecond) % frames.Length;
         targetImage.sprite = frames[index];

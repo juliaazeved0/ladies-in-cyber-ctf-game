@@ -2373,6 +2373,7 @@ MonoBehaviour:
   scriptPulse: {fileID: 1399246980}
   interactionNotice: {fileID: 1175607048}
   initialBackground: {fileID: 1321393701}
+  playerIsNear: 0
 --- !u!61 &418299132
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2713,7 +2714,7 @@ GameObject:
   - component: {fileID: 483806163}
   - component: {fileID: 483806162}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3261,7 +3262,7 @@ GameObject:
   - component: {fileID: 541311012}
   - component: {fileID: 541311011}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5822,7 +5823,7 @@ GameObject:
   - component: {fileID: 903441952}
   - component: {fileID: 903441951}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7258,6 +7259,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2439666152004899600, guid: 648ee521520970c4ca26ff39fee0aa3d, type: 3}
+      propertyPath: m_Name
+      value: InputField
+      objectReference: {fileID: 0}
     - target: {fileID: 3430694652789142107, guid: 648ee521520970c4ca26ff39fee0aa3d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -8657,7 +8662,7 @@ GameObject:
   - component: {fileID: 1334120328}
   - component: {fileID: 1334120327}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9027,7 +9032,7 @@ GameObject:
   - component: {fileID: 1396463311}
   - component: {fileID: 1396463310}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12700,7 +12705,7 @@ GameObject:
   - component: {fileID: 2069930921}
   - component: {fileID: 2069930920}
   - component: {fileID: 2069930919}
-  - component: {fileID: 2069930918}
+  - component: {fileID: 2069930922}
   m_Layer: 5
   m_Name: BlackFadePanel
   m_TagString: Untagged
@@ -12727,18 +12732,6 @@ RectTransform:
   m_AnchoredPosition: {x: -3.1618652, y: 6.3239746}
   m_SizeDelta: {x: 101.1842, y: 75.8883}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2069930918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2069930916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9592591151ad4be48a45707146d6bd98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &2069930919
 Animator:
   serializedVersion: 5
@@ -12798,6 +12791,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2069930916}
   m_CullTransparentMesh: 1
+--- !u!114 &2069930922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069930916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9592591151ad4be48a45707146d6bd98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2072995254
 GameObject:
   m_ObjectHideFlags: 0
@@ -13343,7 +13348,7 @@ GameObject:
   - component: {fileID: 2124023656}
   - component: {fileID: 2124023655}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

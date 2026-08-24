@@ -1,24 +1,27 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Cria um efeito de pulsacao no contorno (outline) de um Sprite atraves do Shader.
-/// Serve para destacar objetos interativos ou guiar a jogadora.
+/// Faz o contorno de um aprite pulsar suavemente, variando a espessura
+/// via shader property. Pode ser ativado/desativado sob demanda, para
+/// destacar objetos interativos ou selecionaveis.
 /// </summary>
 public class PulseOutline : MonoBehaviour
 {
     [Header("Pulse Settings")]
+    [Tooltip("Velocidade da pulsacao do contorno. Quanto maior, mais rapida a oscilacao.")]
     [SerializeField] private float pulseSpeed = 0.05f;
+
+    [Tooltip("Espessura maxima que o contorno atinge durante a pulsacao.")]
     [SerializeField] private float maxThickness = 0.05f;
+
+    [Tooltip("Se marcado, a pulsacao ja comeca ativa assim que o objeto eh carregado.")]
     [SerializeField] private bool startActive = false;
 
-    private Material myMaterial;
+    private Material myMaterial; //Usado para nao afetar outros objetos que compartilhem o mesmo material
+
     private bool isPulsing = false;
 
-    //Id de propriedade do Shader para melhor performance
-    private int thicknessID;
+    private int thicknessID; //Cache do ID da propriedade do shader
 
     void Start()
     {
@@ -26,10 +29,14 @@ public class PulseOutline : MonoBehaviour
 
         if(renderer != null)
         {
-            //.material cria uma instancia unica para este objeto,
-            //evitando que todos os objetos com o mesmo material pulsem juntos
+            //Acessar ".material" ja cria uma copia unica do material para esse objeto especificamente
             myMaterial = renderer.material;
         }
+        else
+        {
+            Debug.LogWarning($"{gameObject.name} não possui um SpriteRenderer. O contorno não poderá ser exibido.");
+        }
+
         thicknessID = Shader.PropertyToID("_OutlineThickness");
 
         if(startActive)
@@ -46,15 +53,13 @@ public class PulseOutline : MonoBehaviour
     {
         if(isPulsing && myMaterial != null)
         {
-            //Mathf.PingPong cria o efeito de "ida e volta" suave
+            //PingPong faz o valor oscilar entre 0 e maxThickness de forma suave, criando o efeito de pulsacao continua
             float currentThickness = Mathf.PingPong(Time.time * pulseSpeed, maxThickness);
             myMaterial.SetFloat(thicknessID, currentThickness);
         }
     }
 
-    /// <summary>
-    /// Ativa o efeito de pulsacao e torna o contorno visivel.
-    /// </summary>
+    //Ativa a pulsacao do contorno e garante que ele esteja visivel
     public void StartPulsing()
     {
         isPulsing = true;
@@ -65,9 +70,7 @@ public class PulseOutline : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Desativa o efeito e esconde o contorno.
-    /// </summary>
+    //Interrompe a pulsacao e zera tanto a espessura quanto o alpha do contorno
     public void StopPulsing()
     {
         isPulsing = false;

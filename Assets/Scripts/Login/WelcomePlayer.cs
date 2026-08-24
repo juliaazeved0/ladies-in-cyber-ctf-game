@@ -3,7 +3,8 @@ using TMPro;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Mostra uma mensagem de boas-vindas personalizada na interface recuperando o nome da jogadora salvo.
+/// Mostra uma mensagem de boas-vindas personalizada com o nome da jogadora
+/// (se disponivel em PlayerPrefs) e permite avancar para a cena do mapa.
 /// </summary>
 public class WelcomePlayer : MonoBehaviour
 {
@@ -13,11 +14,17 @@ public class WelcomePlayer : MonoBehaviour
 
     private const string PLAYER_NAME_KEY = "PLAYER_NAME";
 
-    /// <summary>
-    /// Recupera o nome da jogadora e atualiza o texto da UI.
-    /// </summary>
     void Start()
     {
+        //Evita erro caso a referencia nao tenha sido arrastada no Inspector
+        if(welcomeText == null)
+        {
+            Debug.LogError($"{gameObject.name} está sem referência ao TMP_Text de boas-vindas!");
+            return;
+        }
+
+        //Se houver um nome salvo, personaliza a manegsame; caso contrario, mostra
+        //uma versao generica de boas-vindas
         if(PlayerPrefs.HasKey(PLAYER_NAME_KEY))
         {
             string playerName = PlayerPrefs.GetString(PLAYER_NAME_KEY);
@@ -29,9 +36,7 @@ public class WelcomePlayer : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Navega para a cena do mapa do jogo.
-    /// </summary>
+    //Chamado pelo botao correspondente na UI para avancar ate o mapa
     public void GoToPlayerMap()
     {
         SceneManager.LoadScene("PlayerMap");

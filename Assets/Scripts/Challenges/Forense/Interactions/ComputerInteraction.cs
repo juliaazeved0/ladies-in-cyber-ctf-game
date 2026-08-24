@@ -1,8 +1,9 @@
 using UnityEngine;
 
 /// <summary>
-/// Gerencia a interacao inicial com o computador dos desafios de Forense.
-/// Controla efeitos de brilho e a abertura da interface dos desafios.
+/// Controla a interacao da jogadora com um computador interativo no cenario:
+/// mostra o aviso e a pulsacao quando a jogadora se aproxima e abre o painel
+/// do desafio ao pressionar a tecla de interacao.
 /// </summary>
 public class ComputerInteraction : MonoBehaviour
 {
@@ -18,36 +19,32 @@ public class ComputerInteraction : MonoBehaviour
     public GameObject initialBackground;
 
     [Header("State")]
+    [Tooltip("Debug visual em tempo de Play. O valor real eh controlado pelos triggers de entrada e saida.")]
     [SerializeField] private bool playerIsNear = false;
 
     private void Start()
     {
-        //Garante que o desafio comece oculto
+        //Garante que os elementos da UI comecem escondidos
         if(initialBackground != null) initialBackground.SetActive(false);
         if(interactionNotice != null) interactionNotice.SetActive(false);
     }
     private void Update()
     {
-        //Verifica a entrada da jogadora apenas se ela estiver na area
+        //Permite interacao se a jogadora estiver dentro da area de trigger e pressionar a tecla E
         if(playerIsNear && Input.GetKeyDown(KeyCode.E))
         {
             ExecuteInteraction();
         } 
     }
 
-    /// <summary>
-    /// Ativa a interface do desafio e oculta avisos temporarios.
-    /// </summary>
+    //Abre o painel principal do desafio e desliga o aviso
     private void ExecuteInteraction()
     {
         if(initialBackground != null)
         {
             initialBackground.SetActive(true);
 
-            //Esconde o aviso para nao sobrepor a interface do desafio
             if(interactionNotice != null) interactionNotice.SetActive(false);
-
-            //Desligar o brilho ao abrir o menu para poupar processamento
             if(scriptPulse != null) scriptPulse.StopPulsing();
         }
     }
@@ -58,7 +55,7 @@ public class ComputerInteraction : MonoBehaviour
         {
             playerIsNear = true;
 
-            //Feedback visual de que o objeto eh interativo
+            //Destaca o objeto e avisa que ha uma interacao disponivel
             if(scriptPulse != null) scriptPulse.StartPulsing();
             if(interactionNotice != null) interactionNotice.SetActive(true);
         }
@@ -70,7 +67,7 @@ public class ComputerInteraction : MonoBehaviour
         {
             playerIsNear = false;
 
-            //Remove feedbacks visuais caso a jogadora se afaste
+            //Remove o destaque e o aviso ao se afastar
             if(scriptPulse != null) scriptPulse.StopPulsing();
             if(interactionNotice != null) interactionNotice.SetActive(false);
         }
