@@ -1,51 +1,101 @@
 using UnityEngine;
 
 /// <summary>
-/// Rola verticalmente o painel de credito ate uma posicao limite,
-/// travando-o no lugar quando o final do conteudo eh alcancado.
+/// Rola verticalmente o painel de créditos até o final do conteúdo.
 /// </summary>
 public class CreditsScroller : MonoBehaviour
 {
     [Header("UI Components")]
-    [Tooltip("RectTransform do painel que contem o texto de creditos a ser rolado.")]
-    public RectTransform creditsRect;
+    [Tooltip("RectTransform do painel que contém a imagem dos créditos.")]
+    [SerializeField] private RectTransform creditsRect;
 
     [Header("Scroll Settings")]
-    [Tooltip("Velocidade da rolagem dos creditos, em unidades por segundo.")]
-    public float scrollSpeed = 100f;
+    [Tooltip("Velocidade da rolagem dos créditos.")]
+    [SerializeField] private float scrollSpeed = 100f;
 
-    [Tooltip("Posicao Y (calculada no Start) em que a rolagem deve parar.")]
-    public float stopPositionY = 1500f; //Valor padrao sobrescrito no Start com base na altura real do conteudo da tela
+    [Header("State Control")]
+    [Tooltip("Define se os créditos estão rolando.")]
+    [SerializeField] private bool canScroll = true;
 
-    private bool canScroll = true; //Trava a rolagem assim que o limite eh atingido
+    private float stopPositionY;
 
-    void Start()
+    private void Start()
     {
-        //Evita erro de referencia caso nao tenha sido arrastada no Inspector
+        //Tratamento de erro
         if(creditsRect == null)
         {
-            Debug.LogError($"{gameObject.name} está sem referência ao RectTransform de créditos!");
+            Debug.LogError(
+                $"{gameObject.name} está sem referência ao RectTransform de créditos!"
+            );
+
             canScroll = false;
             return;
         }
 
-        //Calcula ate onde o conteudo pode subir
-        stopPositionY = creditsRect.rect.height - Screen.height;
+        CalculateScrollPositions();
     }
-    void Update()
-    {
-        if(canScroll)
-        {
-            //Move o painel para cima continuamente
-            creditsRect.anchoredPosition += new Vector2(0, scrollSpeed * Time.deltaTime);
 
-            if(creditsRect.anchoredPosition.y >= stopPositionY)
-            {
-                //Trava exatamente na posicao limite, evitando ultrapassar por causa do incremento do frame anterior
-                creditsRect.anchoredPosition = new Vector2(creditsRect.anchoredPosition.x, stopPositionY);
-                canScroll = false;
-                Debug.Log("Créditos finalizados e mantidos.");
-            }
+    private void Update()
+    {
+        if(!canScroll) return;
+
+        //Move os creditos para cima
+        creditsRect.anchoredPosition += Vector2.up * (scrollSpeed * Time.deltaTime);
+
+        //Verifica se chegou ao final
+        if(creditsRect.anchoredPosition.y >= stopPositionY)
+        {
+            //Garante que pare exatamente no final
+            creditsRect.anchoredPosition = new Vector2(creditsRect.anchoredPosition.x, stopPositionY);
+
+            canScroll = false;
+
+            Debug.Log("Fim da rolagem atingido!");
         }
+    }
+
+    //Calcula a posicao inicial e final da rolagem
+    private void CalculateScrollPositions()
+    {
+        Canvas parentCanvas = creditsRect.GetComponentInParent<Canvas>();
+
+        if(parentCanvas == null)
+        {
+            Debug.LogError("Não foi encontrado um Canvas para os créditos!");
+            canScroll = false;
+            return;
+        }
+
+        RectTransform canvasRect = parentCanvas.GetComponent<RectTransform>();
+
+        float canvasHeight = canvasRect.rect.height;
+        float creditsHeight = creditsRect.rect.height;
+
+        //Quanto a imagem precisa subir para mostrar seu final
+        float scrollDistance = creditsHeight - canvasHeight;
+
+        if(scrollDistance <= 0)
+        {
+            Debug.LogWarning("A imagem dos créditos não é maior que a área visível.");
+
+            canScroll = false;
+            return;
+        }
+
+        //Comeca mostrando o topo da imagem
+        creditsRect.anchoredPosition = new Vector2(creditsRect.anchoredPosition.x, -scrollDistance);
+
+        //Termina quando chegar em Y = 0
+        stopPositionY = 0f;
+    }
+
+    //Reinicia a rolagem dos creditos
+    public void ResetScroll()
+    {
+        if(creditsRect == null) return;
+
+        CalculateScrollPositions();
+
+        canScroll = true;
     }
 }
