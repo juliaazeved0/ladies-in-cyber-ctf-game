@@ -1,39 +1,39 @@
 using UnityEngine;
 
 /// <summary>
-/// Adiciona o efeito de pulsacao e bloqueia a interacao enquanto
-/// o dialogo do boss ainda nao tiver sido concluido.
+/// Especializacao de ObjectInteractionBoss para o "computador"
+/// do Boss. Bloqueia a interacao e a pulsacao do contorno
+/// enquanto o dialogo do Boss nao estiver finalizado.
 /// </summary>
 public class ComputerBossInteraction : ObjectInteractionBoss
 {
     [Header("Visual Effects")]
     [Tooltip("Script responsavel pelo efeito de brilho no objeto.")]
-    public PulseOutline scriptPulse;
+    public PulseOutline pulseOutline;
 
     protected override void Start()
     {
         base.Start();
 
-        //Painel de desafio e pulsacao escondidos
         if(challengePanel != null) challengePanel.SetActive(false);
-        if(scriptPulse != null) scriptPulse.StopPulsing();
+        if(pulseOutline != null) pulseOutline.StopPulsing();
     }
 
     protected override void Update()
     {
-        //Enquanto o dialogo com o boss nao tiver terminado, a interacao fica completamente bloqueada
+        //Enquanto o dialogo do Boss nao terminar, a interacao fica bloqueada
         if(!DialogueManagerBoss.dialogueBossFinished)
         {
+            //Esconde o aviso, para o outline e nao executa a logica da classe base
             if(interactionNotice != null && interactionNotice.activeSelf)
                 interactionNotice.SetActive(false);
 
-            if(scriptPulse != null)
-                scriptPulse.StopPulsing();
+            if(pulseOutline != null)
+                pulseOutline.StopPulsing();
 
             return;
         }
 
-        //Dialogo concluido
         base.Update();
     }
 
@@ -41,10 +41,9 @@ public class ComputerBossInteraction : ObjectInteractionBoss
     {
         base.OnTriggerEnter2D(collision);
 
-        //So inicia a pulsacao se o dialogo ja tiver terminado
         if(collision.CompareTag("Player") && DialogueManagerBoss.dialogueBossFinished)
         {
-            if(scriptPulse != null) scriptPulse.StartPulsing();
+            if(pulseOutline != null) pulseOutline.StartPulsing();
         }
     }
 
@@ -54,17 +53,13 @@ public class ComputerBossInteraction : ObjectInteractionBoss
 
         if(collision.CompareTag("Player"))
         {
-            if(scriptPulse != null) scriptPulse.StopPulsing();
+            if(pulseOutline != null) pulseOutline.StopPulsing();
         }
     }
 
-    /// <summary>
-    /// Sobrescreve a interacao da classe base para tambem acionar a 
-    /// pulsacao antes de delegar o restante do comportamento.
-    /// </summary>
     protected override void Interact()
     {
-        if(scriptPulse != null) scriptPulse.StartPulsing();
+        if(pulseOutline != null) pulseOutline.StartPulsing();
 
         base.Interact();
 

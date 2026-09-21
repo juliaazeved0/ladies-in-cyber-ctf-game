@@ -1,9 +1,8 @@
 using UnityEngine;
 
 /// <summary>
-/// Faz o contorno de um aprite pulsar suavemente, variando a espessura
-/// via shader property. Pode ser ativado/desativado sob demanda, para
-/// destacar objetos interativos ou selecionaveis.
+/// Controla um efeito de contorno pulsante (outline) em um SpriteRenderer,
+/// variando a espessura do contorno ao longo do tempo via shader properties.
 /// </summary>
 public class PulseOutline : MonoBehaviour
 {
@@ -17,11 +16,11 @@ public class PulseOutline : MonoBehaviour
     [Tooltip("Se marcado, a pulsacao ja comeca ativa assim que o objeto eh carregado.")]
     [SerializeField] private bool startActive = false;
 
-    private Material myMaterial; //Usado para nao afetar outros objetos que compartilhem o mesmo material
+    private Material myMaterial;
 
     private bool isPulsing = false;
 
-    private int thicknessID; //Cache do ID da propriedade do shader
+    private int thicknessID;
 
     void Start()
     {
@@ -29,7 +28,6 @@ public class PulseOutline : MonoBehaviour
 
         if(renderer != null)
         {
-            //Acessar ".material" ja cria uma copia unica do material para esse objeto especificamente
             myMaterial = renderer.material;
         }
         else
@@ -53,13 +51,14 @@ public class PulseOutline : MonoBehaviour
     {
         if(isPulsing && myMaterial != null)
         {
-            //PingPong faz o valor oscilar entre 0 e maxThickness de forma suave, criando o efeito de pulsacao continua
             float currentThickness = Mathf.PingPong(Time.time * pulseSpeed, maxThickness);
             myMaterial.SetFloat(thicknessID, currentThickness);
         }
     }
 
-    //Ativa a pulsacao do contorno e garante que ele esteja visivel
+    /// <summary>
+    /// Ativa a pulsacao do contorno e torna o efeito visivel
+    /// </summary>
     public void StartPulsing()
     {
         isPulsing = true;
@@ -70,7 +69,9 @@ public class PulseOutline : MonoBehaviour
         }
     }
 
-    //Interrompe a pulsacao e zera tanto a espessura quanto o alpha do contorno
+    /// <summary>
+    /// Interrompe a pulsacao e zera a espessura/visibilidade do contorno
+    /// </summary>
     public void StopPulsing()
     {
         isPulsing = false;

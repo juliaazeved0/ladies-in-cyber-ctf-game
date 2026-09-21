@@ -1,15 +1,15 @@
 using UnityEngine;
 
 /// <summary>
-/// Controla a interacao da jogadora com um computador interativo no cenario:
-/// mostra o aviso e a pulsacao quando a jogadora se aproxima e abre o painel
-/// do desafio ao pressionar a tecla de interacao.
+/// Gerencia a interacao da player com um "computador" na cena: detecta
+/// aproximacao via trigger 2D, mostra aviso visual e outline pulsante,
+/// e abre o painel de desafio ao pressionar a tecla de interacao.
 /// </summary>
 public class ComputerInteraction : MonoBehaviour
 {
     [Header("Visual Effects")]
     [Tooltip("Script responsavel pelo efeito de brilho no objeto.")]
-    public PulseOutline scriptPulse;
+    public PulseOutline pulseOutline;
 
     [Header("UI Interaction")]
     [Tooltip("Aviso visual.")]
@@ -24,29 +24,29 @@ public class ComputerInteraction : MonoBehaviour
 
     private void Start()
     {
-        //Garante que os elementos da UI comecem escondidos
         if(initialBackground != null) initialBackground.SetActive(false);
         if(interactionNotice != null) interactionNotice.SetActive(false);
     }
     private void Update()
     {
-        //Permite interacao se a jogadora estiver dentro da area de trigger e pressionar a tecla E
         if(playerIsNear && Input.GetKeyDown(KeyCode.E))
         {
             ExecuteInteraction();
         } 
     }
 
-    //Abre o painel principal do desafio e desliga o aviso
     private void ExecuteInteraction()
     {
-        if(initialBackground != null)
+        if(initialBackground == null)
         {
-            initialBackground.SetActive(true);
-
-            if(interactionNotice != null) interactionNotice.SetActive(false);
-            if(scriptPulse != null) scriptPulse.StopPulsing();
+            Debug.LogWarning($"{gameObject.name}: InitialBackground não atribuído. Interação abortada.");
+            return;
         }
+
+        initialBackground.SetActive(true);
+
+        if(interactionNotice != null) interactionNotice.SetActive(false);
+        if(pulseOutline != null) pulseOutline.StopPulsing();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -55,8 +55,7 @@ public class ComputerInteraction : MonoBehaviour
         {
             playerIsNear = true;
 
-            //Destaca o objeto e avisa que ha uma interacao disponivel
-            if(scriptPulse != null) scriptPulse.StartPulsing();
+            if(pulseOutline != null) pulseOutline.StartPulsing();
             if(interactionNotice != null) interactionNotice.SetActive(true);
         }
     }
@@ -67,8 +66,7 @@ public class ComputerInteraction : MonoBehaviour
         {
             playerIsNear = false;
 
-            //Remove o destaque e o aviso ao se afastar
-            if(scriptPulse != null) scriptPulse.StopPulsing();
+            if(pulseOutline != null) pulseOutline.StopPulsing();
             if(interactionNotice != null) interactionNotice.SetActive(false);
         }
     }

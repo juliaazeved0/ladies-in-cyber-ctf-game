@@ -3,9 +3,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Gerencia os paineis de UI e o minimapa como um Singleton persistente
-/// entre cenas. Cada nova cena pode registrar seu proprio conjunto de
-/// paineis via UpdatePanels.
+/// Singleton responsavel por gerenciar os paineis de UI e o minimapa 
+/// entre cenas. Ao carregar uma nova cena, funde os paineis dessa cena 
+/// com a instancia persistente e se autodestroi, evitando duplicidade.
 /// </summary>
 public class CanvasManager : MonoBehaviour
 {
@@ -23,18 +23,16 @@ public class CanvasManager : MonoBehaviour
     {
         if(Instance == null)
         {
-            //Primeira instancia: torna-se a oficial e sobrevive entre cenas
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            
-            //Inscreve-se no evento de carregamento de cena para limpar referencias antigas a cada nova cena
             SceneManager.sceneLoaded += OnSceneLoaded;
-            
-            ToggleMiniMap(true); 
         }
         else
         {
-            //Repassa os paineis/minimapa configurados na cena para a instancia ja existente
+            /*Ja existe uma instancia persistente: transfere os paineis desta cena
+            para ela e se autodestroi. Se os paineis desta lista forem filhos deste
+            GameObject, Destroy() vai destrui-los tambem, a limpeza das referencias
+            "mortas" acontecem depois.*/
             Instance.UpdatePanels(this.allPanels, this.miniMapContainer);
             Destroy(gameObject);
             return;
@@ -46,28 +44,24 @@ public class CanvasManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        //So remove a inscricao se for de fato a instancia ativa
         if(Instance == this)
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
         }
     }
 
-    //Chamado automaticamente pela Unity toda vez que uma cena eh carregada
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        //Limpa paineis destruidos e garante que o minimapa reapareca
         RemoveDestroyedPanels();
         ToggleMiniMap(true); 
     }
 
     /// <summary>
-    /// Substitui a lista de paineis e o minimapa gerenciados pela instancia persistente. Chamado
-    /// pelo CanvasManager duplicado de uma nova cena, repassando suas proprias referencias.
+    /// Substitui a lista de paineis e o minimapa gerenciados pela instancia persistente
+    /// pelos elementos da cena recem-carregada, e fecha tudo em seguida.
     /// </summary>
     public void UpdatePanels(List<GameObject> newPanels, GameObject newMinimap)
     {
-        //Evita NullReferenceException caso a lista recebida esteja nula
         if(newPanels == null)
         {
             Debug.LogWarning("UpdatePanels recebeu uma lista de painéis nula. Nenhuma atualização foi feita.");
@@ -87,18 +81,17 @@ public class CanvasManager : MonoBehaviour
         ToggleMiniMap(true);
     }
 
-    //Remove da lista quaisquer paineis que tenham sido destruidos
     private void RemoveDestroyedPanels()
     {
+        if(allPanels == null) return;
+
         allPanels.RemoveAll(panel => panel == null);
     }
 
-    /// <summary>
-    /// Desativa todos os paineis gerenciados, geralmente usado como
-    /// reset antes de abrir um painel especifico.
-    /// </summary>
     public void ClosedAllPanels()
     {
+        if(allPanels == null) return;
+
         foreach(GameObject panel in allPanels)
         {
             if(panel != null)
@@ -108,12 +101,10 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Fecha todos os paineis e abre apenas o painel cujo nome corresponde
-    /// ao informado (busca por GameObject.name).
-    /// </summary>
     public void OpenPanel(string panelName)
     {
+        if(allPanels == null) return;
+
         ClosedAllPanels();
 
         foreach(GameObject panel in allPanels)
@@ -125,14 +116,14 @@ public class CanvasManager : MonoBehaviour
             }
         }
 
-        //Avisa caso nenhum painel com esse nome tenha sido encontrado, facilitando a identificacao de erros
         Debug.LogWarning($"Nenhum painel encontrado com o nome '{panelName}'.");
     }
 
-    //Fecha apenas o painel cujo nome corresponde ao informado
     public void ClosedPanel(string panelName)
     {
-        foreach(GameObject panel in allPanels)
+        if(allPanels == null) return;
+
+        foreach (GameObject panel in allPanels)
         {
             if(panel != null && panel.name == panelName)
             {
@@ -144,7 +135,6 @@ public class CanvasManager : MonoBehaviour
         Debug.LogWarning($"Nenhum painel encontrado com o nome '{panelName}'.");
     }
 
-    //Ativa ou desativa o minimapa, independentemente do estado dos demais paineis
     public void ToggleMiniMap(bool isActive)
     {
         if(miniMapContainer != null)

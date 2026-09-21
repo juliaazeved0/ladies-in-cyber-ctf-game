@@ -32,7 +32,7 @@ public class JuicyButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
         else
         {
-            //Avisa caso o objeti nao tenha um Imagem, ja que sem ele o efeito de hover nao tera efeito nenhum
+            //Avisa caso o objeto nao tenha um Imagem, ja que sem ele o efeito de hover nao tera efeito nenhum
             Debug.LogWarning($"{gameObject.name} não possui um componente Image. O efeito de hover não será aplicado!");
         }
     }

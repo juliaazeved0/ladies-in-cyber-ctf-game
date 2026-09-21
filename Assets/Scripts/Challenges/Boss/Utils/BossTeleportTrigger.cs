@@ -4,9 +4,9 @@ using UnityEngine.UI;
 using System.Collections;
 
 /// <summary>
-/// Detecta quando a jogadora entra na area de teleporte de retorno do boss,
-/// salva a posicao de spawn no mapa, realiza um fade visual e troca a 
-/// musica antes de carregar a cena do mapa novamente.
+/// Detecta a chegada da jogadora na area de retorno do Boss e a teleporta de volta
+/// para a cena do mapa, salvando a posicao de destino via PlayerPrefs, aplicando
+/// um fade visual suave e trocando a musica de fundo.
 /// </summary>
 public class BossTeleportTrigger : MonoBehaviour
 {
@@ -20,13 +20,13 @@ public class BossTeleportTrigger : MonoBehaviour
     [Header("Fade Visual")]
     [Tooltip("Painel preto usado para o efeito de fade antes de trocar de cena.")]
     [SerializeField] private GameObject panelBlack;
-    private Image fadeImage; //Componente Image do panelBlack
+
+    private Image fadeImage;
 
     [Header("Music")]
     [Tooltip("Musica a ser tocada assim que a cena do mapa for carregada.")]
     [SerializeField] private AudioClip mapMusic; 
 
-    //Evita que o trigger seja acionado multiplas vezes caso a jogadora permaneca dentro da area
     private bool isTransitioning = false;
 
     private void Awake()
@@ -42,12 +42,12 @@ public class BossTeleportTrigger : MonoBehaviour
             Debug.Log("Player entrou na área de teleporte! Retornando ao mapa.");
             isTransitioning = true;
 
-            //Salva a posicao de spawn especifica para a cena do mapa
+            /*A posicao de destino eh salva via PlayerPrefs porque essa cena sera descarregada
+            antes da cena do mapa ler esse valor no Awake dela*/
             PlayerPrefs.SetFloat(mapSceneName + "_PlayerX", teleportPosition.x);
             PlayerPrefs.SetFloat(mapSceneName + "_PlayerY", teleportPosition.y);
             PlayerPrefs.SetFloat(mapSceneName + "_PlayerZ", teleportPosition.z);
 
-            //Flag para que o script do mapa saiba que a jogadora esta retornando do boss
             PlayerPrefs.SetInt("ReturningFromBoss", 1);
             PlayerPrefs.Save();
 
@@ -55,13 +55,8 @@ public class BossTeleportTrigger : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Executa o fade visual (se configurado), troca a musica de fundo
-    /// e carrega a cena do mapa de forma assincrona.
-    /// </summary>
     private IEnumerator FadeAndLoad()
     {
-        //Verifica se a cena existe e esta registrada no Build Settings antes de iniciar o fade
         if(!Application.CanStreamedLevelBeLoaded(mapSceneName))
         {
             Debug.LogError($"A cena '{mapSceneName}' não existe ou não está no Build Settings!");
@@ -71,8 +66,10 @@ public class BossTeleportTrigger : MonoBehaviour
 
         if(panelBlack != null && fadeImage != null)
         {
-            //Desativa qualquer Animator para nao conflitar com o controle manual do alpha
+            /*Desativa qualquer Animator no painel de fade para evitar que uma animacao
+            propria dele interfira no fade controlado manualmente por este script*/
             Animator anim = panelBlack.GetComponent<Animator>();
+
             if(anim != null) anim.enabled = false;
 
             panelBlack.SetActive(true);
@@ -94,7 +91,6 @@ public class BossTeleportTrigger : MonoBehaviour
         }
         else
         {
-            //Sem painel de fade configurado, apenas espera um tempo fixo antes de trocar de cena
             yield return new WaitForSeconds(0.5f);
         }
 

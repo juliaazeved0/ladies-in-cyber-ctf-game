@@ -1,28 +1,42 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using BashTerminal;
-using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Controla a navegacao entre os sub-paineis do desafio "Steghide" do Boss
+/// (notas, erro, resultado, metadados e flag de sucesso), incluindo a 
+/// liberacao da flag final dia FlagManager ao completar o desafio.
+/// </summary>
 public class ChangePanels : MonoBehaviour
 {
-    [Header("Panels")] 
+    [Header("Panels")]
+    [Tooltip("Tela do desktop, desativada ao finalizar o desafio do Boss.")]
     public GameObject desktopBackground;
+
+    [Tooltip("Painel com as notas do desafio.")]
     public GameObject panelNotes;
+
+    [Tooltip("Painel exibido quando o dsafio steghide ainda nao foi resolvido.")]
     public GameObject panelSteghideError;
+
+    [Tooltip("Painel exibido com o resultado do desafio steghide, apos resolvido.")]
     public GameObject panelSteghideBeach;
+
+    [Tooltip("Painel com informacoes de metadados do desafio.")]
     public GameObject panelMetadataInfo;
+
+    [Tooltip("Painel final exibido ao completar o desafio, com a flag liberada.")]
     public GameObject panelSuccessFlag;
 
     [Header("External References")]
+    [Tooltip("Botao que inicia a verificacao do desafio steghide.")]
     public Button steghideButton;
+
+    [Tooltip("Botao de saida geral, ocultado durante a exibicao da flag de sucesso.")]
     public GameObject exitButtonGeral;
 
-    /*Fecha todos os sub-paineis do desktop sem afetar o painel pai (challengePanel).
-    Nunca use CanvasManager.OpenPanel aqui — ele fecha TODOS os paineis da cena,
-    incluindo o challengePanel, que eh pai destes sub-paineis.*/
-    private void FecharTodosOsSubPaineis()
+    private void CloseAllSubPanels()
     {
         if(panelNotes != null)         panelNotes.SetActive(false);
         if(panelSteghideError != null) panelSteghideError.SetActive(false);
@@ -31,36 +45,33 @@ public class ChangePanels : MonoBehaviour
         if(panelSuccessFlag != null)   panelSuccessFlag.SetActive(false);
     }
 
-    //--- PAINEL DE NOTAS ---
-    public void AbrirPanelNotes()
+    public void OpenNotesPanel()
     {
-        FecharTodosOsSubPaineis();
+        CloseAllSubPanels();
 
         if(panelNotes != null) panelNotes.SetActive(true);
     }
 
-    public void FecharPanelNotes()
+    public void CloseNotesPanel()
     {
         if(panelNotes != null) panelNotes.SetActive(false);
     }
 
-    //--- PAINEL DE ERRO DO STEGHIDE ---
-    public void AbrirPanelSteghideError()
+    public void OpenSteghideErrorPanel()
     {
-        FecharTodosOsSubPaineis();
+        CloseAllSubPanels();
 
         if(panelSteghideError != null) panelSteghideError.SetActive(true);
     }
 
-    public void FecharPanelSteghideError()
+    public void CloseSteghideErrorPanel()
     {
         if(panelSteghideError != null) panelSteghideError.SetActive(false);
     }
 
-    //--- PAINEL DA PRAIA (SUCESSO STEGHIDE) ---
-    public void AbrirPanelSteghideBeach()
+    public void OpenSteghideBeachPanel()
     {
-        FecharTodosOsSubPaineis();
+        CloseAllSubPanels();
 
         if(panelSteghideBeach != null)
         {
@@ -69,78 +80,78 @@ public class ChangePanels : MonoBehaviour
         }
     }
 
-    public void FecharPanelSteghideBeach()
+    public void CloseSteghideBeachPanel()
     {
         if(panelSteghideBeach != null) panelSteghideBeach.SetActive(false);
     }
 
-    //--- PAINEL DE METADADOS ---
-    public void AbrirPanelMetadadaInfo()
+    public void OpenMetadataInfoPanel()
     {
-        FecharTodosOsSubPaineis();
+        CloseAllSubPanels();
 
         if(panelMetadataInfo != null) panelMetadataInfo.SetActive(true);
     }
 
-    public void FecharPanelMetadadaInfo()
+    public void CloseMetadataInfoPanel()
     {
         if(panelMetadataInfo != null) panelMetadataInfo.SetActive(false);
     }
 
-   //--- PAINEL DA FLAG FINAL ---
-    public void AbrirPanelSuccessFlag()
+    /// <summary>
+    /// Exibe o painel de flag de sucesso, salva a flag do Boss no FlagManager
+    /// e agenda o fechamento automatico apos alguns segundos.
+    /// </summary>
+    public void OpenSuccessFlagPanel()
     {
-        FecharTodosOsSubPaineis();
+        CloseAllSubPanels();
 
         if(panelSuccessFlag != null)
         {
             panelSuccessFlag.SetActive(true);
 
-            //1. Esconde o botao de "Sair" do PC para a jogadora nao fugir do final
             if(exitButtonGeral != null) 
                 exitButtonGeral.SetActive(false);
 
             if(FlagManager.Instance != null)
             {
+                /*A flag nao fica em texto puro no codigo para dificultar que a jogadora a encontre
+                 inspecionando os arquivos do jogo. SafeBase decodifica o valor em runtime*/
                 string newFlag = SafeBase.ViewBase(SafeBase.flag_8);
                 FlagManager.Instance.SaveFlag("BOSS", newFlag);
             }
 
-            //2. Inicia o cronometro para avancar sozinho
-            StartCoroutine(AvancarParaFinalAutomaticamente());
+            StartCoroutine(AdvanceToFinalAutomatically());
         }
     }
-    private IEnumerator AvancarParaFinalAutomaticamente()
+    private IEnumerator AdvanceToFinalAutomatically()
     {
-        //Espera 4 segundos para a jogadora ler a tela de Sucesso e ver a Flag
         yield return new WaitForSeconds(4f);
-        
-        //Chama a funcao que você ja tem para fechar o PC e abrir a bolsa
-        FecharPanelSuccessFlag();
+
+        CloseSuccessFlagPanel();
     }
 
-  public void FecharPanelSuccessFlag()
+  public void CloseSuccessFlagPanel()
     {
-        //1. Fecha o painel de sucesso da flag
         if(panelSuccessFlag != null) panelSuccessFlag.SetActive(false);
 
-        //2. Desliga o fundo do PC a forca para ele nao ficar "escondido" atras da bolsa
         if(desktopBackground != null) desktopBackground.SetActive(false);
 
-        //3. Abre a bolsa de flags com o aviso de ultima chance antes dos creditos
-        if (InventoryManager.Instance != null) InventoryManager.Instance.AbrirBolsaFinalizacaoBoss();
+        if(InventoryManager.Instance != null) InventoryManager.Instance.AbrirBolsaFinalizacaoBoss();
     }
 
-    //--- LOGICA DO BOTAO STEGHIDE NA DESKTOP ---
-    public void AoClicarNoBotaoSteghide()
+    /// <summary>
+    /// Abre o painel de resultado do steghide caso o desafio do terminal
+    /// ja tenha sido resolvido, caso contrario, mostra o painel de erro.
+    /// </summary>
+    public void OnSteghideButtonClicked()
     {
         if(TerminalBoss.challengeSolved == false)
         {
-            AbrirPanelSteghideError();
+            OpenSteghideErrorPanel();
         }
         else
         {
-            AbrirPanelSteghideBeach();
+            OpenSteghideBeachPanel();
         }
     }
 }
