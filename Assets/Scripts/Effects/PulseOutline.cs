@@ -56,9 +56,7 @@ public class PulseOutline : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Ativa a pulsacao do contorno e torna o efeito visivel
-    /// </summary>
+    //Ativa a pulsacao do contorno e torna o efeito visivel
     public void StartPulsing()
     {
         isPulsing = true;
@@ -69,9 +67,7 @@ public class PulseOutline : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Interrompe a pulsacao e zera a espessura/visibilidade do contorno
-    /// </summary>
+    //Interrompe a pulsacao e zera a espessura/visibilidade do contorno
     public void StopPulsing()
     {
         isPulsing = false;

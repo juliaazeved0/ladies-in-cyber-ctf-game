@@ -62,9 +62,7 @@ public class PlayerMovement : MonoBehaviour
         characterBody.MovePosition(newPosition);
     }
 
-    /// <summary>
-    /// Le as entradas da jogadora (WASD / Setas).
-    /// </summary>
+    //Le as entradas da jogadora (WASD / Setas)
     private void ReadInput()
     {
         inputMovement = new Vector2(
@@ -73,10 +71,7 @@ public class PlayerMovement : MonoBehaviour
         );
     }
 
-    /// <summary>
-    /// Verifica no CanvasManager se existe algum painel ativo.
-    /// </summary>
-    /// <returns></returns>
+    //Verifica no CanvasManager se existe algum painel ativo
     private bool IsAnyPanelOpen()
     {
         if(CanvasManager.Instance == null) return false;
@@ -88,9 +83,7 @@ public class PlayerMovement : MonoBehaviour
         return false;
     }
 
-    /// <summary>
-    /// Atualiza a ultima direcao horizontal para manter o flip correto quando parado.
-    /// </summary>
+    //Atualiza a ultima direcao horizontal para manter o flip correto quando parado
     private void UpdateDirectionState()
     {
         float dx = inputMovement.x;
@@ -99,9 +92,7 @@ public class PlayerMovement : MonoBehaviour
         else if(dx < -deadzone) lastHorizontal = -1;
     }
 
-    /// <summary>
-    /// Atualiza as variaveis do Animator
-    /// </summary>
+    //Atualiza as variaveis do Animator
     private void UpdateAnimatorParameters()
     {
         bool isMoving = Mathf.Abs(inputMovement.x) > deadzone
@@ -111,9 +102,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool(idleHash, !isMoving);
     }
 
-    /// <summary>
-    /// Controla a inversao horizontal do sprite.
-    /// </summary>
+    //Controla a inversao horizontal do sprite.
     private void UpdateSpriteFlip()
     {
         float dx = inputMovement.x;

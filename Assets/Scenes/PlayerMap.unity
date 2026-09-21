@@ -97028,6 +97028,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1169203851804840382, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
     - target: {fileID: 1506116622822500911, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -97079,6 +97083,10 @@ PrefabInstance:
     - target: {fileID: 1907513136667642504, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_Name
       value: BalloonNPCLuiz
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990377621423496117, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
+      propertyPath: m_Name
+      value: SucessPanel
       objectReference: {fileID: 0}
     - target: {fileID: 2158685235562325586, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_Name
@@ -97272,6 +97280,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -1213689959
       objectReference: {fileID: 0}
+    - target: {fileID: 6184139040897642529, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
+      propertyPath: m_Name
+      value: CaptureFlagPanel
+      objectReference: {fileID: 0}
     - target: {fileID: 6210367361094272910, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_Name
       value: NameNPC
@@ -97279,6 +97291,10 @@ PrefabInstance:
     - target: {fileID: 6294780346391105089, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_Name
       value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 6609823904469222968, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
+      propertyPath: m_Name
+      value: BashButton
       objectReference: {fileID: 0}
     - target: {fileID: 6728292838625888402, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_SortingLayer

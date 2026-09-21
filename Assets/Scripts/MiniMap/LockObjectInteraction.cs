@@ -10,9 +10,7 @@ public class LockObjectInteraction : ObjectInteraction
     [Tooltip("Define se o objeto esta liberado para interacao.")]
     public bool isUnlocked = false;
 
-    /// <summary>
-    /// Atualiza o estado visual do aviso de interacao com base na proximidade e no bloqueio.
-    /// </summary>
+    //Atualiza o estado visual do aviso de interacao com base na proximidade e no bloqueio
     protected override void Update()
     {
        if(interactionNotice != null)
@@ -24,9 +22,7 @@ public class LockObjectInteraction : ObjectInteraction
         base.Update();
     }
 
-    /// <summary>
-    /// Executa a interacao principal apenas se o objeto nao estiver mais bloqueado.
-    /// </summary>
+    //Executa a interacao principal apenas se o objeto nao estiver mais bloqueado
     protected override void Interact()
     {
         if(isUnlocked)

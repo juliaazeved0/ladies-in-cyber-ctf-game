@@ -10,17 +10,29 @@ public class NPCInteraction : MonoBehaviour
     [Header("Settings NPC")]
     [Tooltip("Chave unica para verificar no PlayerPrefs se a missao deste NPC ja foi concluida.")]
     public string uniqueSaveKey;
+
+    [Tooltip("Imagem do balao de dialogo exibido acima da cabeca do NPC.")]
     public Image balloonNPC;
 
-    [Header("Dinamic variable")]
+    [Header("Dynamic Variables")]
+    [Tooltip("Componente de efeito visual que faz o objeto associado pulsar.")]
     public PulseOutline pulseObjectInitial;
+
+    [Tooltip("Aviso de interface (UI) exibido quando o jogador pode interagir.")]
     public GameObject interactionNotice;
 
     [Header("Systems")]
+    [Tooltip("Gerenciador do sistema de dialogo simplificado.")]
     public SimpleDialogue simpleDialogue;
+
+    [Tooltip("No inicial de dialogo deste NPC.")]
     public NPCDialogueNode firstNode;
 
+    [Header("State Tracking")]
+    [Tooltip("Indica se a jogadora esta dentro do alcance de interacao.")]
     protected bool playerIsHere = false;
+
+    [Tooltip("Indica se o desafio deste NPC ja foi concluido.")]
     protected bool isCompleted = false;
 
     void Start()
@@ -77,9 +89,7 @@ public class NPCInteraction : MonoBehaviour
          }
     }
 
-    /// <summary>
-    /// Consulta o PlayerPrefs para saber se o progresso associado a este NPC foi salvo.
-    /// </summary>
+    //Consulta o PlayerPrefs para saber se o progresso associado a este NPC foi salvo
     public void CheckChallengeStatus()
     {
         if(!string.IsNullOrEmpty(uniqueSaveKey))
