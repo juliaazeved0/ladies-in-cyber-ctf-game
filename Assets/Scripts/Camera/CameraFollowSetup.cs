@@ -2,17 +2,16 @@ using UnityEngine;
 using Cinemachine;
 
 /// <summary>
-/// Configura a camera virtual (Cinemachine) desta
-/// cena para seguir o Transform da player.
+/// Configura a camera virtual (Cinemachine) desta cena para seguir
+/// o Transform da player, obtido a partir de DataPlayerPosition.
 /// </summary>
 public class CameraFollowSetup : MonoBehaviour
 {
     void Start()
     {
-        //Assume que ja foi atribuido por outro script antes do Start() rodar
+        //Se a player ainda nao existir na cena nesse momento, cai no erro abaixo
         Transform playerTransform = DataPlayerPosition.PlayerTransform;
 
-        //Se o player ainda nao existir na cena nesse momento, cai no erro abaixo
         if(playerTransform == null)
         {
             Debug.LogError("DataPlayerPosition.PlayerTransform é null. " +

@@ -1,19 +1,18 @@
 using UnityEngine;
 
 /// <summary>
-/// Controla a posicao da camera do MiniMapa para seguir a jogadora.
-/// Garante que o alvo seja encontrado mesmo apos trocas de cena.
+/// Controla a posicao da camera do minimapa para acompanhar a posicao da jogadora.
 /// </summary>
 public class MiniMapFollowPlayer : MonoBehaviour
 {
     [Header("Target Tracking")]
-    [Tooltip("O alvo que o MiniMapa deve seguir (Player).")]
+    [Tooltip("O Transform do alvo que o minimapa deve seguir (Player).")]
     [SerializeField] private Transform target;
 
+    //Chamado no frame final para garantir que o minimapa atualize apos a movimentacao da jogadora
     void LateUpdate()
     {
-        //Se nao possui um alvo ou troca de cena, procura por ele
-        if(target == null)
+        if(target == null) //Tratamento de erro
         {
             GameObject playerOnMap = GameObject.FindGameObjectWithTag("Player");
             
@@ -23,11 +22,12 @@ public class MiniMapFollowPlayer : MonoBehaviour
             }
             else
             {
+                //Se a player ainda nao existe na cena, interrompe a execucao para evitar NullReferenceException
                 return;
             }
         }
 
-        //Se possuir um alvo, segue
+        //Atualiza a posicao X e Y acompanhando a player, mantendo o Z fixo da camera do minimapa
         transform.position = new Vector3(
             target.position.x,
             target.position.y,

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -10,18 +8,24 @@ using UnityEngine;
 public class SecretaryInteraction : MonoBehaviour
 {
     [Header("UI & Feedback")]
+    [Tooltip("Imagem da UI exibida como aviso para a jogadora interagir.")]
     [SerializeField] private Image interactionNotice;
 
     [Header("References")]
+    [Tooltip("Referencia ao gerenciador de dialogos responsavel por iniciar a conversa.")]
     [SerializeField] private DialogueManager dialogueManager;
 
+    [Header("State Tracking (Debug)")]
+    [Tooltip("Indica se a jogadora esta atualmente dentro da area de interacao.")]
     private bool playerIsHere = false;
 
     void Start()
     {
+        //Oculta o aviso visual antes da interacao iniciar
         if(interactionNotice != null) interactionNotice.gameObject.SetActive(false);
     }
 
+    //Monitora a entrada da jogadora a cada frame para disparar o dialogo
     void Update()
     {
         int playerDone = PlayerPrefs.GetInt(DialogueManager.INICIAL_KEY, 0); //Verifica se o dialogo inicial ja foi feito
@@ -34,9 +38,9 @@ public class SecretaryInteraction : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collison)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collison.CompareTag("Player")) //Verifica se eh a player
+        if(collision.CompareTag("Player")) //Verifica se eh a player
         {
             int playerDone = PlayerPrefs.GetInt(DialogueManager.INICIAL_KEY, 0);
 
@@ -49,9 +53,9 @@ public class SecretaryInteraction : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collison)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collison.CompareTag("Player"))
+        if(collision.CompareTag("Player"))
         {
             playerIsHere = false;
 

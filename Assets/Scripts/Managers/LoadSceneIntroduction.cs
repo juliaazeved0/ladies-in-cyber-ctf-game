@@ -6,13 +6,14 @@ using UnityEngine.SceneManagement;
 /// Garante que a cena seja carregada apenas na primeira vez que a jogadora entra no gatilho.
 /// </summary>
 public class LoadSceneIntroduction : MonoBehaviour
-{   
+{
+    [Header("State Tracking")]
+    [Tooltip("Indica se a jogadora esta atualmente dentro da area do gatilho (Trigger).")]
     public bool playerIsHere = false;
+
     private const string INTRO_KEY = "introductionComplete";
 
-    /// <summary>
-    /// Detecta a entrada fisica da jogadora na area e dispara o carregamento aditivo se for a primeira vez.
-    /// </summary>
+    //Detecta a entrada fisica da jogadora na area e dispara o carregamento aditivo se for a primeira vez
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player") && !playerIsHere)
@@ -37,9 +38,7 @@ public class LoadSceneIntroduction : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Detecta a saida da jogadora da area do colisor e redefine os sinalizadores de presenca.
-    /// </summary>
+    //Detecta a saida da jogadora da area do colisor e redefine os sinalizadores de presenca
     public void OnTriggerExit2D(Collider2D collision)
     {
         //Destrava a variavel caso a jogadora saia da area

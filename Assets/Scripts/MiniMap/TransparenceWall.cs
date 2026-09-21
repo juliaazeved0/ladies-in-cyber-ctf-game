@@ -48,9 +48,7 @@ public class TransparenceWall : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Restaura as configuracoes originais de cor e renderizacao do Tilemap.
-    /// </summary>
+    //Restaura as configuracoes originais de cor e renderizacao do Tilemap
     private void OnTriggerExit2D(Collider2D collision)
     {
         if(collision.CompareTag("Player"))

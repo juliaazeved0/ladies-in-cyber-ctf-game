@@ -2,24 +2,26 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Gerencia a persistencia da posicao da jogadora entre cenas e sessoes de jogo.
-/// Utiliza o padrao Singleton para garantir uma unica instancia global.
+/// Gerencia a persistencia da posicao da jogadora por cena.
 /// </summary>
 [DefaultExecutionOrder(-10)]
 public class DataPlayerPosition : MonoBehaviour
 {
+    //Referencia estatica global para o Transform da jogadora, permitindo acesso rapido por outros scripts de forma otimizada
     public static Transform PlayerTransform { get; private set; }
 
     private string sceneName;
 
-    //Chaves de acesso para o PlayerPrefs baseadas no nome da cena
     private string KeyX => sceneName + "_PlayerX";
     private string KeyY => sceneName + "_PlayerY";
     private string KeyZ => sceneName + "_PlayerZ";
 
+    /// <summary>
+    /// Garante que apenas uma instancia desse objeto exista na sessao do jogo
+    /// (Singleton) e configura a referencia estatica.
+    /// </summary>
     void Awake()
     {
-        //Implementacao de Singleton manual para garantir unicidade
         foreach(var other in FindObjectsOfType<DataPlayerPosition>())
         {
             if(other != this)
@@ -29,33 +31,34 @@ public class DataPlayerPosition : MonoBehaviour
             }
         }
 
-        //Configuracao da instancia persistente
         DontDestroyOnLoad(gameObject);
         PlayerTransform = transform;
         sceneName = SceneManager.GetActiveScene().name;
     }
 
+    //Carrega a posicao salva ao iniciar a cena e inscreve o evento de mudanca de cena
     void Start()
     {
         LoadGame();
-        SceneManager.sceneLoaded += OnSceneLoaded; //Carregamento de cena para atualizar a posicao
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+    //Remove a inscricao do evento de cena para evitar vazamento de memoria
     private void OnDestroy()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded; //Evita vazamento de memoria
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+    //Salva automaticamente os dados ao fechar a aplicacao
     void OnApplicationQuit()
     {
         SaveGame();
     }
 
-    /// <summary>
-    /// Evento disparado sempre que uma nova cena eh carregada.
-    /// </summary>
+    //Chamado automaticamente quando uma nova cena eh carregada
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        //Ignora o carregamento aditivo para nao sobrescrever os dados da cena principal
         if(mode == LoadSceneMode.Additive) return;
 
         SaveGame();
@@ -63,9 +66,7 @@ public class DataPlayerPosition : MonoBehaviour
         LoadGame();
     }
 
-    /// <summary>
-    /// Salva as coordenadas atuais da jogadora no PlayerPrefs.
-    /// </summary>
+    //Salva as coordenadas X, Y e Z da posicao atual da jogadora no PlayerPrefs
     public void SaveGame()
     {
         PlayerPrefs.SetFloat(KeyX, transform.position.x);
@@ -74,9 +75,7 @@ public class DataPlayerPosition : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    /// <summary>
-    /// Carrega as coordenadas salvas e posiciona a jogadora.
-    /// </summary>
+    //Carrega as coordenadas X, Y e Z salvas para a cena atual e aplica a posicao do objeto
     public void LoadGame()
     {
         if(PlayerPrefs.HasKey(KeyX))

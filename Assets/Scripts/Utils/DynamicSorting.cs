@@ -1,17 +1,20 @@
 using UnityEngine;
 
 /// <summary>
-/// Ajusta dinamicamente a ordem de renderizacao com base na posicao Y.
-/// Isso permite que a jogadora passe por tras de objetos mais altos e na frente de objetos mais baixos.
+/// Ajusta dinamicamente a ordem de renderizacao do SpriteRenderer
+/// com base na posicao do objeto no eixo Y, criando um efeito de
+/// profundidade 2D.
 /// </summary>
 public class DynamicSorting : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
 
+    //Obtem a referencia do SpriteRenderer e valida sua existencia na inicializacao
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
+        //Tratamento de erro
         if(spriteRenderer == null)
         {
             Debug.LogWarning($"[DynamicSorting] Erro: Nenhum SpriteRenderer encontrado em {gameObject.name}. O script sera desativado automaticamente.");
@@ -19,15 +22,13 @@ public class DynamicSorting : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Usado para garantir que o sorting seja atualizado apos todos os movimentos do frame.
-    /// </summary>
+    //Atualiza o Sorting Order a cada frame final para refletir movimentacoes recentes de fisica ou animacao
     void LateUpdate()
     {
+        //Se o componente por algum motivo for removido em runtime, evita NullReferenceException
         if(spriteRenderer != null)
         {
-            //Multiplica por -100 para que quanto mais baixo o objeto (menor Y), maior o sorting order.
-            //Garante que quem está "mais perto" da câmera (embaixo) apareça na frente.
+            //Converte a posicao Y em uma ordem inteira. Objetos mais abaixo na tela (Y menor) terao um Sorting Order maior (ficam na frente)
             spriteRenderer.sortingOrder = (int)(transform.position.y * -100);
         }
     }
