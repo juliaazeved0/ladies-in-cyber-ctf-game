@@ -55468,7 +55468,7 @@ GameObject:
   - component: {fileID: 577984500}
   - component: {fileID: 577984499}
   m_Layer: 5
-  m_Name: BallonJoana
+  m_Name: BalloonJoana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58859,7 +58859,7 @@ GameObject:
   - component: {fileID: 850472273}
   - component: {fileID: 850472272}
   m_Layer: 5
-  m_Name: Text
+  m_Name: FullText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59991,7 +59991,7 @@ GameObject:
   - component: {fileID: 912227837}
   - component: {fileID: 912227836}
   m_Layer: 5
-  m_Name: InteractionNotice (1)
+  m_Name: InteractionNotice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61294,7 +61294,7 @@ GameObject:
   - component: {fileID: 1004981196}
   - component: {fileID: 1004981195}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92030,7 +92030,7 @@ GameObject:
   - component: {fileID: 1857685369}
   - component: {fileID: 1857685368}
   m_Layer: 5
-  m_Name: Text
+  m_Name: FullText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94978,7 +94978,7 @@ GameObject:
   - component: {fileID: 1985489938}
   - component: {fileID: 1985489937}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96173,7 +96173,7 @@ GameObject:
   - component: {fileID: 2097849457}
   - component: {fileID: 2097849456}
   m_Layer: 5
-  m_Name: InteractionNotice
+  m_Name: InteractionNoticeTwo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
