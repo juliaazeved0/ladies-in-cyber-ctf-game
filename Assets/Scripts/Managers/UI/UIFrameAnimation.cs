@@ -2,12 +2,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Anima uma UI Image trocando seus sprites em sequencia, simulando uma
-/// animacao quadro a quadro em uma taxa de FPS configuravel.
+/// Anima uma Image de UI trocando sprites em sequencia (efeito de flipbook),
+/// com a velocidade controlada por quadros por segundo.
 /// </summary>
 public class UIFrameAnimation : MonoBehaviour
 {
-    [Header("Target UI ELements")]
+    [Header("Target UI Elements")]
     [Tooltip("Componente de interface que mostrara os frames.")]
     public Image targetImage;
 
@@ -20,7 +20,6 @@ public class UIFrameAnimation : MonoBehaviour
 
     private void Awake()
     {
-        //Se nao arrastou a referencia no Inspector, tenta pegar o componente Image no proprio GameObject
         if(targetImage == null)
         {
             targetImage = GetComponent<Image>();
@@ -28,13 +27,14 @@ public class UIFrameAnimation : MonoBehaviour
             if(targetImage == null)
             {
                 Debug.LogError($"O GameObject {gameObject.name} precisa de um componente Image!");
+                enabled = false;
+                return;
             }
         }
     }
     private void Update()
     {
-        //Sem frames, nao ha o que animar
-        if(frames == null || frames.Length == 0) return;
+        if(targetImage == null || frames == null || frames.Length == 0) return;
 
         int index = (int)(Time.time * framesPerSecond) % frames.Length;
         targetImage.sprite = frames[index];
