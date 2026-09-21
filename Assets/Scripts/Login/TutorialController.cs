@@ -4,8 +4,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
-/// Controla a navegacao entre paineis de tutorial e, ao finalizar a
-/// sequencia, realiza um fade-in visual antes de carregar a proxima cena.
+/// Controla a navegacao sequencial entre paineis de tutorial (proximo/anterior)
+/// e, ao final, aplica um fade visual antes de carregar a proxima cena.
 /// </summary>
 public class TutorialController : MonoBehaviour
 {
@@ -14,10 +14,14 @@ public class TutorialController : MonoBehaviour
     [SerializeField] private GameObject[] tutorialPanels;
 
     [Header("Navigation")]
+    [Tooltip("Nome da cena carregada apos o ultimo painel do tutorial.")]
     [SerializeField] private string nextSceneName = "PlayerMap";
 
     [Header("Visual Fade")]
+    [Tooltip("Painel preto usado para o efeito de fade antes de trocar de cena.")]
     [SerializeField] private GameObject fadePanel;
+
+    [Tooltip("Duracao em segundos da transicao de fade antes de trocar de cena.")]
     [SerializeField] private float fadeDuration = 1f;
 
     private Image fadeImage;
@@ -28,13 +32,8 @@ public class TutorialController : MonoBehaviour
         InitializeUI();
     }
 
-    /// <summary>
-    /// Garante que apenas o primeiro painel do tutorial esteja visivel no inicio,
-    /// e prepara o painel de fade (desativado por padrao).
-    /// </summary>
     private void InitializeUI()
     {
-        //Se o array nao for preenchido no Inspector, evita erros e avisa caso esteja vazio
         if(tutorialPanels == null || tutorialPanels.Length == 0)
         {
             Debug.LogError($"{gameObject.name} não possui painéis de tutorial configurados!");
@@ -59,12 +58,11 @@ public class TutorialController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Avanca para o proximo painel do tutorial. Se ja estiver no ultimo,
-    /// inicia o fade e o carregamento da proxima cena.
-    /// </summary>
+    //Avanca para o proximo painel do tutorial, ou inicia o fade da proxima cena se ja estiver no ultimo
     public void OnNextClicked()
     {
+        if(tutorialPanels == null || tutorialPanels.Length == 0) return;
+
         if(currentPanelIndex < tutorialPanels.Length - 1)
         {
             tutorialPanels[currentPanelIndex].SetActive(false);
@@ -77,9 +75,11 @@ public class TutorialController : MonoBehaviour
         }
     }
 
-    //Volta para o painel anterior do tutorial, se houver um
+    //Retorna ao painel anterior do tutorial, se houver
     public void OnBackClicked()
     {
+        if(tutorialPanels == null || tutorialPanels.Length == 0) return;
+
         if(currentPanelIndex > 0)
         {
             tutorialPanels[currentPanelIndex].SetActive(false);
@@ -88,15 +88,10 @@ public class TutorialController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Realiza um fade visual antes de carregar a proxima cena. Se nao houver um painel
-    /// de fade ou imagem configurados, apenas aguarda um tempo fixo como fallback.
-    /// </summary>
     private IEnumerator FadeAndLoadRoutine()
     {
         if(fadePanel != null && fadeImage != null)
         {
-            //Desativa qualquer Animator no painel de fade para evitar que ele sobrescreva
             Animator anim = fadePanel.GetComponent<Animator>();
 
             if(anim != null) anim.enabled = false;
@@ -116,11 +111,9 @@ public class TutorialController : MonoBehaviour
         }
         else
         {
-            //Sem painel de fade configurado, apenas espera um tempo fixo antes de trocar de cena
             yield return new WaitForSeconds(0.5f);
         }
 
-        //Verifica se a cena existe e esta registrada no Build Settings
         if (!Application.CanStreamedLevelBeLoaded(nextSceneName))
         {
             Debug.LogError($"A cena '{nextSceneName}' não existe ou não está no Build Settings!");
