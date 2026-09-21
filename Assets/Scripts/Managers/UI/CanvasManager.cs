@@ -11,7 +11,7 @@ public class CanvasManager : MonoBehaviour
 {
     public static CanvasManager Instance;
 
-    [Header("Panels/backgrounds UI")]
+    [Header("Panels/Backgrounds UI")]
     [Tooltip("Lista de todos os paineis gerenciaveis da cena atual.")]
     public List<GameObject> allPanels = new List<GameObject>();
 

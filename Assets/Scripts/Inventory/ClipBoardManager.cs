@@ -11,9 +11,7 @@ public class ClipboardManager : MonoBehaviour
     [Tooltip("O elemento de texto que contem a string formatada 'Desafio - Flag'.")]
     public TextMeshProUGUI slotText;
 
-    /// <summary>
-    /// Copia a parte da Flag (apos o ' - ') para o clipboard.
-    /// </summary>
+    //Copia a parte da Flag (apos o ' - ') para o clipboard
     public void CopyToClipboard()
     {
         Debug.Log("copy clicado");
@@ -27,7 +25,7 @@ public class ClipboardManager : MonoBehaviour
         string textToCopy = slotText.text;
         Debug.Log("texto do slot[" + textToCopy + "]");
 
-        // Extrai apenas a flag dps de -
+        //Extrai apenas a flag dps de -
         string flagToCopy = textToCopy;
 
         //Extrai apenas a flag (parte apos " - ")

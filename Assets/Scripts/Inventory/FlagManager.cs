@@ -12,9 +12,7 @@ public class FlagManager : MonoBehaviour
     
     public List<string> flagsCapture = new List<string>();
 
-    /// <summary>
-    /// Carrega as flags salvas no disco (PlayerPrefs) ao iniciar o jogo.
-    /// </summary>
+    //Carrega as flags salvas no disco (PlayerPrefs) ao iniciar o jogo
     void Awake()
     {
         if(Instance == null)
@@ -41,11 +39,7 @@ public class FlagManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Salva uma nova flag no inventario e persiste no PlayerPrefs.
-    /// </summary>
-    /// <param name="challengeName">Nome do desafio associado.</param>
-    /// <param name="flag">O conteudo da flag.</param>
+    //Salva uma nova flag no inventario e persiste no PlayerPrefs
     public void SaveFlag(string challengeName, string flag)
     {
         string fullFlag = challengeName + " - " + flag;
@@ -61,9 +55,7 @@ public class FlagManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Verifica se uma flag especifica ja foi capturada.
-    /// </summary>
+    //Verifica se uma flag especifica ja foi capturada
     public bool IsFlagCaptured(string flag)
     {
         return flagsCapture.Any(f => f.EndsWith(flag));
