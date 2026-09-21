@@ -26,26 +26,29 @@ public class ServerButton : MonoBehaviour
     /// </summary>
     public void OnClickButton()
     {
-        //Desativa a etapa de desafio e abre a de conexao
         if(challengePanel != null) challengePanel.SetActive(false);
         if(connectionPanel != null) connectionPanel.SetActive(true);
 
-        //Avisa o sistema do PC que o cabo fisico foi conectado
         if(managerPanels != null)
         {
             managerPanels.isCableConnected = true;
         }
+        else
+        {
+            Debug.LogWarning($"[ServerButton] Referência para 'managerPanels' não atribuída em {gameObject.name}.", this);
+        }
 
-        //Notifica o servidor que o desafio tecnico foi vencido
-        if(serverController != null)
+        if (serverController != null)
         {
             serverController.CompleteServer();
         }
+        else
+        {
+            Debug.LogWarning($"[ServerButton] Referência para 'serverController' não atribuída em {gameObject.name}.", this);
+        }
     }
 
-    /// <summary>
-    /// Fecha as interfaces do servidor para retornar a exploracao do mapa.
-    /// </summary>
+    //Fecha as interfaces do servidor para retornar a exploracao do mapa
     public void BackToMap()
     {
         if(challengePanel != null) challengePanel.SetActive(false);

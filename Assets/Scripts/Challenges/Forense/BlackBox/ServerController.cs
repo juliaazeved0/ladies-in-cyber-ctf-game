@@ -20,12 +20,9 @@ public class ServerController : LockObjectInteraction
     [Tooltip("Painel UI para a etapa de conexao de cabos.")]
     public GameObject connectionPanel;
 
-    /// <summary>
-    /// Inicializa o servidor bloqueado e esconde os paineis de desafio.
-    /// </summary>
+    //Inicializa o servidor bloqueado e esconde os paineis de desafio
     new void Start()
     {
-        //O servidor inicia bloqueado e nao finalizado
         isUnlocked = false;
         isFinished = false;
 
@@ -33,7 +30,6 @@ public class ServerController : LockObjectInteraction
         if(lockClosed != null) lockClosed.gameObject.SetActive(true);
         if(lockOpened != null) lockOpened.gameObject.SetActive(false);
 
-        //Garante que as interfaces de desafio comecem escondidas
         if(challengePanel != null) challengePanel.gameObject.SetActive(false);
         if(connectionPanel != null) connectionPanel.SetActive(false);
     }
@@ -44,9 +40,7 @@ public class ServerController : LockObjectInteraction
         base.Update();
     }
 
-    /// <summary>
-    /// Chamado externamente apos o sucesso no hacking via PC.
-    /// </summary>
+    //Chamado externamente apos o sucesso no hacking via PC
     public void UnlockByHacking()
     {
         isUnlocked = true;
@@ -55,12 +49,10 @@ public class ServerController : LockObjectInteraction
         if(lockClosed != null) lockClosed.gameObject.SetActive(false);
         if(lockOpened != null) lockOpened.gameObject.SetActive(true);
 
-        Debug.Log("[ServerController] Servidor desbloqueado via hacking.");
+        Debug.Log($"[ServerController] Servidor '{gameObject.name}' desbloqueado via hacking.");
     }
 
-    /// <summary>
-    /// Sobrescreve a interacao para lidar com as duas fases do servidor
-    /// </summary>
+    //Sobrescreve a interacao para lidar com as duas fases do servidor
     protected override void Interact()
     {
         //Fase 2: Conexao de cabos (se o desafio ja foi concluido)
@@ -70,6 +62,10 @@ public class ServerController : LockObjectInteraction
             {
                 connectionPanel.SetActive(true);
                 HideInteractionNotice();
+            }
+            else
+            {
+                Debug.LogWarning($"[ServerController] 'connectionPanel' não foi atribuído no Inspector em {gameObject.name}.", this);
             }
             return;
         }
@@ -82,22 +78,25 @@ public class ServerController : LockObjectInteraction
                 challengePanel.SetActive(true);
                 HideInteractionNotice();
             }
+            else
+            {
+                Debug.LogWarning($"[ServerController] 'challengePanel' não foi atribuído no Inspector em {gameObject.name}.", this);
+            }
         }
         else
         {
-            Debug.Log("[ServerController] O servidor ainda esta bloqueado.");
+            Debug.Log($"[ServerController] O servidor '{gameObject.name}' ainda está bloqueado.");
         }
     }
 
-    /// <summary>
-    /// Marca o desafio tecnico do servidor como concluido.
-    /// </summary>
+    //Marca o desafio tecnico do servidor como concluido
     public void CompleteServer()
     {
         isFinished = true;
-        Debug.Log("[ServerController] Desafio do servidor concluido.");
+        Debug.Log($"[ServerController] Desafio do servidor '{gameObject.name}' concluído.");
     }
 
+    //Esconde o aviso/icone visual de interacao da jogadora
     public void HideInteractionNotice()
     {
         if(interactionNotice != null) interactionNotice.SetActive(false);

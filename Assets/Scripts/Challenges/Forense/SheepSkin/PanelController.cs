@@ -30,14 +30,11 @@ public class PanelController : MonoBehaviour
     [Tooltip("O dominio exato que a jogadora deve identificador como malicioso.")]
     [SerializeField] private string correctDomain = "http://login-fake-bank.xyz/auth-steal";
 
-    /// <summary>
-    /// Abre a ferramenta Netguard e reseta o campo de entrada.
-    /// </summary>
+    //Abre a ferramenta Netguard e reseta o campo de entrada
     public void OpenNetguardPanel()
     {
         if(initialBackground != null) initialBackground.SetActive(true);
 
-        //Garante que o painel de input esteja limpo antes de mostrar
         if(netguardPanel != null)
         {
             netguardPanel.SetActive(false);
@@ -46,15 +43,12 @@ public class PanelController : MonoBehaviour
         } 
     }
 
-    /// <summary>
-    /// Ativa o painel de sucesso final e salva a flag no inventario.
-    /// </summary>
+    //Ativa o painel de sucesso final e salva a flag no inventario
     public void OpenFlagSuccessPanel()
     {
         domainInputField.text = "";
         if(flagSuccessPanel != null) flagSuccessPanel.SetActive(true);
 
-        //Recupera a flag criptografada e salva no sistema global
         string newFlag = SafeBase.ViewBase(SafeBase.flag_4);
 
         if(FlagManager.Instance != null)
@@ -63,9 +57,7 @@ public class PanelController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Fecha um painel especifico passado via Inspector.
-    /// </summary>
+    //Fecha um painel especifico passado via Inspector
     public void ClosePanel(GameObject targetPanel)
     {
         if(targetPanel != null)
@@ -75,9 +67,7 @@ public class PanelController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Verifica se o dominio digitado condiz com a resposta correta.
-    /// </summary>
+    //Verifica se o dominio digitado condiz com a resposta correta
     public void SubmitDomain()
     {
         //O uso do Trim() eh essencial para evitar erros por espacos acidentais
@@ -93,14 +83,11 @@ public class PanelController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Desliga a interface do computador e retorna para a exploracao no mapa.
-    /// </summary>
+    //Desliga a interface do computador e retorna para a exploracao no mapa
     public void BackToMap()
     {
         if(initialBackground != null)
         {
-            //Reseta o estado dos paineis internos para uma nova tentativa posterior
             if(mailInputPanel != null) mailInputPanel.SetActive(false);
             if(ransonwarePanel != null) ransonwarePanel.SetActive(false);
 

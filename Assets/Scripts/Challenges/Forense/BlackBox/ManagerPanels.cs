@@ -35,22 +35,18 @@ public class ManagerPanels : MonoBehaviour
     public void OpenTerminal() { CloseAllMainPanels(); terminalPanel.SetActive(true); }
     public void OpenWireshark() { CloseAllMainPanels(); errorWiresharkPanel.SetActive(true); }
 
-    /// <summary>
-    /// Logica para abrir o Wireshark verificando se o hardware (cabo) esta pronto.
-    /// </summary>
+    //Logica para abrir o Wireshark verificando se o hardware (cabo) esta pronto
     public void OpenSuccessWireshark()
     {
         CloseAllMainPanels();
 
         if(!isCableConnected)
         {
-            //Mostra o erro se o cabo nao estiver conectado, mas libera o servidor para o proximo passo
             errorWiresharkPanel.SetActive(true);
             if(scriptServer != null) scriptServer.UnlockByHacking();
         }
         else
         {
-            //Sucesso se o cabo ja estiver conectado
             successWiresharkPanel.SetActive(true);
         }
     }
@@ -61,22 +57,21 @@ public class ManagerPanels : MonoBehaviour
         if(flagPanel != null) flagPanel.SetActive(true);
     }
 
-    /// <summary>
-    /// Finaliza o desafio capturando a flag e salvando no inventario global.
-    /// </summary>
+    //Finaliza o desafio capturando a flag e salvando no inventario global
     public void OpenSuccessFlag()
     {
         if(flagPanel != null) flagPanel.SetActive(false);
         if(successFlagPanel != null) successFlagPanel.SetActive(true);
 
-        //Salvando a flag no inventario usando o sistema de Base64
         string newFlag = SafeBase.ViewBase(SafeBase.flag_3);
 
-        //Evita erro de NullReference caso o sistema tente salvar algo antes do FlagManager estar carregado
         if(FlagManager.Instance != null)
         {
-            //Ajustado para incluir o nome do desafio
             FlagManager.Instance.SaveFlag("Black Box", newFlag);
+        }
+        else
+        {
+            Debug.LogWarning($"[ManagerPanels] Instância de 'FlagManager' não encontrada na cena.", this);
         }
     }
 
@@ -90,9 +85,7 @@ public class ManagerPanels : MonoBehaviour
         if(detailsPanel != null) detailsPanel.SetActive(false);
     }
 
-    /// <summary>
-    /// Desativa todos os paineis principais para evitar sobreposicao de interfaces.
-    /// </summary>
+    //Desativa todos os paineis principais para evitar sobreposicao de interfaces
     public void CloseAllMainPanels()
     {
         if(netwatchPanel != null) netwatchPanel.SetActive(false);
@@ -104,9 +97,7 @@ public class ManagerPanels : MonoBehaviour
         if(successFlagPanel != null) successFlagPanel.SetActive(false);
     }
 
-    /// <summary>
-    /// Sai da interface do computador e retorna para a exploracao do mapa.
-    /// </summary>
+    //Sai da interface do computador e retorna para a exploracao do mapa
     public void ReturnToMap()
     {
         if(initialBackground != null)

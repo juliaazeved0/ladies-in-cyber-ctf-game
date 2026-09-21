@@ -1,10 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Gerencia a navegacao entre e-mails, inspecao de links e simulacao de eventos como Phishing e Ransomware.
+/// </summary>
 public class PanelMailController : MonoBehaviour
 {
-    [Header("Pain�is Principais")]
+    [Header("Main Panels")]
+    [Tooltip("Paineis principais para a entrada da caixa de e-mails.")]
     public GameObject panelMailInput;
     public GameObject panelEmailRh;
     public GameObject panelEmailKassime;
@@ -16,9 +19,12 @@ public class PanelMailController : MonoBehaviour
     public GameObject panelPhishing;
     public GameObject panelRansomware;
 
-    [Header("Feedback Visual")]
+    [Header("Visual Feedback")]
+    [Tooltip("Objeto visual que atua como destaque/marca-texto ao copiar o link.")]
     [SerializeField] private GameObject imagemSelecaoLink;
 
+    [Header("State")]
+    [Tooltip("Indica se o PC da jogadora foi infectado ao interagir com o link nocivo.")]
     public static bool pcInfectado = false; //Variavel para ver se a jogadora acessou o link infectado
 
     public void AbrirPanelMailInput() //Abrir o painel principais de e-mails
