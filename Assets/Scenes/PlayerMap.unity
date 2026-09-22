@@ -99127,6 +99127,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lock03
       objectReference: {fileID: 0}
+    - target: {fileID: 6080343979270151553, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: pulseOutline
+      value: 
+      objectReference: {fileID: 4484170277870850492}
     - target: {fileID: 6251232770775898677, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ReturnToMap
@@ -99361,6 +99365,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1817740842}
   m_SourcePrefab: {fileID: 100100000, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+--- !u!114 &4484170277870850492 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3461451552138618453, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+  m_PrefabInstance: {fileID: 4484170277870850491}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c89e5598e8c2fd74fb50b2f7ad1507e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5577957365086859756
 PrefabInstance:
   m_ObjectHideFlags: 0
