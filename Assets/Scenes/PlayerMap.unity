@@ -850,7 +850,7 @@ GameObject:
   - component: {fileID: 17656645}
   - component: {fileID: 17656644}
   m_Layer: 5
-  m_Name: text_flag
+  m_Name: FlagText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67503,7 +67503,7 @@ GameObject:
   - component: {fileID: 1472821173}
   - component: {fileID: 1472821172}
   m_Layer: 5
-  m_Name: Text
+  m_Name: FullText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87230,7 +87230,7 @@ GameObject:
   - component: {fileID: 1726529316}
   - component: {fileID: 1726529315}
   m_Layer: 5
-  m_Name: FullText
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97694,9 +97694,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 65455216018094217, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: InputField
+      objectReference: {fileID: 0}
     - target: {fileID: 78512485453643052, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_text
-      value: "DIGITE A SENHA\u200B"
+      value: "\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 78512485453643052, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Enabled
@@ -97712,7 +97716,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 575555058633527684, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
-      value: FullText
+      value: Text
       objectReference: {fileID: 0}
     - target: {fileID: 660793262089543663, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
@@ -97762,13 +97766,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1045463696951683679, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: InputField
+      objectReference: {fileID: 0}
+    - target: {fileID: 1202376419254402229, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_text
+      value: Olhe para o seu hardware!
+      objectReference: {fileID: 0}
     - target: {fileID: 1294191583682853697, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1294191583682853697, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000061035156
+      value: 506.4601
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396685817547482373, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: PathFolder
       objectReference: {fileID: 0}
     - target: {fileID: 1479412616198525628, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Enabled
@@ -97814,9 +97830,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: PC04
       objectReference: {fileID: 0}
+    - target: {fileID: 1874159220841292782, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: EnterZipButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000284388461773934, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: FlagButton
+      objectReference: {fileID: 0}
     - target: {fileID: 2003701056280281860, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
-      value: FullText
+      value: Text
       objectReference: {fileID: 0}
     - target: {fileID: 2022088339046674114, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
@@ -97834,6 +97858,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sofa02
       objectReference: {fileID: 0}
+    - target: {fileID: 2775829035436771678, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: PlayFair
+      objectReference: {fileID: 0}
     - target: {fileID: 2814695639391352654, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
       value: Table
@@ -97845,6 +97873,10 @@ PrefabInstance:
     - target: {fileID: 2912922585936241905, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
       value: PC
+      objectReference: {fileID: 0}
+    - target: {fileID: 2916636376077298402, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Text
       objectReference: {fileID: 0}
     - target: {fileID: 2930856318213648073, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
@@ -97886,9 +97918,17 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3124022586172060735, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
     - target: {fileID: 3153218594599544129, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
       value: ErrorPopup02
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265976156586810544, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: ErrorPopUp
       objectReference: {fileID: 0}
     - target: {fileID: 3429508442632013691, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_text
@@ -97902,9 +97942,17 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 349323599
       objectReference: {fileID: 0}
+    - target: {fileID: 3476640316163797242, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: PostIt
+      objectReference: {fileID: 0}
     - target: {fileID: 3524421176923481426, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
       value: PC03
+      objectReference: {fileID: 0}
+    - target: {fileID: 3633133868036369822, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: FlagZip
       objectReference: {fileID: 0}
     - target: {fileID: 3644621871253602729, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_SizeDelta.y
@@ -97912,7 +97960,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3644621871253602729, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 512.3701
       objectReference: {fileID: 0}
     - target: {fileID: 3707793262492842108, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: interactionNotice
@@ -97930,6 +97978,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3857503316413972110, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
     - target: {fileID: 3858444021333845145, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_text
       value: "r2xk3\ns9'br\ny'r'c9\u200B"
@@ -97938,9 +97990,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: InteractionNotice
       objectReference: {fileID: 0}
+    - target: {fileID: 4029590457470950726, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
     - target: {fileID: 4064055434161761730, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4085168736054312659, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: ErrorPopUp03
       objectReference: {fileID: 0}
     - target: {fileID: 4152712317571228953, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_SizeDelta.x
@@ -97970,6 +98030,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConfirmButton
       objectReference: {fileID: 0}
+    - target: {fileID: 4288001252167342339, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: TxtText
+      objectReference: {fileID: 0}
     - target: {fileID: 4291275997938100210, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Size.x
       value: 9.766556
@@ -97986,6 +98050,14 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -1.3059058
       objectReference: {fileID: 0}
+    - target: {fileID: 4333483626164415136, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 4336087319152149798, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: InputField
+      objectReference: {fileID: 0}
     - target: {fileID: 4363890053699086107, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -98001,6 +98073,14 @@ PrefabInstance:
     - target: {fileID: 4363890053699086107, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Color.r
       value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455026068243855347, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 4497806836021045756, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_text
+      value: Senha incorreta!
       objectReference: {fileID: 0}
     - target: {fileID: 4592652921594995974, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_SortingLayerID
@@ -98022,13 +98102,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: PCNPC
       objectReference: {fileID: 0}
+    - target: {fileID: 4897079865995238561, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: ErrorText
+      objectReference: {fileID: 0}
+    - target: {fileID: 4981293302486564607, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: InputField
+      objectReference: {fileID: 0}
     - target: {fileID: 4994046779274863975, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5073801726805851838, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
-      value: ErrorPopup02
+      value: ErrorPopup04
       objectReference: {fileID: 0}
     - target: {fileID: 5466395492412747555, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
@@ -98046,6 +98134,10 @@ PrefabInstance:
       propertyPath: m_HorizontalAlignment
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5643945280570568446, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: InputField
+      objectReference: {fileID: 0}
     - target: {fileID: 5669390715410001014, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_SizeDelta.x
       value: -129.6361
@@ -98062,6 +98154,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.000011444092
       objectReference: {fileID: 0}
+    - target: {fileID: 5816093343248067220, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: PasswordFolder
+      objectReference: {fileID: 0}
     - target: {fileID: 5877761041658611193, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -98069,6 +98165,10 @@ PrefabInstance:
     - target: {fileID: 5877761041658611193, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnClickExit
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082723519629408912, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: PopUpZip
       objectReference: {fileID: 0}
     - target: {fileID: 6128753153629807745, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_SizeDelta.x
@@ -98085,6 +98185,10 @@ PrefabInstance:
     - target: {fileID: 6128753153629807745, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -127
+      objectReference: {fileID: 0}
+    - target: {fileID: 6163497197093974095, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_text
+      value: Senha incorreta!
       objectReference: {fileID: 0}
     - target: {fileID: 6188275484989772550, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Size.x
@@ -98114,6 +98218,10 @@ PrefabInstance:
       propertyPath: rightPassword
       value: t3cl4d01ntu1t1v0
       objectReference: {fileID: 0}
+    - target: {fileID: 6497112119974710194, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_text
+      value: Senha incorreta!
+      objectReference: {fileID: 0}
     - target: {fileID: 6522026658430695755, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_fontStyle
       value: 4
@@ -98126,13 +98234,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: ErrorText
       objectReference: {fileID: 0}
+    - target: {fileID: 6665526213955341631, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: BoardTip
+      objectReference: {fileID: 0}
+    - target: {fileID: 6733052304871086911, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: FlagButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6750160201409111174, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 6750490343391296221, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
     - target: {fileID: 6767063864279625970, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: e26fae906d6ee0042bc2bad1a5493f0c, type: 3}
+    - target: {fileID: 6938962369408931007, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 7009355778012611435, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Password02
+      objectReference: {fileID: 0}
     - target: {fileID: 7055621970840329557, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_SortingOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7061770092681988665, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: ExitPopupButton
       objectReference: {fileID: 0}
     - target: {fileID: 7198494396661597427, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
@@ -98141,6 +98277,10 @@ PrefabInstance:
     - target: {fileID: 7300280138622730885, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
       value: ExitText
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305483373869800684, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Text
       objectReference: {fileID: 0}
     - target: {fileID: 7473630221139034402, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
@@ -98156,11 +98296,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7546087432158865066, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
-      value: FullText
+      value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551343899529340778, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633055490214584068, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: SucessPopUp
       objectReference: {fileID: 0}
     - target: {fileID: 7648710328472405142, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
       value: NameBackground
+      objectReference: {fileID: 0}
+    - target: {fileID: 7682670404422406994, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: PlayFairPng
       objectReference: {fileID: 0}
     - target: {fileID: 7800066837402641341, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: buttonEnter
@@ -98170,6 +98322,10 @@ PrefabInstance:
       propertyPath: boardFolders
       value: 
       objectReference: {fileID: 768387479}
+    - target: {fileID: 8024962547956446619, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Password
+      objectReference: {fileID: 0}
     - target: {fileID: 8149042714418010964, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_SizeDelta.x
       value: 242.8856
@@ -98198,6 +98354,10 @@ PrefabInstance:
       propertyPath: playerNameplate
       value: 
       objectReference: {fileID: 1584242803}
+    - target: {fileID: 8276081254287694892, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Important
+      objectReference: {fileID: 0}
     - target: {fileID: 8506995050437516745, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
       value: Table03
@@ -98238,6 +98398,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -133.3
       objectReference: {fileID: 0}
+    - target: {fileID: 9191838953796044281, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: ErrorText
+      objectReference: {fileID: 0}
     - target: {fileID: 9198940382106917546, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_SortingLayer
       value: 6
@@ -98250,8 +98414,7 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 349323599
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1479412616198525628, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4210801491439645508, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
     - {fileID: 8859915359890342182, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}

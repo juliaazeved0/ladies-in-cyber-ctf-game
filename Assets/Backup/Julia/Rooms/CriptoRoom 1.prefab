@@ -3535,7 +3535,6 @@ GameObject:
   - component: {fileID: 243855558704866791}
   - component: {fileID: 341733744178372667}
   - component: {fileID: 881986673463118537}
-  - component: {fileID: 1479412616198525628}
   - component: {fileID: 5725756610404962792}
   - component: {fileID: 3047578653421236260}
   m_Layer: 0
@@ -3634,24 +3633,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1479412616198525628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3306520039453261373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62e1cab4d548fc14e94de8febf84e124, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uniqueSaveKey: 
-  balloonNPC: {fileID: 6113508124441448096}
-  pulseObjectInitial: {fileID: 6318733954074526957}
-  interactionNotice: {fileID: 8351956170817174112}
-  simpleDialogue: {fileID: 8211663778272922076}
-  firstNode: {fileID: 11400000, guid: e4a55a4bb4fcb83439a87dee18fd064d, type: 2}
 --- !u!61 &5725756610404962792
 BoxCollider2D:
   m_ObjectHideFlags: 0
