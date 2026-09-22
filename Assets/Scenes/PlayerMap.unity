@@ -56028,7 +56028,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: senha incorreta!
+  m_text: Senha incorreta!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c8b2d073c88508943b8712f4e34c6966, type: 2}
   m_sharedMaterial: {fileID: -8451331422274171582, guid: c8b2d073c88508943b8712f4e34c6966, type: 2}

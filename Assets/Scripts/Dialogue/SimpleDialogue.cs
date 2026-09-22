@@ -1,55 +1,81 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using System;
 
 /// <summary>
-/// Controlador principal do sistema de dialogo.
-/// Gerencia a exibicao de textos, troca de nos e integracao com efeitos de cenario.
+/// Controla um dialogo simples com NPC: exibe o painel de dialogo, escreve o
+/// texto com efeito de maquina de escrever (WriteMachine), avanca entre nos
+/// de dialogo (NPCDialogueNode) e finaliza destacando um objeto (PulseOutline),
+/// se configurado.
 /// </summary>
 public class SimpleDialogue : MonoBehaviour
 {
     [Header("Elements UI")]
+    [Tooltip("Painel de UI que exibe o dialogo.")]
     public GameObject panelDialogue;
+
+    [Tooltip("Texto onde a fala do NPC eh exibida.")]
     public TextMeshProUGUI textDialogue;
+
+    [Tooltip("Imagem do retrato/sprite do NPC durante o dialogo.")]
     public Image characterNPC;
+
+    [Tooltip("Componente responsavel pelo efeito de escrita (maquina de escrever) do texto.")]
     public WriteMachine writeMachine;
+
+    [Tooltip("Texto que exibe o nome da jogadora (carregado do PlayerPrefs).")]
     public TextMeshProUGUI playerNameplate;
+
+    [Tooltip("Imagem do retrato/sprite da jogadora durante o dialogo.")]
     public Image characterPlayer;
+
+    [Tooltip("Canvas do minimapa, ocultado durante o dialogo.")]
     public GameObject miniMapCanvas;
+
+    [Tooltip("Camera do minimapa, ocultada durante o dialogo.")]
     public GameObject cameraMiniMap;
+
+    [Tooltip("Botao exibido ao final do dialogo para confirmar/prosseguir.")]
     public Button confirmButton;
 
-    [Header("Dinamic variable")]
+    [Header("Dynamic Variables")]
     [Tooltip("Objeto que recebera destaque visual apos o termino do dialogo.")]
     public PulseOutline pulsingObject;
 
+    //Impede que a jogadora avance o dialogo nos primeirs instantes
     private bool readyToSpeak = false;
+
+    //Indica se um dialogo esta atualmente em andamento
     protected bool isTalking = false;
 
     [Header("Buttons")]
+    [Tooltip("Botao para sair do dialogo antes de chegar ao fim.")]
     public Button buttonExit;
 
     [Header("Nodes")]
+    [Tooltip("No inicial do dialogo, atribuido ao chamar StartDialogue.")]
     public NPCDialogueNode firstNode;
+
+    //No de dialogo atualmente exibido
     protected NPCDialogueNode dialogueCurrent;
 
-    [Header("Control inventory")]
+    [Header("Control Inventory")]
+    [Tooltip("Indica globalmente se algum SimpleDialogue esta ativo (usado por outros sistemas, como o inventario).")]
     public static bool isSimpleDialogueActive = false;
 
+    //Chave usada para ler o nome da jogadora salvo no PlayerPrefs
     public const string PLAYER_NAME_KEY = "PLAYER_NAME";
 
     void Update()
     {
-        //So processa input se o dialogo estiver ativo e pronto
         if(!readyToSpeak || !isTalking)
         {
             return;
         }
 
-        if(panelDialogue.activeSelf && Input.GetKeyDown(KeyCode.E))
+        //Avanca o dialogo ao pressionar E, apenas se o painel estiver realmente aberto
+        if(panelDialogue!= null && panelDialogue.activeSelf && Input.GetKeyDown(KeyCode.E))
         {
             NextTalk();
         }
@@ -57,13 +83,22 @@ public class SimpleDialogue : MonoBehaviour
 
     void Start()
     {
-        //Recupera o nome da jogadora para mostrar na tela
+        //Carrega o nome da jogadora salvo (ou usa "Jogadora" como padrao) e exibe em maiusculas
         string namePlayer = PlayerPrefs.GetString(PLAYER_NAME_KEY, "Jogadora");
-        playerNameplate.text = namePlayer.ToUpper();
+
+        if(playerNameplate != null)
+        {
+            playerNameplate.text = namePlayer.ToUpper();
+        }
+        else
+        {
+            Debug.LogError("[SimpleDialogue] playerNameplate não está atribuído no Inspector.");
+        }
     }
 
     /// <summary>
-    /// Inicia ua nova conversa a partir de um no especifico.
+    /// Inicia o dialogo a partir do no informado, abrindo o painel e
+    /// ocultando o minimapa enquanto o dialogo estiver ativo.
     /// </summary>
     public void StartDialogue(NPCDialogueNode inicialNode)
     {
@@ -80,45 +115,79 @@ public class SimpleDialogue : MonoBehaviour
 
         if(firstNode != null)
         {
-            CanvasManager.Instance.OpenPanel(panelDialogue.name);
-            CanvasManager.Instance.ToggleMiniMap(false);
+            if(CanvasManager.Instance != null && panelDialogue != null)
+            {
+                CanvasManager.Instance.OpenPanel(panelDialogue.name);
+                CanvasManager.Instance.ToggleMiniMap(false);
+            }
+            else
+            {
+                Debug.LogError("[SimpleDialogue] CanvasManager.Instance ou panelDialogue não estão disponíveis.");
+            }
 
             DialogueView(firstNode);
 
-            //Evita que o mesmo clique que iniciou o dialogo ja pule a primeira frase
+            //Bloqueia o avanco do dialogo por um instante para evitar pular a primeira fala
             readyToSpeak = false;
             StartCoroutine(ReleaseInput());
         }
         else
         {
-            Debug.LogError("node vazio");
+            Debug.LogError("[SimpleDialogue] node vazio: nenhum nó inicial foi informado.");
         }
     }
 
+    //Libera a entrada da jogadora (tecla E) apos um pequeno atraso
     IEnumerator ReleaseInput()
     {
         yield return new WaitForSeconds(0.2f);
         readyToSpeak = true;
     }
 
+    /// <summary>
+    /// Exibe o no de dialogo informado: atualiza o texto (via WriteMachine)
+    /// e o retrato do NPC.
+    /// </summary>
     public void DialogueView(NPCDialogueNode node)
     {
         dialogueCurrent = node;
 
-        writeMachine.Run(node.talkNPC, textDialogue);
+        if(writeMachine != null)
+        {
+            writeMachine.Run(node.talkNPC, textDialogue);
+        }
+        else
+        {
+            Debug.LogError("[SimpleDialogue] writeMachine não está atribuído no Inspector.");
+        }
 
         if(characterNPC != null)
             characterNPC.sprite = node.characterNPC;
     }
 
     /// <summary>
-    /// Avanca o dialogo. Se estiver digitando, completa a frase. Se terminou, passa para o proximo no.
+    /// Avanca para a proxima fala/no do dialogo, ou completa instantaneamente
+    /// o texto se ainda estiver sendo digitado. Ao chegar ao fim, exibe o
+    /// botao de confirmacao e oculta o de saida.
     /// </summary>
     public virtual void NextTalk()
     {
+        if(writeMachine == null)
+        {
+            Debug.LogError("[SimpleDialogue] writeMachine não está atribuído no Inspector.");
+            return;
+        }
+
+        //Se o texto ainda esta sendo "digitado", completa instantaneamente em vez de avancar
         if(writeMachine.IsTyping)
         {
             writeMachine.Complete();
+            return;
+        }
+
+        if(dialogueCurrent == null)
+        {
+            Debug.LogError("[SimpleDialogue] dialogueCurrent está nulo ao tentar avançar o diálogo.");
             return;
         }
 
@@ -128,7 +197,7 @@ public class SimpleDialogue : MonoBehaviour
         }
         else
         {
-            //Ativa o botao de conclusao
+            //Fim do dialogo: mostra confirmar, esconde sair
             if(confirmButton != null)
                 confirmButton.gameObject.SetActive(true);
 
@@ -137,27 +206,35 @@ public class SimpleDialogue : MonoBehaviour
         }
     }
 
+    //Encerra o dialogo, fechando o painel e reexibindo o minimapa
     public void ExitDialogue()
     {
         isSimpleDialogueActive = false;
         isTalking = false;
 
-        CanvasManager.Instance.ClosedPanel(panelDialogue.name);
-        CanvasManager.Instance.ToggleMiniMap(true);
+        if(CanvasManager.Instance != null && panelDialogue != null)
+        {
+            CanvasManager.Instance.ClosedPanel(panelDialogue.name);
+            CanvasManager.Instance.ToggleMiniMap(true);
+        }
+        else
+        {
+            Debug.LogError("[SimpleDialogue] CanvasManager.Instance ou panelDialogue não estão disponíveis.");
+        }
     }
 
     /// <summary>
-    /// Chamado pelo botao de confirmacao ao final da conversa
+    /// Confirma o fim da ajuda/dialogo: fecha o dialogo e, se houver um
+    /// objeto configurado para destaque, inicia o efeito de pulso nele.
     /// </summary>
     public virtual void ConfirmHelp()
     {
         ExitDialogue();
 
-        //Se houver um objeto para destacar, ativa a pulsacao
         if(pulsingObject != null)
         {
             pulsingObject.StartPulsing();
-            pulsingObject = null; //Limpa para a proxima interacao
+            pulsingObject = null;
         }
     }
 }

@@ -1,22 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Classe base para interacoes com objetos no mundo 2D.
-/// Gerencia a deteccao da jogadora e a exibicao de avisos baseados no estado da UI.
+/// Classe base para objetos interagiveis no cenario (baus, NPCs, terminais, etc.).
+/// Detecta a presenca da jogadora via trigger 2D, exibe um aviso de interacao
+/// e dispara a logica de interacao (abrir painel de desafio) ao pressionar E,
+/// desde que nenhum outro painel esteja aberto no momento.
 /// </summary>
 public class ObjectInteraction : MonoBehaviour
 {
-    [Header("Settings object interactable")]
-    public GameObject interactionNotice; //Aviso visual
-    public GameObject challengePanel; //Painel que sera aberto
+    [Header("Settings Object Interactable")]
+    [Tooltip("Icone/aviso exibido quando a jogadora esta proxima e pode interagir.")]
+    public GameObject interactionNotice;
 
+    [Tooltip("Painel do desafio associado a este objeto, aberto ao interagir.")]
+    public GameObject challengePanel;
+
+    //Indica se a jogadora esta atualmente dentro da area de trigger deste objeto
     protected bool playerIsHere;
 
     protected void Start()
     {
-        interactionNotice.SetActive(false);
+        //Garante que o aviso de interacao comece desativado
+        if(interactionNotice != null) interactionNotice.SetActive(false);
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
@@ -24,7 +29,8 @@ public class ObjectInteraction : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             playerIsHere = true;
-            //So mostra o aviso se a caminho estiver livre (sem outros paineis abertos)
+
+            //So mostra o aviso se nenhum painel estiver aberto no momento
             if(!IsAnyPanelOpen() && interactionNotice != null)
             {
                 interactionNotice.SetActive(true);
@@ -37,6 +43,7 @@ public class ObjectInteraction : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             playerIsHere = false;
+
             if(interactionNotice != null)
             {
                 interactionNotice.SetActive(false);
@@ -46,7 +53,7 @@ public class ObjectInteraction : MonoBehaviour
 
     protected virtual void Update()
     {
-        //Se houver qualquer painel aberto (mesmo que nao seja deste objeto), esconde o aviso
+        //Se algum painel estiver aberto, esconde o aviso e ignora a interacao
         if(IsAnyPanelOpen())
         {
             if(interactionNotice != null && interactionNotice.activeSelf)
@@ -54,22 +61,20 @@ public class ObjectInteraction : MonoBehaviour
             return;
         }
 
-        //Se a player estiver aqui e a UI estiver limpa, reexibe o aviso
+        //Reexibe o aviso caso a jogadora ainda esteja na area e nenhum painel esteja aberto
         if(playerIsHere && interactionNotice != null && !interactionNotice.activeSelf)
         {
             interactionNotice.SetActive(true);
         }
 
-        //Executa a interacao ao pressionar a tecla de interacao
+        //Dispara a interacao ao pressionar E, apenas se o jogador estiver na area
         if(playerIsHere && Input.GetKeyDown(KeyCode.E))
         {
             Interact();
         }
     }
 
-    /// <summary>
-    /// Consulta o CanvasManager para verificar se ha alguma interface bloqueando a visao.
-    /// </summary>
+    //Verifica se algum painel do CanvasManager esta atualmente aberto
     private bool IsAnyPanelOpen()
     {
         if(CanvasManager.Instance == null) return false;
@@ -81,11 +86,21 @@ public class ObjectInteraction : MonoBehaviour
         return false;
     }
 
-    /// <summary>
-    /// Logica de interacao.
-    /// </summary>
+    //Executa a interacao padrao: esconde o minimapa e abre o painel do desafio
     protected virtual void Interact()
     {
+        if(CanvasManager.Instance == null)
+        {
+            Debug.LogError("[ObjectInteraction] CanvasManager.Instance não está disponível.");
+            return;
+        }
+
+        if(challengePanel == null)
+        {
+            Debug.LogError("[ObjectInteraction] challengePanel não está atribuído no Inspector.");
+            return;
+        }
+
         CanvasManager.Instance.ToggleMiniMap(false);
         CanvasManager.Instance.OpenPanel(challengePanel.name);
     }
