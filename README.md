@@ -22,12 +22,13 @@ Esta documentação descreve a estrutura e os comportamentos implementados na br
 | --- | --- |
 | Unity Editor | **2022.3.62f3** |
 | C# | Scripts de comportamento e regras do jogo |
+| WebGL | disponilização web |
 | Universal Render Pipeline | 14.0.12 |
 | Cinemachine | 2.10.5 |
 | TextMesh Pro | 3.0.7 |
 | Unity UI (uGUI) | 1.0.0 |
 | Unity 2D | Sprites, física 2D e tilemaps |
-| Unity Test Framework | 1.1.33, declarado nas dependências |
+
 
 A versão do editor está em [ProjectVersion.txt](ProjectSettings/ProjectVersion.txt). As dependências são controladas por [manifest.json](Packages/manifest.json) e [packages-lock.json](Packages/packages-lock.json). O projeto utiliza o sistema clássico de entrada do Unity (`Input Manager`).
 
@@ -216,7 +217,7 @@ A tela de login registra um nome local. Ao finalizar, o inventário oferece um b
 
 1. Abra **File > Build Settings** no Unity.
 2. Confira as sete cenas habilitadas descritas acima, mantendo `Load` como primeira cena habilitada.
-3. Selecione a plataforma de destino e instale seu módulo pelo Unity Hub, se necessário.
+3. Selecione a plataforma de destino (WebGL) e instale seu módulo pelo Unity Hub, se necessário.
 4. Use **Switch Platform** quando for preciso trocar de plataforma.
 5. Revise as opções em **Player Settings**.
 6. Use **Build** ou **Build And Run** e escolha uma pasta de saída fora de `Assets`.
@@ -240,8 +241,6 @@ Sugestão de verificação manual após mudanças:
 4. Concluir um desafio e conferir a flag no inventário após reabrir o jogo.
 5. Verificar as condições de acesso ao boss, as transições e a chegada aos créditos.
 6. Repetir os fluxos afetados na build de destino.
-
-O Unity Test Framework está declarado no projeto, mas não foi identificada uma suíte própria de testes automatizados em `Assets/Scripts`. Esta documentação foi elaborada pela leitura dos arquivos; a execução no editor e a geração de builds não foram verificadas nesta atualização.
 
 ## DEsenvolvedoras
 - Para suporte, contacte as desenvolvedoras do projeto:
