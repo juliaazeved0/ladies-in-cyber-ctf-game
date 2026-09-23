@@ -243,11 +243,13 @@ Sugestão de verificação manual após mudanças:
 
 O Unity Test Framework está declarado no projeto, mas não foi identificada uma suíte própria de testes automatizados em `Assets/Scripts`. Esta documentação foi elaborada pela leitura dos arquivos; a execução no editor e a geração de builds não foram verificadas nesta atualização.
 
-## Colaboradoras e desenvolvedoras
+## DEsenvolvedoras
+- Para suporte, contacte as desenvolvedoras do projeto:
 
-| Desenvolvedora | GitHub | E-mail registrado nos commits |
+| Desenvolvedora | GitHub | E-mail de contato |
 | --- | --- | --- |
 | Julia Azevedo | [@juliaazeved0](https://github.com/juliaazeved0) | [juliacarolineazevedo@gmail.com](mailto:juliacarolineazevedo@gmail.com) |
 | Polyana Neuland | [@polyneuland](https://github.com/polyneuland) | [neulandpoly@gmail.com](mailto:neulandpoly@gmail.com) |
+
 
 Os e-mails acima constam no histórico Git do projeto; podem diferir dos e-mails atualmente exibidos nos perfis do GitHub.
