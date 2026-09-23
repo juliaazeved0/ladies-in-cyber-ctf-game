@@ -1,4 +1,4 @@
-# Ladies in Cyber — CTF Game
+# Projeto CyberLace CTF game - Ladies in Cyber 
 
 Jogo 2D desenvolvido em Unity e C# que combina exploração, diálogos com NPCs e desafios de cibersegurança no formato Capture the Flag (CTF). A jogadora percorre ambientes, investiga pistas e coleta flags, com acesso a inventário, playbook e uma etapa final na sala do boss.
 
