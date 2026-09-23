@@ -250,6 +250,3 @@ O Unity Test Framework está declarado no projeto, mas não foi identificada uma
 | --- | --- | --- |
 | Julia Azevedo | [@juliaazeved0](https://github.com/juliaazeved0) | [juliacarolineazevedo@gmail.com](mailto:juliacarolineazevedo@gmail.com) |
 | Polyana Neuland | [@polyneuland](https://github.com/polyneuland) | [neulandpoly@gmail.com](mailto:neulandpoly@gmail.com) |
-
-
-Os e-mails acima constam no histórico Git do projeto; podem diferir dos e-mails atualmente exibidos nos perfis do GitHub.
