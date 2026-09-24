@@ -90,17 +90,18 @@ public class DialogueManager : MonoBehaviour
         buttonExit.gameObject.SetActive(false);
 
         int dialogueInicialDone = PlayerPrefs.GetInt(INICIAL_KEY, 0);
+        bool bossUnlocked = PlayerPrefs.GetInt("BossRoomUnlocked", 0) == 1;
 
-        if(dialogueInicialDone == 1)
+        if (dialogueInicialDone == 1 || bossUnlocked)
         {
-            lockImage.gameObject.SetActive(false);
-            
-            if(lockLadder != null) 
-            {
-                lockLadder.SetActive(false);
-            }
+            if (lockImage != null) lockImage.SetActive(false);
         }
-        
+
+        if (dialogueInicialDone == 1 && lockLadder != null)
+        {
+            lockLadder.SetActive(false);
+        }
+
         string playerName = PlayerPrefs.GetString(PLAYER_NAME_KEY, "Jogadora");
 
         if(playerNameText != null)
@@ -246,5 +247,10 @@ public class DialogueManager : MonoBehaviour
             miniMapCanvas.SetActive(true);
             cameraMiniMap.SetActive(true);
         }
+    }
+
+    public void HideLock()
+    {
+        if (lockImage != null) lockImage.SetActive(false);
     }
 }
