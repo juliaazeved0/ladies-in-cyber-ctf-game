@@ -50775,7 +50775,7 @@ GameObject:
   - component: {fileID: 297453727}
   - component: {fileID: 297453726}
   m_Layer: 5
-  m_Name: Button#
+  m_Name: HashtagButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52153,7 +52153,7 @@ GameObject:
   - component: {fileID: 374768981}
   - component: {fileID: 374768980}
   m_Layer: 5
-  m_Name: ButtonEnter
+  m_Name: EnterButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56192,7 +56192,7 @@ GameObject:
   - component: {fileID: 639061348}
   - component: {fileID: 639061347}
   m_Layer: 5
-  m_Name: devicePanel
+  m_Name: DevicePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56622,7 +56622,7 @@ GameObject:
   - component: {fileID: 663498865}
   - component: {fileID: 663498864}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59781,7 +59781,7 @@ GameObject:
   - component: {fileID: 910382761}
   - component: {fileID: 910382760}
   m_Layer: 5
-  m_Name: InputField (TMP)
+  m_Name: InputField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68048,7 +68048,7 @@ GameObject:
   - component: {fileID: 1519257214}
   - component: {fileID: 1519257213}
   m_Layer: 5
-  m_Name: btnExit (1)
+  m_Name: ExitBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68406,7 +68406,7 @@ GameObject:
   - component: {fileID: 1535967502}
   - component: {fileID: 1535967501}
   m_Layer: 5
-  m_Name: Button*
+  m_Name: AsteriskButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91095,7 +91095,7 @@ GameObject:
   - component: {fileID: 1810372057}
   - component: {fileID: 1810372056}
   m_Layer: 5
-  m_Name: post-itPanel
+  m_Name: PostItPanelBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94692,7 +94692,7 @@ GameObject:
   - component: {fileID: 1977573150}
   - component: {fileID: 1977573149}
   m_Layer: 5
-  m_Name: buttonExitPostIt
+  m_Name: ExitPostItButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
