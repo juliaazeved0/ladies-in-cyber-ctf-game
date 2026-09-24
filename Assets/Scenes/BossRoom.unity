@@ -1419,7 +1419,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1870593159}
         m_TargetAssemblyTypeName: ChangePanels, Assembly-CSharp
-        m_MethodName: FecharPanelNotes
+        m_MethodName: CloseNotesPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2370,9 +2370,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89ae10c931d1d0d46b80c3a749c2f947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scriptPulse: {fileID: 1399246980}
+  pulseOutline: {fileID: 1399246980}
   interactionNotice: {fileID: 1175607048}
   initialBackground: {fileID: 1321393701}
+  playerIsNear: 0
 --- !u!61 &418299132
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2432,7 +2433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionNotice: {fileID: 1175607048}
   challengePanel: {fileID: 1321393701}
-  scriptPulse: {fileID: 1399246980}
+  pulseOutline: {fileID: 1399246980}
 --- !u!224 &447931807 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5782139982538599897, guid: 6f5024ad9540cb147be75c55d4da2a38, type: 3}
@@ -2583,7 +2584,7 @@ GameObject:
   - component: {fileID: 471556568}
   - component: {fileID: 471556567}
   m_Layer: 0
-  m_Name: FrameProhibitedToFilm
+  m_Name: ProhibitedSign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2713,7 +2714,7 @@ GameObject:
   - component: {fileID: 483806163}
   - component: {fileID: 483806162}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3261,7 +3262,7 @@ GameObject:
   - component: {fileID: 541311012}
   - component: {fileID: 541311011}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3471,7 +3472,7 @@ GameObject:
   - component: {fileID: 559705060}
   - component: {fileID: 559705059}
   m_Layer: 0
-  m_Name: BackgroundBoss
+  m_Name: BossBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3624,7 +3625,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1870593159}
         m_TargetAssemblyTypeName: ChangePanels, Assembly-CSharp
-        m_MethodName: FecharPanelSteghideError
+        m_MethodName: CloseSteghideErrorPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4093,7 +4094,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1870593159}
         m_TargetAssemblyTypeName: ChangePanels, Assembly-CSharp
-        m_MethodName: AbrirPanelNotes
+        m_MethodName: OpenNotesPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5040,7 +5041,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1870593159}
         m_TargetAssemblyTypeName: ChangePanels, Assembly-CSharp
-        m_MethodName: FecharPanelSteghideBeach
+        m_MethodName: CloseSteghideBeachPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5613,7 +5614,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6148826119807891300, guid: 6f5024ad9540cb147be75c55d4da2a38, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ExitChallengBoss
+      value: ExitChallengeBoss
       objectReference: {fileID: 0}
     - target: {fileID: 6148826119807891300, guid: 6f5024ad9540cb147be75c55d4da2a38, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -5822,7 +5823,7 @@ GameObject:
   - component: {fileID: 903441952}
   - component: {fileID: 903441951}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6161,7 +6162,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1870593159}
         m_TargetAssemblyTypeName: ChangePanels, Assembly-CSharp
-        m_MethodName: FecharPanelSuccessFlag
+        m_MethodName: CloseSuccessFlagPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6764,7 +6765,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6148826119807891300, guid: 6f5024ad9540cb147be75c55d4da2a38, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ExitChallengBoss
+      value: ExitChallengeBoss
       objectReference: {fileID: 0}
     - target: {fileID: 6148826119807891300, guid: 6f5024ad9540cb147be75c55d4da2a38, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -7258,6 +7259,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2439666152004899600, guid: 648ee521520970c4ca26ff39fee0aa3d, type: 3}
+      propertyPath: m_Name
+      value: InputField
+      objectReference: {fileID: 0}
     - target: {fileID: 3430694652789142107, guid: 648ee521520970c4ca26ff39fee0aa3d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -7381,6 +7386,10 @@ PrefabInstance:
     - target: {fileID: 4606898966940839088, guid: 648ee521520970c4ca26ff39fee0aa3d, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4740705110443072471, guid: 648ee521520970c4ca26ff39fee0aa3d, type: 3}
+      propertyPath: m_Name
+      value: CloseButton
       objectReference: {fileID: 0}
     - target: {fileID: 5107608263848374394, guid: 648ee521520970c4ca26ff39fee0aa3d, type: 3}
       propertyPath: m_fontStyle
@@ -8657,7 +8666,7 @@ GameObject:
   - component: {fileID: 1334120328}
   - component: {fileID: 1334120327}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9027,7 +9036,7 @@ GameObject:
   - component: {fileID: 1396463311}
   - component: {fileID: 1396463310}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9380,7 +9389,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1870593159}
         m_TargetAssemblyTypeName: ChangePanels, Assembly-CSharp
-        m_MethodName: AoClicarNoBotaoSteghide
+        m_MethodName: OnSteghideButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9489,7 +9498,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 34
+  field of view: 40
   orthographic: 1
   orthographic size: 7
   m_Depth: -1
@@ -9516,7 +9525,7 @@ Transform:
   m_GameObject: {fileID: 1418484521}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -34.386665, y: -32.37, z: -10}
+  m_LocalPosition: {x: 1.4633336, y: -0.4400003, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10803,7 +10812,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1870593159}
         m_TargetAssemblyTypeName: ChangePanels, Assembly-CSharp
-        m_MethodName: AbrirPanelSuccessFlag
+        m_MethodName: OpenSuccessFlagPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10863,7 +10872,7 @@ GameObject:
   - component: {fileID: 1753749095}
   - component: {fileID: 1753749093}
   m_Layer: 0
-  m_Name: RestrictedAccessFramework
+  m_Name: RestrictedAccessSign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11065,7 +11074,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1870593159}
         m_TargetAssemblyTypeName: ChangePanels, Assembly-CSharp
-        m_MethodName: FecharPanelMetadadaInfo
+        m_MethodName: CloseMetadataInfoPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12109,7 +12118,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1870593159}
         m_TargetAssemblyTypeName: ChangePanels, Assembly-CSharp
-        m_MethodName: AbrirPanelMetadadaInfo
+        m_MethodName: OpenMetadataInfoPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12526,7 +12535,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: senha incorreta!
+  m_text: Senha incorreta!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c8b2d073c88508943b8712f4e34c6966, type: 2}
   m_sharedMaterial: {fileID: -8451331422274171582, guid: c8b2d073c88508943b8712f4e34c6966, type: 2}
@@ -12700,9 +12709,9 @@ GameObject:
   - component: {fileID: 2069930921}
   - component: {fileID: 2069930920}
   - component: {fileID: 2069930919}
-  - component: {fileID: 2069930918}
+  - component: {fileID: 2069930922}
   m_Layer: 5
-  m_Name: PanelFadeBlack
+  m_Name: BlackFadePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12727,18 +12736,6 @@ RectTransform:
   m_AnchoredPosition: {x: -3.1618652, y: 6.3239746}
   m_SizeDelta: {x: 101.1842, y: 75.8883}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2069930918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2069930916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9592591151ad4be48a45707146d6bd98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &2069930919
 Animator:
   serializedVersion: 5
@@ -12798,6 +12795,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2069930916}
   m_CullTransparentMesh: 1
+--- !u!114 &2069930922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069930916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9592591151ad4be48a45707146d6bd98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2072995254
 GameObject:
   m_ObjectHideFlags: 0
@@ -13343,7 +13352,7 @@ GameObject:
   - component: {fileID: 2124023656}
   - component: {fileID: 2124023655}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

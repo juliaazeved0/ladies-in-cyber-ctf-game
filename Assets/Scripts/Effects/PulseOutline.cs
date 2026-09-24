@@ -1,18 +1,23 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-//script criado para o efeito de pulsar nos outlines
-//deve ser adicionado ao objeto com material do shader
+/// <summary>
+/// Controla um efeito de contorno pulsante (outline) em um SpriteRenderer,
+/// variando a espessura do contorno ao longo do tempo via shader properties.
+/// </summary>
 public class PulseOutline : MonoBehaviour
 {
-    [Header("Settings pulse effect")]
-    public float pulseSpeed = 0.05f;
-    public float maxThickness = 0.05f;
-    public bool startActive = false;
+    [Header("Pulse Settings")]
+    [Tooltip("Velocidade da pulsacao do contorno. Quanto maior, mais rapida a oscilacao.")]
+    [SerializeField] private float pulseSpeed = 0.05f;
+
+    [Tooltip("Espessura maxima que o contorno atinge durante a pulsacao.")]
+    [SerializeField] private float maxThickness = 0.05f;
+
+    [Tooltip("Se marcado, a pulsacao ja comeca ativa assim que o objeto eh carregado.")]
+    [SerializeField] private bool startActive = false;
 
     private Material myMaterial;
+
     private bool isPulsing = false;
 
     private int thicknessID;
@@ -20,10 +25,16 @@ public class PulseOutline : MonoBehaviour
     void Start()
     {
         var renderer = GetComponent<SpriteRenderer>();
+
         if(renderer != null)
         {
             myMaterial = renderer.material;
         }
+        else
+        {
+            Debug.LogWarning($"{gameObject.name} não possui um SpriteRenderer. O contorno não poderá ser exibido.");
+        }
+
         thicknessID = Shader.PropertyToID("_OutlineThickness");
 
         if(startActive)
@@ -45,20 +56,18 @@ public class PulseOutline : MonoBehaviour
         }
     }
 
-// metodo para chamar no botao de ajudar
-// arrastar o objeto q contem esse script no botao e selecionar a funcao abaixo
-// com o objeto q contem esse script selecionado, deve arrastar o panel do dialogo q deve ser fechado
+    //Ativa a pulsacao do contorno e torna o efeito visivel
     public void StartPulsing()
     {
         isPulsing = true;
+
         if(myMaterial != null)
         {
             myMaterial.SetFloat("_OutlineAlphaMultiplier", 1.0f);
         }
     }
 
-
-// para chamar quando a player concluir a task 
+    //Interrompe a pulsacao e zera a espessura/visibilidade do contorno
     public void StopPulsing()
     {
         isPulsing = false;
@@ -67,8 +76,6 @@ public class PulseOutline : MonoBehaviour
         {
             myMaterial.SetFloat(thicknessID, 0.0f);
             myMaterial.SetFloat("_OutlineAlphaMultiplier", 0.0f);
-        
         }
-       
     }
 }

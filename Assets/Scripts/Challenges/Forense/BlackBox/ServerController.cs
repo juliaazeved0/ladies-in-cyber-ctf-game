@@ -1,78 +1,104 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ServerController : LockObjectInteraction //Jï¿½ possui todas as funï¿½ï¿½es de interaï¿½ï¿½o do LockObjectInteraction
+/// <summary>
+/// Controla a logica do Servidor no desafio Black Box.
+/// Gerencia estados de bloqueio visual, interacao via hackeamento e conclusao do puzzle.
+/// </summary>
+public class ServerController : LockObjectInteraction
 {
-    [Header("Objetos dos Cadeados")] //Tï¿½tulo visual no Inspector e permite que arraste objetos
-    public SpriteRenderer lockClosed; //Imagem do cadeado fechado
-    public SpriteRenderer lockOpened; //Imagem do cadeado aberto
+    [Header("Visual State Indicator")]
+    [Tooltip("Referencia ao icone do cadeado fechado.")]
+    public SpriteRenderer lockClosed;
 
-    [Header("Estado Final")]
-    public bool finalizado = false; //Variï¿½vel para indicar se o desafio do servidor foi concluï¿½do
-    public GameObject panelConnect; //Painel que aparece quando os cabos precisam ser conectados
+    [Tooltip("Referencia ao icone do cadeado aberto.")]
+    public SpriteRenderer lockOpened;
 
-    void Start()
+    [Header("Server Challenges")]
+    [Tooltip("Indica se o desafio interno do servidor foi finalizado.")]
+    public bool isFinished = false;
+
+    [Tooltip("Painel UI para a etapa de conexao de cabos.")]
+    public GameObject connectionPanel;
+
+    //Inicializa o servidor bloqueado e esconde os paineis de desafio
+    new void Start()
     {
-        isUnlocked = false; //O servidor comeï¿½a bloqueado
-        finalizado = false; //Garante que o desafio do servidor tambï¿½m comeï¿½a nï¿½o finalizado
+        isUnlocked = false;
+        isFinished = false;
 
-        //Verifica se o objeto foi arrastado no Inspector. Se foi, ativa o cadeado fechado. Ou seja, o servidor comeï¿½a visualmente bloqueado
-        if (lockClosed != null) lockClosed.gameObject.SetActive(true);
-
-        //Desativa o cadeado aberto. Assim, sï¿½ aparece o cadeado fechado no inï¿½cio
+        //Configuracao visual inicial dos cadeados
+        if(lockClosed != null) lockClosed.gameObject.SetActive(true);
         if(lockOpened != null) lockOpened.gameObject.SetActive(false);
 
-        //Painel que o desafio aparece quando o servidor ï¿½ desbloqueado, sendo desativado no inï¿½cio
         if(challengePanel != null) challengePanel.gameObject.SetActive(false);
-
-        //Garante que o painel de conexï¿½o de cabos comece escondido
-        if (panelConnect != null) panelConnect.SetActive(false);
+        if(connectionPanel != null) connectionPanel.SetActive(false);
     }
 
     protected override void Update()
     {
-        base.Update(); //Detecta a tecla E, apariï¿½ï¿½o do modal e a lï¿½gica de proximidade
+        //Executa a logica base de proximidade e deteccao de tecla
+        base.Update();
     }
 
-    public void UnlockByHacking() //Funï¿½ï¿½o chamada pelo ManagerPanels
+    //Chamado externamente apos o sucesso no hacking via PC
+    public void UnlockByHacking()
     {
-        isUnlocked = true; //Marca o servidor como desbloqueado depois de ser acessado no PC
+        isUnlocked = true;
 
-        if (lockClosed != null) lockClosed.gameObject.SetActive(false); //Esconde o cadeado fechado
+        //Atualiza o estado visual para "desbloqueado"
+        if(lockClosed != null) lockClosed.gameObject.SetActive(false);
+        if(lockOpened != null) lockOpened.gameObject.SetActive(true);
 
-        if (lockOpened != null) lockOpened.gameObject.SetActive(true); //Mostrado o cadeado aberto
+        Debug.Log($"[ServerController] Servidor '{gameObject.name}' desbloqueado via hacking.");
     }
 
-    protected override void Interact() //Funï¿½ï¿½o chamada quando a jogadora pressiona a tecla E perto do objeto
+    //Sobrescreve a interacao para lidar com as duas fases do servidor
+    protected override void Interact()
     {
-        if (finalizado) //A partir disso, quando a jogadora interagir novamente, mostra apenas o painel de conexï¿½o com os cabos
+        //Fase 2: Conexao de cabos (se o desafio ja foi concluido)
+        if(isFinished)
         {
-            if(panelConnect != null)
+            if(connectionPanel != null)
             {
-                panelConnect.SetActive(true); //Mostra o painel de conexï¿½o dos cabos
-
-                if (interactionNotice != null) interactionNotice.SetActive(false); //Esconde o modal
+                connectionPanel.SetActive(true);
+                HideInteractionNotice();
             }
-            return; //Interrompe a funï¿½ï¿½o, nada mais abaixo ï¿½ executado
+            else
+            {
+                Debug.LogWarning($"[ServerController] 'connectionPanel' não foi atribuído no Inspector em {gameObject.name}.", this);
+            }
+            return;
         }
         
-        //Sï¿½ permite a interaï¿½ï¿½o se o servidor for hackeado pelo PC
-        if (isUnlocked)
+        //Fase 1: Desafio do servidor (so acessivel se desbloqueado pelo hacking)
+        if(isUnlocked)
         {
-            if (challengePanel != null)
+            if(challengePanel != null)
             {
-                challengePanel.SetActive(true); //Abre o painel do desafio do servidor
-
-                //Desativa o aviso visual "Aperte E" enquanto ela faz o desafio
-                if (interactionNotice != null) interactionNotice.SetActive(false);
+                challengePanel.SetActive(true);
+                HideInteractionNotice();
             }
-
+            else
+            {
+                Debug.LogWarning($"[ServerController] 'challengePanel' não foi atribuído no Inspector em {gameObject.name}.", this);
+            }
+        }
+        else
+        {
+            Debug.Log($"[ServerController] O servidor '{gameObject.name}' ainda está bloqueado.");
         }
     }
 
-    public void ConcluirServidor()
+    //Marca o desafio tecnico do servidor como concluido
+    public void CompleteServer()
     {
-        finalizado = true; //Marca o servidor como completado
+        isFinished = true;
+        Debug.Log($"[ServerController] Desafio do servidor '{gameObject.name}' concluído.");
+    }
+
+    //Esconde o aviso/icone visual de interacao da jogadora
+    public void HideInteractionNotice()
+    {
+        if(interactionNotice != null) interactionNotice.SetActive(false);
     }
 }

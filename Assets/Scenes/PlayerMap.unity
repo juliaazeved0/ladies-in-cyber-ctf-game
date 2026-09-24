@@ -850,7 +850,7 @@ GameObject:
   - component: {fileID: 17656645}
   - component: {fileID: 17656644}
   m_Layer: 5
-  m_Name: text_flag
+  m_Name: FlagText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48162,6 +48162,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 80294798}
   m_CullTransparentMesh: 1
+--- !u!1 &83276674 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5021793709922560221, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+  m_PrefabInstance: {fileID: 4484170277870850491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &84448198
 GameObject:
   m_ObjectHideFlags: 0
@@ -49766,7 +49771,7 @@ GameObject:
   - component: {fileID: 249146683}
   - component: {fileID: 249146688}
   m_Layer: 0
-  m_Name: DiretoraNPC
+  m_Name: NPCDirector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50464,7 +50469,7 @@ GameObject:
   - component: {fileID: 284683993}
   - component: {fileID: 284683992}
   m_Layer: 0
-  m_Name: JuliaANPC
+  m_Name: NPCJuliaA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50770,7 +50775,7 @@ GameObject:
   - component: {fileID: 297453727}
   - component: {fileID: 297453726}
   m_Layer: 5
-  m_Name: Button#
+  m_Name: HashtagButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50889,6 +50894,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 297453724}
   m_CullTransparentMesh: 1
+--- !u!1 &303341929 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7776142472561330157, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+  m_PrefabInstance: {fileID: 4484170277870850491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &306904725
 GameObject:
   m_ObjectHideFlags: 0
@@ -51674,6 +51684,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -21.19571
       objectReference: {fileID: 0}
+    - target: {fileID: 2439666152004899600, guid: 648ee521520970c4ca26ff39fee0aa3d, type: 3}
+      propertyPath: m_Name
+      value: InputField
+      objectReference: {fileID: 0}
     - target: {fileID: 3430694652789142107, guid: 648ee521520970c4ca26ff39fee0aa3d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -52139,7 +52153,7 @@ GameObject:
   - component: {fileID: 374768981}
   - component: {fileID: 374768980}
   m_Layer: 5
-  m_Name: ButtonEnter
+  m_Name: EnterButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53779,7 +53793,7 @@ GameObject:
   - component: {fileID: 500765344}
   - component: {fileID: 500765343}
   m_Layer: 0
-  m_Name: LucasNPC
+  m_Name: NPCLucas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54565,7 +54579,7 @@ GameObject:
   - component: {fileID: 553821001}
   - component: {fileID: 553821000}
   m_Layer: 0
-  m_Name: Ladder (1)
+  m_Name: Ladder02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55454,7 +55468,7 @@ GameObject:
   - component: {fileID: 577984500}
   - component: {fileID: 577984499}
   m_Layer: 5
-  m_Name: BallonJoana
+  m_Name: BalloonJoana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55530,7 +55544,7 @@ GameObject:
   - component: {fileID: 590415736}
   - component: {fileID: 590415735}
   m_Layer: 5
-  m_Name: PanelPostIt
+  m_Name: PostItPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55745,7 +55759,7 @@ GameObject:
   - component: {fileID: 619792845}
   - component: {fileID: 619792844}
   m_Layer: 0
-  m_Name: JuliaDNPC
+  m_Name: NPCJuliaD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56014,7 +56028,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: senha incorreta!
+  m_text: Senha incorreta!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c8b2d073c88508943b8712f4e34c6966, type: 2}
   m_sharedMaterial: {fileID: -8451331422274171582, guid: c8b2d073c88508943b8712f4e34c6966, type: 2}
@@ -56178,7 +56192,7 @@ GameObject:
   - component: {fileID: 639061348}
   - component: {fileID: 639061347}
   m_Layer: 5
-  m_Name: devicePanel
+  m_Name: DevicePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56271,7 +56285,7 @@ GameObject:
   - component: {fileID: 640410497}
   - component: {fileID: 640410496}
   m_Layer: 0
-  m_Name: FrancieleNPC
+  m_Name: NPCFranciele
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56608,7 +56622,7 @@ GameObject:
   - component: {fileID: 663498865}
   - component: {fileID: 663498864}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57140,6 +57154,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 690229076}
   m_CullTransparentMesh: 1
+--- !u!1 &691355458 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8178314681162845298, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+  m_PrefabInstance: {fileID: 4484170277870850491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &694815858
 GameObject:
   m_ObjectHideFlags: 0
@@ -57296,7 +57315,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 270.5289, y: -559.67224}
+  m_AnchoredPosition: {x: 270.5289, y: -611}
   m_SizeDelta: {x: 78.9487, y: 84.6032}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &720309200
@@ -58466,7 +58485,7 @@ GameObject:
   - component: {fileID: 806251749}
   - component: {fileID: 806251754}
   m_Layer: 0
-  m_Name: MariamNPC
+  m_Name: NPCMariam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58764,7 +58783,7 @@ GameObject:
   - component: {fileID: 846031722}
   - component: {fileID: 846031721}
   m_Layer: 5
-  m_Name: BalloonNPC
+  m_Name: NPCBalloon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58840,7 +58859,7 @@ GameObject:
   - component: {fileID: 850472273}
   - component: {fileID: 850472272}
   m_Layer: 5
-  m_Name: Text
+  m_Name: FullText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59762,7 +59781,7 @@ GameObject:
   - component: {fileID: 910382761}
   - component: {fileID: 910382760}
   m_Layer: 5
-  m_Name: InputField (TMP)
+  m_Name: InputField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59972,7 +59991,7 @@ GameObject:
   - component: {fileID: 912227837}
   - component: {fileID: 912227836}
   m_Layer: 5
-  m_Name: InteractionNotice (1)
+  m_Name: InteractionNotice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60240,7 +60259,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.5060998, y: 1.5599995}
+  m_AnchoredPosition: {x: -0.5061035, y: 1.5599995}
   m_SizeDelta: {x: 15.252, y: 21.001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &937910867
@@ -60674,6 +60693,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 954170872}
   m_CullTransparentMesh: 1
+--- !u!1 &954175007 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4213659278550974240, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+  m_PrefabInstance: {fileID: 4484170277870850491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &967790206
 GameObject:
   m_ObjectHideFlags: 0
@@ -61060,6 +61084,17 @@ Canvas:
   m_SortingLayerID: 105384023
   m_SortingOrder: 4
   m_TargetDisplay: 0
+--- !u!114 &986064518 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6281236259629527447, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+  m_PrefabInstance: {fileID: 4484170277870850491}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c89e5598e8c2fd74fb50b2f7ad1507e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &995347769
 GameObject:
   m_ObjectHideFlags: 0
@@ -61270,7 +61305,7 @@ GameObject:
   - component: {fileID: 1004981196}
   - component: {fileID: 1004981195}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62816,6 +62851,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1145405161}
   m_CullTransparentMesh: 1
+--- !u!1 &1155520110 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4429248441709663522, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+  m_PrefabInstance: {fileID: 4484170277870850491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1160322867
 GameObject:
   m_ObjectHideFlags: 0
@@ -63625,6 +63665,17 @@ Canvas:
   m_SortingLayerID: 105384023
   m_SortingOrder: 4
   m_TargetDisplay: 0
+--- !u!114 &1229362851 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7865588767352167943, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+  m_PrefabInstance: {fileID: 4484170277870850491}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1243295609
 GameObject:
   m_ObjectHideFlags: 0
@@ -64459,6 +64510,10 @@ PrefabInstance:
     - target: {fileID: 8496294055600563695, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
       propertyPath: m_Name
       value: EKey
+      objectReference: {fileID: 0}
+    - target: {fileID: 8588159410166248933, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
+      propertyPath: m_Name
+      value: ExitText
       objectReference: {fileID: 0}
     - target: {fileID: 8719235281442067309, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -65781,6 +65836,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1326193229}
   m_CullTransparentMesh: 1
+--- !u!1 &1336158624 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6079276243790003022, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+  m_PrefabInstance: {fileID: 4484170277870850491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1337954171 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8186622333903765082, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
@@ -66344,6 +66404,7 @@ MonoBehaviour:
   balloonNPC: {fileID: 577984499}
   interactionNotice: {fileID: 912227834}
   dialogueManager: {fileID: 114838448}
+  playerIsHere: 0
   debugMode: 0
 --- !u!1 &1387933515
 GameObject:
@@ -66532,8 +66593,8 @@ MonoBehaviour:
   outputText: {fileID: 206701147}
   inputField: {fileID: 2110678067}
   scrollRect: {fileID: 1994427560}
-  popUpSucesso: {fileID: 548097133}
-  popCaptureFlag: {fileID: 1055385242}
+  sucessPopup: {fileID: 548097133}
+  captureFlagPopup: {fileID: 1055385242}
   objectPulse: {fileID: 752310397}
 --- !u!114 &1394277588
 MonoBehaviour:
@@ -66567,7 +66628,7 @@ GameObject:
   - component: {fileID: 1398667565}
   - component: {fileID: 1398667564}
   m_Layer: 0
-  m_Name: PolyanaNPC
+  m_Name: NPCPolyana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66911,6 +66972,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &1415386824 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3608001821962150132, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+  m_PrefabInstance: {fileID: 4484170277870850491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1427923031
 GameObject:
   m_ObjectHideFlags: 0
@@ -67448,7 +67514,7 @@ GameObject:
   - component: {fileID: 1472821173}
   - component: {fileID: 1472821172}
   m_Layer: 5
-  m_Name: Text
+  m_Name: FullText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67621,14 +67687,15 @@ MonoBehaviour:
   devicePanel: {fileID: 639061345}
   panelDialogueJoana: {fileID: 84448198}
   input: {fileID: 910382760}
+  correctPassword: 1541
   lockObject: {fileID: 1572438454}
   pulse: {fileID: 1506739871}
   fadeAnimator: {fileID: 1918863468}
   panelBlack: {fileID: 1918863462}
-  lockInteraction: {fileID: 1506739875}
-  dialogueManager: {fileID: 114838448}
   bossSceneName: BossRoom
   bossMusic: {fileID: 8300000, guid: 0eaf24a4245034347bf2f9f708f1a255, type: 3}
+  lockInteraction: {fileID: 1506739875}
+  dialogueManager: {fileID: 114838448}
   bossRoomSpawnPosition: {x: 0, y: 0}
 --- !u!61 &1473258176
 BoxCollider2D:
@@ -67702,6 +67769,11 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &1478636862 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2232671280862223465, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+  m_PrefabInstance: {fileID: 4484170277870850491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1479131761
 GameObject:
   m_ObjectHideFlags: 0
@@ -67841,6 +67913,16 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4230831662659201652, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
   m_PrefabInstance: {fileID: 1270995715}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1483595358 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6777768724058872986, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+  m_PrefabInstance: {fileID: 4484170277870850491}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1501318216 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4229777369906181457, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+  m_PrefabInstance: {fileID: 4484170277870850491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1506739867 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8647314818897857997, guid: 2ce12bcfcf857a9449c39fd5c38e342f, type: 3}
@@ -67966,7 +68048,7 @@ GameObject:
   - component: {fileID: 1519257214}
   - component: {fileID: 1519257213}
   m_Layer: 5
-  m_Name: btnExit (1)
+  m_Name: ExitBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68324,7 +68406,7 @@ GameObject:
   - component: {fileID: 1535967502}
   - component: {fileID: 1535967501}
   m_Layer: 5
-  m_Name: Button*
+  m_Name: AsteriskButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68911,7 +68993,7 @@ GameObject:
   - component: {fileID: 1572364563}
   - component: {fileID: 1572364562}
   m_Layer: 0
-  m_Name: KassimeNPC
+  m_Name: NPCKassime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69633,6 +69715,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4077238475758043097, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
   m_PrefabInstance: {fileID: 2759342970082349630}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1617404808 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8400839006227124032, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+  m_PrefabInstance: {fileID: 4484170277870850491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1625154553
 GameObject:
   m_ObjectHideFlags: 0
@@ -69730,7 +69817,7 @@ GameObject:
   - component: {fileID: 1638207362}
   - component: {fileID: 1638207361}
   m_Layer: 0
-  m_Name: PanelRansomware
+  m_Name: RansomwarePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86653,6 +86740,11 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 1665417828}
+--- !u!1 &1669807230 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8452382662863320509, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+  m_PrefabInstance: {fileID: 4484170277870850491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1670561949
 GameObject:
   m_ObjectHideFlags: 0
@@ -87149,7 +87241,7 @@ GameObject:
   - component: {fileID: 1726529316}
   - component: {fileID: 1726529315}
   m_Layer: 5
-  m_Name: FullText
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87684,7 +87776,7 @@ GameObject:
   - component: {fileID: 1759766292}
   - component: {fileID: 1759766291}
   m_Layer: 0
-  m_Name: HeloisaNPC
+  m_Name: NPCHeloisa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90347,7 +90439,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1577330447}
         m_TargetAssemblyTypeName: PanelController, Assembly-CSharp
-        m_MethodName: BackMap
+        m_MethodName: BackToMap
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -91003,7 +91095,7 @@ GameObject:
   - component: {fileID: 1810372057}
   - component: {fileID: 1810372056}
   m_Layer: 5
-  m_Name: post-itPanel
+  m_Name: PostItPanelBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91667,6 +91759,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1843030714}
   m_CullTransparentMesh: 1
+--- !u!1 &1844243436 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6983201833153629238, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+  m_PrefabInstance: {fileID: 4484170277870850491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1844799025
 GameObject:
   m_ObjectHideFlags: 0
@@ -91680,7 +91777,7 @@ GameObject:
   - component: {fileID: 1844799028}
   - component: {fileID: 1844799027}
   m_Layer: 5
-  m_Name: ExitButton (1)
+  m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91944,7 +92041,7 @@ GameObject:
   - component: {fileID: 1857685369}
   - component: {fileID: 1857685368}
   m_Layer: 5
-  m_Name: Text
+  m_Name: FullText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92409,7 +92506,7 @@ GameObject:
   - component: {fileID: 1881653828}
   - component: {fileID: 1881653827}
   m_Layer: 0
-  m_Name: BackgroundDiretora
+  m_Name: BackgroundDirector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94595,7 +94692,7 @@ GameObject:
   - component: {fileID: 1977573150}
   - component: {fileID: 1977573149}
   m_Layer: 5
-  m_Name: buttonExitPostIt
+  m_Name: ExitPostItButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94892,7 +94989,7 @@ GameObject:
   - component: {fileID: 1985489938}
   - component: {fileID: 1985489937}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95489,6 +95586,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 388362156405440944, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
   m_PrefabInstance: {fileID: 318958581887496778}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2059065016 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2120989022573505892, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+  m_PrefabInstance: {fileID: 4484170277870850491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2059763370
 GameObject:
   m_ObjectHideFlags: 0
@@ -96065,6 +96167,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2096769637 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5138657036259939397, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+  m_PrefabInstance: {fileID: 4484170277870850491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2097849454
 GameObject:
   m_ObjectHideFlags: 0
@@ -96077,7 +96184,7 @@ GameObject:
   - component: {fileID: 2097849457}
   - component: {fileID: 2097849456}
   m_Layer: 5
-  m_Name: InteractionNotice
+  m_Name: InteractionNoticeTwo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96308,7 +96415,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6ab8020b3a041014faf16af0aa427f7f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 42520e413f6971c4890fd74661eef4fc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -96617,7 +96724,7 @@ GameObject:
   - component: {fileID: 2119823928}
   - component: {fileID: 2119823927}
   m_Layer: 5
-  m_Name: Text
+  m_Name: ExitText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96908,6 +97015,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConfirmButton
       objectReference: {fileID: 0}
+    - target: {fileID: 1095614319278724330, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
+      propertyPath: m_Name
+      value: SucessPanel
+      objectReference: {fileID: 0}
     - target: {fileID: 1160975721675375509, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -96928,6 +97039,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1169203851804840382, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
     - target: {fileID: 1506116622822500911, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -96939,6 +97054,10 @@ PrefabInstance:
     - target: {fileID: 1740214560447544076, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_Name
       value: ExitButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1756704357650668668, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
+      propertyPath: m_Name
+      value: HiddenMarketChallenge
       objectReference: {fileID: 0}
     - target: {fileID: 1793302020913514111, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_Name
@@ -96975,6 +97094,10 @@ PrefabInstance:
     - target: {fileID: 1907513136667642504, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_Name
       value: BalloonNPCLuiz
+      objectReference: {fileID: 0}
+    - target: {fileID: 1990377621423496117, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
+      propertyPath: m_Name
+      value: SucessPanel
       objectReference: {fileID: 0}
     - target: {fileID: 2158685235562325586, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_Name
@@ -97015,6 +97138,10 @@ PrefabInstance:
     - target: {fileID: 3010232026201976255, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_Name
       value: ExitButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3023635887464191819, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
+      propertyPath: m_Name
+      value: PcPanel
       objectReference: {fileID: 0}
     - target: {fileID: 3269414529273319296, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_SortingOrder
@@ -97164,6 +97291,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -1213689959
       objectReference: {fileID: 0}
+    - target: {fileID: 6184139040897642529, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
+      propertyPath: m_Name
+      value: CaptureFlagPanel
+      objectReference: {fileID: 0}
     - target: {fileID: 6210367361094272910, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_Name
       value: NameNPC
@@ -97171,6 +97302,10 @@ PrefabInstance:
     - target: {fileID: 6294780346391105089, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_Name
       value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 6609823904469222968, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
+      propertyPath: m_Name
+      value: BashButton
       objectReference: {fileID: 0}
     - target: {fileID: 6728292838625888402, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_SortingLayer
@@ -97236,9 +97371,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: NameNPC
       objectReference: {fileID: 0}
+    - target: {fileID: 7609582399779353956, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
+      propertyPath: m_Name
+      value: FlagCapturePanel
+      objectReference: {fileID: 0}
     - target: {fileID: 7630783189168067144, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_Name
       value: InteractionNoticeLuizTwo
+      objectReference: {fileID: 0}
+    - target: {fileID: 7635153971130952608, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
+      propertyPath: m_Name
+      value: BashButton
       objectReference: {fileID: 0}
     - target: {fileID: 7639233449478264446, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -97343,6 +97486,10 @@ PrefabInstance:
     - target: {fileID: 9099552282764502641, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166536577207010296, guid: 59301489bf2d74f43aabc66ee495adc8, type: 3}
+      propertyPath: isUnlocked
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -97452,6 +97599,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LinkButton
       objectReference: {fileID: 0}
+    - target: {fileID: 4755060612153026330, guid: 803f6279183426c499acf047408ae04a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenCTFLink
+      objectReference: {fileID: 0}
     - target: {fileID: 5405298270221913726, guid: 803f6279183426c499acf047408ae04a, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -97554,9 +97705,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 65455216018094217, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: InputField
+      objectReference: {fileID: 0}
     - target: {fileID: 78512485453643052, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_text
-      value: "DIGITE A SENHA\u200B"
+      value: "\u200B"
       objectReference: {fileID: 0}
     - target: {fileID: 78512485453643052, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Enabled
@@ -97572,7 +97727,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 575555058633527684, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
-      value: FullText
+      value: Text
       objectReference: {fileID: 0}
     - target: {fileID: 660793262089543663, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
@@ -97622,13 +97777,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1045463696951683679, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: InputField
+      objectReference: {fileID: 0}
+    - target: {fileID: 1202376419254402229, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_text
+      value: Olhe para o seu hardware!
+      objectReference: {fileID: 0}
     - target: {fileID: 1294191583682853697, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1294191583682853697, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000061035156
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396685817547482373, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: PathFolder
       objectReference: {fileID: 0}
     - target: {fileID: 1479412616198525628, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Enabled
@@ -97674,9 +97841,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: PC04
       objectReference: {fileID: 0}
+    - target: {fileID: 1874159220841292782, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: EnterZipButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000284388461773934, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: FlagButton
+      objectReference: {fileID: 0}
     - target: {fileID: 2003701056280281860, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
-      value: FullText
+      value: Text
       objectReference: {fileID: 0}
     - target: {fileID: 2022088339046674114, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
@@ -97694,6 +97869,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sofa02
       objectReference: {fileID: 0}
+    - target: {fileID: 2775829035436771678, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: PlayFair
+      objectReference: {fileID: 0}
     - target: {fileID: 2814695639391352654, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
       value: Table
@@ -97705,6 +97884,10 @@ PrefabInstance:
     - target: {fileID: 2912922585936241905, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
       value: PC
+      objectReference: {fileID: 0}
+    - target: {fileID: 2916636376077298402, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Text
       objectReference: {fileID: 0}
     - target: {fileID: 2930856318213648073, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
@@ -97746,9 +97929,17 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3124022586172060735, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
     - target: {fileID: 3153218594599544129, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
       value: ErrorPopup02
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265976156586810544, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: ErrorPopUp
       objectReference: {fileID: 0}
     - target: {fileID: 3429508442632013691, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_text
@@ -97762,9 +97953,17 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 349323599
       objectReference: {fileID: 0}
+    - target: {fileID: 3476640316163797242, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: PostIt
+      objectReference: {fileID: 0}
     - target: {fileID: 3524421176923481426, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
       value: PC03
+      objectReference: {fileID: 0}
+    - target: {fileID: 3633133868036369822, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: FlagZip
       objectReference: {fileID: 0}
     - target: {fileID: 3644621871253602729, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_SizeDelta.y
@@ -97772,7 +97971,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3644621871253602729, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 0.00012207031
       objectReference: {fileID: 0}
     - target: {fileID: 3707793262492842108, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: interactionNotice
@@ -97790,6 +97989,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3857503316413972110, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
     - target: {fileID: 3858444021333845145, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_text
       value: "r2xk3\ns9'br\ny'r'c9\u200B"
@@ -97798,9 +98001,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: InteractionNotice
       objectReference: {fileID: 0}
+    - target: {fileID: 4029590457470950726, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
     - target: {fileID: 4064055434161761730, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4085168736054312659, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: ErrorPopUp03
       objectReference: {fileID: 0}
     - target: {fileID: 4152712317571228953, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_SizeDelta.x
@@ -97830,6 +98041,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConfirmButton
       objectReference: {fileID: 0}
+    - target: {fileID: 4288001252167342339, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: TxtText
+      objectReference: {fileID: 0}
     - target: {fileID: 4291275997938100210, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Size.x
       value: 9.766556
@@ -97846,6 +98061,14 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -1.3059058
       objectReference: {fileID: 0}
+    - target: {fileID: 4333483626164415136, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 4336087319152149798, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: InputField
+      objectReference: {fileID: 0}
     - target: {fileID: 4363890053699086107, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -97861,6 +98084,14 @@ PrefabInstance:
     - target: {fileID: 4363890053699086107, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Color.r
       value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 4455026068243855347, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 4497806836021045756, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_text
+      value: Senha incorreta!
       objectReference: {fileID: 0}
     - target: {fileID: 4592652921594995974, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_SortingLayerID
@@ -97882,13 +98113,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: PCNPC
       objectReference: {fileID: 0}
+    - target: {fileID: 4897079865995238561, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: ErrorText
+      objectReference: {fileID: 0}
+    - target: {fileID: 4981293302486564607, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: InputField
+      objectReference: {fileID: 0}
     - target: {fileID: 4994046779274863975, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5073801726805851838, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
-      value: ErrorPopup02
+      value: ErrorPopup04
       objectReference: {fileID: 0}
     - target: {fileID: 5466395492412747555, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
@@ -97906,6 +98145,10 @@ PrefabInstance:
       propertyPath: m_HorizontalAlignment
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5643945280570568446, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: InputField
+      objectReference: {fileID: 0}
     - target: {fileID: 5669390715410001014, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_SizeDelta.x
       value: -129.6361
@@ -97922,6 +98165,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.000011444092
       objectReference: {fileID: 0}
+    - target: {fileID: 5816093343248067220, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: PasswordFolder
+      objectReference: {fileID: 0}
     - target: {fileID: 5877761041658611193, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -97929,6 +98176,10 @@ PrefabInstance:
     - target: {fileID: 5877761041658611193, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnClickExit
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082723519629408912, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: PopUpZip
       objectReference: {fileID: 0}
     - target: {fileID: 6128753153629807745, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_SizeDelta.x
@@ -97945,6 +98196,10 @@ PrefabInstance:
     - target: {fileID: 6128753153629807745, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -127
+      objectReference: {fileID: 0}
+    - target: {fileID: 6163497197093974095, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_text
+      value: Senha incorreta!
       objectReference: {fileID: 0}
     - target: {fileID: 6188275484989772550, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Size.x
@@ -97974,6 +98229,10 @@ PrefabInstance:
       propertyPath: rightPassword
       value: t3cl4d01ntu1t1v0
       objectReference: {fileID: 0}
+    - target: {fileID: 6497112119974710194, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_text
+      value: Senha incorreta!
+      objectReference: {fileID: 0}
     - target: {fileID: 6522026658430695755, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_fontStyle
       value: 4
@@ -97986,13 +98245,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: ErrorText
       objectReference: {fileID: 0}
+    - target: {fileID: 6665526213955341631, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: BoardTip
+      objectReference: {fileID: 0}
+    - target: {fileID: 6733052304871086911, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: FlagButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6750160201409111174, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 6750490343391296221, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
     - target: {fileID: 6767063864279625970, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: e26fae906d6ee0042bc2bad1a5493f0c, type: 3}
+    - target: {fileID: 6938962369408931007, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 7009355778012611435, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Password02
+      objectReference: {fileID: 0}
     - target: {fileID: 7055621970840329557, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_SortingOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7061770092681988665, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: ExitPopupButton
       objectReference: {fileID: 0}
     - target: {fileID: 7198494396661597427, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
@@ -98001,6 +98288,10 @@ PrefabInstance:
     - target: {fileID: 7300280138622730885, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
       value: ExitText
+      objectReference: {fileID: 0}
+    - target: {fileID: 7305483373869800684, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Text
       objectReference: {fileID: 0}
     - target: {fileID: 7473630221139034402, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
@@ -98016,11 +98307,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7546087432158865066, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
-      value: FullText
+      value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551343899529340778, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633055490214584068, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: SucessPopUp
       objectReference: {fileID: 0}
     - target: {fileID: 7648710328472405142, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
       value: NameBackground
+      objectReference: {fileID: 0}
+    - target: {fileID: 7682670404422406994, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: PlayFairPng
       objectReference: {fileID: 0}
     - target: {fileID: 7800066837402641341, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: buttonEnter
@@ -98030,6 +98333,10 @@ PrefabInstance:
       propertyPath: boardFolders
       value: 
       objectReference: {fileID: 768387479}
+    - target: {fileID: 8024962547956446619, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Password
+      objectReference: {fileID: 0}
     - target: {fileID: 8149042714418010964, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_SizeDelta.x
       value: 242.8856
@@ -98058,6 +98365,10 @@ PrefabInstance:
       propertyPath: playerNameplate
       value: 
       objectReference: {fileID: 1584242803}
+    - target: {fileID: 8276081254287694892, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: Important
+      objectReference: {fileID: 0}
     - target: {fileID: 8506995050437516745, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_Name
       value: Table03
@@ -98098,6 +98409,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -133.3
       objectReference: {fileID: 0}
+    - target: {fileID: 9191838953796044281, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+      propertyPath: m_Name
+      value: ErrorText
+      objectReference: {fileID: 0}
     - target: {fileID: 9198940382106917546, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
       propertyPath: m_SortingLayer
       value: 6
@@ -98110,8 +98425,7 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 349323599
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1479412616198525628, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4210801491439645508, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
     - {fileID: 8859915359890342182, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
@@ -98476,17 +98790,113 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 113270032139475082, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseAllMainPanels
+      objectReference: {fileID: 0}
+    - target: {fileID: 163476078271487136, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: FranPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 262288966758746777, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenDetails
+      objectReference: {fileID: 0}
+    - target: {fileID: 326449359619463685, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: challengePanel
+      value: 
+      objectReference: {fileID: 83276674}
+    - target: {fileID: 326449359619463685, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: connectionPanel
+      value: 
+      objectReference: {fileID: 1415386824}
+    - target: {fileID: 411932563893919894, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: CloseButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 613599837446001355, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: Text
+      objectReference: {fileID: 0}
     - target: {fileID: 771176521479357692, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_Name
       value: InteractionNotice
+      objectReference: {fileID: 0}
+    - target: {fileID: 861708059644077297, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: flagPanel
+      value: 
+      objectReference: {fileID: 1501318216}
+    - target: {fileID: 861708059644077297, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: detailsPanel
+      value: 
+      objectReference: {fileID: 1617404808}
+    - target: {fileID: 861708059644077297, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: netwatchPanel
+      value: 
+      objectReference: {fileID: 1336158624}
+    - target: {fileID: 861708059644077297, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: terminalPanel
+      value: 
+      objectReference: {fileID: 1478636862}
+    - target: {fileID: 861708059644077297, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: inventoryPanel
+      value: 
+      objectReference: {fileID: 1669807230}
+    - target: {fileID: 861708059644077297, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: successFlagPanel
+      value: 
+      objectReference: {fileID: 691355458}
+    - target: {fileID: 861708059644077297, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: errorWiresharkPanel
+      value: 
+      objectReference: {fileID: 1483595358}
+    - target: {fileID: 861708059644077297, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: successWiresharkPanel
+      value: 
+      objectReference: {fileID: 2059065016}
+    - target: {fileID: 1000189479911661584, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClosePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038788499744445937, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: KassimePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129603977553954013, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: FirewallPanel
       objectReference: {fileID: 0}
     - target: {fileID: 1206050929416380369, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: panelRansomware
       value: 
       objectReference: {fileID: 1638207359}
+    - target: {fileID: 1265764126417414161, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseOnlyDetails
+      objectReference: {fileID: 0}
+    - target: {fileID: 1292903044016917042, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: MailButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1425707836320539382, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenTerminal
+      objectReference: {fileID: 0}
     - target: {fileID: 1479195293853866798, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1644221041409908167, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClosePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1692351626495654255, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: AminButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 1704458144537332655, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: MailCorpPanel
       objectReference: {fileID: 0}
     - target: {fileID: 1704458144537332655, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_IsActive
@@ -98496,9 +98906,33 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1893778112012151848, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseAllMainPanels
+      objectReference: {fileID: 0}
+    - target: {fileID: 1941162408605691412, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: RhPanel
+      objectReference: {fileID: 0}
     - target: {fileID: 1963828553084625272, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_Name
       value: ForenseRoom
+      objectReference: {fileID: 0}
+    - target: {fileID: 2224825642951708972, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClosePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2270921405804839371, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: pulseOutline
+      value: 
+      objectReference: {fileID: 4484170277870850492}
+    - target: {fileID: 2400598610941766502, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: AminPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2448882244321200338, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: LinkButton
       objectReference: {fileID: 0}
     - target: {fileID: 2524672624723331459, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_SortingOrder
@@ -98508,6 +98942,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 70a5baf2ec58eee4dbbf0c8c65754c24, type: 2}
+    - target: {fileID: 2821279953988732845, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenWireshark
+      objectReference: {fileID: 0}
+    - target: {fileID: 2821279953988732845, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OpenSuccessWireshark
+      objectReference: {fileID: 0}
     - target: {fileID: 2870473312831618454, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_Size.x
       value: 4.9937744
@@ -98528,21 +98970,145 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 1a70c6be74c0cb24f90c2164136231c0, type: 3}
+    - target: {fileID: 2905780702174765681, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SubmitDomain
+      objectReference: {fileID: 0}
+    - target: {fileID: 3038521657126367104, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: MailInputPanel
+      objectReference: {fileID: 0}
     - target: {fileID: 3038521657126367104, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3133890363154178980, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClosePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3170500991282251101, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenSuccessFlag
+      objectReference: {fileID: 0}
+    - target: {fileID: 3180500409080473659, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: connectionPanel
+      value: 
+      objectReference: {fileID: 1415386824}
+    - target: {fileID: 3250993993067088090, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: CloseButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3259370639888899902, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseAllMainPanels
+      objectReference: {fileID: 0}
+    - target: {fileID: 3457377345778385614, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: InspectPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3470370635628547545, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: PhishingButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525064687622683941, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BackToMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 3525064687622683941, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ServerButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3549061954506223503, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: KassimeButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3608001821962150132, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: ConnectedPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 3856709006802407551, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenFlag
+      objectReference: {fileID: 0}
+    - target: {fileID: 3989012757946605953, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: MailControllerPanels
+      objectReference: {fileID: 0}
+    - target: {fileID: 4110417424296896401, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: FlagButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4202110197293770102, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BackToMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 4213659278550974240, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: SuccessFlagPanel
       objectReference: {fileID: 0}
     - target: {fileID: 4300887009554458597, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4429248441709663522, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: RightDomainPanel
+      objectReference: {fileID: 0}
     - target: {fileID: 4448946978979732302, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_Name
-      value: ManagerBlackBoxPanels
+      value: BlackBoxManagerPanels
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706550390331603336, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: BackButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4728775661394771598, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenFlagSuccessPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880005170943621674, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: FranButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4910116950460976009, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: Lock06
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021793709922560221, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: ChallengePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5084613401129219322, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: BackButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5110904220670628469, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: PhishingPanel
       objectReference: {fileID: 0}
     - target: {fileID: 5138657036259939397, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195734230135791314, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenNetwatch
+      objectReference: {fileID: 0}
+    - target: {fileID: 5274776615665212119, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenInventory
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373343362448680685, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: ManagerButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524784440997628401, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: InteractionNotice
+      objectReference: {fileID: 0}
+    - target: {fileID: 5756367733805233023, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: CloseButton
       objectReference: {fileID: 0}
     - target: {fileID: 5763291150607381566, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_Size.y
@@ -98552,13 +99118,61 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.4090265
       objectReference: {fileID: 0}
+    - target: {fileID: 5847743234572924200, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: CloseButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948732130099105596, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: BackButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960714390468258885, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: FullText
+      objectReference: {fileID: 0}
+    - target: {fileID: 5979462778346439203, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: AccessPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6020387221796505829, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseAllMainPanels
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080240930175195181, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: Lock03
+      objectReference: {fileID: 0}
+    - target: {fileID: 6080343979270151553, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: pulseOutline
+      value: 
+      objectReference: {fileID: 986064518}
+    - target: {fileID: 6251232770775898677, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReturnToMap
+      objectReference: {fileID: 0}
     - target: {fileID: 6281236259629527447, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: maxThickness
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6299816620861863612, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: NetwatchButton
+      objectReference: {fileID: 0}
     - target: {fileID: 6307240336143115395, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_SortingOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6666646249029860029, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: LinkSelection
+      objectReference: {fileID: 0}
+    - target: {fileID: 6757905333759024327, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseAllMainPanels
+      objectReference: {fileID: 0}
+    - target: {fileID: 6772274369300675732, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: CloseButton
       objectReference: {fileID: 0}
     - target: {fileID: 6777768724058872986, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_IsActive
@@ -98567,6 +99181,14 @@ PrefabInstance:
     - target: {fileID: 6876478570866973729, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_SortingOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6983201833153629238, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: WrongDomainPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7024638746829188793, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseAllMainPanels
       objectReference: {fileID: 0}
     - target: {fileID: 7204364337035335804, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_LocalPosition.x
@@ -98608,18 +99230,78 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7318810894806585345, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenNetguardPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7452184206017992595, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: GlitchPanel
+      objectReference: {fileID: 0}
     - target: {fileID: 7452184206017992595, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7529773122310768355, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: Lock02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578198002567465958, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BackToMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578198002567465958, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ServerButton, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7614218271405707006, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7642937656364933268, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: CloseButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 7776142472561330157, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: NetguardPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7779782993657408639, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: AccessButton
+      objectReference: {fileID: 0}
     - target: {fileID: 8178314681162845298, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8366026262167030091, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: FirewallButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8469591860672197817, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: Lock04
+      objectReference: {fileID: 0}
+    - target: {fileID: 8497613545543862522, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseAllMainPanels
+      objectReference: {fileID: 0}
+    - target: {fileID: 8538913220994248806, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: RhButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 8613556692983973213, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: ControllerPanels
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652201236818455580, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: netguardPanel
+      value: 
+      objectReference: {fileID: 303341929}
+    - target: {fileID: 8652201236818455580, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: mailInputPanel
+      value: 
+      objectReference: {fileID: 379897886}
     - target: {fileID: 8652201236818455580, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: panelMailInput
       value: 
@@ -98628,6 +99310,46 @@ PrefabInstance:
       propertyPath: panelRansomware
       value: 
       objectReference: {fileID: 1638207359}
+    - target: {fileID: 8652201236818455580, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: ransonwarePanel
+      value: 
+      objectReference: {fileID: 1638207359}
+    - target: {fileID: 8652201236818455580, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: domainInputField
+      value: 
+      objectReference: {fileID: 1229362851}
+    - target: {fileID: 8652201236818455580, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: flagSuccessPanel
+      value: 
+      objectReference: {fileID: 954175007}
+    - target: {fileID: 8652201236818455580, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: rightDomainPanel
+      value: 
+      objectReference: {fileID: 1155520110}
+    - target: {fileID: 8652201236818455580, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: wrongDomainPanel
+      value: 
+      objectReference: {fileID: 1844243436}
+    - target: {fileID: 8652201236818455580, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: initialBackground
+      value: 
+      objectReference: {fileID: 2096769637}
+    - target: {fileID: 8764266215098155268, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: BackButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 9009108518369930943, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: BackButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 9031987878364690860, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: ValidateButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 9106150943201450369, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: Lock05
+      objectReference: {fileID: 0}
     - target: {fileID: 9117010006416610908, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_SortingLayer
       value: 6
@@ -98639,6 +99361,10 @@ PrefabInstance:
     - target: {fileID: 9117010006416610908, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_SortingLayerID
       value: 349323599
+      objectReference: {fileID: 0}
+    - target: {fileID: 9208915583557539066, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+      propertyPath: m_Name
+      value: BackButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -98654,6 +99380,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1817740842}
   m_SourcePrefab: {fileID: 100100000, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+--- !u!114 &4484170277870850492 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3461451552138618453, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+  m_PrefabInstance: {fileID: 4484170277870850491}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c89e5598e8c2fd74fb50b2f7ad1507e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5577957365086859756
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -98882,6 +99619,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.06
       objectReference: {fileID: 0}
+    - target: {fileID: 4461213232035995361, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
+      propertyPath: m_Name
+      value: NextButton
+      objectReference: {fileID: 0}
     - target: {fileID: 4544491037752498475, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
       propertyPath: m_Name
       value: Reception
@@ -99012,7 +99753,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5978479317219025986, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
       propertyPath: m_Name
-      value: FullText
+      value: Text
       objectReference: {fileID: 0}
     - target: {fileID: 6014807437683480299, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
       propertyPath: m_SortingOrder
@@ -99282,9 +100023,7 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4225766600018452686, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
-    - {fileID: 4587521597465891972, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 388754657203575704, guid: 23ca2e2ec67f655439b4c132492b435f, type: 3}
     m_AddedGameObjects:

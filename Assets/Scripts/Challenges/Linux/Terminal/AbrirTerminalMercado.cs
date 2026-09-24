@@ -2,20 +2,31 @@ using System.Collections;
 using UnityEngine;
 using System.IO;
 using System;
-using System.Runtime.InteropServices;
 
+/// <summary>
+/// Gerencia a abertura do terminal externo para o desafio "Mercado Escondido".
+/// Herda funcionalidades base do desafio de pressao para reutilizar logica de SO.
+/// </summary>
 public class AbrirTerminalMercado : AbrirTerminalPressaoNoBash
 {
+    /// <summary>
+    /// Evento de clique para capturar a Flag apos resolver o desafio no terminal externo.
+    /// </summary>
     public void OnButtonClickCaptureFlag()
     {
         popCaptureFlag.SetActive(true);
+
+        //Obtem a flag especifica do desafio 2
         string newFlag = SafeBase.ViewBase(SafeBase.flag_2);
         FlagManager.Instance.SaveFlag("Mercado Escondido", newFlag);
     }
 
+    /// <summary>
+    /// Detecta o clique do objeto (computador do Luz) no cenario.
+    /// </summary>
     private void OnMouseDown()
     {
-        UnityEngine.Debug.Log("Acessando computador do Luiz...");
+        UnityEngine.Debug.Log("Acessando o computador do Luiz...");
         IniciarDesafioTerminal();
     }
 
@@ -29,11 +40,13 @@ public class AbrirTerminalMercado : AbrirTerminalPressaoNoBash
         string pastaStreaming = Path.GetFullPath(Application.streamingAssetsPath);
         string vitoriaPath = Path.Combine(pastaStreaming, "vitoria.txt");
 
-        if (File.Exists(vitoriaPath)) File.Delete(vitoriaPath);
+        //Limpa rastro de vitorias anteriores
+        if(File.Exists(vitoriaPath)) File.Delete(vitoriaPath);
 
         bool terminou = false;
         int exitCode = 0;
 
+        //Implementacao explicita para garantir os caminhos corretos do Mercado
 #if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
 
         System.Diagnostics.Process terminal = new System.Diagnostics.Process();
@@ -173,10 +186,11 @@ public class AbrirTerminalMercado : AbrirTerminalPressaoNoBash
 #endif
 
         bool desafioResolvido = false;
-
-        while (!terminou)
+        
+        //Loop de verificacao de vitoria
+        while(!terminou)
         {
-            if (File.Exists(vitoriaPath))
+            if(File.Exists(vitoriaPath))
             {
                 desafioResolvido = true;
                 break;
@@ -184,14 +198,15 @@ public class AbrirTerminalMercado : AbrirTerminalPressaoNoBash
             yield return new WaitForSeconds(0.5f);
         }
 
-        if (desafioResolvido || exitCode == 99 || File.Exists(vitoriaPath))
+        //Processamento do resultado final
+        if(desafioResolvido || exitCode == 99 || File.Exists(vitoriaPath))
         {
             UnityEngine.Debug.Log("Desafio do mercado resolvido! Pop-up aberto.");
 
-            if (popUpSucesso != null)
+            if(popUpSucesso != null)
                 popUpSucesso.SetActive(true);
 
-            if (File.Exists(vitoriaPath)) File.Delete(vitoriaPath);
+            if(File.Exists(vitoriaPath)) File.Delete(vitoriaPath);
         }
         else
         {

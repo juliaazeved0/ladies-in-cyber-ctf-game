@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 3399083463905532753}
   - component: {fileID: 3170500991282251101}
   m_Layer: 0
-  m_Name: ButtonFlag
+  m_Name: FlagButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1055,7 +1055,7 @@ GameObject:
   - component: {fileID: 892109249969998902}
   - component: {fileID: 93043496099175860}
   m_Layer: 5
-  m_Name: InteractionNotice (1)
+  m_Name: InteractionNotice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2441,8 +2441,8 @@ MonoBehaviour:
   isUnlocked: 0
   lockClosed: {fileID: 1299511411322166178}
   lockOpened: {fileID: 1402632558886637578}
-  finalizado: 0
-  panelConnect: {fileID: 3608001821962150132}
+  isFinished: 0
+  connectionPanel: {fileID: 0}
 --- !u!1 &1757135679109283294
 GameObject:
   m_ObjectHideFlags: 0
@@ -3005,7 +3005,7 @@ GameObject:
   - component: {fileID: 1534967356641433453}
   - component: {fileID: 1484562001545552300}
   m_Layer: 0
-  m_Name: PanelWiresharkSuccess
+  m_Name: SuccessWiresharkPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3478,7 +3478,7 @@ GameObject:
   - component: {fileID: 8218759206209658568}
   - component: {fileID: 6428143373308415248}
   m_Layer: 0
-  m_Name: PanelTerminal
+  m_Name: TerminalPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3631,7 +3631,7 @@ GameObject:
   - component: {fileID: 6171561216961993186}
   - component: {fileID: 5274776615665212119}
   m_Layer: 0
-  m_Name: ButtonAssetmgr
+  m_Name: AssetmgrButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4739,7 +4739,7 @@ GameObject:
   - component: {fileID: 2685481431741209169}
   - component: {fileID: 262288966758746777}
   m_Layer: 0
-  m_Name: ButtonDetails
+  m_Name: DetailsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4871,7 +4871,7 @@ GameObject:
   - component: {fileID: 2813788463791216924}
   - component: {fileID: 2821279953988732845}
   m_Layer: 0
-  m_Name: ButtonWireshark
+  m_Name: WiresharkButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5307,6 +5307,7 @@ MonoBehaviour:
   scriptPulse: {fileID: 3461451552138618453}
   interactionNotice: {fileID: 771176521479357692}
   initialBackground: {fileID: 2104220131252094051}
+  playerIsNear: 0
 --- !u!1 &3921238667742979501
 GameObject:
   m_ObjectHideFlags: 0
@@ -5444,6 +5445,7 @@ MonoBehaviour:
   panelGlitch: {fileID: 7452184206017992595}
   panelInspect: {fileID: 3457377345778385614}
   panelPhishing: {fileID: 5110904220670628469}
+  panelRansomware: {fileID: 0}
   imagemSelecaoLink: {fileID: 6666646249029860029}
 --- !u!1 &4110417424296896401
 GameObject:
@@ -5665,7 +5667,7 @@ GameObject:
   - component: {fileID: 5372746379416609952}
   - component: {fileID: 4276337858882727084}
   m_Layer: 0
-  m_Name: PanelFlag
+  m_Name: FlagPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6655,7 +6657,7 @@ GameObject:
   - component: {fileID: 5748510660562858548}
   - component: {fileID: 4885857302058894119}
   m_Layer: 0
-  m_Name: Lock (5)
+  m_Name: Lock06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8359,7 +8361,7 @@ GameObject:
   - component: {fileID: 5075846508262513802}
   - component: {fileID: 4835816436002081369}
   m_Layer: 0
-  m_Name: PanelNetwatch
+  m_Name: NetwatchPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8435,7 +8437,7 @@ GameObject:
   - component: {fileID: 6968251512503957449}
   - component: {fileID: 1299511411322166178}
   m_Layer: 0
-  m_Name: Lock (2)
+  m_Name: Lock03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8696,7 +8698,7 @@ GameObject:
   - component: {fileID: 6655895512036307412}
   - component: {fileID: 1425707836320539382}
   m_Layer: 0
-  m_Name: ButtonTerminal
+  m_Name: TerminalButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8829,7 +8831,7 @@ GameObject:
   - component: {fileID: 998366631131958528}
   - component: {fileID: 5195734230135791314}
   m_Layer: 0
-  m_Name: ButtonNetWatch
+  m_Name: NetwatchButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9351,7 +9353,7 @@ GameObject:
   - component: {fileID: 5162386809019634641}
   - component: {fileID: 6861633955576272388}
   m_Layer: 0
-  m_Name: PanelWiresharkError
+  m_Name: ErrorWiresharkPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11121,7 +11123,7 @@ GameObject:
   - component: {fileID: 3852306727323874090}
   - component: {fileID: 5662398191756070664}
   m_Layer: 0
-  m_Name: Lock (1)
+  m_Name: Lock02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12347,7 +12349,7 @@ GameObject:
   - component: {fileID: 6708850550936798858}
   - component: {fileID: 2880791636395465910}
   m_Layer: 0
-  m_Name: PanelFlagSuccess
+  m_Name: SuccessFlagPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12555,7 +12557,7 @@ GameObject:
   - component: {fileID: 8669973724469996719}
   - component: {fileID: 583161350023988382}
   m_Layer: 0
-  m_Name: PanelDetails
+  m_Name: DetailsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12631,7 +12633,7 @@ GameObject:
   - component: {fileID: 2204789273981381850}
   - component: {fileID: 3989843186887243125}
   m_Layer: 0
-  m_Name: PanelInventory
+  m_Name: InventoryPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12706,7 +12708,7 @@ GameObject:
   - component: {fileID: 7222262177199798118}
   - component: {fileID: 9174705131722729690}
   m_Layer: 0
-  m_Name: Lock (3)
+  m_Name: Lock04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12961,6 +12963,8 @@ MonoBehaviour:
   panelWrongDomain: {fileID: 6983201833153629238}
   panelRightDomain: {fileID: 4429248441709663522}
   panelFlagSuccess: {fileID: 4213659278550974240}
+  panelMailInput: {fileID: 0}
+  panelRansomware: {fileID: 0}
   dominioCorreto: http://login-fake-bank.xyz/auth-steal
 --- !u!1 &8763021260140414674
 GameObject:
@@ -13361,6 +13365,7 @@ MonoBehaviour:
   scriptPulse: {fileID: 6281236259629527447}
   interactionNotice: {fileID: 5524784440997628401}
   initialBackground: {fileID: 5138657036259939397}
+  playerIsNear: 0
 --- !u!1 &8952001574561675142
 GameObject:
   m_ObjectHideFlags: 0
@@ -13902,7 +13907,7 @@ GameObject:
   - component: {fileID: 1016115561405256233}
   - component: {fileID: 3671401184936163427}
   m_Layer: 0
-  m_Name: Lock (4)
+  m_Name: Lock05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

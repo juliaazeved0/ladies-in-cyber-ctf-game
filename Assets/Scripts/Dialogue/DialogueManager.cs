@@ -1,48 +1,85 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Gerencia a interface de usuario, fluxo de nos, opcoes de escolha e narracao do sistema de dialogos.
+/// </summary>
 public class DialogueManager : MonoBehaviour
 {
-    [Header("UI elements")]
-    public GameObject panelDialogue;
-    public TextMeshProUGUI questionText;
-    public Image characterNPC;
-    public Button[] buttonOption;
-    public GameObject miniMapCanvas;
-    public GameObject cameraMiniMap;
-    public Button buttonPlayAgain;
-    public TextMeshProUGUI playerNameText;
-    private const string PLAYER_NAME_KEY = "PLAYER_NAME";
-    public Button buttonDone;
-    public Button buttonExit;
-    public GameObject lockImage;
-    public TextMeshProUGUI dialogueNPC;
+    [Header("UI Elements")]
+    [Tooltip("Painel principal da interface de dialogo.")]
+    [SerializeField] private GameObject panelDialogue;
 
-    public WriteMachine writeMachine;
+    [Tooltip("Texto onde eh exibida a fala do NPC/pergunta atual.")]
+    [SerializeField] private TextMeshProUGUI questionText;
 
-    public PlayerNameplate playerNameplate;
-    public const string INICIAL_KEY = "dialogueInicial";
+    [Tooltip("Imagem do avatar do NPC na interface.")]
+    [SerializeField] private Image characterNPC;
 
-    [Header("Nodes")]
-    public DialogueNode firstNode; 
-    private DialogueNode dialogueCurrent; 
+    [Tooltip("Array de botoes para as opcoes de resposta do dialogo.")]
+    [SerializeField] private Button[] buttonOption;
 
-    [Header("UI do Narrador")]
-    public GameObject panelNarrator;
-    public TextMeshProUGUI textNarrator;
-    public Button buttonNextNarrator;
+    [Tooltip("Canvas do minimapa, desativado durante a interacao de dialogo.")]
+    [SerializeField] private GameObject miniMapCanvas;
 
-    [Header("Control inventory")]
-    public static bool isDialogueActive = false;
+    [Tooltip("Camera do minimapa, desativada durante a interacao de dialogo.")]
+    [SerializeField] private GameObject cameraMiniMap;
 
-    [Header("Objetos do Mapa")]
-    public GameObject lockLadder; // Variável renomeada
-    
+    [Tooltip("Botao exibido no final do dialogo para reiniciar a conversa.")]
+    [SerializeField] private Button buttonPlayAgain;
+
+    [Tooltip("Texto que exibe o nome da jogadora na UI de dialogo.")]
+    [SerializeField] private TextMeshProUGUI playerNameText;
+
+    [Tooltip("Botao exibido para finalizar o dialogo e salvar o progresso.")]
+    [SerializeField] private Button buttonDone;
+
+    [Tooltip("Botao para fechar/sair do dialogo sem salvar alteracoes.")]
+    [SerializeField] private Button buttonExit;
+
+    [Tooltip("Imagem indicadora de bloqueio (cadeado) na UI.")]
+    [SerializeField] private GameObject lockImage;
+
+    [Tooltip("Texto do NPC na cena/mundo apos o termino do dialogo.")]
+    [SerializeField] private TextMeshProUGUI dialogueNPC;
+
+    [Header("References")]
+    [Tooltip("Componente responsavel pelo efeito de escrita gradativa do texto.")]
+    [SerializeField] private WriteMachine writeMachine;
+
+    [Tooltip("Componente responsavel pela exibicao da placa de nome da jogadora.")]
+    [SerializeField] private PlayerNameplate playerNameplate;
+
+    [Header("Dialogue Nodes")]
+    [Tooltip("No inicial de dialogo a ser executado.")]
+    [SerializeField] private DialogueNode firstNode;
+
+    private DialogueNode dialogueCurrent;
     private DialogueNode pendingNextNode;
 
+    [Header("Narrator UI")]
+    [Tooltip("Painel de exibicao das falas do narrador.")]
+    [SerializeField] private GameObject panelNarrator;
 
+    [Tooltip("Texto que exibe a mensagem do narrador.")]
+    [SerializeField] private TextMeshProUGUI textNarrator;
+
+    [Tooltip("Botao para avancar na caixa do narrador.")]
+    [SerializeField] private Button buttonNextNarrator;
+
+    [Header("Game State")]
+    [Tooltip("Indica globalmente se o sistema de dialogo esta ativo no momento.")]
+    public static bool isDialogueActive = false;
+
+    [Header("World Objects")]
+    [Tooltip("Objeto de bloqueio no mundo (ex: escada) liberado apos o dialogo.")]
+    [SerializeField] private GameObject lockLadder;
+
+    private const string PLAYER_NAME_KEY = "PLAYER_NAME";
+    public const string INICIAL_KEY = "dialogueInicial";
+
+    //Configura os estados iniciais da UI, cadastra ouvintes de evento e recupera dados salvos
     void Start()
     {
         panelDialogue.SetActive(false);
@@ -54,12 +91,11 @@ public class DialogueManager : MonoBehaviour
 
         int dialogueInicialDone = PlayerPrefs.GetInt(INICIAL_KEY, 0);
 
-        if (dialogueInicialDone == 1)
+        if(dialogueInicialDone == 1)
         {
             lockImage.gameObject.SetActive(false);
             
-            // Verificação adicionada: Mantém a escada/bloqueio desativado se já tiver o progresso
-            if (lockLadder != null) 
+            if(lockLadder != null) 
             {
                 lockLadder.SetActive(false);
             }
@@ -67,17 +103,18 @@ public class DialogueManager : MonoBehaviour
         
         string playerName = PlayerPrefs.GetString(PLAYER_NAME_KEY, "Jogadora");
 
-        if (playerNameText != null)
+        if(playerNameText != null)
         {
             playerNameText.text = playerName.ToUpper();
         }
     }
 
+    //Inicia a sequencia de dialogo a partir do no inicial configurado
     public void StartDialogue()
     {
-        if (firstNode != null)
+        if(firstNode != null)
         {
-            isDialogueActive = true; // Tranca o inventário ao iniciar o diálogo
+            isDialogueActive = true;
 
             panelDialogue.SetActive(true);
             miniMapCanvas.SetActive(false);
@@ -87,11 +124,11 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("inspector error");
+            Debug.LogWarning("O n� inicial (firstNode) n�o foi atribu�do no Inspector!");
         }
     }
 
-
+    //Atualiza os componentes graficos do painel de dialogo com as informacoes do no atual
     public void DialogueView(DialogueNode node)
     {
         dialogueCurrent = node;
@@ -105,11 +142,11 @@ public class DialogueManager : MonoBehaviour
             buttonDone.gameObject.SetActive(false);
             buttonExit.gameObject.SetActive(false);
 
-            if (node.buttonType == ButtonType.PlayAgain)
+            if(node.buttonType == ButtonType.PlayAgain)
             {
                 buttonPlayAgain.gameObject.SetActive(true);
             }
-            else if (node.buttonType == ButtonType.Done)
+            else if(node.buttonType == ButtonType.Done)
             {
                 buttonDone.gameObject.SetActive(true);
             }
@@ -125,9 +162,9 @@ public class DialogueManager : MonoBehaviour
             buttonExit.gameObject.SetActive(true);
         }
 
-        for (int i = 0; i < buttonOption.Length; i++)
+        for(int i = 0; i < buttonOption.Length; i++)
         {
-            if (i < node.options.Length)
+            if(i < node.options.Length)
             {
                 buttonOption[i].gameObject.SetActive(true);
                 buttonOption[i].GetComponentInChildren<TextMeshProUGUI>().text = node.options[i];
@@ -139,6 +176,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    //Finaliza a interacao de dialogo salvando a conclusao no PlayerPrefs e liberando acessos na cena
     public void OnClickDone()
     {
         isDialogueActive = false; 
@@ -155,10 +193,10 @@ public class DialogueManager : MonoBehaviour
         dialogueNPC.text = "Bem-vinda ao Centro de Tecnologia do Itaipu Parquetec!";
         
         if(playerNameplate != null) playerNameplate.SetNameplateIdPlayer();
-    
-        if (lockLadder != null) lockLadder.SetActive(false);
+        if(lockLadder != null) lockLadder.SetActive(false);
     }
 
+    //Encerra a interface de dialogo sem marcar o fluxo como concluido
     public void OnClickExit()
     {
         isDialogueActive = false; 
@@ -168,21 +206,23 @@ public class DialogueManager : MonoBehaviour
         cameraMiniMap.SetActive(true);
     }
 
+    //Reinicia o dialogo a partir da primeira fala
     public void DialoguePlayAgain()
     {
         StartDialogue();
     }
 
+    //Processa a escolha de uma opcao pela jogadora e direciona para o proximo no 
     public void ChooseOption(int index)
     {
         pendingNextNode = dialogueCurrent.nextDialogue[index];
 
-        if (dialogueCurrent.narratorFeedbacks != null && index < dialogueCurrent.narratorFeedbacks.Length)
+        if(dialogueCurrent.narratorFeedbacks != null && index < dialogueCurrent.narratorFeedbacks.Length)
         {
             textNarrator.text = dialogueCurrent.narratorFeedbacks[index];
         }
 
-        for (int i = 0; i < buttonOption.Length; i++)
+        for(int i = 0; i < buttonOption.Length; i++)
         {
             buttonOption[i].gameObject.SetActive(false);
         }
@@ -190,10 +230,11 @@ public class DialogueManager : MonoBehaviour
         panelNarrator.SetActive(true);
     }
 
+    //Avanca a mensagem exibida pelo narrador e direciona para o proximo no ou fecha o painel
     public void OnClickNextNarrator()
     {
         panelNarrator.SetActive(false);
-        if (pendingNextNode != null)
+        if(pendingNextNode != null)
         {
             DialogueView(pendingNextNode);
         }

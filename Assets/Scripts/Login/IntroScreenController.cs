@@ -1,107 +1,136 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Controla a sequencia de telas da introducao do jogo: avanca por estagios
+/// via tecla de interacao, exibe o botao de flag ao final e libera a flag
+/// via FlagManager. Ao concluir, marca a introducao como vista e descarrega
+/// a propria cena.
+/// </summary>
 public class IntroScreenController : MonoBehaviour
 {
-    [Header("Backgrounds")] //Coloca no Inspector os espaços para arrastar os objetos
-    public GameObject backgroundWarning; //Referencia para o fundo de aviso
-    public GameObject backgroundNormal;
-    public GameObject successFlagPanel;
+    [Header("Background Panels")]
+    [Tooltip("Painel de fundo exibido no estagio inicial (aviso).")]
+    [SerializeField] private GameObject warningBackground;
 
-    [Header("Texts")] //Aqui sao para os textos
-    public GameObject textWarning;
-    public GameObject textNormal;
-    public GameObject textObjective;
-    public GameObject textFlag;
+    [Tooltip("Painel de fundo exibido a partir do estagio 1 em diante.")]
+    [SerializeField] private GameObject normalBackground;
 
-    [Header("Interactions")]
-    public GameObject flagButton;
-    public GameObject promptKey;
+    [Tooltip("Painel exibido ao clicar no botao de flag, confirmando a liberacao.")]
+    [SerializeField] private GameObject flagSuccessPanel;
 
-    public const string INTRO_KEY = "introductionComplete"; //Transformei em public para o outro script poder ler
-    //private bool IsDone = false;
+    [Header("Text Interface Elements")]
+    [Tooltip("Texto de aviso exibido no estagio inicial.")]
+    [SerializeField] private GameObject warningText;
 
-    private int currentStage = 0; //Cada vez que o jogador apertar e tecla E, o numero aumenta e as telas avancam
+    [Tooltip("Texto exibido no estagio 1.")]
+    [SerializeField] private GameObject normalText;
 
-    private bool canAdvance = true; //Variavel de controle para verificar se o avanco pelo teclado deve estar bloqueado
+    [Tooltip("Texto com o objetivo, exibido no estagio 2.")]
+    [SerializeField] private GameObject objectiveText;
+
+    [Tooltip("Texto exibido no estagio 3, junto ao botao de flag.")]
+    [SerializeField] private GameObject flagText;
+
+    [Header("Interactions and Inputs")]
+    [Tooltip("Botao que libera a flag da introducao ao ser clicado.")]
+    [SerializeField] private GameObject flagButton;
+
+    [Tooltip("Indicador visual da tecla de interacao (ex: Pressione E).")]
+    [SerializeField] private GameObject promptKey;
+
+    //Chave usada no PlayerPrefs para marcar que a introducao ja foi concluida
+    public const string INTRO_KEY = "introductionComplete";
+
+    private int currentStage = 0;
+    private bool canAdvance = true;
 
     void Start()
     {
-        //Garante que o botao comece desativado
         if(flagButton != null) flagButton.SetActive(false);
+        if(flagSuccessPanel != null) flagSuccessPanel.SetActive(false);
     }
 
     void Update()
     {
-        //So permite avancar com "E" se o painel de sucesso nao estiver ativo
-        if(Input.GetKeyDown(KeyCode.E) && !successFlagPanel.activeSelf && canAdvance)
+        bool isSuccessPanelActive = flagSuccessPanel != null && flagSuccessPanel.activeSelf;
+      
+        if(Input.GetKeyDown(KeyCode.E) && !isSuccessPanelActive && canAdvance)
         {
-            Advance();
+            AdvanceStage();
         }
     }
 
-    public void ShowSuccessFlagPanel()
+    //Exibe o painel de sucesso e salva a flag da introducao via FlagManager
+    public void OnFlagButtonClicked()
     {
-        if(successFlagPanel != null)
+        if(flagSuccessPanel != null)
         {
-            successFlagPanel.SetActive(true); //Mostral o painel da flag capturada
-            if(textFlag != null) textFlag.SetActive(false); //Esconde o texto anterior
-            if (flagButton != null) flagButton.SetActive(false); //Esconde o botão
+            flagSuccessPanel.SetActive(true);
 
-            //Salva a flag da introducao
+            if(flagText != null) flagText.SetActive(false);
+            if(flagButton != null) flagButton.SetActive(false);
+
             string newFlag = SafeBase.ViewBase(SafeBase.flag_0);
-            FlagManager.Instance.SaveFlag("Introdução", newFlag);
+
+            if(FlagManager.Instance != null)
+            {
+                FlagManager.Instance.SaveFlag("Introdução", newFlag);
+            }
         }
     }
 
-    public void CloseSuccessAndFinish()
+    //Marca a introducao como concluida e descarrega esta cena
+    public void FinishIntroduction()
     {
-        //Salva e descarrega a cena
-        PlayerPrefs.SetInt(INTRO_KEY, 1); //Salva que a introducao foi finalizada
-        PlayerPrefs.Save(); //Garante a gravacao no disco
+        PlayerPrefs.SetInt(INTRO_KEY, 1);
+        PlayerPrefs.Save();
+
+        Debug.Log("Introducao concluida. Descarregando cena 'Introduction'...");
         SceneManager.UnloadSceneAsync("Introduction");
     }
 
-    void Advance() //Funçao responsavel por trocas as telas
+    void AdvanceStage()
     {
-        currentStage++; //Incrementa o número da etapa
+        currentStage++;
 
-        //Desliga todos os textos antes de mostrar o correto, tambem para evitar que dois textos aparecam ao mesmo tempo
-        textWarning.SetActive(false);
-        textNormal.SetActive(false);
-        textObjective.SetActive(false);
-        if(textFlag != null) textFlag.SetActive(false);
+        ToggleAllTexts(false);
 
-        if (flagButton != null) flagButton.SetActive(false); //Desativa o botao por padrao em cada avanco, ele so ligara no case 3
-
-        switch (currentStage) //Analisa o valor da variavel e executa um bloco diferente para cada etapa
+        switch(currentStage)
         {
-            case 1: //Tela inicial
-                backgroundWarning.SetActive(false);
-                backgroundNormal.SetActive(true);
-                textNormal.SetActive(true);
-                if(promptKey != null) promptKey.SetActive(true); //Garante que o modal aparece no inicio
+            case 1:
+                if(warningBackground != null) warningBackground.SetActive(false);
+                if(normalBackground != null) normalBackground.SetActive(true);
+                if(normalText != null) normalText.SetActive(true);
+                if(promptKey != null) promptKey.SetActive(true);
                 break;
 
-            case 2: //Tela objetivo
-                textObjective.SetActive(true);
+            case 2:
+                if(objectiveText != null) objectiveText.SetActive(true);
                 break;
 
-            case 3: //Tela final
-                textFlag.SetActive(true);
-                if(flagButton != null) flagButton.SetActive(true); //Ativa o botao da flag apenas nessa etapa
-                if (promptKey != null) promptKey.SetActive(false); //Desativa o modal
-                canAdvance = false; //A tecla E nao funciona mais
+            case 3:
+                if(flagText != null) flagText.SetActive(true);
+                if(flagButton != null) flagButton.SetActive(true);
+                if(promptKey != null) promptKey.SetActive(false);
+
+                canAdvance = false;
                 break;
             
-            case 4: //Se a jogadora apertar "E" na tela da Flag sem clicar no botao, pode ou nao deixar avancar. Apenas seguranca
-                CloseSuccessAndFinish();
+            case 4:
+                FinishIntroduction();
                 break;
             
-            default: //Executa apenas se for maior que 3
+            default:
                 break;
         }
+    }
+
+    private void ToggleAllTexts(bool state)
+    {
+        if(warningText != null) warningText.SetActive(state);
+        if(normalText != null) normalText.SetActive(state);
+        if(objectiveText != null) objectiveText.SetActive(state);
+        if(flagText!= null) flagText.SetActive(state);
     }
 }

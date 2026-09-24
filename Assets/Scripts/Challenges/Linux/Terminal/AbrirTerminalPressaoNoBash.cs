@@ -1,15 +1,16 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System;
-using System.Runtime.InteropServices;
 
+/// <summary>
+/// Gerencia a abertura do terminal externo (Windows/Linux) para o desafio "Pressao no Bash".
+/// Monitora a conclusao do desafio atraves de arquivos temporarios ou codigos de saida.
+/// </summary>
 public class AbrirTerminalPressaoNoBash : MonoBehaviour
 {
-    [Header("Configurações de UI")]
+    [Header("UI Settings")]
     public GameObject popUpSucesso;
-
     public GameObject popCaptureFlag;
     public GameObject captureFlag;
     public GameObject panelChallengePressureBash;
@@ -31,7 +32,7 @@ public class AbrirTerminalPressaoNoBash : MonoBehaviour
         string pastaStreaming = Path.GetFullPath(Application.streamingAssetsPath);
         string vitoriaPath = Path.Combine(pastaStreaming, "vitoria_h2.txt");
 
-        if (File.Exists(vitoriaPath)) File.Delete(vitoriaPath);
+        if(File.Exists(vitoriaPath)) File.Delete(vitoriaPath);
 
         bool terminou = false;
         int exitCode = 0;
@@ -59,7 +60,7 @@ public class AbrirTerminalPressaoNoBash : MonoBehaviour
                 terminal.WaitForExit();
                 exitCode = terminal.ExitCode;
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 UnityEngine.Debug.LogError("Erro aguardando terminal: " + e.Message);
             }
@@ -176,9 +177,9 @@ public class AbrirTerminalPressaoNoBash : MonoBehaviour
 
         bool desafioResolvido = false;
 
-        while (!terminou)
+        while(!terminou)
         {
-            if (File.Exists(vitoriaPath))
+            if(File.Exists(vitoriaPath))
             {
                 desafioResolvido = true;
                 break;
@@ -186,37 +187,45 @@ public class AbrirTerminalPressaoNoBash : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
 
-        if (desafioResolvido || exitCode == 99 || File.Exists(vitoriaPath))
+        if(desafioResolvido || exitCode == 99 || File.Exists(vitoriaPath))
         {
             UnityEngine.Debug.Log("Protocolo H2 estabilizado! Pop-up aberto.");
 
-            if (popUpSucesso != null)
+            if(popUpSucesso != null)
                 popUpSucesso.SetActive(true);
 
-            if (File.Exists(vitoriaPath)) File.Delete(vitoriaPath);
+            if(File.Exists(vitoriaPath)) File.Delete(vitoriaPath);
         }
     }
 
+    /// <summary>
+    /// Evento de clique para coletar a Flag apos o sucesso.
+    /// </summary>
     public void OnClickButton()
     {
         popCaptureFlag.SetActive(true);
         string newFlag = SafeBase.ViewBase(SafeBase.flag_1);
+
         FlagManager.Instance.SaveFlag("Pressão no Bash", newFlag);
 
-        if (ChallengeManager.Instance != null)
+        if(ChallengeManager.Instance != null)
         {
             ChallengeManager.Instance.CompleteChallenge("DesafioPressao");
         }
     }
 
+    /// <summary>
+    /// Fecha o painel do desafio e limpa os estados visuais.
+    /// </summary>
     public void ClosedChallenge()
     {
-        if (popCaptureFlag.activeSelf)
+        if(popCaptureFlag.activeSelf)
         {
             objectPulse.StopPulsing();
             CanvasManager.Instance.ClosedPanel("ChallengePressureBash");
             CanvasManager.Instance.ToggleMiniMap(true);
         }
+
         CanvasManager.Instance.ClosedPanel("ChallengePressureBash");
         CanvasManager.Instance.ToggleMiniMap(true);
     }

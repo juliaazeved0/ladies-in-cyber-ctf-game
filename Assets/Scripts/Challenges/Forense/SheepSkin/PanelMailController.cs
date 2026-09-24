@@ -1,10 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Gerencia a navegacao entre e-mails, inspecao de links e simulacao de eventos como Phishing e Ransomware.
+/// </summary>
 public class PanelMailController : MonoBehaviour
 {
-    [Header("Painéis Principais")]
+    [Header("Main Panels")]
+    [Tooltip("Paineis principais para a entrada da caixa de e-mails.")]
     public GameObject panelMailInput;
     public GameObject panelEmailRh;
     public GameObject panelEmailKassime;
@@ -16,9 +19,12 @@ public class PanelMailController : MonoBehaviour
     public GameObject panelPhishing;
     public GameObject panelRansomware;
 
-    [Header("Feedback Visual")]
+    [Header("Visual Feedback")]
+    [Tooltip("Objeto visual que atua como destaque/marca-texto ao copiar o link.")]
     [SerializeField] private GameObject imagemSelecaoLink;
 
+    [Header("State")]
+    [Tooltip("Indica se o PC da jogadora foi infectado ao interagir com o link nocivo.")]
     public static bool pcInfectado = false; //Variavel para ver se a jogadora acessou o link infectado
 
     public void AbrirPanelMailInput() //Abrir o painel principais de e-mails
@@ -104,7 +110,7 @@ public class PanelMailController : MonoBehaviour
         //Booleano para verificar se a jogadora esta segurando a tecla Control, seja a da direita ou esquerda
         bool teclaPressionada = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
 
-        if(teclaPressionada && Input.GetKeyDown(KeyCode.U)) //Verifica se o Control está sendo pressionado e a tecla U também, ao mesmo tempo
+        if(teclaPressionada && Input.GetKeyDown(KeyCode.U)) //Verifica se o Control estï¿½ sendo pressionado e a tecla U tambï¿½m, ao mesmo tempo
         {
             AbrirPanelInspect(); //Abre o painel com o link
         }
@@ -116,7 +122,7 @@ public class PanelMailController : MonoBehaviour
 
         if(imagemSelecaoLink != null)
         {
-            StopAllCoroutines(); //Garante que o cronometro seja resetado antes de começar um novo
+            StopAllCoroutines(); //Garante que o cronometro seja resetado antes de comeï¿½ar um novo
             StartCoroutine(EfeitoMarcaTexto());
         }
     }
@@ -132,7 +138,7 @@ public class PanelMailController : MonoBehaviour
 
     IEnumerator SequenciaGlitchParaRansomware()
     {
-        //Ativa o painel de animação Glitch
+        //Ativa o painel de animaï¿½ï¿½o Glitch
         panelGlitch.SetActive(true);
 
         //Espera exatamente 4 segundos para realizar a troca de paineis

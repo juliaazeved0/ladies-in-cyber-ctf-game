@@ -1,26 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Classe base para objetos interagiveis no cenario (baus, NPCs, terminais, etc.).
+/// Detecta a presenca da jogadora via trigger 2D, exibe um aviso de interacao
+/// e dispara a logica de interacao (abrir painel de desafio) ao pressionar E,
+/// desde que nenhum outro painel esteja aberto no momento.
+/// </summary>
 public class ObjectInteraction : MonoBehaviour
 {
-    [Header("Settings object interactable")]
-    protected bool playerIsHere;
+    [Header("Settings Object Interactable")]
+    [Tooltip("Icone/aviso exibido quando a jogadora esta proxima e pode interagir.")]
     public GameObject interactionNotice;
+
+    [Tooltip("Painel do desafio associado a este objeto, aberto ao interagir.")]
     public GameObject challengePanel;
+
+    //Indica se a jogadora esta atualmente dentro da area de trigger deste objeto
+    protected bool playerIsHere;
 
     protected void Start()
     {
-        interactionNotice.SetActive(false);
+        //Garante que o aviso de interacao comece desativado
+        if(interactionNotice != null) interactionNotice.SetActive(false);
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if(collision.CompareTag("Player"))
         {
             playerIsHere = true;
-            // SÃ³ mostra o aviso se nenhum painel estiver aberto
-            if (!IsAnyPanelOpen() && interactionNotice != null)
+
+            //So mostra o aviso se nenhum painel estiver aberto no momento
+            if(!IsAnyPanelOpen() && interactionNotice != null)
             {
                 interactionNotice.SetActive(true);
             }
@@ -29,10 +40,11 @@ public class ObjectInteraction : MonoBehaviour
 
     protected virtual void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if(collision.CompareTag("Player"))
         {
             playerIsHere = false;
-            if (interactionNotice != null)
+
+            if(interactionNotice != null)
             {
                 interactionNotice.SetActive(false);
             }
@@ -41,41 +53,54 @@ public class ObjectInteraction : MonoBehaviour
 
     protected virtual void Update()
     {
-        // Bloqueia a tecla E e esconde o aviso se qualquer painel estiver aberto.
-        // Cobre: challengePanel, terminalPanel, notas, steg e qualquer outro painel de UI.
-        if (IsAnyPanelOpen())
+        //Se algum painel estiver aberto, esconde o aviso e ignora a interacao
+        if(IsAnyPanelOpen())
         {
-            if (interactionNotice != null && interactionNotice.activeSelf)
+            if(interactionNotice != null && interactionNotice.activeSelf)
                 interactionNotice.SetActive(false);
             return;
         }
 
-        // Reexibe o aviso se o player estiver na Ã¡rea e nenhum painel estiver aberto
-        if (playerIsHere && interactionNotice != null && !interactionNotice.activeSelf)
+        //Reexibe o aviso caso a jogadora ainda esteja na area e nenhum painel esteja aberto
+        if(playerIsHere && interactionNotice != null && !interactionNotice.activeSelf)
         {
             interactionNotice.SetActive(true);
         }
 
-        if (playerIsHere && Input.GetKeyDown(KeyCode.E))
+        //Dispara a interacao ao pressionar E, apenas se o jogador estiver na area
+        if(playerIsHere && Input.GetKeyDown(KeyCode.E))
         {
             Interact();
         }
     }
 
-    // Retorna true se qualquer painel registrado no CanvasManager estiver ativo.
+    //Verifica se algum painel do CanvasManager esta atualmente aberto
     private bool IsAnyPanelOpen()
     {
-        if (CanvasManager.Instance == null) return false;
+        if(CanvasManager.Instance == null) return false;
 
-        foreach (GameObject panel in CanvasManager.Instance.allPanels)
+        foreach(GameObject panel in CanvasManager.Instance.allPanels)
         {
-            if (panel != null && panel.activeSelf) return true;
+            if(panel != null && panel.activeSelf) return true;
         }
         return false;
     }
 
+    //Executa a interacao padrao: esconde o minimapa e abre o painel do desafio
     protected virtual void Interact()
     {
+        if(CanvasManager.Instance == null)
+        {
+            Debug.LogError("[ObjectInteraction] CanvasManager.Instance não está disponível.");
+            return;
+        }
+
+        if(challengePanel == null)
+        {
+            Debug.LogError("[ObjectInteraction] challengePanel não está atribuído no Inspector.");
+            return;
+        }
+
         CanvasManager.Instance.ToggleMiniMap(false);
         CanvasManager.Instance.OpenPanel(challengePanel.name);
     }

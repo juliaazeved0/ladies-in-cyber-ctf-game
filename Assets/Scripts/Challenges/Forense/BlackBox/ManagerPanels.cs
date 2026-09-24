@@ -1,95 +1,108 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Gerencia a troca de paineis da interface do computador no desafio Black Box.
+/// </summary>
 public class ManagerPanels : MonoBehaviour
 {
-    [Header("Painï¿½is Principais")] //Tï¿½tulo no Inspector para organizar e permite que arraste todos os painï¿½is
+    [Header("Main Panels")]
+    [Tooltip("Fundo principal que engloba toda a interface do PC.")]
     public GameObject initialBackground;
-    public GameObject panelNetwatch;
-    public GameObject panelInventory;
-    public GameObject panelTerminal;
-    public GameObject panelWiresharkError;
-    public GameObject panelWiresharkSuccess;
-    public GameObject panelFlag;
-    public GameObject panelFlagSuccess;
+    public GameObject netwatchPanel;
+    public GameObject inventoryPanel;
+    public GameObject terminalPanel;
+    public GameObject errorWiresharkPanel;
+    public GameObject successWiresharkPanel;
+    public GameObject flagPanel;
+    public GameObject successFlagPanel;
 
-    [Header("Sub-Painï¿½is")] //Sub-painï¿½l de detalhes dentro do Netwatch
-    public GameObject panelDetails;
+    [Header("Sub-Panels")]
+    [Tooltip("Painel de detalhes que aparece dentro do Netwatch.")]
+    public GameObject detailsPanel;
 
-    [Header("Referï¿½ncia ServerController")]
-    public ServerController scriptServer; //Referï¿½ncia ao script que controla o servidor, permite que o computador desbloqueie o servidor
+    [Header("References")]
+    [Tooltip("Referencia ao controlador do servidor para desbloqueio via rede.")]
+    public ServerController scriptServer;
 
-    [Header("Estado do Servidor")]
-    public bool caboConectado = false; //Controle para certificar se o cabo foi conectado no servidor
+    [Header("State")]
+    [Tooltip("Controle para verificar se o cabo fisico foi conectado ao servidor.")]
+    public bool isCableConnected = false;
 
-    //Funï¿½ï¿½es para abrir os painï¿½is
-    public void AbrirNetwatch() { FecharPaineisPrincipais(); panelNetwatch.SetActive(true); } //Abre o Netwatch fechando os outros principais, mas mantendo a hierarquia
-    public void AbrirInventory() { FecharPaineisPrincipais(); panelInventory.SetActive(true); }
-    public void AbrirTerminal() { FecharPaineisPrincipais(); panelTerminal.SetActive(true); }
-    public void AbrirWireshark() { FecharPaineisPrincipais(); panelWiresharkError.SetActive(true); }
+    
+    //Metodos de aberturas de paineis
+    public void OpenNetwatch() { CloseAllMainPanels(); netwatchPanel.SetActive(true); }
+    public void OpenInventory() { CloseAllMainPanels(); inventoryPanel.SetActive(true); }
+    public void OpenTerminal() { CloseAllMainPanels(); terminalPanel.SetActive(true); }
+    public void OpenWireshark() { CloseAllMainPanels(); errorWiresharkPanel.SetActive(true); }
 
-    public void AbrirWiresharkSuccess()
+    //Logica para abrir o Wireshark verificando se o hardware (cabo) esta pronto
+    public void OpenSuccessWireshark()
     {
-        FecharPaineisPrincipais(); //Antes de abrir algo novo, fecha todos os painï¿½is principais, evitando sobreposiï¿½ï¿½o
+        CloseAllMainPanels();
 
-        if (!caboConectado) //Caso o cabo nï¿½o esteja conectado
+        if(!isCableConnected)
         {
-            panelWiresharkError.SetActive(true); //Mostra o painel de erro
-            if(scriptServer != null) scriptServer.UnlockByHacking(); //Computador desbloqueia o servidor
+            errorWiresharkPanel.SetActive(true);
+            if(scriptServer != null) scriptServer.UnlockByHacking();
         }
-        else //Caso o cabo jï¿½ esteja conectado
+        else
         {
-            panelWiresharkSuccess.SetActive(true); //Mostra o painel de sucesso
+            successWiresharkPanel.SetActive(true);
         }
     }
 
-    public void AbrirFlag() //Funï¿½ï¿½o chamada quando a jogadora quer ver a flag do desafio
+    public void OpenFlag()
     {
-        if(panelWiresharkSuccess != null) panelWiresharkSuccess.SetActive(false); //Fecha o painel anterior
-
-        if(panelFlag != null) panelFlag.SetActive(true); //Abre o painel da flag
+        if(successWiresharkPanel != null) successWiresharkPanel.SetActive(false);
+        if(flagPanel != null) flagPanel.SetActive(true);
     }
 
-    public void AbrirFlagSuccess() //Funï¿½ï¿½o para mostrar o painel da flag capturada
+    //Finaliza o desafio capturando a flag e salvando no inventario global
+    public void OpenSuccessFlag()
     {
-        if (panelFlag != null) panelFlag.SetActive(false); //Fecha o painel da flag
+        if(flagPanel != null) flagPanel.SetActive(false);
+        if(successFlagPanel != null) successFlagPanel.SetActive(true);
 
-        if(panelFlagSuccess != null) panelFlagSuccess.SetActive(true); //Abre o painel da flag capturada
-
-        // salvando a flag no inventÃ¡rio 
         string newFlag = SafeBase.ViewBase(SafeBase.flag_3);
-        // Ajustado para incluir o nome do desafio
-        FlagManager.Instance.SaveFlag("Black Box", newFlag);
+
+        if(FlagManager.Instance != null)
+        {
+            FlagManager.Instance.SaveFlag("Black Box", newFlag);
+        }
+        else
+        {
+            Debug.LogWarning($"[ManagerPanels] Instância de 'FlagManager' não encontrada na cena.", this);
+        }
     }
 
-    public void AbrirDetails() //Abre o painel de detalhes sem fechar o Netwatch que est atrï¿½s
+    public void OpenDetails()
     {
-        if (panelDetails != null) panelDetails.SetActive(true);
+        if(detailsPanel != null) detailsPanel.SetActive(true);
     }
 
-    public void FecharApenasDetails() //Fecha apenas o painel de detalhes
+    public void CloseOnlyDetails()
     {
-        if (panelDetails != null) panelDetails.SetActive(false); //Painel Netwatch continua aberto
+        if(detailsPanel != null) detailsPanel.SetActive(false);
     }
 
-    //Funï¿½ï¿½o para limpar a interface, ela fecha todos os painï¿½is principais
-    public void FecharPaineisPrincipais()
+    //Desativa todos os paineis principais para evitar sobreposicao de interfaces
+    public void CloseAllMainPanels()
     {
-        if (panelNetwatch != null) panelNetwatch.SetActive(false);
-        if (panelInventory != null) panelInventory.SetActive(false);
-        if (panelTerminal != null) panelTerminal.SetActive(false);
-        if (panelWiresharkError != null) panelWiresharkError.SetActive(false);
-        if(panelWiresharkSuccess != null) panelWiresharkSuccess.SetActive(false);
-        if(panelFlag != null) panelFlag.SetActive(false);
-        if(panelFlagSuccess != null) panelFlagSuccess.SetActive(false);
+        if(netwatchPanel != null) netwatchPanel.SetActive(false);
+        if(inventoryPanel != null) inventoryPanel.SetActive(false);
+        if(terminalPanel != null) terminalPanel.SetActive(false);
+        if(errorWiresharkPanel != null) errorWiresharkPanel.SetActive(false);
+        if(successWiresharkPanel != null) successWiresharkPanel.SetActive(false);
+        if(flagPanel != null) flagPanel.SetActive(false);
+        if(successFlagPanel != null) successFlagPanel.SetActive(false);
     }
 
-    public void VoltarMapa() //Funï¿½ï¿½o chamada quando a jogadora sai do computador
+    //Sai da interface do computador e retorna para a exploracao do mapa
+    public void ReturnToMap()
     {
         if(initialBackground != null)
         {
-            initialBackground.SetActive(false); //Fecha toda a interface do PC e a jogadora volta para o mapa
+            initialBackground.SetActive(false);
         }
     }
 }
