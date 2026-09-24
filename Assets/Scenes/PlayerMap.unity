@@ -99152,7 +99152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6281236259629527447, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: maxThickness
-      value: 2
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6299816620861863612, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
       propertyPath: m_Name

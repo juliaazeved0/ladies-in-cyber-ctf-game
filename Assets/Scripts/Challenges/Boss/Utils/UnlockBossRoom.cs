@@ -188,14 +188,15 @@ public class UnlockBossRoom : MonoBehaviour
     IEnumerator SuccessRoutine()
     {
         input.text = "ACESSO CONCEDIDO";
-        yield return new WaitForSeconds(0.5f); 
-        
-        lockObject.SetActive(false);
-        unlocked = true;
+        yield return new WaitForSeconds(0.5f);
 
+        if (lockObject != null) lockObject.SetActive(false);
+        if (dialogueManager != null) dialogueManager.HideLock();
+
+        unlocked = true;
         PlayerPrefs.SetInt("BossRoomUnlocked", 1);
         PlayerPrefs.Save();
-        
+
         CloseDevicePanel();
     }
 
