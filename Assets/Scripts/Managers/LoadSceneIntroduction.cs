@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-/// <summary>Carrega a introducao sem confirmar progresso antes da coleta.</summary>
+/// <summary>Carrega a introducao pelo trigger e persiste sua flag uma unica vez apos a carga.</summary>
 public class LoadSceneIntroduction : MonoBehaviour
 {
     public bool playerIsHere;
     private static bool isLoading;
+    private const string INTRO_FLAG_CAPTURED_KEY = "introductionFlagCaptured";
 
     public static bool NeedsIntroduction =>
         PlayerPrefs.GetInt(IntroScreenController.INTRO_KEY, 0) != 1 ||
@@ -23,7 +24,30 @@ public class LoadSceneIntroduction : MonoBehaviour
             isLoading = false;
             return;
         }
-        loading.completed += operation => isLoading = false;
+        loading.completed += operation =>
+        {
+            isLoading = false;
+            CaptureIntroductionFlagOnce();
+        };
+    }
+
+    private static void CaptureIntroductionFlagOnce()
+    {
+        if(PlayerPrefs.GetInt(INTRO_FLAG_CAPTURED_KEY, 0) == 1) return;
+
+        string introFlag = SafeBase.ViewBase(SafeBase.flag_0);
+        if(!FlagManager.HasSavedFlag(introFlag))
+        {
+            if(FlagManager.Instance == null) return;
+            FlagManager.Instance.SaveFlag("Introdução", introFlag);
+        }
+
+        // SaveFlag persists SavedFlags. This marker prevents reprocessing on later trigger entries.
+        if(FlagManager.HasSavedFlag(introFlag))
+        {
+            PlayerPrefs.SetInt(INTRO_FLAG_CAPTURED_KEY, 1);
+            PlayerPrefs.Save();
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision)

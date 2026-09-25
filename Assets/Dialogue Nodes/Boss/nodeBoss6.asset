@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8995214fe1f0d4d91c1830fcd2911c, type: 3}
   m_Name: nodeBoss6
   m_EditorClassIdentifier: 
-  question: "Investigar, decifrar, analisar, e n\xE3o cometer erros."
+  question: "Investigar, decifrar, analisar e n\xE3o cometer erros."
   options: []
   nextDialogue:
   - {fileID: 11400000, guid: 8c1b24d1550c6054eac4cd897eac56ec, type: 2}

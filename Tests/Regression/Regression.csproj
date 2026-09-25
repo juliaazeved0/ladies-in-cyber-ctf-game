@@ -32,6 +32,7 @@
     <Compile Include="../../Assets/Scripts/Dialogue/DialogueNode.cs" />
     <Compile Include="../../Assets/Scripts/Challenges/Crypto/NpcAleInteraction.cs" />
     <Compile Include="../../Assets/Scripts/Interaction/NPCInteraction.cs" />
+    <Compile Include="../../Assets/Scripts/Player/PlayerMovement.cs" />
     <Compile Include="../../Assets/Scripts/Challenges/Boss/Interactions/ComputerInteractionBoss.cs" />
     <Compile Include="../../Assets/Scripts/Challenges/Boss/Interactions/ObjectInteractionBoss.cs" />
   </ItemGroup>

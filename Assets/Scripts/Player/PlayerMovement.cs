@@ -56,7 +56,8 @@ public class PlayerMovement : MonoBehaviour
     //Movimentacao baseada em fisica usando Rigidbody2D
     private void FixedUpdate()
     {
-        Vector2 delta = inputMovement * velocity * Time.deltaTime;
+        Vector2 movement = Vector2.ClampMagnitude(inputMovement, 1f);
+        Vector2 delta = movement * velocity * Time.fixedDeltaTime;
         Vector2 newPosition = characterBody.position + delta;
 
         characterBody.MovePosition(newPosition);

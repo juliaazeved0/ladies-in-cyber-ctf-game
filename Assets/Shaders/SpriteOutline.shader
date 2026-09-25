@@ -8,7 +8,6 @@ Shader "Custom/Sprite Outline"
 		_OutlineThickness("Outline Thickness", Range (0.0, 0.1)) = 0.0
 		_OutlineColor ("Outline Color", Color) = (1,1,1,1)
 		_OutlineAlphaMultiplier("Outline Alpha Multiplier", Range (0.0, 1.0)) = 0
-		_OutlineSampleQuality("Outline Sample Quality", Range (1, 128)) = 16
 	}
 
 	SubShader
@@ -54,7 +53,6 @@ Shader "Custom/Sprite Outline"
 			uniform fixed4 _MainTex_TexelSize;
 			fixed4 _OutlineColor;
 			fixed _OutlineThickness;
-			fixed _OutlineSampleQuality;
 			fixed _OutlineAlphaMultiplier;
 
 			v2f vert(appdata_t IN)
@@ -91,10 +89,10 @@ Shader "Custom/Sprite Outline"
 				float aspectRatio = _MainTex_TexelSize.y / _MainTex_TexelSize.x;
 
 				// Number of samples around the current pixel (adjustable for quality/performance)
-				const int numSamples = _OutlineSampleQuality;
+				const int numSamples = 16;
 				float angleStep = 2.0 * UNITY_PI / numSamples;
 				
-				fixed alphaSum = 0.0;
+				float alphaSum = 0.0;
 
 				for (int i = 0; i < numSamples; i++)
 				{
@@ -108,7 +106,7 @@ Shader "Custom/Sprite Outline"
 					alphaSum += SampleSpriteTexture(IN.texcoord + offset).a;
 				}
 
-				fixed averageAlpha = alphaSum / numSamples;
+				float averageAlpha = alphaSum / numSamples;
 
 				// Determine if the outline should be drawn
 				fixed4 outlineC = _OutlineColor;

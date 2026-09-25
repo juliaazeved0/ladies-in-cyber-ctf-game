@@ -61,11 +61,10 @@ public class IntroScreenController : MonoBehaviour
         }
     }
 
-    //Exibe o painel de sucesso e salva a flag da introducao via FlagManager
+    //Confirma a flag, que foi salva quando a cena da introducao terminou de carregar.
     public void OnFlagButtonClicked()
     {
-        if(FlagManager.Instance == null) return;
-        FlagManager.Instance.SaveFlag("Introdução", SafeBase.ViewBase(SafeBase.flag_0));
+        if(!FlagManager.HasSavedFlag(SafeBase.ViewBase(SafeBase.flag_0))) return;
         if(flagSuccessPanel != null) flagSuccessPanel.SetActive(true);
         if(flagText != null) flagText.SetActive(false);
         if(flagButton != null) flagButton.SetActive(false);

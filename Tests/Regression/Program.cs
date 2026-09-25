@@ -26,18 +26,21 @@ public static class Program
         LoadSceneIntroduction.TryLoadIntroduction();
         Check(SceneManager.Loads == 1, "Concurrent triggers cannot load two introductions");
         Check(PlayerPrefs.GetInt("introductionComplete") == 0, "Starting intro must not complete it");
+        Check(!FlagManager.HasSavedFlag(SafeBase.ViewBase(SafeBase.flag_0)), "Intro flag waits until the intro screen has loaded");
+        var flags = new FlagManager();
+        Call(flags, "Awake");
         SceneManager.IntroductionLoaded = true;
         SceneManager.Pending.Complete();
+        Check(FlagManager.HasSavedFlag(SafeBase.ViewBase(SafeBase.flag_0)), "Intro flag is captured when the trigger-loaded screen finishes loading");
+        Check(PlayerPrefs.GetInt("introductionFlagCaptured") == 1, "Intro capture is persisted once in PlayerPrefs");
+        string savedIntroFlags = PlayerPrefs.GetString("SavedFlags");
+        SceneManager.Pending.Complete();
+        Check(PlayerPrefs.GetString("SavedFlags") == savedIntroFlags, "Repeated load completion does not capture the intro flag twice");
         LoadSceneIntroduction.TryLoadIntroduction();
         Check(SceneManager.Loads == 1, "Loaded introduction must not reload");
         var intro = new IntroScreenController();
-        intro.FinishIntroduction();
-        Check(SceneManager.IntroductionLoaded, "Cannot finish intro without flag");
-        PlayerPrefs.SetInt("introductionComplete", 1);
-        Check(LoadSceneIntroduction.NeedsIntroduction, "Legacy interrupted save can recover missing flag");
-        var flags = new FlagManager();
-        Call(flags, "Awake");
-        intro.OnFlagButtonClicked(); // UI refs may be absent; collection must still succeed.
+        intro.OnFlagButtonClicked(); // UI refs may be absent; this action must not save the flag again.
+        Check(PlayerPrefs.GetString("SavedFlags") == savedIntroFlags, "Intro UI confirmation does not recapture the flag");
         intro.FinishIntroduction();
         Check(!LoadSceneIntroduction.NeedsIntroduction, "Completed introduction stays completed");
         Check(!SceneManager.IntroductionLoaded, "Completed intro unloads");
@@ -51,6 +54,19 @@ public static class Program
         Check(new ChallengeManager().IsChallengeCompleted("CryptoCapivara"), "Progress survives a new manager");
         Check(!ChallengeManager.IsCompleted(""), "Empty challenge ID cannot unlock anything");
         Check(!FlagManager.HasSavedFlag(""), "Empty flag cannot match saved inventory");
+
+        var movementObject = new GameObject("Player");
+        movementObject.Attach(new Animator());
+        movementObject.Attach(new SpriteRenderer());
+        var body = new Rigidbody2D();
+        movementObject.Attach(body);
+        var movement = new PlayerMovement { gameObject = movementObject };
+        Call(movement, "Awake");
+        Set(movement, "speed", 5);
+        Call(movement, "Start");
+        Set(movement, "inputMovement", new Vector2(1, 1));
+        Call(movement, "FixedUpdate");
+        Check(Math.Abs(body.position.magnitude - 5f * Time.fixedDeltaTime) < 0.0001f, "Diagonal movement is normalized and uses fixed timestep");
 
         Check(ClipboardManager.ExtractFlag("Desafio - L1C{a - b}") == "L1C{a - b}", "Preserve separator inside flag");
         ClipboardManager.CopyFlag("Desafio - L1C{test}");

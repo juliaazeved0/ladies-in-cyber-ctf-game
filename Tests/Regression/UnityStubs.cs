@@ -42,10 +42,20 @@ namespace UnityEngine
         public IEnumerator<Transform> GetEnumerator() => children.GetEnumerator();
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
-    public struct Vector2 { public float x, y; public Vector2(float x, float y) { this.x = x; this.y = y; } }
+    public struct Vector2
+    {
+        public float x, y;
+        public Vector2(float x, float y) { this.x = x; this.y = y; }
+        public static Vector2 zero => new Vector2(0, 0);
+        public float magnitude => (float)Math.Sqrt(x * x + y * y);
+        public static Vector2 ClampMagnitude(Vector2 value, float max) => value.magnitude > max ? value * (max / value.magnitude) : value;
+        public static Vector2 operator *(Vector2 a, Vector2 b) => new Vector2(a.x * b.x, a.y * b.y);
+        public static Vector2 operator *(Vector2 a, float b) => new Vector2(a.x * b, a.y * b);
+        public static Vector2 operator +(Vector2 a, Vector2 b) => new Vector2(a.x + b.x, a.y + b.y);
+    }
     public struct Color { public float a; }
     public class AudioClip { }
-    public class Animator { public bool enabled; public void SetTrigger(string trigger) { } }
+    public class Animator { public bool enabled; public static int StringToHash(string key) => key.GetHashCode(); public void SetTrigger(string trigger) { } public void SetBool(int key, bool value) { } }
     public class ScriptableObject : Object { }
     public class Sprite { }
     public class CreateAssetMenuAttribute : Attribute { public string fileName, menuName; }
@@ -60,9 +70,11 @@ namespace UnityEngine
     {
         public Material sharedMaterial = new Material();
         public Material material = new Material();
+        public bool flipX;
     }
+    public class Rigidbody2D { public Vector2 position; public Vector2 MovePosition(Vector2 value) { position = value; return value; } }
     public static class Shader { public static int PropertyToID(string key) => key.GetHashCode(); }
-    public static class Time { public static float time, deltaTime = 0.02f; }
+    public static class Time { public static float time, deltaTime = 0.02f, fixedDeltaTime = 0.02f; }
     public class HeaderAttribute : Attribute { public HeaderAttribute(string value) { } }
     public class TooltipAttribute : Attribute { public TooltipAttribute(string value) { } }
     public class SerializeField : Attribute { }
@@ -94,9 +106,10 @@ namespace UnityEngine
         public static float Clamp01(float x) => Clamp(x, 0, 1);
         public static float Max(float x, float y) => Math.Max(x, y);
         public static float PingPong(float x, float max) => max == 0 ? 0 : max - Math.Abs(x % (2 * max) - max);
+        public static float Abs(float x) => Math.Abs(x);
     }
     public enum KeyCode { E }
-    public static class Input { public static bool GetKeyDown(KeyCode key) => false; }
+    public static class Input { public static bool GetKeyDown(KeyCode key) => false; public static float GetAxisRaw(string axis) => 0; }
     public class Collider2D { public bool CompareTag(string tag) => tag == "Player"; }
     public class AsyncOperation
     {
@@ -167,4 +180,3 @@ public class SimpleDialogue { public static bool isSimpleDialogueActive; public 
 public class WriteMachine { public void Run(string text, TMPro.TextMeshProUGUI label) { } }
 public class PlayerNameplate { public void SetNameplateIdPlayer() { } }
 public static class BackgroundMusic { public static void ChangeMusic(UnityEngine.AudioClip clip) { } }
-

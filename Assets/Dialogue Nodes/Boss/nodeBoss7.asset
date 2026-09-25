@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8995214fe1f0d4d91c1830fcd2911c, type: 3}
   m_Name: nodeBoss7
   m_EditorClassIdentifier: 
-  question: OSINT, criptografia, linux e forense. Tudo ao mesmo tempo.
+  question: OSINT, criptografia, Linux e forense. Tudo ao mesmo tempo.
   options: []
   nextDialogue: []
   buttonType: 1

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc344bf1847f7284ba70f62fdd0f60c5, type: 3}
   m_Name: node_falha_suspeita
   m_EditorClassIdentifier: 
-  question: " \u201COxe!! Por que voc\xEA quer a senha dele assim do nada? Que conversa
+  question: "\u201COxe! Por que voc\xEA quer a senha dele assim do nada? Que conversa
     mais estranha... voc\xEA trabalha mesmo aqui? Vou ligar ali na recep\xE7\xE3o
     pra confirmar quem \xE9 voc\xEA. Espere um pouco.\u201D"
   options: []

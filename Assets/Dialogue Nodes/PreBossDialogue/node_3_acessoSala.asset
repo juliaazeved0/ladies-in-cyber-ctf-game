@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: node_3_acessoSala
   m_EditorClassIdentifier: 
   question: "\u201COlha, ele anota tudo em papel pra n\xE3o esquecer. Mas ele reclama
-    que perde direto. Eu mesma j\xE1 vi ele bravo procurando senha em bloquinho.\u201D"
+    que perde direto. Eu mesma j\xE1 o vi bravo procurando senha em bloquinho.\u201D"
   options:
   - "A.  \u201CE o que ele faz com esses pap\xE9is quando n\xE3o precisa mais? Joga
     fora?\u201D"

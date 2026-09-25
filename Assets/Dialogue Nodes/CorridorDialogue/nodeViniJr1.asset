@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37288b8cc8a1b8c4a934c05d643fec5f, type: 3}
   m_Name: nodeViniJr1
   m_EditorClassIdentifier: 
-  talkNPC: "E-eai? Beleza? Cara, aquele PC compartilhado ali do canto t\xE1... uh...
+  talkNPC: "E-e aí? Beleza? Cara, aquele PC compartilhado ali do canto t\xE1... uh...
     atualizando o Windows. \xC9, isso mesmo. Melhor nem mexer nele agora, sabe como
-    \xE9 n\xE9? Demora horas... vai travar tudo se voc\xEA encostar. Hehe!"
+    \xE9, n\xE9? Demora horas... vai travar tudo se voc\xEA encostar. Hehe!"
   nextNode: {fileID: 0}
   characterNPC: {fileID: 21300000, guid: 416a89d9fc7e34447b2ec7f515522f21, type: 3}

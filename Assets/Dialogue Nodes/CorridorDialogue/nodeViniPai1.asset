@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: nodeViniPai1
   m_EditorClassIdentifier: 
   talkNPC: "Algu\xE9m viu minha caneca do Star Wars? Eu n\xE3o consigo configurar
-    esse firewall sem cafe\xEDna no sangue. Se acharem, n\xE3o lavem, tira o gosto!"
+    esse firewall sem cafe\xEDna no sangue. Se acharem, n\xE3o lavem, sen\xE3o ela
+    perde o gosto!"
   nextNode: {fileID: 0}
   characterNPC: {fileID: 21300000, guid: c146b557e94e0324e9acbc141ae41290, type: 3}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc344bf1847f7284ba70f62fdd0f60c5, type: 3}
   m_Name: node_2C_Habitos
   m_EditorClassIdentifier: 
-  question: " \u201CO Dr. Rolf? Aquele ali \xE9 sistem\xE1tico demais.. Tudo tem
+  question: "\u201CO Dr. Rolf? Aquele ali \xE9 sistem\xE1tico demais... Tudo tem
     que estar no lugar, mas ele vive anotando as coisas em papel porque diz que 'a
     mem\xF3ria falha, mas a tinta n\xE3o'. "
   options:

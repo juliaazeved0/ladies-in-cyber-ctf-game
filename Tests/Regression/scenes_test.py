@@ -14,6 +14,32 @@ def documents(path):
 
 
 class SceneRegression(unittest.TestCase):
+    def test_screen_space_canvases_scale_with_screen_size(self):
+        for name in ['PlayerMap.unity', 'BossRoom.unity']:
+            docs = documents(ASSETS / 'Scenes' / name)
+            canvases = {}
+            for kind, body in docs.values():
+                go = re.search(r'm_GameObject: \{fileID: (\d+)\}', body)
+                if not go:
+                    continue
+                if kind == '223':
+                    mode = re.search(r'm_RenderMode: (\d+)', body)
+                    if mode:
+                        canvases[go[1]] = mode[1]
+            for kind, body in docs.values():
+                if kind != '114' or 'm_UiScaleMode:' not in body:
+                    continue
+                go = re.search(r'm_GameObject: \{fileID: (\d+)\}', body)
+                if go and canvases.get(go[1]) == '0':
+                    self.assertRegex(body, r'm_UiScaleMode: 1\n')
+                    self.assertRegex(body, r'm_ReferenceResolution: \{x: [1-9]\d*, y: [1-9]\d*\}')
+                    self.assertRegex(body, r'm_MatchWidthOrHeight: 0\.5')
+
+    def test_outline_shader_has_bounded_webgl_sampling(self):
+        shader = (ASSETS / 'Shaders/SpriteOutline.shader').read_text()
+        self.assertIn('const int numSamples = 16;', shader)
+        self.assertNotIn('_OutlineSampleQuality', shader)
+
     def test_forensics_panels_registered_and_references_resolve(self):
         docs = documents(ASSETS / 'Scenes/PlayerMap.unity')
         manager = next(body for kind, body in docs.values() if kind == '1001' and

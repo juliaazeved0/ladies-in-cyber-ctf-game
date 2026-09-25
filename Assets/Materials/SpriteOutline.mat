@@ -87,7 +87,6 @@ Material:
     - _OcclusionStrength: 1
     - _OutlineAlphaMultiplier: 1
     - _OutlineIntensity: 10
-    - _OutlineSampleQuality: 128
     - _OutlineSoftness: 5
     - _OutlineThickness: 0.1
     - _OutlineWidth: 51.79
