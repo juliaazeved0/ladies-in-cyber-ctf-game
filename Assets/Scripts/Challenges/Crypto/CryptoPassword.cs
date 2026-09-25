@@ -66,6 +66,8 @@ public class CryptoPassword : MonoBehaviour
             if(ChallengeManager.Instance.IsChallengeCompleted(idChallenge))
             {
                 flagCaptured = true;
+                if(textFlag != null) textFlag.text = "Flag Capturada!";
+                if(lockpcPolyana != null) lockpcPolyana.isUnlocked = true;
 
                 if(pulsePCJ != null)
                 {

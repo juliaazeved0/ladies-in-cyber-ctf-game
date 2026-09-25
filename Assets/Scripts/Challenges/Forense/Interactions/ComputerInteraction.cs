@@ -9,6 +9,7 @@ public class ComputerInteraction : MonoBehaviour
 {
     [Header("Visual Effects")]
     [Tooltip("Script responsavel pelo efeito de brilho no objeto.")]
+    [UnityEngine.Serialization.FormerlySerializedAs("scriptPulse")]
     public PulseOutline pulseOutline;
 
     [Header("UI Interaction")]

@@ -162,6 +162,7 @@ namespace BashTerminal
 
             //Salva o progresso no sistema de Flags e Desafios
             FlagManager.Instance.SaveFlag("Pressao no Bash", flag);
+            if(objectPulse != null) objectPulse.StopPulsing();
 
             if(ChallengeManager.Instance != null)
                 ChallengeManager.Instance.CompleteChallenge("DesafioPressao");
@@ -175,6 +176,7 @@ namespace BashTerminal
         {
             string flag = SafeBase.ViewBase(SafeBase.flag_1);
             FlagManager.Instance.SaveFlag("Pressao no Bash", flag);
+            if(objectPulse != null) objectPulse.StopPulsing();
 
             if(popCaptureFlag != null) popCaptureFlag.SetActive(true);
         }

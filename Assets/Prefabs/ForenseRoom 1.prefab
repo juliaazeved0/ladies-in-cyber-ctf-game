@@ -4161,8 +4161,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pulseSpeed: 0.05
-  maxThickness: 1
+  maxThickness: 0.05
   startActive: 0
+  completionFlagIndex: 3
 --- !u!1 &3038521657126367104
 GameObject:
   m_ObjectHideFlags: 0
@@ -9818,7 +9819,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 70a5baf2ec58eee4dbbf0c8c65754c24, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10278,8 +10279,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pulseSpeed: 0.05
-  maxThickness: 1
+  maxThickness: 0.05
   startActive: 0
+  completionFlagIndex: 4
 --- !u!1 &7408717356418965918
 GameObject:
   m_ObjectHideFlags: 0

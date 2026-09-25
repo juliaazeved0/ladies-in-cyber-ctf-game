@@ -118,7 +118,7 @@ public class PanelMailController : MonoBehaviour
 
     public void CopiarLink(string linkParaCopiar)
     {
-        GUIUtility.systemCopyBuffer = linkParaCopiar; //Quando a jogadora clica no link, ele eh copiado
+        ClipboardManager.CopyText(linkParaCopiar); //Quando a jogadora clica no link, ele eh copiado
 
         if(imagemSelecaoLink != null)
         {

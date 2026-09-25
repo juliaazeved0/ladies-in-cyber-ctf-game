@@ -78,6 +78,8 @@ Shader "Custom/Sprite Outline"
 				fixed4 c = SampleSpriteTexture(IN.texcoord) * IN.color;
 				c.rgb *= c.a;
 
+				if (_OutlineAlphaMultiplier <= 0.0 || _OutlineThickness <= 0.0) return c;
+
 				// Calculate the center of the sprite in UV space
 				float2 center = float2(0.5, 0.5);
 				
@@ -115,12 +117,13 @@ Shader "Custom/Sprite Outline"
 				// If the current pixel is transparent and the average alpha of the surrounding pixels is not, draw the outline
 				if (c.a == 0.0 && averageAlpha > 0.0)
 				{
-					fixed outlineAlpha = (averageAlpha + _OutlineAlphaMultiplier);
+					fixed outlineAlpha = saturate(averageAlpha) * _OutlineAlphaMultiplier;
 					if (outlineAlpha > 1.0)
 					{
 						outlineAlpha = 1.0;
 					}
 					outlineC.a *= outlineAlpha;
+					outlineC.rgb *= outlineAlpha;
 
 					return outlineC;
 				}

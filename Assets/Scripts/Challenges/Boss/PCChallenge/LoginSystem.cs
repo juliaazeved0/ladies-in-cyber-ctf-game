@@ -30,6 +30,7 @@ public class LoginSystem : MonoBehaviour
     [Header("Post-it Note")]
     [Tooltip("Campo que contem o texto do post-it. A jogadora pode copiar o conteudo, mas nao edita-lo.")]
     [SerializeField] private TMP_InputField postItInput;
+    [SerializeField] private TMP_Text postItText;
 
     [Tooltip("Objeto visual utilizado para destacar o post-it apos o conteudo ser copiado.")]
     [SerializeField] private GameObject highlightBackground;
@@ -95,17 +96,16 @@ public class LoginSystem : MonoBehaviour
     //Copia o texto do post-it para a area de transferencia do sistema
     public void CopyPostIt()
     {
-        if(postItInput != null && !string.IsNullOrEmpty(postItInput.text))
-        {
-            GUIUtility.systemCopyBuffer = postItInput.text;
+        string text = postItText != null ? postItText.text : postItInput != null ? postItInput.text : "";
+        if(string.IsNullOrWhiteSpace(text)) return;
 
-            StopAllCoroutines();
-            StartCoroutine(HighlightEffect());
-        }
+        // A pista e Base64; quebras visuais de linha nao fazem parte do valor.
+        ClipboardManager.CopyText(string.Concat(text.Split((char[])null, System.StringSplitOptions.RemoveEmptyEntries)));
+        StopCoroutine(nameof(HighlightEffect));
+        StartCoroutine(nameof(HighlightEffect));
     }
 
-    //Fecha o desafio do Boss, retornando a tela inicial e ao estado normal do CanvasManager
-   public void ExitChallengeBoss()
+    public void ExitChallengeBoss()
     {
         if(initialBackground == null || desktopBackground == null)
         {

@@ -75,6 +75,8 @@ public class PCPChallenge : MonoBehaviour
             if(ChallengeManager.Instance.IsChallengeCompleted(challengeID))
             {
                 flagCaptured = true;
+                if(textFlag != null) textFlag.text = "Flag Capturada!";
+                if(buttonFlag != null) buttonFlag.interactable = false;
 
                 if(pcPoly != null)
                 {

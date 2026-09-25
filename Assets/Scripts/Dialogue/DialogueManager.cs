@@ -55,6 +55,13 @@ public class DialogueManager : MonoBehaviour
     [Tooltip("No inicial de dialogo a ser executado.")]
     [SerializeField] private DialogueNode firstNode;
 
+    [SerializeField] private bool requireAllMainFlags;
+
+    public bool IsSuccessfulConclusion => dialogueCurrent != null &&
+        dialogueCurrent.buttonType == ButtonType.Done &&
+        (dialogueCurrent.nextDialogue == null || dialogueCurrent.nextDialogue.Length == 0) &&
+        panelDialogue != null && panelDialogue.activeInHierarchy;
+
     private DialogueNode dialogueCurrent;
     private DialogueNode pendingNextNode;
 
@@ -91,7 +98,7 @@ public class DialogueManager : MonoBehaviour
 
         int dialogueInicialDone = PlayerPrefs.GetInt(INICIAL_KEY, 0);
 
-        if(dialogueInicialDone == 1)
+        if(!requireAllMainFlags && dialogueInicialDone == 1)
         {
             lockImage.gameObject.SetActive(false);
             
@@ -112,6 +119,7 @@ public class DialogueManager : MonoBehaviour
     //Inicia a sequencia de dialogo a partir do no inicial configurado
     public void StartDialogue()
     {
+        if(requireAllMainFlags && !FlagManager.HasAllMainFlags()) return;
         if(firstNode != null)
         {
             isDialogueActive = true;
@@ -179,6 +187,8 @@ public class DialogueManager : MonoBehaviour
     //Finaliza a interacao de dialogo salvando a conclusao no PlayerPrefs e liberando acessos na cena
     public void OnClickDone()
     {
+        // A Joana libera a pista pelo UnlockBossRoom; nunca usa a trava da recepcao.
+        if(requireAllMainFlags) return;
         isDialogueActive = false; 
 
         PlayerPrefs.SetInt(INICIAL_KEY, 1);

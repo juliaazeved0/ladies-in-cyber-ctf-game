@@ -37,6 +37,12 @@ public class FileNavigationManager : MonoBehaviour
 
     void Start()
     {
+        ResetNavigation();
+    }
+
+    public void ResetNavigation()
+    {
+        historyStack.Clear();
         if(popUpConatiner != null)
         {
             foreach(Transform child in popUpConatiner)
@@ -84,9 +90,13 @@ public class FileNavigationManager : MonoBehaviour
             return;
         }
 
-        if(folder.contentFolder == currentOpenFolder) return;
+        if(folder.contentFolder == currentOpenFolder)
+        {
+            currentOpenFolder.SetActive(true);
+            return;
+        }
 
-        historyStack.Push(currentOpenFolder);
+        if(currentOpenFolder != null) historyStack.Push(currentOpenFolder);
 
         if(currentOpenFolder != null)
             currentOpenFolder.SetActive(false);
@@ -146,20 +156,7 @@ public class FileNavigationManager : MonoBehaviour
     /// </summary>
     public void ClosePopUp()
     {
-        if(popUpConatiner != null)
-        {
-            foreach (Transform child in popUpConatiner)
-            {
-                if(child.name == "pathFolder") continue;
-                if(child.name == "BackButton") continue;
-
-                child.gameObject.SetActive(false);
-            }
-        }
-        else
-        {
-            Debug.LogError("[FileNavigationManager] popUpConatiner não está atribuído no Inspector.");
-        }
+        ResetNavigation();
 
         if(boardFolders != null)
             boardFolders.SetActive(false);

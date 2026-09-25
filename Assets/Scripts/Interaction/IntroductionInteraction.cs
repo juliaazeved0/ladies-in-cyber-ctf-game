@@ -1,28 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Tilemaps;
-
 
 public class InteractionIntroduction : MonoBehaviour
 {
-
-    public bool playerIsHere = false;
+    public bool playerIsHere;
     public const string INTRO_KEY = "introductionComplete";
 
-
-    private void OnTriggerEnter2D(Collider2D collison)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        int playerDone = PlayerPrefs.GetInt(INTRO_KEY, 0);
+        if(!collision.CompareTag("Player")) return;
+        playerIsHere = true;
+        LoadSceneIntroduction.TryLoadIntroduction();
+    }
 
-        if(collison.CompareTag("Player") && playerDone == 0)
-        {
-            playerIsHere = true;
-            PlayerPrefs.SetInt(INTRO_KEY, 1);
-            PlayerPrefs.Save();
-
-            SceneManager.LoadScene("Introduction", LoadSceneMode.Additive);
-        }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Player")) playerIsHere = false;
     }
 }

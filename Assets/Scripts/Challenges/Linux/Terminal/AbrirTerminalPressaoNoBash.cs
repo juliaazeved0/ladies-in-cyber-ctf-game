@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using System.IO;
 using System;
+using System.Runtime.InteropServices;
 
 /// <summary>
 /// Gerencia a abertura do terminal externo (Windows/Linux) para o desafio "Pressao no Bash".

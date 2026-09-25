@@ -108,6 +108,7 @@ namespace BashTerminal
             AppendLine("Flag copiada para a Bolsa de Flags com sucesso!");
 
             FlagManager.Instance.SaveFlag("Mercado Escondido", flag);
+            if(objectPulse != null) objectPulse.StopPulsing();
 
             if(sucessPopup != null)
                 sucessPopup.SetActive(true);

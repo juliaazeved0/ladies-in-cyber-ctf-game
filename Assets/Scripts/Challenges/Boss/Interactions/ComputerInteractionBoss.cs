@@ -34,6 +34,12 @@ public class ComputerBossInteraction : ObjectInteractionBoss
             return;
         }
 
+        if(pulseOutline != null)
+        {
+            if(playerIsHere && (CanvasManager.Instance == null || !CanvasManager.Instance.IsAnyPanelOpen()))
+                pulseOutline.StartPulsing();
+            else pulseOutline.StopPulsing();
+        }
         base.Update();
     }
 
@@ -59,7 +65,7 @@ public class ComputerBossInteraction : ObjectInteractionBoss
 
     protected override void Interact()
     {
-        if(pulseOutline != null) pulseOutline.StartPulsing();
+        if(pulseOutline != null) pulseOutline.StopPulsing();
 
         base.Interact();
 

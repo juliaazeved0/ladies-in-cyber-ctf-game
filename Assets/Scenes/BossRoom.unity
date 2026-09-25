@@ -819,6 +819,7 @@ MonoBehaviour:
   desktopBackground: {fileID: 1308891032}
   errorPopup: {fileID: 350431659}
   postItInput: {fileID: 0}
+  postItText: {fileID: 1757867404}
   highlightBackground: {fileID: 980440916}
 --- !u!1 &161816907
 GameObject:
@@ -3147,6 +3148,7 @@ MonoBehaviour:
   desktopBackground: {fileID: 1308891032}
   errorPopup: {fileID: 350431659}
   postItInput: {fileID: 0}
+  postItText: {fileID: 1757867404}
   highlightBackground: {fileID: 980440916}
 --- !u!1 &532816793
 GameObject:
@@ -8356,7 +8358,7 @@ MonoBehaviour:
   interactionNotice: {fileID: 335169094}
   dialogueManagerBoss: {fileID: 1845538628}
   firstNodeBoss: {fileID: 11400000, guid: 26f8ed0184edb4b4bb599d6250677765, type: 2}
-  terminalPanel: {fileID: 0}
+  terminalPanel: {fileID: 2060862582}
 --- !u!1 &1303097277
 GameObject:
   m_ObjectHideFlags: 0
@@ -9305,6 +9307,7 @@ MonoBehaviour:
   pulseSpeed: 0.05
   maxThickness: 0.05
   startActive: 0
+  completionFlagIndex: 8
 --- !u!1 &1406377799
 GameObject:
   m_ObjectHideFlags: 0
@@ -11268,9 +11271,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1757867402}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d199490a83bb2b844b9695cbf13b01ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
   m_Navigation:
     m_Mode: 3
     m_WrapAround: 0
@@ -11300,33 +11303,21 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1757867404}
-  m_TextComponent: {fileID: 0}
-  m_Placeholder: {fileID: 0}
-  m_ContentType: 0
-  m_InputType: 0
-  m_AsteriskChar: 42
-  m_KeyboardType: 0
-  m_LineType: 0
-  m_HideMobileInput: 0
-  m_CharacterValidation: 0
-  m_CharacterLimit: 0
-  m_OnSubmit:
+  m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
-  m_OnDidEndEdit:
-    m_PersistentCalls:
-      m_Calls: []
-  m_OnValueChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_CustomCaretColor: 0
-  m_SelectionColor: {r: 0.65882355, g: 0.80784315, b: 1, a: 0.7529412}
-  m_Text: 
-  m_CaretBlinkRate: 0.85
-  m_CaretWidth: 1
-  m_ReadOnly: 0
-  m_ShouldActivateOnSelect: 1
+      m_Calls:
+      - m_Target: {fileID: 101323901}
+        m_TargetAssemblyTypeName: LoginSystem, Assembly-CSharp
+        m_MethodName: CopyPostIt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument:
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1768362372
 GameObject:
   m_ObjectHideFlags: 0

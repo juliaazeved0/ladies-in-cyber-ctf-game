@@ -29,6 +29,10 @@ public class UnlockBossRoom : MonoBehaviour
     [Header("Visual Feedback")]
     [Tooltip("Objeto que obstrui a entrada da sala ate ser desbloqueado.")]
     public GameObject lockObject;
+    [SerializeField] private GameObject lockIcon;
+    private const string JOANA_KEY = "JoanaPasswordAuthorized";
+
+    public bool CanEnterPassword => !unlocked && FlagManager.HasAllMainFlags() && PlayerPrefs.GetInt(JOANA_KEY, 0) == 1;
 
     [Tooltip("Efeito de pulso visual para guiar a jogadora ao ponto de interacao.")]
     public PulseOutline pulse;
@@ -59,16 +63,19 @@ public class UnlockBossRoom : MonoBehaviour
 
     private bool unlocked = false;
     private bool isTransitioning = false;
+    private bool validatingPassword;
 
     //Verifica se a sala ja foi desbloqueada ou se a jogadora esta retornando do BossRoom ao iniciar
     void Start()
     {
-        if(PlayerPrefs.GetInt("BossRoomUnlocked", 0) == 1)
+        unlocked = FlagManager.HasAllMainFlags() && PlayerPrefs.GetInt("BossRoomUnlocked", 0) == 1;
+        // Saves anteriores a esta autorizacao ja podem ter completado a porta.
+        if(unlocked)
         {
-            unlocked = true;
-
-            if(lockObject != null) lockObject.SetActive(false);
+            PlayerPrefs.SetInt(JOANA_KEY, 1);
+            PlayerPrefs.Save();
         }
+        RefreshAccess();
 
         if(PlayerPrefs.GetInt("ReturningFromBoss", 0) == 1)
         {
@@ -124,26 +131,46 @@ public class UnlockBossRoom : MonoBehaviour
         if(anim != null) anim.enabled = true;
     }
 
+    private void RefreshAccess()
+    {
+        if(lockIcon != null) lockIcon.SetActive(!unlocked);
+        if(lockObject != null) lockObject.SetActive(!unlocked);
+        if(lockInteraction != null) lockInteraction.isUnlocked = CanEnterPassword && !unlocked;
+        if(input != null) input.interactable = CanEnterPassword && !unlocked && !validatingPassword;
+        if(pulse != null)
+        {
+            if(CanEnterPassword && !unlocked) pulse.StartPulsing();
+            else pulse.StopPulsing();
+        }
+    }
+
     public void OpenPasswordPanel()
     {
-        dialogueManager.OnClickExit();
-        CanvasManager.Instance.OpenPanel(passwordPanel.name);
-
-        if(pulse != null) pulse.StartPulsing();
+        if(!FlagManager.HasAllMainFlags()) return;
+        if(!CanEnterPassword)
+        {
+            if(dialogueManager == null || !dialogueManager.IsSuccessfulConclusion) return;
+            PlayerPrefs.SetInt(JOANA_KEY, 1);
+            PlayerPrefs.Save();
+        }
+        if(dialogueManager != null) dialogueManager.OnClickExit();
+        RefreshAccess();
+        if(CanvasManager.Instance != null && passwordPanel != null)
+            CanvasManager.Instance.OpenPanel(passwordPanel.name);
     }
 
     public void ClosePasswordPanel()
     {
         CanvasManager.Instance.ClosedPanel(passwordPanel.name);
 
-        if(pulse != null) pulse.StopPulsing();
-        if(lockInteraction != null) lockInteraction.isUnlocked = true;
+        RefreshAccess();
 
         CanvasManager.Instance.ToggleMiniMap(true);
     }
 
     public void OpenDevicePanel()
     {
+        if(!CanEnterPassword || unlocked) return;
         CanvasManager.Instance.OpenPanel(devicePanel.name);
     }
 
@@ -158,8 +185,9 @@ public class UnlockBossRoom : MonoBehaviour
 
     public void PressKey(string value) 
     {
-        if(input != null)
+        if(CanEnterPassword && !unlocked && !validatingPassword && input != null)
         {
+            if(input.text == "ACESSO NEGADO") input.text = "";
             input.text += value;
         }
     }
@@ -174,27 +202,31 @@ public class UnlockBossRoom : MonoBehaviour
 
     public void PressEnter()
     {
-        if(input == null) return;
+        if(!CanEnterPassword || unlocked || validatingPassword || input == null) return;
+        StopCoroutine(nameof(ClearAfterDelay));
 
-        if(input.text == correctPassword)
+        if(input.text.Trim() == correctPassword)
             StartCoroutine(SuccessRoutine());
         else
         {
             input.text = "ACESSO NEGADO";
-            StartCoroutine(ClearAfterDelay());
+            StartCoroutine(nameof(ClearAfterDelay));
         }
     }
 
     IEnumerator SuccessRoutine()
     {
+        validatingPassword = true;
+        input.interactable = false;
         input.text = "ACESSO CONCEDIDO";
         yield return new WaitForSeconds(0.5f); 
         
-        lockObject.SetActive(false);
         unlocked = true;
+        validatingPassword = false;
 
         PlayerPrefs.SetInt("BossRoomUnlocked", 1);
         PlayerPrefs.Save();
+        RefreshAccess();
         
         CloseDevicePanel();
     }
@@ -202,7 +234,7 @@ public class UnlockBossRoom : MonoBehaviour
     IEnumerator ClearAfterDelay()
     {
         yield return new WaitForSeconds(3f);
-        ClearInput();
+        if(input != null && input.text == "ACESSO NEGADO") ClearInput();
     }
 
     private void OnTriggerEnter2D(Collider2D other)

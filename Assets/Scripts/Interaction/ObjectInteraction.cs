@@ -14,6 +14,7 @@ public class ObjectInteraction : MonoBehaviour
 
     [Tooltip("Painel do desafio associado a este objeto, aberto ao interagir.")]
     public GameObject challengePanel;
+    [SerializeField] private PulseOutline proximityPulse;
 
     //Indica se a jogadora esta atualmente dentro da area de trigger deste objeto
     protected bool playerIsHere;
@@ -56,6 +57,7 @@ public class ObjectInteraction : MonoBehaviour
         //Se algum painel estiver aberto, esconde o aviso e ignora a interacao
         if(IsAnyPanelOpen())
         {
+            if(proximityPulse != null) proximityPulse.StopPulsing();
             if(interactionNotice != null && interactionNotice.activeSelf)
                 interactionNotice.SetActive(false);
             return;
@@ -68,6 +70,12 @@ public class ObjectInteraction : MonoBehaviour
         }
 
         //Dispara a interacao ao pressionar E, apenas se o jogador estiver na area
+        if(proximityPulse != null)
+        {
+            if(playerIsHere) proximityPulse.StartPulsing();
+            else proximityPulse.StopPulsing();
+        }
+
         if(playerIsHere && Input.GetKeyDown(KeyCode.E))
         {
             Interact();
@@ -81,7 +89,7 @@ public class ObjectInteraction : MonoBehaviour
 
         foreach(GameObject panel in CanvasManager.Instance.allPanels)
         {
-            if(panel != null && panel.activeSelf) return true;
+            if(panel != null && panel.activeInHierarchy) return true;
         }
         return false;
     }

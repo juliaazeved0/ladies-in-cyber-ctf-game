@@ -88,6 +88,11 @@ public class CanvasManager : MonoBehaviour
         allPanels.RemoveAll(panel => panel == null);
     }
 
+    public bool IsAnyPanelOpen()
+    {
+        return allPanels != null && allPanels.Exists(panel => panel != null && panel.activeInHierarchy);
+    }
+
     public void ClosedAllPanels()
     {
         if(allPanels == null) return;

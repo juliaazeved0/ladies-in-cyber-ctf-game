@@ -1,81 +1,86 @@
 using UnityEngine;
 
-/// <summary>
-/// Controla um efeito de contorno pulsante (outline) em um SpriteRenderer,
-/// variando a espessura do contorno ao longo do tempo via shader properties.
-/// </summary>
+/// <summary>Contorno do objetivo atual, desligado quando a flag correspondente e coletada.</summary>
 public class PulseOutline : MonoBehaviour
 {
-    [Header("Pulse Settings")]
-    [Tooltip("Velocidade da pulsacao do contorno. Quanto maior, mais rapida a oscilacao.")]
     [SerializeField] private float pulseSpeed = 0.05f;
-
-    [Tooltip("Espessura maxima que o contorno atinge durante a pulsacao.")]
     [SerializeField] private float maxThickness = 0.05f;
-
-    [Tooltip("Se marcado, a pulsacao ja comeca ativa assim que o objeto eh carregado.")]
-    [SerializeField] private bool startActive = false;
+    [SerializeField] private bool startActive;
+    [SerializeField] private int completionFlagIndex = -1;
+    [SerializeField] private string highlightAfterChallenge;
 
     private Material myMaterial;
-
-    private bool isPulsing = false;
-
+    private bool initialized;
+    private bool isPulsing;
+    private string completionFlag;
     private int thicknessID;
+    private int alphaID;
 
-    void Start()
+    public bool IsPulsing => isPulsing;
+
+    private bool IsCompleted => !string.IsNullOrEmpty(completionFlag) &&
+        (FlagManager.Instance != null ? FlagManager.Instance.IsFlagCaptured(completionFlag) :
+        FlagManager.HasSavedFlag(completionFlag));
+
+    private void Awake() => Initialize();
+
+    private void Initialize()
     {
-        var renderer = GetComponent<SpriteRenderer>();
-
-        if(renderer != null)
-        {
-            myMaterial = renderer.material;
-        }
-        else
-        {
-            Debug.LogWarning($"{gameObject.name} não possui um SpriteRenderer. O contorno não poderá ser exibido.");
-        }
-
+        if(initialized) return;
+        initialized = true;
         thicknessID = Shader.PropertyToID("_OutlineThickness");
-
-        if(startActive)
+        alphaID = Shader.PropertyToID("_OutlineAlphaMultiplier");
+        completionFlag = SafeBase.GetFlag(completionFlagIndex);
+        var sprite = GetComponent<SpriteRenderer>();
+        if(sprite == null || sprite.sharedMaterial == null ||
+           !sprite.sharedMaterial.HasProperty(thicknessID) || !sprite.sharedMaterial.HasProperty(alphaID))
         {
-            StartPulsing();
+            Debug.LogWarning($"[PulseOutline] {name} precisa de SpriteRenderer com material de outline.", this);
+            return;
         }
-        else
-        {
-            StopPulsing();
-        }
+        myMaterial = sprite.material;
+        isPulsing = !IsCompleted && (startActive || ChallengeManager.IsCompleted(highlightAfterChallenge));
+        ApplyVisibility();
     }
 
-    void Update()
+    private void Update()
     {
+        if(IsCompleted && isPulsing) StopPulsing();
         if(isPulsing && myMaterial != null)
-        {
-            float currentThickness = Mathf.PingPong(Time.time * pulseSpeed, maxThickness);
-            myMaterial.SetFloat(thicknessID, currentThickness);
-        }
+            myMaterial.SetFloat(thicknessID, Mathf.PingPong(Time.time * Mathf.Max(0f, pulseSpeed),
+                Mathf.Clamp(maxThickness, 0f, 0.1f)));
     }
 
-    //Ativa a pulsacao do contorno e torna o efeito visivel
     public void StartPulsing()
     {
+        Initialize();
+        if(!isActiveAndEnabled || IsCompleted || myMaterial == null) return;
         isPulsing = true;
-
-        if(myMaterial != null)
-        {
-            myMaterial.SetFloat("_OutlineAlphaMultiplier", 1.0f);
-        }
+        ApplyVisibility();
     }
 
-    //Interrompe a pulsacao e zera a espessura/visibilidade do contorno
     public void StopPulsing()
     {
+        Initialize();
         isPulsing = false;
+        ApplyVisibility();
+    }
 
-        if(myMaterial != null)
-        {
-            myMaterial.SetFloat(thicknessID, 0.0f);
-            myMaterial.SetFloat("_OutlineAlphaMultiplier", 0.0f);
-        }
+    private void ApplyVisibility()
+    {
+        if(myMaterial == null) return;
+        myMaterial.SetFloat(alphaID, isPulsing ? 1f : 0f);
+        if(!isPulsing) myMaterial.SetFloat(thicknessID, 0f);
+    }
+
+    private void OnDisable()
+    {
+        isPulsing = false;
+        ApplyVisibility();
+    }
+
+    private void OnDestroy()
+    {
+        if(myMaterial != null) Destroy(myMaterial);
     }
 }

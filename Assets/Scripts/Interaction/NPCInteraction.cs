@@ -45,6 +45,7 @@ public class NPCInteraction : MonoBehaviour
     protected virtual void Update()
     {
         //Se ja existe um dialogo ativo na cena, bloqueia novas interacoes
+        if(CanvasManager.Instance != null && CanvasManager.Instance.IsAnyPanelOpen()) return;
         if(!playerIsHere || SimpleDialogue.isSimpleDialogueActive) return;
 
         //Inicia o dialogo ao pressionar a tecla E, caso a tarefa nao esteja concluida

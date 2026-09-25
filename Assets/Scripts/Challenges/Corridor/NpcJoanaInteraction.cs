@@ -17,11 +17,10 @@ public class NPCJoanaInteraction : MonoBehaviour
     [Header("Dialogue Reference")]
     public DialogueManager dialogueManager;
 
-    [Header("Debug & State")]
+    [Header("State")]
     [SerializeField] protected bool playerIsHere = false;
 
-    [Tooltip("Se marcado, ignora a contagem de flags para testes.")]
-    public bool debugMode = false;
+    private bool CanTalk => AreAllFlagsCollected() && !DialogueManager.isDialogueActive;
 
     void Start()
     {
@@ -36,12 +35,16 @@ public class NPCJoanaInteraction : MonoBehaviour
     protected virtual void Update()
     {
         if(!playerIsHere) return;
+        bool available = CanTalk && (CanvasManager.Instance == null || !CanvasManager.Instance.IsAnyPanelOpen());
+        if(interactionNotice != null) interactionNotice.SetActive(available);
+        if(balloonNPC != null) balloonNPC.gameObject.SetActive(available);
+        if(!available) return;
 
         //Impede nova interacao se um dialogo ja estiver ocorrendo
         if(dialogueManager != null && DialogueManager.isDialogueActive) return;
 
         //Verifica condicao de vitoria/progresso (8 flags)
-        if((AreAllFlagsCollected() || debugMode) && Input.GetKeyDown(KeyCode.E))
+        if(AreAllFlagsCollected() && Input.GetKeyDown(KeyCode.E))
         {
             if(dialogueManager != null)
             {
@@ -60,8 +63,8 @@ public class NPCJoanaInteraction : MonoBehaviour
         {
             playerIsHere = true;
 
-            //So mostra feedback visual se a jogadora cumpriu os requisitos ou em debug
-            if(AreAllFlagsCollected() || debugMode)
+            //So mostra feedback visual se a jogadora cumpriu os requisitos
+            if(AreAllFlagsCollected())
             {
                 if(interactionNotice != null)
                     interactionNotice.SetActive(true);
@@ -92,6 +95,6 @@ public class NPCJoanaInteraction : MonoBehaviour
     /// <returns></returns>
     private bool AreAllFlagsCollected()
     {
-        return FlagManager.Instance != null && FlagManager.Instance.flagsCapture.Count >= 8;
+        return FlagManager.HasAllMainFlags();
     }
 }

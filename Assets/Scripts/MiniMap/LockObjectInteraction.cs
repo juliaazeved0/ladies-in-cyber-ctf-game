@@ -9,6 +9,13 @@ public class LockObjectInteraction : ObjectInteraction
     [Header("Lock Settings")]
     [Tooltip("Define se o objeto esta liberado para interacao.")]
     public bool isUnlocked = false;
+    [SerializeField] private string unlockAfterChallenge;
+
+    protected new void Start()
+    {
+        base.Start();
+        if(ChallengeManager.IsCompleted(unlockAfterChallenge)) isUnlocked = true;
+    }
 
     //Atualiza o estado visual do aviso de interacao com base na proximidade e no bloqueio
     protected override void Update()
@@ -19,7 +26,7 @@ public class LockObjectInteraction : ObjectInteraction
             interactionNotice.SetActive(playerIsHere && isUnlocked);
         }
 
-        base.Update();
+        if(isUnlocked) base.Update();
     }
 
     //Executa a interacao principal apenas se o objeto nao estiver mais bloqueado

@@ -1083,6 +1083,7 @@ MonoBehaviour:
   pulseSpeed: 0.05
   maxThickness: 0.05
   startActive: 0
+  completionFlagIndex: 2
 --- !u!61 &7216563228015869498
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1399,6 +1400,7 @@ MonoBehaviour:
   pulseSpeed: 0.05
   maxThickness: 0.05
   startActive: 0
+  completionFlagIndex: 1
 --- !u!61 &3982863969512234261
 BoxCollider2D:
   m_ObjectHideFlags: 0

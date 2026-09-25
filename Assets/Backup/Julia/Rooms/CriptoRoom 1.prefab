@@ -3219,6 +3219,7 @@ MonoBehaviour:
   pulseSpeed: 0.05
   maxThickness: 0.05
   startActive: 0
+  completionFlagIndex: 6
 --- !u!61 &3228097270988599716
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10264,6 +10265,8 @@ MonoBehaviour:
   pulseSpeed: 0.05
   maxThickness: 0.05
   startActive: 0
+  completionFlagIndex: 7
+  highlightAfterChallenge: CryptoPassword
 --- !u!61 &6188275484989772550
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10324,6 +10327,7 @@ MonoBehaviour:
   interactionNotice: {fileID: 8878845714947084977}
   challengePanel: {fileID: 564128689482384785}
   isUnlocked: 0
+  unlockAfterChallenge: CryptoPassword
 --- !u!1 &9117389784942480327
 GameObject:
   m_ObjectHideFlags: 0

@@ -48593,6 +48593,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PreBossManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3857758675853312459, guid: b78152d77cd35af43ba560cd1db18b47, type: 3}
+      propertyPath: requireAllMainFlags
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -59296,6 +59300,7 @@ MonoBehaviour:
   finalNode: {fileID: 11400000, guid: 945d3d1a6b8052d44aa3fede59fdac6b, type: 2}
   challenge1ID: CryptoPassword
   challenge2ID: CryptoCapivara
+  nextChallengePulse: {fileID: 920000000000000002}
 --- !u!4 &861967546 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 243855558704866791, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
@@ -60210,6 +60215,7 @@ MonoBehaviour:
   pulseSpeed: 0.05
   maxThickness: 0.05
   startActive: 0
+  completionFlagIndex: 5
 --- !u!114 &937047042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60224,6 +60230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionNotice: {fileID: 1344397177}
   challengePanel: {fileID: 1326193229}
+  proximityPulse: {fileID: 937047038}
 --- !u!1 &937910865
 GameObject:
   m_ObjectHideFlags: 0
@@ -66394,7 +66401,6 @@ MonoBehaviour:
   interactionNotice: {fileID: 912227834}
   dialogueManager: {fileID: 114838448}
   playerIsHere: 0
-  debugMode: 0
 --- !u!1 &1387933515
 GameObject:
   m_ObjectHideFlags: 0
@@ -66601,7 +66607,7 @@ MonoBehaviour:
   popCaptureFlag: {fileID: 1055385242}
   captureFlag: {fileID: 1115620477}
   panelChallengePressureBash: {fileID: 6194457942443437041}
-  objectPulse: {fileID: 1679755326}
+  objectPulse: {fileID: 752310397}
 --- !u!1 &1398667562
 GameObject:
   m_ObjectHideFlags: 0
@@ -67678,6 +67684,7 @@ MonoBehaviour:
   input: {fileID: 910382760}
   correctPassword: 1541
   lockObject: {fileID: 1572438454}
+  lockIcon: {fileID: 937910865}
   pulse: {fileID: 1506739871}
   fadeAnimator: {fileID: 1918863468}
   panelBlack: {fileID: 1918863462}
@@ -67931,7 +67938,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pulseSpeed: 0.05
   maxThickness: 0.05
-  startActive: 1
+  startActive: 0
 --- !u!114 &1506739875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69693,7 +69700,7 @@ MonoBehaviour:
   popCaptureFlag: {fileID: 1038708671}
   captureFlag: {fileID: 873898654}
   panelChallengePressureBash: {fileID: 7466704235234320148}
-  objectPulse: {fileID: 752310397}
+  objectPulse: {fileID: 1679755326}
 --- !u!1 &1591664313 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2277509916494799420, guid: 0e8fd1d7c6ed526499918e0ee1af4dfb, type: 3}
@@ -100482,7 +100489,7 @@ PrefabInstance:
       objectReference: {fileID: 128233563}
     - target: {fileID: 7441800840749679756, guid: 1a144026e8b11c34a9d73930bc3d035e, type: 3}
       propertyPath: allPanels.Array.size
-      value: 20
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 7441800840749679756, guid: 1a144026e8b11c34a9d73930bc3d035e, type: 3}
       propertyPath: allPanels.Array.data[0]
@@ -100576,6 +100583,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7441800840749679756, guid: 1a144026e8b11c34a9d73930bc3d035e, type: 3}
+      propertyPath: allPanels.Array.data[22]
+      value:
+      objectReference: {fileID: 920000000000000001}
+    - target: {fileID: 7441800840749679756, guid: 1a144026e8b11c34a9d73930bc3d035e, type: 3}
+      propertyPath: allPanels.Array.data[23]
+      value:
+      objectReference: {fileID: 2096769637}
+    - target: {fileID: 7441800840749679756, guid: 1a144026e8b11c34a9d73930bc3d035e, type: 3}
+      propertyPath: allPanels.Array.data[24]
+      value:
+      objectReference: {fileID: 83276674}
+    - target: {fileID: 7441800840749679756, guid: 1a144026e8b11c34a9d73930bc3d035e, type: 3}
+      propertyPath: allPanels.Array.data[25]
+      value:
+      objectReference: {fileID: 1415386824}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -100600,3 +100623,19 @@ SceneRoots:
   - {fileID: 1270995715}
   - {fileID: 2379361537612269982}
   - {fileID: 694815860}
+--- !u!1 &920000000000000001 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2104220131252094051, guid: 02e8d17fb6761f94b958880ad3ae0450, type: 3}
+  m_PrefabInstance: {fileID: 4484170277870850491}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &920000000000000002 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4112380422422195193, guid: 3b7dee13217d0e149b93bdc737232170, type: 3}
+  m_PrefabInstance: {fileID: 2759342970082349630}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c89e5598e8c2fd74fb50b2f7ad1507e7, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:

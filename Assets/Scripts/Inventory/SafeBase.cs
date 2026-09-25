@@ -2,6 +2,12 @@ public static class SafeBase
 {
     private static int key = 14;
 
+    public static string GetFlag(int index)
+    {
+        int[][] flags = { flag_0, flag_1, flag_2, flag_3, flag_4, flag_5, flag_6, flag_7, flag_8 };
+        return index >= 0 && index < flags.Length ? ViewBase(flags[index]) : "";
+    }
+
     public static string ViewBase(int[] baseHiden)
     {
         string baseClean = "";

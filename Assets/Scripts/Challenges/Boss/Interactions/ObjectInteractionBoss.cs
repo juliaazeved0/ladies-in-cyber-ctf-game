@@ -29,7 +29,7 @@ public class ObjectInteractionBoss : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player") && DialogueManagerBoss.dialogueBossFinished)
+        if(collision.CompareTag("Player"))
         {
             playerIsHere = true;
 
@@ -78,7 +78,7 @@ public class ObjectInteractionBoss : MonoBehaviour
 
         foreach(GameObject panel in CanvasManager.Instance.allPanels)
         {
-            if(panel != null && panel.activeSelf) return true;
+            if(panel != null && panel.activeInHierarchy) return true;
         }
 
         return false;

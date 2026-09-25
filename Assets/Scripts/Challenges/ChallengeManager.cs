@@ -1,46 +1,49 @@
 using UnityEngine;
-using System.Collections.Generic;
 
-/// <summary>
-/// Gerencia o estado de conclusao dos desafios no jogo utilizando um padrao Singleton.
-/// </summary>
+/// <summary>Persiste a conclusao dos desafios e reconhece flags de saves anteriores.</summary>
 public class ChallengeManager : MonoBehaviour
 {
-    //Instancia unica do ChallengeManager no jogo
     public static ChallengeManager Instance;
-
-    [Header("State")]
-    [Tooltip("Conjunto com os IDs de todos os desafios ja concluidos.")]
-    private HashSet<string> completedChallenges = new HashSet<string>();
+    private const string KeyPrefix = "ChallengeCompleted_";
 
     private void Awake()
     {
-        //Garante que existe apenas uma instancia do ChallengeManager na cena
         if(Instance != null && Instance != this)
         {
-            Debug.LogWarning($"[ChallengeManager] Instância duplicada encontrada em {gameObject.name}. Destruindo objeto.", this);
             Destroy(gameObject);
             return;
         }
-
         Instance = this;
     }
 
-    //Marca um desafio como conluido utilizando seu ID unico.
-    public void CompleteChallenge(string challengeID)
+    private void OnDestroy()
     {
-        if(string.IsNullOrEmpty(challengeID))
-        {
-            Debug.LogWarning($"[ChallengeManager] Tentativa de concluir um desafio com ID nulo ou vazio em {gameObject.name}.", this);
-            return;
-        }
-
-        completedChallenges.Add(challengeID);
+        if(Instance == this) Instance = null;
     }
 
-    //Verifica se um desafio especifico ja foi concluido
-    public bool IsChallengeCompleted(string challengeID)
+    public void CompleteChallenge(string challengeID)
     {
-        return completedChallenges.Contains(challengeID);
+        if(string.IsNullOrEmpty(challengeID)) return;
+        PlayerPrefs.SetInt(KeyPrefix + challengeID, 1);
+        PlayerPrefs.Save();
+    }
+
+    public bool IsChallengeCompleted(string challengeID) => IsCompleted(challengeID);
+
+    public static bool IsCompleted(string challengeID)
+    {
+        if(string.IsNullOrEmpty(challengeID)) return false;
+        if(PlayerPrefs.GetInt(KeyPrefix + challengeID, 0) == 1) return true;
+
+        // Compatibilidade com partidas que salvaram apenas o inventario.
+        int[] flag;
+        switch(challengeID)
+        {
+            case "CryptoPassword": flag = SafeBase.flag_6; break;
+            case "CryptoCapivara": flag = SafeBase.flag_7; break;
+            case "DesafioPressao": flag = SafeBase.flag_1; break;
+            default: return false;
+        }
+        return FlagManager.HasSavedFlag(SafeBase.ViewBase(flag));
     }
 }

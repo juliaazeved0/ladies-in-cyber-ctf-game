@@ -75,9 +75,27 @@ public class FlagManager : MonoBehaviour
         }
     }
 
+    public static bool HasAllMainFlags()
+    {
+        for(int index = 0; index < 8; index++)
+        {
+            string flag = SafeBase.GetFlag(index);
+            if(Instance != null ? !Instance.IsFlagCaptured(flag) : !HasSavedFlag(flag)) return false;
+        }
+        return true;
+    }
+
+    public static bool HasSavedFlag(string flag)
+    {
+        if(string.IsNullOrEmpty(flag)) return false;
+        string suffix = " - " + flag;
+        return PlayerPrefs.GetString("SavedFlags", "").Split('|')
+            .Any(entry => entry.EndsWith(suffix, System.StringComparison.Ordinal));
+    }
+
     //Verifica se uma determinada flag ja foi capturada
     public bool IsFlagCaptured(string flag)
     {
-        return flagsCapture.Any(f => f.EndsWith(flag));
+        return !string.IsNullOrEmpty(flag) && flagsCapture.Any(f => f.EndsWith(" - " + flag, System.StringComparison.Ordinal));
     }
 }

@@ -130,16 +130,10 @@ public class InventoryDisplay : MonoBehaviour
             return;
         }
 
-        //Remove listeners antigos para nao empilhar closures com flags/paginas anteriores
-        button.onClick.RemoveAllListeners();
-        button.onClick.AddListener(() => CopyFlagToClipboard(flagToCopy));
-    }
-
-    //Copia a flag para a area de transferencia do sistema operacional
-    private void CopyFlagToClipboard(string flag)
-    {
-        GUIUtility.systemCopyBuffer = flag;
-        Debug.Log($"[InventoryDisplay] Flag copiada para a área de transferência: {flag}");
+        // Estes botoes pertencem ao inventario: substitui tambem callbacks do Inspector.
+        // Assim a mesma flag nao e copiada duas vezes por caminhos diferentes.
+        button.onClick = new Button.ButtonClickedEvent();
+        button.onClick.AddListener(() => ClipboardManager.CopyFlag(flagToCopy));
     }
 
     private void UpdateButtons()

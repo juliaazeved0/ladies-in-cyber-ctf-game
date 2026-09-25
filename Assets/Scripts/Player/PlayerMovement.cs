@@ -74,11 +74,12 @@ public class PlayerMovement : MonoBehaviour
     //Verifica no CanvasManager se existe algum painel ativo
     private bool IsAnyPanelOpen()
     {
+        if(UnityEngine.SceneManagement.SceneManager.GetSceneByName("Introduction").isLoaded) return true;
         if(CanvasManager.Instance == null) return false;
 
         foreach(GameObject panel in CanvasManager.Instance.allPanels)
         {
-            if(panel != null && panel.activeSelf) return true;
+            if(panel != null && panel.activeInHierarchy) return true;
         }
         return false;
     }
